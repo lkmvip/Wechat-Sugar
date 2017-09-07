@@ -24,4 +24,11 @@
         </block>
     </swiper>
   </view>
+  <view class="index-plan">
+  		<view wx:for="{{plan}}" wx:key="index"  data-index="{{index}}"
+           bindtap="switchPlan" class="plan-list {{planIndex === index ?'plan-on':''}}">
+            <image src="{{item.url}}" class="plan-image"/>
+            <view>{{item.text}}</view>
+        </view>
+  </view>
 </view>

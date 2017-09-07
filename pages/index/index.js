@@ -24,6 +24,14 @@ Page({
         autoplay: false,
         interval: 3000,
         duration: 800,
+        plan: [
+            {text:'每日签到',url:'/image/index/sign.png'},
+            {text:'限时购',url:'/image/index/time.png'},
+            {text:'会员专享',url:'/image/index/vip.png'},
+            {text:'拼团',url:'/image/index/shopteam.png'},
+            {text:'分享领券',url:'/image/index/share.png'}
+        ],
+        planIndex: '',
     },
 
     onLoad: function () {
@@ -37,10 +45,17 @@ Page({
         }
     },
 
-    switchTab(e){
+    switchTab: function(e) {
         this.setData({
             toView : e.target.dataset.id,
             tabIndex : e.target.dataset.index
+        })
+    },
+
+    switchPlan: function(e) {
+        console.log(e)
+        this.setData({
+            planIndex : e.currentTarget.dataset.index
         })
     }
 

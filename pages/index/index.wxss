@@ -1,7 +1,7 @@
 /**index.wxss**/
 .container {
     height: 100%;
-    background:#fff;
+    background:#f1f1f1;
 } 
 
 .index-header {
@@ -11,6 +11,7 @@
     justify-content: space-around;
     line-height: 70rpx;
     align-items: center;
+    background:#fff;
 }
 
 .header-wechat{
@@ -34,6 +35,7 @@
     font-size: 28rpx;
     display: flex;
     justify-content: space-around;
+    background:#fff; 
 }
 
 .tab-list{
@@ -52,10 +54,37 @@
     width: 100%;
     height: 330rpx;
 }
+
 swiper{
     height: 330rpx; 
 }
+
 .slide-image{
     width: 100%;
     height: 100%;
+}
+
+.index-plan{
+    width: 100%;
+    height: 160rpx;
+    margin-top: 14rpx;
+    display: flex;
+    justify-content: space-around;
+    font-size: 28rpx;
+}
+
+.plan-list{
+    height: 160rpx;
+    background: red;
+    text-align: center; 
+}
+
+.plan-image{
+    display-inlne: block;
+    width: 100rpx;
+    height: 80rpx;
+}
+
+.index-plan .plan-list.plan-on{
+    color: #f0cb85;
 }
