@@ -1,0 +1,27 @@
+<!--index.wxml-->
+<view class="container">
+	<view class="index-header">
+		<view class="header-wechat">
+			<image class="header-wechat" src="/image/index/code.png"></image>
+		</view>
+		<input class="index-search" placeholder="达芙荻丽面膜" />
+		<view class="header-wechat">
+			<image class="header-wechat" src="/image/index/message.png"></image>
+		</view>
+  </view>
+  <view class="index-tab">
+		<view wx:for="{{tab}}" wx:key="index" data-id="{{item.id}}" data-index="{{index}}"
+            bindtap="switchTab" class="tab-list {{tabIndex === index?'on':''}}">
+            {{item.name}}
+        </view>
+  </view>
+  <view class="index-swiper">
+	    <swiper indicator-color="#e0e1e3" indicator-active-color="#babbbf" indicator-dots="true" autoplay="true" interval="{{interval}}" duration="{{duration}}" circular="true">
+        <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+            <swiper-item>
+                <image src="{{item}}" class="slide-image"/>
+            </swiper-item>
+        </block>
+    </swiper>
+  </view>
+</view>
