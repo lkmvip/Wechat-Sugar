@@ -4,6 +4,7 @@
         "pages/classify/index",
         "pages/cart/index",
         "pages/user/index"
+
     ],
     "window":{
         "navigationBarBackgroundColor": "#fff",

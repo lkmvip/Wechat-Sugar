@@ -1,5 +1,11 @@
 //app.js
 App({
+  onReady: function () {
+    // 页面渲染完成
+  },
+  onUnload: function () {
+    // 页面关闭
+  },
   onShow: function () {
     console.log('App Show')
   },
