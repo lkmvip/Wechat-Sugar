@@ -7,6 +7,37 @@
     background:#fff;
 }
 
+.box{
+    margin-top:30rpx;
+    padding-top:30rpx;
+    width: 100%;
+}
+
+.text {
+    padding-top: 30rpx;
+    text-align: center;
+    font-size: 40rpx;
+    box-sizing: border-box;
+}
+.line {
+    margin: 30rpx auto;
+    width: 55rpx;
+    height: 3rpx;
+    background: #999;
+}
+
+.middle {
+    vertical-align: middle;
+}
+
+.left {
+    float:left;
+}
+
+.right {
+    float:right;
+}
+
 .index-header {
     width: 100%;
     display: flex;
@@ -86,34 +117,14 @@ swiper{
     color: #f0cb85;
 }
 
-.index-extend {
-    margin-top:14rpx;
-    width: 100%;
-    font-size: 40rpx;
-    text-align: center;
-}
-
-.extend-text {
-    padding-top: 30rpx;
-    box-sizing: border-box;
-}
-.line {
-    margin: 30rpx auto;
-    width: 55rpx;
-    height: 3rpx;
-    background: #999;
-}
-
 .extend-list {
     width: 100%;
     height: 376rpx;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: space-around;
 }
 
 .list-content {
-    flex: 1;
+    float: left;
+    margin: 15rpx 0 0 20rpx;
     width: 160rpx;
     height: 160rpx;
     border: 1rpx solid #fff;
@@ -122,14 +133,6 @@ swiper{
 .list-image {
     width: 160rpx;
     height: 160rpx;
-}
-
-.index-supply {
-    margin-top:30rpx;
-    padding-top:30rpx;
-    width: 100%;
-    font-size: 40rpx;
-    text-align: center;
 }
 
 .supply-list {
@@ -159,6 +162,76 @@ swiper{
 .supply-scroll {
     margin-top:20rpx;
     width: 100%;
-    height: 380rpx;
+}
+
+.scroll-box {
+    height: 250rpx;
+}
+
+.scroll-items {
+    margin: 20rpx 0 0 20rpx;
+    width: 200rpx;
+    height: 200rpx;
+}
+
+.scroll-image {
+    width: 200rpx;
+    height: 200rpx;
+}
+
+.goods-list {
+    width: 700rpx;
+    margin:0 auto 30rpx auto;
+    border-bottom: 1rpx solid #ededed;
+
+}
+
+.goods-image {
+    width: 700rpx;
+    height: 320rpx;
+}
+
+.goods-price {
+    height: 80rpx;
+    line-height: 80rpx;
+}
+
+.goods-title {
+    font-size: 30rpx;
+}
+
+.new-price {
+    font-size: 24rpx;
+}
+
+.old-price {
+    font-size: 20rpx;
+    color:#9a9a9a;
+    text-decoration:line-through;
+    margin:2rpx 5rpx;
+}
+
+.through {
+    font-size: 24rpx;
+    color:#9a9a9a;
+} 
+
+.make-money {
+    font-size: 24rpx;
+    color:#ed165a;
+    margin:0 5rpx;   
+}
+
+
+.add-goods {
+    width: 50rpx;
+    height: 50rpx;
+    margin:15rpx 10rpx 0 0;
+}
+
+.add-shopcart {
+    width: 50rpx;
+    height: 50rpx;
+    margin:15rpx 0 0 0;
 }
 

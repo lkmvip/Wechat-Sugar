@@ -31,8 +31,8 @@
             <view>{{item.text}}</view>
         </view>
     </view>
-    <view class="index-extend bg">
-        <view class="extend-text">
+    <view class="index-extend bg box">
+        <view class="text">
          品牌推荐
         </view>
         <view class="line"></view>
@@ -42,8 +42,8 @@
             </view>
         </view>
     </view>
-    <view class="index-supply bg">
-        <view class="supply-text">
+    <view class="index-supply bg box">
+        <view class="text">
          品牌直供
         </view>
         <view class="line"></view>
@@ -52,12 +52,30 @@
                 <image src="{{item.url}}" wx:for="{{supplyList}}" wx:key="index"  data-index="{{index}}" class="supply-image"/>
             </view>
             <view class="supply-hot"></view>
-            <view class="supply-scroll bg">
-                <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
-                    <view>1</view>
-                    <view>2</view>
-                    <view>3</view>
-                </scroll-view>
+                <view class="supply-scroll bg">
+                    <scroll-view class="scroll-box" scroll-x="true" style="width: 100%;white-space: nowrap; display: flex" >
+                        <view wx:for="{{scrollList}}" wx:key="index"  data-index="{{index}}" class="scroll-items" style="display: inline-block">
+                            <image src="{{item.url}}" class="scroll-image"/>
+                        </view>
+                    </scroll-view>
+                </view>
+        </view>
+    </view>
+    <view class="index-goods bg box">
+        <view class="text">
+         品牌推荐
+        </view>
+        <view class="line"></view>
+        <view class="goods-list"  wx:for="{{goodsList}}" wx:key="index"  data-index="{{index}}">
+            <image src="{{item.url}}" class="goods-image"/>
+            <view class="goods-title">{{item.title}}</view>
+            <view class="goods-price">
+                <view class="new-price left">￥{{item.newPrice}}</view>
+                <view class="old-price left">￥{{item.oldPrice}}</view>
+                <view class="through left">/</view>
+                <view class="make-money left">赚{{item.makeMoney}}</view> 
+                <image src="/image/cart.png" class="add-shopcart right"/>
+                <image src="/image/add.png" class="add-goods right"/>
             </view>
         </view>
     </view>
