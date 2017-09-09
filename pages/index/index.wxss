@@ -3,15 +3,16 @@
     height: 100%;
     background:#f1f1f1;
 } 
+.bg {
+    background:#fff;
+}
 
 .index-header {
     width: 100%;
-    height: 70rpx;
     display: flex;
     justify-content: space-around;
     line-height: 70rpx;
     align-items: center;
-    background:#fff;
 }
 
 .header-wechat{
@@ -30,12 +31,10 @@
 
 .index-tab{
     width: 100%;
-    height: 70rpx;
     box-sizing: border-box;
     font-size: 28rpx;
     display: flex;
     justify-content: space-around;
-    background:#fff; 
 }
 
 .tab-list{
@@ -52,7 +51,6 @@
 
 .index-swiper{
     width: 100%;
-    height: 330rpx;
 }
 
 swiper{
@@ -66,7 +64,6 @@ swiper{
 
 .index-plan{
     width: 100%;
-    height: 160rpx;
     margin-top: 14rpx;
     display: flex;
     justify-content: space-around;
@@ -75,16 +72,93 @@ swiper{
 
 .plan-list{
     height: 160rpx;
-    background: red;
-    text-align: center; 
+    text-align: center;
+    padding-top: 30rpx;
 }
 
 .plan-image{
     display-inlne: block;
-    width: 100rpx;
+    width: 80rpx;
     height: 80rpx;
 }
 
 .index-plan .plan-list.plan-on{
     color: #f0cb85;
 }
+
+.index-extend {
+    margin-top:14rpx;
+    width: 100%;
+    font-size: 40rpx;
+    text-align: center;
+}
+
+.extend-text {
+    padding-top: 30rpx;
+    box-sizing: border-box;
+}
+.line {
+    margin: 30rpx auto;
+    width: 55rpx;
+    height: 3rpx;
+    background: #999;
+}
+
+.extend-list {
+    width: 100%;
+    height: 376rpx;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+
+.list-content {
+    flex: 1;
+    width: 160rpx;
+    height: 160rpx;
+    border: 1rpx solid #fff;
+}
+
+.list-image {
+    width: 160rpx;
+    height: 160rpx;
+}
+
+.index-supply {
+    margin-top:30rpx;
+    padding-top:30rpx;
+    width: 100%;
+    font-size: 40rpx;
+    text-align: center;
+}
+
+.supply-list {
+    width: 100%;
+    background:#f1f1f1;
+}
+
+.supply-content {
+    width: 100%;
+    height: 440rpx;
+    display: flex;
+    justify-content: space-between;
+}
+
+.supply-image {
+    width: 370rpx;
+    height: 440rpx;
+}
+
+.supply-hot {
+    margin-top:20rpx;
+    width: 100%;
+    height: 380rpx;
+    background: pink;
+}
+
+.supply-scroll {
+    margin-top:20rpx;
+    width: 100%;
+    height: 380rpx;
+}
+

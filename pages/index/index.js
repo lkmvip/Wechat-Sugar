@@ -16,9 +16,9 @@ Page({
         tabIndex: 0,
         toView: "tuijian",
         imgUrls: [
-          '/image/b1.jpg',
-          '/image/b2.jpg',
-          '/image/b3.jpg'
+            '/image/b1.jpg',
+            '/image/b2.jpg',
+            '/image/b3.jpg'
         ],
         indicatorDots: false,
         autoplay: false,
@@ -32,6 +32,20 @@ Page({
             {text:'分享领券',url:'/image/index/share.png'}
         ],
         planIndex: '',
+        extendList: [
+            {id:0,url:'/image/gf.png'},
+            {id:1,url:'/image/gf.png'},
+            {id:2,url:'/image/gf.png'},
+            {id:3,url:'/image/gf.png'},
+            {id:4,url:'/image/gf.png'},
+            {id:5,url:'/image/gf.png'},
+            {id:6,url:'/image/gf.png'},
+            {id:7,url:'/image/gf.png'}
+        ],
+        supplyList: [
+            {id:0,url:'/image/gf1.png'},
+            {id:1,url:'/image/gf1.png'},
+        ]
     },
 
     onLoad: function () {
@@ -53,7 +67,6 @@ Page({
     },
 
     switchPlan: function(e) {
-        console.log(e)
         this.setData({
             planIndex : e.currentTarget.dataset.index
         })
