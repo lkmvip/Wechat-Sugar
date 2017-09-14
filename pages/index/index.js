@@ -135,12 +135,25 @@ Page({
                 title:"白熊化妆品，美肤多效面霜50g,白熊化妆品。",
                 newPrice:"998",
                 oldPrice:"1999",
-            }
-        ]
+            },
+        ],
+        addIndex: ""
     },
 
-    onLoad: function () {
-        console.log("onLoad")
+    onLoad: function (options) {
+        // console.log(options);
+         wx.request({
+                  url: 'https://wstcsd.1haomei.com/html/shop/index.php/WstInterFace/GetProduct/getIndexProduct',
+                  method:"POST",
+                  header: {
+                      'content-type': 'application/x-www-form-urlencoded'
+                  },
+                  success: this.handleGetDetailSuccess.bind(this)
+            })
+    },
+
+    handleGetDetailSuccess: function(res) {
+        console.log(res.data);
     },
 
     onShareAppMessage: function () {
@@ -160,6 +173,11 @@ Page({
     switchPlan: function(e) {
         this.setData({
             planIndex : e.currentTarget.dataset.index
+        })
+    },
+    handleAddGoods: function(e) { 
+        this.setData({
+            addIndex : e.currentTarget.dataset.id
         })
     }
 

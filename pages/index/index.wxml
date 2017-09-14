@@ -75,7 +75,7 @@
                 <view class="through left">/</view>
                 <view class="make-money left">赚{{item.makeMoney}}</view> 
                 <image src="/image/cart.png" class="add-shopcart right"/>
-                <image src="/image/add.png" class="add-goods right"/>
+                <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
             </view>
         </view>
     </view>

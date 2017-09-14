@@ -1,9 +1,18 @@
 Page({
-  data: {
-  },
+    data: {
+        inputShowed: false,
+        inputVal: "",
+        classifyTab: [
+            {name:'品牌',id:0},
+            {name:'分类',id:1}
+        ],
+        tabIdx: 0
+    },
 
-  onLoad: function () {
-    console.log("onLoad")
-  }
-
-})
+    handleClickGoods: function(e) {
+        console.log(e)
+        this.setData({
+            tabIdx : e.target.dataset.index
+        })
+    }
+});

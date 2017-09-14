@@ -1,3 +1,47 @@
 <view class="container">
-分类
-</view>
+    <view class="goods-search">
+		<input class="search-input" placeholder="面膜"/>
+    </view>
+    <view class="goods-tab">
+		<view class="goods-list">
+			<view wx:for="{{classifyTab}}" wx:key="index" data-id="{{item.id}}" data-index="{{index}}" class="goods-classify {{tabIdx == index ?'ontab':''}}" bindtap="handleClickGoods">{{item.name}}</view>
+    	</view>
+    </view>
+	<view class="classify-list">
+		<view class="classify-list-left" >
+			<view class="list-left-tab" hover-class="ontab">我我我我</view>
+			<view class="list-left-tab"></view>
+			<view class="list-left-tab"></view>
+			<view class="list-left-tab"></view>
+			<view class="list-left-tab"></view>
+			<view class="list-left-tab"></view>
+			<view class="list-left-tab"></view>
+			<view class="list-left-tab"></view>
+
+
+		</view>
+		<view class="classify-list-right">
+			<view class="list-right-content">
+			    <scroll-view class="scroll-box" scroll-y="true" style="width: 100%;height: 880rpx">
+		    		<view class="list-left-tab"></view>
+					<view class="list-left-tab"></view>
+					<view class="list-left-tab"></view>
+					<view class="list-left-tab"></view>
+					<view class="list-left-tab"></view>
+					<view class="list-left-tab"></view>
+					<view class="list-left-tab"></view>
+					<view class="list-left-tab"></view>
+					<view class="list-left-tab"></view>
+					<view class="list-left-tab"></view>
+					<view class="list-left-tab"></view>
+					<view class="list-left-tab"></view>
+					<view class="list-left-tab"></view>
+					<view class="list-left-tab"></view>
+					<view class="list-left-tab"></view>
+					<view class="list-left-tab"></view>
+					<view class="list-left-tab"></view>
+                </scroll-view>
+			</view>
+		</view>		
+	</view>
+</view>   
