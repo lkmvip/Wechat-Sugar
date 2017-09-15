@@ -141,15 +141,14 @@ Page({
     },
 
     onLoad: function (options) {
-        // console.log(options);
-         wx.request({
-                  url: 'https://wstcsd.1haomei.com/html/shop/index.php/WstInterFace/GetProduct/getIndexProduct',
-                  method:"POST",
-                  header: {
-                      'content-type': 'application/x-www-form-urlencoded'
-                  },
-                  success: this.handleGetDetailSuccess.bind(this)
-            })
+         // wx.request({
+         //          url: 'https://wstcsd.1haomei.com/html/shop/index.php/WstInterFace/GetProduct/getIndexProduct',
+         //          method:"POST",
+         //          header: {
+         //              'content-type': 'application/x-www-form-urlencoded'
+         //          },
+         //          success: this.handleGetDetailSuccess.bind(this)
+         //    })
     },
 
     handleGetDetailSuccess: function(res) {
@@ -175,7 +174,8 @@ Page({
             planIndex : e.currentTarget.dataset.index
         })
     },
-    handleAddGoods: function(e) { 
+    handleAddGoods: function(e) {
+        console.log(e)
         this.setData({
             addIndex : e.currentTarget.dataset.id
         })

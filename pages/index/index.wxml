@@ -1,3 +1,6 @@
+<!--引入组件-->
+<import src="../component/like.wxml"/>
+<import src="../component/goods.wxml"/>
 <!--index.wxml-->
 <view class="container">
 	<view class="header bg">
@@ -61,24 +64,7 @@
                 </view>
         </view>
     </view>
-    <view class="goods bg box">
-        <view class="text">
-            商品推荐
-        </view>
-        <view class="line"></view>
-        <view class="goods-list"  wx:for="{{goodsList}}" wx:key="index"  data-index="{{index}}">
-            <image src="{{item.url}}" class="goods-image"/>
-            <view class="goods-title">{{item.title}}</view>
-            <view class="goods-price">
-                <view class="new-price left">￥{{item.newPrice}}</view>
-                <view class="old-price left">￥{{item.oldPrice}}</view>
-                <view class="through left">/</view>
-                <view class="make-money left">赚{{item.makeMoney}}</view> 
-                <image src="/image/cart.png" class="add-shopcart right"/>
-                <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
-            </view>
-        </view>
-    </view>
+    <template is="goods" data="{{goodsList}}" data-id="{{index}}" data-index="{{index}}"/>
     <view class="recommend bg box">
         <view class="text">
             人气推荐
@@ -96,23 +82,7 @@
             </view>
         </view>
     </view>
-    <view class="like bg box">
-        <view class="text">
-            猜你喜欢
-        </view>
-        <view class="line"></view>
-        <view class="like-list">
-            <view class="like-goods bg"  wx:for="{{likeList}}" wx:key="index"  data-index="{{index}}">
-                <image src="{{item.url}}" class="like-image"/>
-                <view class="like-price">
-                    <view class="like-title">{{item.title}}</view>
-                    <view class="new-price left top" style="color:#ec1358">￥{{item.newPrice}}</view>
-                    <view class="old-price left top">￥{{item.oldPrice}}</view>
-                    <image src="/image/add.png" class="add-goods right"/>
-                </view>
-            </view>
-        </view>
-    </view>
+    <template is="like" data="{{likeList}}" />
     <view class="more">
         查看更多 >
     </view>

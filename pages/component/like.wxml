@@ -1,0 +1,19 @@
+<template name="like">
+	<view class="like bg box">
+        <view class="text">
+            猜你喜欢
+        </view>
+        <view class="line"></view>
+        <view class="like-list">
+            <view class="like-goods bg"  wx:for="{{likeList}}" wx:key="index"  data-index="{{index}}">
+                <image src="{{item.url}}" class="like-image"/>
+                <view class="like-price">
+                    <view class="like-title">{{item.title}}</view>
+                    <view class="new-price left" style="color:#ec1358;margin-top:10rpx">￥{{item.newPrice}}</view>   
+                    <view class="old-price left" style="margin-top:14rpx">￥{{item.oldPrice}}</view>
+                    <image src="/image/add.png" class="add-goods right" style="margin:0"/>
+                </view>
+            </view>
+        </view>
+    </view>
+</template>

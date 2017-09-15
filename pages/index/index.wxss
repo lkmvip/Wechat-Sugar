@@ -233,13 +233,13 @@ swiper{
 .add-goods {
     width: 50rpx;
     height: 50rpx;
-    margin:15rpx 10rpx 0 0;
+    margin:10rpx 10rpx 0 0;
 }
 
 .add-shopcart {
     width: 50rpx;
     height: 50rpx;
-    margin:15rpx 0 0 0;
+    margin:10rpx 0 0 0;
 }
 
 .recommend-list {
@@ -287,6 +287,7 @@ swiper{
 
 .like-price {
     padding: 0 15rpx;
+    height:140rpx;
 }
 
 .like-title {
