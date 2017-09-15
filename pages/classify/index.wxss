@@ -49,15 +49,69 @@
 }
 .classify-list-left {
 	width: 25%;
-	height: 100rpx;
+	height: 880rpx;
+	background: #f1f1f1;
 }
 .classify-list-right {
 	width: 75%;
 	height: 100%;
-	background: red;
+	background: #fff;
 }
 .list-left-tab {
 	width: 100%;
 	height: 90rpx;
-	background: #aaa;
+	font-size: 26rpx;
+	color: #666;
+	text-align: center;
+	line-height: 90rpx;
 }
+.onleft {
+	background: #fff;
+	color: #333;
+}
+.scroll-content {
+	width: 100%;
+	padding:0 0 20rpx 20rpx;
+}
+.scroll-tit {
+	width: 100%;
+	font-size: 26rpx;
+	line-height: 80rpx;
+}
+.scroll-content-list {
+	border-bottom: 1rpx solid #eee;
+	display: flex;
+	flex-wrap: wrap;
+}
+.content-list-box {
+	width: 160rpx;
+	margin: 15rpx 0 0 15rpx; 
+}
+.scroll-brand{
+	width: 100%;
+	height: 880rpx;
+	background: #fff;
+}
+ .brand-list {
+	width: 100%;
+	padding-top: 30rpx;
+	border-bottom: 1rpx solid #eee;
+	box-sizing: border-box; 
+	display: flex;
+	flex-wrap: wrap;
+}
+.brand-img {
+	width: 160rpx;
+	height: 160rpx;
+}
+.brand-name {
+	width: 160rpx;
+	height:65rpx;
+	text-align: center;
+	line-height: 65rpx;
+	font-size: 26rpx;
+}
+.brand-content {
+	margin-left: 20rpx;
+}
+

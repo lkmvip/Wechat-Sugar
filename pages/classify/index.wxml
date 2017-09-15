@@ -7,41 +7,131 @@
 			<view wx:for="{{classifyTab}}" wx:key="index" data-id="{{item.id}}" data-index="{{index}}" class="goods-classify {{tabIdx == index ?'ontab':''}}" bindtap="handleClickGoods">{{item.name}}</view>
     	</view>
     </view>
-	<view class="classify-list">
+	<view class="classify-list" wx:if="{{tabIdx == 0 ?'true':''}}">
 		<view class="classify-list-left" >
-			<view class="list-left-tab" hover-class="ontab">我我我我</view>
-			<view class="list-left-tab"></view>
-			<view class="list-left-tab"></view>
-			<view class="list-left-tab"></view>
-			<view class="list-left-tab"></view>
-			<view class="list-left-tab"></view>
-			<view class="list-left-tab"></view>
-			<view class="list-left-tab"></view>
-
+			<view class="list-left-tab {{leftTab == index ?'onleft':''}}"  wx:for="{{listTab}}" wx:key="index" data-id="{{item.id}}" data-index="{{index}}"  bindtap="handleClickTabs">{{item.name}}</view>
 
 		</view>
 		<view class="classify-list-right">
 			<view class="list-right-content">
 			    <scroll-view class="scroll-box" scroll-y="true" style="width: 100%;height: 880rpx">
-		    		<view class="list-left-tab"></view>
-					<view class="list-left-tab"></view>
-					<view class="list-left-tab"></view>
-					<view class="list-left-tab"></view>
-					<view class="list-left-tab"></view>
-					<view class="list-left-tab"></view>
-					<view class="list-left-tab"></view>
-					<view class="list-left-tab"></view>
-					<view class="list-left-tab"></view>
-					<view class="list-left-tab"></view>
-					<view class="list-left-tab"></view>
-					<view class="list-left-tab"></view>
-					<view class="list-left-tab"></view>
-					<view class="list-left-tab"></view>
-					<view class="list-left-tab"></view>
-					<view class="list-left-tab"></view>
-					<view class="list-left-tab"></view>
+        			<view class="scroll-content">
+        				<view class="scroll-tit">面部保养</view>
+        				<view class="scroll-content-list">
+        				        <view class="content-list-box">
+									<image src="/image/gf.png" class="brand-img"/>
+			                		<view class="brand-name">高夫</view>	
+        						</view>
+        						<view class="content-list-box">
+									<image src="/image/gf.png" class="brand-img"/>
+			                		<view class="brand-name">高夫</view>	
+        						</view>
+        						<view class="content-list-box">
+									<image src="/image/gf.png" class="brand-img"/>
+			                		<view class="brand-name">高夫</view>	
+        						</view> 
+        						<view class="content-list-box">
+									<image src="/image/gf.png" class="brand-img"/>
+			                		<view class="brand-name">高夫</view>	
+        						</view>        
+        				</view>
+        			</view>	
                 </scroll-view>
 			</view>
 		</view>		
+	</view>
+	<view class="classify-list" wx:if="{{tabIdx == 1 ?'true':''}}">
+		    <scroll-view class="scroll-brand" scroll-y="true" style="width: 100%;height: 880rpx">
+				<view class="brand-list">
+        			<view class="brand-content">
+	                	<image src="/image/gf.png" class="brand-img"/>
+	                	<view class="brand-name">高夫</view>	
+        			</view>
+        			<view class="brand-content">
+	                	<image src="/image/gf.png" class="brand-img"/>
+	                	<view class="brand-name">高夫</view>	
+        			</view>
+        			<view class="brand-content">
+	                	<image src="/image/gf.png" class="brand-img"/>
+	                	<view class="brand-name">高夫</view>	
+        			</view>
+        			<view class="brand-content">
+	                	<image src="/image/gf.png" class="brand-img"/>
+	                	<view class="brand-name">高夫</view>	
+        			</view>
+				</view>
+				<view class="brand-list">
+        			<view class="brand-content">
+	                	<image src="/image/gf.png" class="brand-img"/>
+	                	<view class="brand-name">高夫</view>	
+        			</view>
+        			<view class="brand-content">
+	                	<image src="/image/gf.png" class="brand-img"/>
+	                	<view class="brand-name">高夫</view>	
+        			</view>
+        			<view class="brand-content">
+	                	<image src="/image/gf.png" class="brand-img"/>
+	                	<view class="brand-name">高夫</view>	
+        			</view>
+        			<view class="brand-content">
+	                	<image src="/image/gf.png" class="brand-img"/>
+	                	<view class="brand-name">高夫</view>	
+        			</view>
+				</view>
+				<view class="brand-list">
+        			<view class="brand-content">
+	                	<image src="/image/gf.png" class="brand-img"/>
+	                	<view class="brand-name">高夫</view>	
+        			</view>
+        			<view class="brand-content">
+	                	<image src="/image/gf.png" class="brand-img"/>
+	                	<view class="brand-name">高夫</view>	
+        			</view>
+        			<view class="brand-content">
+	                	<image src="/image/gf.png" class="brand-img"/>
+	                	<view class="brand-name">高夫</view>	
+        			</view>
+        			<view class="brand-content">
+	                	<image src="/image/gf.png" class="brand-img"/>
+	                	<view class="brand-name">高夫</view>	
+        			</view>
+				</view>	
+				<view class="brand-list">
+        			<view class="brand-content">
+	                	<image src="/image/gf.png" class="brand-img"/>
+	                	<view class="brand-name">高夫</view>	
+        			</view>
+        			<view class="brand-content">
+	                	<image src="/image/gf.png" class="brand-img"/>
+	                	<view class="brand-name">高夫</view>	
+        			</view>
+        			<view class="brand-content">
+	                	<image src="/image/gf.png" class="brand-img"/>
+	                	<view class="brand-name">高夫</view>	
+        			</view>
+        			<view class="brand-content">
+	                	<image src="/image/gf.png" class="brand-img"/>
+	                	<view class="brand-name">高夫</view>	
+        			</view>
+				</view>	
+				<view class="brand-list">
+        			<view class="brand-content">
+	                	<image src="/image/gf.png" class="brand-img"/>
+	                	<view class="brand-name">高夫</view>	
+        			</view>
+        			<view class="brand-content">
+	                	<image src="/image/gf.png" class="brand-img"/>
+	                	<view class="brand-name">高夫</view>	
+        			</view>
+        			<view class="brand-content">
+	                	<image src="/image/gf.png" class="brand-img"/>
+	                	<view class="brand-name">高夫</view>	
+        			</view>
+        			<view class="brand-content">
+	                	<image src="/image/gf.png" class="brand-img"/>
+	                	<view class="brand-name">高夫</view>	
+        			</view>
+				</view>		
+            </scroll-view>	
 	</view>
 </view>   
