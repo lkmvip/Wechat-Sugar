@@ -11,7 +11,7 @@ App({
   },
   onHide: function () {
     console.log('App Hide')
-    console.log(this.globalData.userInfo)
+
 
   },
   onLaunch: function () {
@@ -25,7 +25,25 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        console.log(res.code) 
+        console.log(res.code)
+        if(res.code) {
+            wx.request({
+                  url: 'https://wstcsd.1haomei.com/html/shop/index.php/WstInterFace//WxServiceCallBack/getSmallProgramUnionid',
+                  method:"POST",
+                  data: {
+                        appid : 'wx14f22768572e9ce4',
+                        secret : 'a2916c49cadd7d5f89e1ce113fe00b6e',
+                        js_code : res.code,
+                        grant_type :'authorization_code'
+                    },
+                  header: {
+                      'content-type': 'application/json'
+                  },
+                  success: this.handleGetOpenIdSuccess.bind(this)
+            })
+        }else {
+            console.log("登录失败")
+        }
       }
     })
     // 获取用户信息
@@ -36,6 +54,7 @@ App({
           wx.getUserInfo({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
+
               this.globalData.userInfo = res.userInfo
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
@@ -50,5 +69,15 @@ App({
   },
   globalData: {
     userInfo: null
+  },
+  // data: {
+  //   appid : 'wx14f22768572e9ce4',
+  //   secret : 'a2916c49cadd7d5f89e1ce113fe00b6e',
+  //   code : '',
+  //   grant_type :'authorization_code'
+
+  // },
+  handleGetOpenIdSuccess :function(res) {
+        console.log(res)
   }
 })

@@ -17,3 +17,117 @@
 	font-size: 24rpx;
 	line-height: 100rpx;
 }
+
+.cart-box{
+    padding:15rpx 0 100rpx 0;
+}
+.cart-list{
+    position: relative;
+    padding: 30rpx 20rpx 20rpx 0;
+    width: 100%;
+    border-bottom: 1rpx solid #e9e9e9;
+    background: #fff;
+    margin-bottom: 15rpx;
+    display: flex;
+}
+.cart-list .cart-pro-select{
+    width: 45rpx;
+    height: 45rpx;
+	margin: 65rpx 20rpx;
+}
+
+.cart-list .cart-thumb{
+    width: 160rpx;
+    height: 160rpx;
+    margin:0 20rpx 0 0;
+}
+.cart-list .cart-pro-name{
+    display: inline-block;
+    width: 300rpx;
+    /*height: 105rpx;*/
+    font-size: 28rpx;
+    overflow: hidden;
+}
+.cart-pro-price{
+    display: inline-block;
+    float: left;
+    width: 200rpx;
+    font-size: 30rpx;
+    line-height: 60rpx;
+}
+.cart-msg {
+	width: 100%;
+	height: 50rpx;
+	font-size:28rpx;
+	color:#ececec;
+	line-height: 50rpx;
+}
+.cart-pro-spec {
+	margin-right: 20rpx;
+}
+.cart-count-box{
+    width: 100%;
+
+}
+.cart-count {
+	width: 200rpx;
+	float: right;
+	display: flex;
+	margin: 20rpx 20rpx 0 0 ;
+	border: 1rpx solid #a5a5a5;
+}
+.cart-count-down,.cart-count-add,.cart-count-num{
+    font-size: 28rpx;
+	flex: 1;
+    height: 50rpx;
+    line-height: 50rpx;
+    text-align: center;
+    float: left;
+}
+.cart-count-num {
+	border-left: 1rpx solid #a5a5a5;
+	border-right: 1rpx solid #a5a5a5; 
+}
+.cart-del{
+	position: absolute;
+	right: 0rpx;
+	top: -30rpx;
+    width: 50rpx;
+    height: 50rpx;
+    text-align: center;
+    font-size: 50rpx;
+    color: #a2a2a2;
+}
+.cart-footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    box-sizing: border-box;
+	border-top: 1rpx solid #eeeeee;
+	background: #fff;
+}
+.total-select{
+    width: 45rpx;
+    height: 45rpx;
+	margin:25rpx 20rpx; 	 
+}
+.order-icon{
+    width: 180rpx;
+    background: #ff4242;
+    line-height: 100rpx;
+    text-align: center;
+    color: #fff;
+}
+.cart-toatl-price{
+    line-height: 100rpx;
+}
+/*.cart-toatl-del {
+	width: 180rpx;
+    background: #ffbd4f;
+    line-height: 100rpx;
+    text-align: center;
+    color: #fff;
+}*/

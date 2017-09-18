@@ -141,14 +141,7 @@ Page({
     },
 
     onLoad: function (options) {
-         // wx.request({
-         //          url: 'https://wstcsd.1haomei.com/html/shop/index.php/WstInterFace/GetProduct/getIndexProduct',
-         //          method:"POST",
-         //          header: {
-         //              'content-type': 'application/x-www-form-urlencoded'
-         //          },
-         //          success: this.handleGetDetailSuccess.bind(this)
-         //    })
+
     },
 
     handleGetDetailSuccess: function(res) {
@@ -158,7 +151,7 @@ Page({
     onShareAppMessage: function () {
         return {
             title: "最超值的正品美妆平台",
-            path: "pages/index/index"
+            path: "pages/index/index?name="+this.data.code
         }
     },
 
@@ -175,9 +168,10 @@ Page({
         })
     },
     handleAddGoods: function(e) {
-        console.log(e)
-        this.setData({
-            addIndex : e.currentTarget.dataset.id
+        var addId = e.currentTarget.dataset.id,
+            that = this;
+        that.setData({
+            addIndex : addId
         })
     }
 

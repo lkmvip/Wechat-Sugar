@@ -1,6 +1,40 @@
 <import src="../component/like.wxml"/>
 <view class="container">
-	<view class="cart-empty">
+	<view wx:if="{{hasList}}" style="height:100%">
+        <view class="cart-box">
+            <view class="cart-list" wx:for="{{carts}}" wx:key="{{index}}">
+                <icon wx:if="{{item.selected}}" type="success" color="#000" data-index="{{index}}"  class="cart-pro-select" bindtap="selectList"/>
+                <icon wx:else type="circle" class="cart-pro-select" color="#000" data-index="{{index}}" bindtap="selectList"/>
+                <navigator url="../details/details?id={{item.id}}"><image class="cart-thumb" src="{{item.image}}"></image></navigator>
+                <view style="width: 100%;position: relative;">
+                    <text class="cart-pro-name">{{item.title}}</text>
+                    <view class="cart-msg">
+                        <text class="cart-pro-stock left">库存:{{item.stock}}</text>
+                        <text class="cart-pro-spec right">规格:1</text>  
+                    </view>
+                    <view class="cart-count-box">
+                        <text class="cart-pro-price">￥{{item.price}}</text>
+                        <view class="cart-count">
+                            <text class="cart-count-down" bindtap="minusCount" data-index="{{index}}">－</text>
+                            <text class="cart-count-num">{{item.num}}</text>
+                            <text class="cart-count-add" bindtap="addCount" data-index="{{index}}">＋</text>
+                        </view>
+                    </view>
+                    <text class="cart-del" bindtap="deleteList" data-index="{{index}}">×</text>
+                </view> 
+            </view>
+        </view>
+
+        <view class="cart-footer">
+            <icon wx:if="{{selectAllStatus}}" type="success" color="#000" class="total-select left" bindtap="selectAll"/>
+            <icon wx:else type="circle" color="#000" class="total-select left" bindtap="selectAll"/>
+            <navigator url="../orders/orders"><view class="order-icon right">结算</view></navigator>
+            <view class="cart-toatl-price left">总计:<text style="color:#ff4242;">￥{{totalPrice}}</text></view>
+            <!-- <view class="cart-toatl-del right">删除</view> -->
+        </view>
+    </view>
+
+	<view wx:else class="cart-empty">
 	    <view class="empty-header">
 	    	<image src="/image/empty-cart.png" class="empty-img"/>
 	    	<view class="empty-txt">购物车是空的</view>

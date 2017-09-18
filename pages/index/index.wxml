@@ -64,7 +64,7 @@
                 </view>
         </view>
     </view>
-    <template is="goods" data="{{goodsList}}" data-id="{{index}}" data-index="{{index}}"/>
+    <template is="goods" data="{{goodsList}}" data-id="{{index}}"/>
     <view class="recommend bg box">
         <view class="text">
             人气推荐
