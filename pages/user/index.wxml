@@ -1,3 +1,30 @@
 <view class="container">
-会员中心
+	<view class="userinfo">
+		<view class="userbg" style="background: url(/image/user/userbg.jpg) content-box no-repeat bottom 100rpx;" background-size="aspectFit">
+			<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    		<text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    	</view>
+	</view>
+	<view class="user-wallet">
+		<view class="balance">可用余额:<text style="color:#ff4041">122.00</text></view>
+		<view class="withdraw">提现 <text class="wallet-icon">></text></view>
+	</view>
+	<view class="income">
+		<view class="income-will">
+			<image class="will-icon" src="/image/user/income.png" background-size="cover"></image>
+			<view class="will-content">
+				<view>待收收益</view>
+				<view style="color:#000;font-size: 28rpx;margin-top: 15rpx;">100</view>
+			</view>
+		</view>
+		<view class="income-total">
+			<image class="total-icon" src="/image/user/total.png" background-size="cover"></image>
+			<view class="total-content">
+				<view>累计收益</view>
+				<view style="color:#000;font-size: 28rpx;margin-top: 15rpx;">100</view>
+			</view>
+		</view>
+	</view>  
+	<view class="user-orders">订单</view>
+	<view class="user-tools">工具</view>
 </view>
