@@ -171,6 +171,20 @@ Page({
               carts: carts,
               totalPrice: total.toFixed(2),
             });
-        }
+        },
+        // 清空购物车
+        clearCart() {
+            let _this = this
+            wx.showModal({
+              title: '提示',
+              content: '您要清空购物车嘛？',
+              success: function(res) {
+                if (res.confirm) {
+                    _this.setData({ carts: [], totalPrice: 0,hasList:false }); 
+                } else if (res.cancel) {
 
+                }
+              }
+            })
+        }
 })
