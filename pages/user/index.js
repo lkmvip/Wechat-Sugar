@@ -10,6 +10,11 @@ Page({
    		userInfo : app.globalData.userInfo
    	})
     
+  },
+  handleCash() {
+  	wx.navigateTo({
+	  url: '/pages/user/cash/cash'
+	})
   }
 
 })

@@ -32,13 +32,13 @@
 	font-size: 26rpx;
 	border-bottom: 1rpx solid #eaeaea;
 } 
-.balance {
+.balance,.orders-my {
 	margin-left: 20rpx;
 }
-.withdraw{
+.withdraw,.oders-link{
 	margin-right: 20rpx;
 }
-.wallet-icon {
+.arrow-icon {
 	font-size: 34rpx;
 	color: #a4a4a4;
 }
@@ -64,4 +64,60 @@
 	color: #999;
 	float: left;
 	margin-left: 30rpx;
+}
+.user-orders {
+	width: 100%;
+	background: #fff;
+	margin-top: 20rpx;
+}
+.orders-tit {
+	width: 100%;
+	height: 100rpx;
+	display: flex;
+	justify-content: space-between;
+	font-size: 26rpx;
+	border-bottom: 1rpx solid #eaeaea;
+	line-height: 100rpx;
+}
+.oders-link {
+	color: #888;
+}
+.odres-tools {
+	width: 100%;
+	height: 150rpx;
+	padding-top: 40rpx;
+	display: flex;
+	justify-content: space-around;
+}
+.odres-list {
+	width: 110rpx;
+	text-align: center;
+}
+.oders-icon,.tools-icon {
+	width: 65rpx;
+	height: 65rpx;
+}
+.oders-text,.tools-text {
+	font-size: 28rpx;
+	line-height: 40rpx;
+}
+.user-tools {
+	width: 100%;
+	background: #fff;
+	margin-top: 20rpx;
+}
+.orders-box{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	/*justify-content: space-around;*/
+	align-content: flex-end;
+}
+.tools-list {
+	width: 25%;
+	text-align: center;
+	margin: 30rpx 0;
+}
+.tools-icon {
+
 }

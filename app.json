@@ -3,12 +3,13 @@
         "pages/index/index",
         "pages/classify/index",
         "pages/cart/index",
-        "pages/user/index"
+        "pages/user/index",
+        "pages/user/cash/cash"
 
     ],
     "window":{
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTextStyle":"black"
+        "navigationBarBackgroundColor": "#f2505d",
+        "navigationBarTextStyle": "white"
     },
     "tabBar": {
         "color": "#373737",

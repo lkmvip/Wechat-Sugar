@@ -7,7 +7,7 @@
 	</view>
 	<view class="user-wallet">
 		<view class="balance">可用余额:<text style="color:#ff4041">122.00</text></view>
-		<view class="withdraw">提现 <text class="wallet-icon">></text></view>
+		<view bindtap="handleCash" class="withdraw">提现 <text class="arrow-icon">></text></view>
 	</view>
 	<view class="income">
 		<view class="income-will">
@@ -25,6 +25,53 @@
 			</view>
 		</view>
 	</view>  
-	<view class="user-orders">订单</view>
-	<view class="user-tools">工具</view>
+	<view class="user-orders">
+		<view class="orders-tit">
+			<view class="orders-my">我的订单</view>
+			<view class="oders-link">查看全部订单<text class="arrow-icon">></text></view>
+		</view>
+		<view class="odres-tools">
+			<view class="odres-list">
+				<image class="oders-icon" src="/image/user/pay.png" background-size="cover"></image>
+				<view class="oders-text">待付款</view>
+			</view>
+			<view class="odres-list">
+				<image class="oders-icon" src="/image/user/send.png" background-size="cover"></image>
+				<view class="oders-text">待发货</view>
+			</view>
+			<view class="odres-list">
+				<image class="oders-icon" src="/image/user/staygoods.png" background-size="cover"></image>
+				<view class="oders-text">待收货</view>
+			</view>
+		</view>
+	</view>
+	<view class="user-tools">
+		<view class="orders-tit">
+			<view class="orders-my">必备工具</view>
+			<view class="oders-link">查看全部必备工具<text class="arrow-icon">></text></view>
+		</view>
+		<view class="orders-box">
+			<view class="tools-list">
+				<image class="tools-icon" src="/image/user/addr.png" background-size="cover"></image>
+				<view class="tools-text">收件地址</view>
+			</view>
+			<view class="tools-list">
+				<image class="tools-icon" src="/image/user/collection.png" background-size="cover"></image>
+				<view class="tools-text">我的收藏</view>
+			</view>
+			<view class="tools-list">
+				<image class="tools-icon" src="/image/user/coupon.png" background-size="cover"></image>
+				<view class="tools-text">我的优惠券</view>
+			</view>
+			<view class="tools-list">
+				<image class="tools-icon" src="/image/user/shopset.png" background-size="cover"></image>
+				<view class="tools-text">店铺设置</view>
+			</view>
+			<view class="tools-list">
+				<image class="tools-icon" src="/image/user/shop.png" background-size="cover"></image>
+				<view class="tools-text">店铺管理</view>
+			</view>
+		</view>
+
+	</view>
 </view>
