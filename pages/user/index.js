@@ -11,6 +11,7 @@ Page({
    	})
     
   },
+  // 点击跳转到提现页面
   handleCash() {
   	wx.navigateTo({
 	  url: '/pages/user/cash/cash'

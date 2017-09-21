@@ -5,6 +5,7 @@
     		<text class="userinfo-nickname">{{userInfo.nickName}}</text>
     	</view>
 	</view>
+	<!-- 个人中心工具开始 -->
 	<view class="user-wallet">
 		<view class="balance">可用余额:<text style="color:#ff4041">122.00</text></view>
 		<view bindtap="handleCash" class="withdraw">提现 <text class="arrow-icon">></text></view>

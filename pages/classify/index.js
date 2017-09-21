@@ -16,13 +16,13 @@ Page({
         ],
         leftTab: 0,
     },
-
+    // 点击分类里面的细分选项卡
     handleClickGoods: function(e) {
         this.setData({
             tabIdx : e.target.dataset.index
         })
     },
-
+    // 点击选项卡切换品牌和分类
     handleClickTabs: function(e) {
         this.setData({
             leftTab : e.target.dataset.index

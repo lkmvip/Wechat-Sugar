@@ -18,6 +18,7 @@
             {{item.name}}
         </view>
     </view>
+<!--轮播图开始-->
     <view class="swiper">
 	    <swiper indicator-color="#e0e1e3" indicator-active-color="#babbbf" indicator-dots="true" autoplay="true" interval="{{interval}}" duration="{{duration}}" circular="true">
         <block wx:for="{{imgUrls}}" wx:key="{{index}}">
@@ -27,6 +28,7 @@
         </block>
         </swiper>
     </view>
+<!-- 分类开始 -->
     <view class="plan bg">
   		<view wx:for="{{plan}}" wx:key="index"  data-index="{{index}}"
            bindtap="switchPlan" class="plan-list {{planIndex === index ?'plan-on':''}}">
@@ -34,6 +36,7 @@
             <view>{{item.text}}</view>
         </view>
     </view>
+<!-- 品牌推荐 -->
     <view class="extend bg box">
         <view class="text">
             品牌推荐
@@ -45,6 +48,7 @@
             </view>
         </view>
     </view>
+    <!-- 品牌直供 -->
     <view class="supply bg box">
         <view class="text">
             品牌直供
@@ -64,7 +68,9 @@
                 </view>
         </view>
     </view>
+    <!-- 商品推荐 -->
     <template is="goods" data="{{goodsList}}" data-id="{{index}}"/>
+    <!-- 人气推荐 -->
     <view class="recommend bg box">
         <view class="text">
             人气推荐
@@ -82,6 +88,7 @@
             </view>
         </view>
     </view>
+    <!-- 猜你喜欢 -->
     <template is="like" data="{{likeList}}" />
     <view class="more">
         查看更多 >

@@ -154,7 +154,7 @@ Page({
             path: "pages/index/index?name="+this.data.code
         }
     },
-
+    // 头部分类
     switchTab: function(e) {
         this.setData({
             toView : e.target.dataset.id,
@@ -167,6 +167,7 @@ Page({
             planIndex : e.currentTarget.dataset.index
         })
     },
+    // 点击加入购物车
     handleAddGoods: function(e) {
         var addId = e.currentTarget.dataset.id,
             that = this;

@@ -1,5 +1,6 @@
 <import src="../component/like.wxml"/>
 <view class="container">
+<!-- 如果购物车有商品的页面 -->
 	<view wx:if="{{hasList}}" style="height:100%;width:100%;">
         <view class="cart-box">
             <view class="cart-list" wx:for="{{carts}}" wx:key="{{index}}">
@@ -33,7 +34,7 @@
             <view class="cart-toatl-del right" bindtap="clearCart">删除</view>
         </view>
     </view>
-
+<!-- 如果没有商品的页面 -->
 	<view wx:else class="cart-empty">
 	    <view class="empty-header">
 	    	<image src="/image/empty-cart.png" class="empty-img"/>

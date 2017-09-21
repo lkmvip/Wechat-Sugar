@@ -11,6 +11,8 @@
 	margin: 5rpx auto;
 	background: #ececec;
 }
+/* 选项卡开始
+ */
 .goods-tab {
 	width: 100%;
 	border-bottom: 1rpx solid #ebebeb;
