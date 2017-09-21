@@ -1,5 +1,123 @@
 .cash{
 	width: 100%;
 	height: 100%;
-	background: red;
+}
+/*头部开始*/
+.cash-header {
+	width: 100%;
+	margin-bottom: 20rpx;
+}
+.cash-list {
+	height: 100rpx;
+	background: #fff;
+	line-height: 100rpx;
+	border-bottom: 1rpx solid #eee;
+}
+.arrow-icon {
+	width: 100rpx;
+	font-size: 34rpx;
+	color: #a4a4a4;
+	float: right;
+	text-align: center;
+	display: inline-block;
+}
+.cash-text{
+	font-size: 34rpx;
+	float: left;
+	display: inline-block;
+}
+.cash-card {
+	width: 60rpx;
+	height: 55rpx;
+	float: left;
+	margin: 20rpx;	
+}
+/*提示开始*/
+.cash-prompt {
+	width: 100%;
+	background: #fff;
+}
+.prompt-model {
+	width: 200rpx;
+	height: 100rpx;
+	margin: 0 auto;
+	line-height: 100rpx;
+	display: flex;
+	font-size: 34rpx;
+}
+.prompt-img {
+	width: 40rpx;
+	height: 40rpx;
+	margin: 32rpx 0 0 15rpx;
+}
+.recording-list {
+	width: 100%;
+	border-top: 1rpx solid #eee;
+}
+.cash-succ {
+	height: 75rpx;
+	line-height: 75rpx;
+	font-size: 28rpx;
+	display: flex;
+	justify-content: space-between;
+	padding: 0 20rpx;
+}
+.cash-time {
+	width: 100%;
+	height: 50rpx;
+	font-size: 20rpx;
+	color: #999;
+	padding: 0 0 0 20rpx;
+}
+/*模态框开始*/
+.model-bg {
+	width: 100%;
+	height: 100%;
+	background: #b2b2b2;
+	opacity: 0.8;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.model-tit {
+	width: 630rpx;
+	background: #fff;
+	opacity: 1;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -315rpx 0 0 -315rpx;
+}
+.model-txt {
+	width: 100%;
+	height: 100rpx;
+	font-size: 38rpx;
+	line-height: 100rpx;
+	text-align: center;
+}
+.model-y {
+	width: 550rpx;
+	margin: 0 auto;
+	border-top: 1rpx solid #ebebeb; 
+	padding-top: 30rpx; 
+}
+.prompt-tit {
+	width: 100%;
+	font-size: 30rpx;
+	line-height: 50rpx;
+}
+.prompt-content {
+	width: 100%;
+	font-size: 26rpx;
+	color: #676767;
+	padding-left: 26rpx;
+}
+.model-btn {
+	width: 550rpx;
+	height: 70rpx;
+	border: 1rpx solid #ebebeb; 
+	text-align: center;
+	line-height: 70rpx;
+	margin: 30rpx auto;
+	font-size: 28rpx;
 }

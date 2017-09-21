@@ -1,47 +1,51 @@
 {
-    "pages":[
-        "pages/index/index",
-        "pages/classify/index",
-        "pages/cart/index",
-        "pages/user/index",
-        "pages/user/cash/cash"
-
-    ],
-    "window":{
-        "navigationBarBackgroundColor": "#f2505d",
-        "navigationBarTextStyle": "white"
-    },
-    "tabBar": {
-        "color": "#373737",
-        "selectedColor": "#ed145b",
-        "borderStyle": "#f0f0f0",
-        "backgroundColor": "#ffffff",
-    "list": [{
-            "pagePath": "pages/index/index",
-            "iconPath": "image/tabicon/tabicon-a1.png",
-            "selectedIconPath": "image/tabicon/tabicon-b1.png",
-            "text": "主页"
-
-        }, {
-            "pagePath": "pages/classify/index",
-            "iconPath": "image/tabicon/tabicon-a2.png",
-            "selectedIconPath": "image/tabicon/tabicon-b2.png",
-            "text": "分类"
-        }, {
-            "pagePath": "pages/cart/index",
-            "iconPath": "image/tabicon/tabicon-a3.png",
-            "selectedIconPath": "image/tabicon/tabicon-b3.png",            
-            "text": "购物车"
-        }, {
-            "pagePath": "pages/user/index",
-            "iconPath": "image/tabicon/tabicon-a4.png",
-            "selectedIconPath": "image/tabicon/tabicon-b4.png",
-            "text": "我的"
-        }]
-    },
-    "networkTimeout": {
-        "request": 10000,
-        "downloadFile": 10000
-    },
-    "debug": true
+  "pages": [
+    "pages/index/index",
+    "pages/classify/index",
+    "pages/cart/index",
+    "pages/user/index",
+    "pages/user/cash/cash",
+    "pages/user/pay/pay"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#f2505d",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#373737",
+    "selectedColor": "#ed145b",
+    "borderStyle": "#f0f0f0",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "image/tabicon/tabicon-a1.png",
+        "selectedIconPath": "image/tabicon/tabicon-b1.png",
+        "text": "主页"
+      },
+      {
+        "pagePath": "pages/classify/index",
+        "iconPath": "image/tabicon/tabicon-a2.png",
+        "selectedIconPath": "image/tabicon/tabicon-b2.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/cart/index",
+        "iconPath": "image/tabicon/tabicon-a3.png",
+        "selectedIconPath": "image/tabicon/tabicon-b3.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "iconPath": "image/tabicon/tabicon-a4.png",
+        "selectedIconPath": "image/tabicon/tabicon-b4.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
 }

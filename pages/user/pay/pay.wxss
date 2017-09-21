@@ -1,0 +1,80 @@
+/* pages/user/pay/pay.wxss */
+.bank-card {
+	width: 100%;
+}
+/*输入框样式开始*/
+.bank-list {
+	width: 100%;
+	display: flex;
+	font-size: 28rpx;
+	background: #fff;
+	border-bottom:1rpx solid #999; 
+}
+.bank-txt {
+	width: 20%;
+	height: 100rpx;
+	line-height: 100rpx;
+	text-align: center;
+}
+.bank-input {
+	width: 80%;
+	height: 100rpx;
+	color: #999;
+}
+.pciker-box {
+	width: 80%;
+}
+.picker-list {
+	line-height: 100rpx;
+	font-size: 28rpx;
+	color: #999;
+}
+/*金额样式开始*/
+.bank-cash{
+	width: 100%;
+	padding: 25rpx;
+	margin-top: 20rpx;
+	background: #fff; 
+}
+.num-max {
+	font-size: 28rpx;
+}
+.num-now {
+	width: 100%;
+	display: flex;
+}
+.num-rmb {
+	font-size: 50rpx;
+	line-height: 120rpx;	
+}
+.num-input {
+	width: 640rpx;
+	height: 120rpx;
+	line-height: 120rpx;
+	font-size: 60rpx;
+	border-bottom:1rpx solid #999; 
+}
+.num-prompt {
+	font-size: 24rpx;
+	color: #999;
+	line-height: 56rpx;
+}
+.num-red {
+	width: 700rpx;
+	font-size: 24rpx;
+	color: #ff4242;
+	margin: 0 auto;
+}
+.num-submit {
+	width: 100%;
+	margin-top: 20rpx;
+}
+.num-btn {
+	width: 700rpx;
+	margin:20rpx auto;
+	color: #fff;
+	background: #999;
+}
+.btn-bg {
+	background: #ff4242;
+}

@@ -1,3 +1,48 @@
 <view class="cash">
-	
+	<view class="cash-header">
+		<view class="cash-list" bindtap="handleUserPay">
+			<image class="cash-card" src="/image/user/card.png" background-size="cover"></image>
+			<view class="cash-text">提现到银行卡</view>
+			<text class="arrow-icon">></text>
+		</view>		
+	</view>
+	<view class="cash-prompt">
+		<view class="prompt-model" bindtap="handleModelShow">
+			<text>提现记录</text>
+			<image class="prompt-img" src="/image/user/prompt.png" background-size="cover"></image>
+		</view>
+		<block wx:if="{{hasCash}}">
+			<view class="recording-list">
+				<view class="cash-succ">
+					<text>提现成功</text>
+					<text>￥130.10</text>
+				</view>
+				<view class="cash-time">
+						2017.09.21  11:24:30
+				</view>
+			</view>
+			<view class="recording-list">
+				<view class="cash-succ">
+					<text>提现成功</text>
+					<text>￥130.10</text>
+				</view>
+				<view class="cash-time">
+					2017.09.21  11:24:30
+				</view>
+			</view>
+		</block>
+	</view>
+</view>
+<view class="model-box" wx:if="{{ifModel}}">
+	<view class="model-bg"></view>
+	<view class="model-tit">
+		<view class="model-txt">提示</view>
+		<scroll-view class="model-y" scroll-y style="height: 380rpx;">
+			<block wx:for="{{promptList}}" wx:key="{{index}}">
+				<view class="prompt-tit">{{item.q}}</view>
+				<view class="prompt-content">{{item.a}}</view>	
+			</block>
+		</scroll-view>
+		<view class="model-btn" bindtap="handleModelHide">知道了</view>
+	</view>	
 </view>
