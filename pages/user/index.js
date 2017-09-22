@@ -16,6 +16,12 @@ Page({
   	wx.navigateTo({
 	  url: '/pages/user/cash/cash'
 	})
+  },
+  // 点击跳转到订单页面
+  handleAllOrder() {
+    wx.navigateTo({
+      url: '/pages/user/order/order'
+    })
   }
 
 })

@@ -12,22 +12,13 @@
 			<image class="prompt-img" src="/image/user/prompt.png" background-size="cover"></image>
 		</view>
 		<block wx:if="{{hasCash}}">
-			<view class="recording-list">
+			<view class="recording-list" wx:for="{{cashList}}" wx:key="{{index}}">
 				<view class="cash-succ">
 					<text>提现成功</text>
-					<text>￥130.10</text>
+					<text>￥{{item.cashNum}}</text>
 				</view>
 				<view class="cash-time">
-						2017.09.21  11:24:30
-				</view>
-			</view>
-			<view class="recording-list">
-				<view class="cash-succ">
-					<text>提现成功</text>
-					<text>￥130.10</text>
-				</view>
-				<view class="cash-time">
-					2017.09.21  11:24:30
+						{{item.time}}
 				</view>
 			</view>
 		</block>

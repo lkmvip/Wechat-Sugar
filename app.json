@@ -5,7 +5,8 @@
     "pages/cart/index",
     "pages/user/index",
     "pages/user/cash/cash",
-    "pages/user/pay/pay"
+    "pages/user/pay/pay",
+    "pages/user/order/order"
   ],
   "window": {
     "navigationBarBackgroundColor": "#f2505d",

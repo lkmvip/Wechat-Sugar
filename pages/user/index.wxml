@@ -29,7 +29,7 @@
 	<view class="user-orders">
 		<view class="orders-tit">
 			<view class="orders-my">我的订单</view>
-			<view class="oders-link">查看全部订单<text class="arrow-icon">></text></view>
+			<view bindtap="handleAllOrder" class="oders-link">查看全部订单<text class="arrow-icon">></text></view>
 		</view>
 		<view class="odres-tools">
 			<view class="odres-list">

@@ -7,10 +7,13 @@ Page({
     data: {
         array: ['请选择开户银行', '工商银行', '农业银行', '建设银行','中国银行','邮政银行'],
         index: 0,
-        maxNum : 99999999,
+        maxNum : 9999,
         name:'',
-        card:0,
-        bank:'' 
+        card:'',
+        bank:'',
+        submit: false,
+        cash:'',
+        disabled: true
     },
   /**
    * 生命周期函数--监听页面加载
@@ -46,21 +49,6 @@ Page({
     onUnload: function () {
 
     },
-
-    /**
-    * 页面相关事件处理函数--监听用户下拉动作
-    */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-    * 页面上拉触底事件的处理函数
-    */
-    onReachBottom: function () {
-
-    },
-
     /**
     * 用户点击右上角分享
     */
@@ -72,19 +60,51 @@ Page({
         var user = e.detail.value,
             reg = /^[\u4E00-\u9FA5]{2,4}$/;
         if (!reg.test(user)) {
-               console.log(user)
+            var _this = this;
+               wx.showModal({
+                title:'提示',
+                content:'请输入正确的名字',
+                showCancel:false,
+                confirmColor:'#3cc51f',//默认值为#3cc51f
+                success:function(res){
+                    if(res.confirm){
+                        _this.setData({
+                            name: ''
+                        })
+                    }
+                }
+            })
         }else{
-               console.log(1)
+            this.setData({
+                name: user
+            })
         }
-        this.setData({
-          name: user
-        })
+
     },
+    // 输入银行卡号
     handleBankCard(e) {
-        console.log(e.detail.value)
-        this.setData({
-          card: e.detail.value
-        })
+        var bankNum = e.detail.value,
+            reg = /^\d{16}|\d{19}$/;
+        if (!reg.test(bankNum)) {
+            var _this = this;
+               wx.showModal({
+                title:'提示',
+                content:'请输入正确的卡号',
+                showCancel:false,
+                confirmColor:'#3cc51f',//默认值为#3cc51f
+                success:function(res){
+                    if(res.confirm){
+                        _this.setData({
+                            card: ''
+                        })
+                    }
+                }
+            })
+        }else{
+            this.setData({
+                card: bankNum
+            })
+        }
     },
     // 选择银行
     bindPickerChange: function(e) {
@@ -92,4 +112,40 @@ Page({
           index: e.detail.value
         })
     },
+    //选择提现金额验证
+    handleCash(e) {
+        var max = this.data.maxNum,
+            val = Number(e.detail.value),
+            reg =/^[1-9][0-9]*0{2}$/;
+        if (reg.test(val) && val<max) {
+           this.setData({
+                cash: val,
+                submit: true,
+                disabled: false
+            })
+        }else{
+            var _this = this;
+               wx.showModal({
+                title:'提示',
+                content:'提现金额必须为100的倍数，而且小于您的余额。',
+                showCancel:false,
+                confirmColor:'#3cc51f',//默认值为#3cc51f
+                success:function(res){
+                    if(res.confirm){
+                        _this.setData({
+                            cash: '',
+                            submit: false,
+                            disabled: true
+                        })
+                    }
+                }
+            })
+        }
+    },
+    handleCashSucc() {
+        var cash = this.data.cash;
+        wx.navigateTo({
+          url: '../cash/cash?cash='+cash
+        })
+    }
 })
