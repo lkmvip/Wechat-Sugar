@@ -6,7 +6,9 @@
     "pages/user/index",
     "pages/user/cash/cash",
     "pages/user/pay/pay",
-    "pages/user/order/order"
+    "pages/user/order/order",
+    "pages/user/incomed/incomed",
+    "pages/user/willincome/will"
   ],
   "window": {
     "navigationBarBackgroundColor": "#f2505d",

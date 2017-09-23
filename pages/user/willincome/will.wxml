@@ -1,0 +1,37 @@
+<!--pages/user/willincome/will.wxml-->
+<view class="willincome">
+	<block wx:for="{{incomeList}}" wx:key="{{index}}">
+	<view class="willincome-list" >
+		
+			<view class="list-top">
+				<text class="mleft">{{item.time}}</text>
+				<text class="color mright">{{item.send}}</text>			
+			</view>
+			<block wx:for="{{content}}" wx:key="{{index}}">
+				<view class="list-mid border-top">
+					<image class="mid-img mleft" src="{{item.url}}" background-size="cover"></image>
+					<view class="mid-content">
+						<view class="content-top">{{item.tit}}</view>		
+						<view class="content-mid">
+							<view class="mid-left">{{item.brand}}</view>		
+							<view class="mid-right color">赚/{{item.make}}</view>		
+						</view>		
+						<view class="content-bottom">
+							<view class="bottom-left">规格</view>		
+							<view class="bottom-right">X{{item.content.spec}}</view>		
+						</view>		
+					</view>		
+				</view>
+			</block>
+			<view class="list-bottom border-top">
+				<view class="pay fright">
+					<view class="pay-left">实付款:</view>		
+					<view class="pay-mid color">￥{{item.pay}}</view>		
+					<view class="pay-right color1">（运费:￥{{item.sendNum}}）</view>					
+				</view>		
+			</view>	
+		
+	</view>
+	</block>
+
+</view>

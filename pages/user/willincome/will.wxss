@@ -1,0 +1,90 @@
+/* pages/user/willincome/will.wxss */
+.mleft {
+	margin-left: 20rpx; 
+}
+.mright {
+	margin-right: 20rpx; 
+}
+.mtop {
+	margin-top: 20rpx; 
+}
+.fleft {
+	float: left;
+}
+.fright {
+	float: right;
+}
+.color {
+	color: #ed145b;
+}
+.color1 {
+	color: #9a9a9a;
+}
+.border-top {
+	border-top: 1rpx solid #eee;
+}
+.willincome{
+	width: 100%;
+	height: 100%;
+
+}
+.willincome-list{
+	width: 100%;
+	background: #fff;
+}
+/*待收收益详情开始*/
+.list-top {
+	width: 100%;
+	height: 100rpx;
+	line-height: 100rpx;
+	display: flex;
+	justify-content: space-between;
+	font-size: 30rpx;
+}
+.list-mid {
+	width: 100%;
+	padding-top:20rpx;
+	display: flex;
+}
+.mid-img {
+	width: 180rpx;
+	height: 180rpx;
+}
+/*列表中部*/
+.mid-content {
+	width: 520rpx;
+	height: 200rpx;
+	margin-left: 10rpx;
+}
+.content-top,.content-mid,.content-bottom {
+	width: 100%;
+	height: 50rpx;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	font-size: 30rpx; 
+	line-height: 50rpx;
+}
+.content-mid,.content-bottom {
+	display: flex;
+	justify-content: space-between;
+}
+.content-bottom {
+	color: #9a9a9a;
+}
+/*列表底部*/
+.list-bottom {
+	width: 100%;
+	height: 100rpx;
+	font-size: 30rpx;
+	line-height: 100rpx;
+	margin-bottom: 20rpx; 
+}
+.pay {
+	width: 480rpx;
+	display: flex;
+	justify-content: space-around;
+}
+.pay-right {
+	font-size: 24rpx;
+}

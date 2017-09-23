@@ -8,19 +8,20 @@
         </block>
     </view>
     <view class="order-content">
+    	<!-- 全部订单内容 -->
         <view class="order-all" hidden="{{activeIndex != 0}}">
         	<view class="all-list" wx:for="{{allOrder}}">
 				<view class="alllist-top">
 					<view class="mleft">订单编号:{{item.orderNum}}</view>
-					<view class="mright" style='color: #f3515c;'>{{item.orderNum}}</view>
+					<view class="mright" style='color: #f3515c;'>{{item.Status}}</view>
 				</view>
 				<view class="alllist-mid">
-					<image class="mid-img mleft" src="/image/gf.png" background-size="cover"></image>
+					<image class="mid-img mleft" src="{{item.orderUrl}}" background-size="cover"></image>
 					<view class="mid-content">
-						<view class="mleft">{{item.orderNum}}</view>
+						<view class="mleft">{{item.orderName}}</view>
 						<view class="mleft">
-							<view class="">￥{{item.orderNum}}</view>
-							<view class="fright" style='color: #ececec;'>X{{item.orderNum}}</view>
+							<view class="">￥{{item.orderPirce}}</view>
+							<view class="fright" style='color: #ececec;'>X{{item.orderSpec}}</view>
 						</view>
 					</view>
 				</view>

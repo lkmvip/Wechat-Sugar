@@ -1,0 +1,54 @@
+/* pages/user/incomed/incomed.wxss */
+.mleft {
+	margin-left: 20rpx; 
+}
+.mright {
+	margin-right: 20rpx; 
+}
+.mtop {
+	margin-top: 20rpx; 
+}
+.fleft {
+	float: left;
+}
+.fright {
+	float: right;
+}
+.incomed{
+	width: 100%;
+	height: 100%;
+	padding-bottom: 300rpx; 
+}
+.incomed-total {
+	width: 100%rpx;
+	height: 315rpx;
+	background:#fb817e;
+	text-align: center;
+	line-height: 315rpx;
+	font-size: 70rpx;
+	color: #fff;
+}
+.rmb {
+	font-size: 50rpx;
+}
+.incomed-today,.week-list {
+	width: 100%;
+	height: 100rpx;
+	background: #fff;
+	line-height: 100rpx;
+	font-size: 30rpx;
+	border-top:1rpx solid #f0f0f0;
+	display: flex;
+	justify-content: space-between;
+}
+.today-num {
+	color: #eb135a;
+}
+/*周收益*/
+.incomed-week{
+	width: 100%;
+}
+.week-text{
+	color: #666666;
+	text-indent: 30rpx;
+}
