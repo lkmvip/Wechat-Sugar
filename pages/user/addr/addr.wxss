@@ -1,0 +1,112 @@
+/* pages/user/addr/addr.wxss */
+.addr{
+	width: 100%;
+	background: #fff;
+}
+.new-addr {
+	width: 100%;
+	height: 100rpx;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	background: #ff4a49;
+	line-height: 100rpx;
+	text-align: center;
+	color: #fff;
+}
+/*地址内容开始*/
+.addr-name,.addr-num,.addr-area{
+	width: 100%;
+	height: 100rpx;
+	line-height: 100rpx;
+	border-bottom: 1rpx solid #eee;
+	display: flex;
+	font-size: 30rpx;
+}
+.addr-txt {
+	width: 150rpx;
+	text-indent: 20rpx;
+}
+.addr-input {
+	width: 580rpx;
+	height: 100rpx;
+	line-height: 100rpx;
+	text-align: right;
+	color: #999;
+}
+.addr-detail{
+	width: 100%;
+	border-bottom: 1rpx solid #eee;
+	display: flex;
+	font-size: 30rpx;
+	padding: 20rpx 0 0 0;
+}
+.addr-textarea{
+	width: 580rpx;
+	height: 220rpx;
+	text-align: right; 
+}
+.addr-handle {
+	width: 100%;
+	padding: 20rpx 0;
+	display: flex;
+	justify-content: space-between;
+	font-size: 30rpx;
+}
+.addr-del{
+	width: 120rpx;
+	height: 75rpx;
+	border:1rpx solid #6f6f6f;
+	line-height: 75rpx;
+	text-align: center;
+	margin-left: 20rpx; 
+}
+.addr-save{
+	width: 120rpx;
+	height: 75rpx;
+	border:1rpx solid #eb408c;
+	line-height: 75rpx;
+	text-align: center;
+	color: #eb408c;
+	margin-right: 20rpx; 
+
+}
+/*三级联动样式*/
+.citypickers{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  background-color: #fff;
+}
+
+.citybody {
+  position: fixed;
+  bottom: 0px;
+}
+
+.cityheader {
+  position: absolute;
+  top:0px;
+  width: 100%;
+  z-index: 4;
+}
+
+.city-cancel {
+  float: left;
+  margin: 20rpx;
+  color: #818181;
+}
+
+.city-true {
+  float: right;
+  margin: 20rpx;
+  color: #2FB42E
+}
+
+.section .picker {
+  background-color: #fff;
+  border-bottom: 1px #d9d9d9 solid;
+  border-top: 1px #d9d9d9 solid;
+  padding: 20rpx;
+}

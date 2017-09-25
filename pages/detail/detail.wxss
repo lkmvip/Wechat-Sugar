@@ -1,0 +1,26 @@
+/* pages/detail/detail.wxss */
+.detail {
+	width: 100%;
+	background: #fff;
+}
+.detail-img {
+	width: 100%;
+	height: 750rpx;
+}
+.detail-mid {
+	width: 710rpx;
+	margin:0 auto; 
+}
+.detail-tit {
+	width: 100%;
+	padding: 20rpx 0 0 0;
+	display: flex;
+}
+.detail-text {
+	width: 600rpx;
+	height: 110rpx;
+}
+.detail-like {
+	width: 110rpx;
+	height: 110rpx;
+}

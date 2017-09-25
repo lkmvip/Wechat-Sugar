@@ -8,7 +8,9 @@
     "pages/user/pay/pay",
     "pages/user/order/order",
     "pages/user/incomed/incomed",
-    "pages/user/willincome/will"
+    "pages/user/willincome/will",
+    "pages/user/addr/addr",
+    "pages/detail/detail"
   ],
   "window": {
     "navigationBarBackgroundColor": "#f2505d",

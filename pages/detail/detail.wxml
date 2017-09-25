@@ -1,0 +1,12 @@
+<!--pages/detail/detail.wxml-->
+<view class="detail">
+	<view>
+		<image class="detail-img" src="/image/gf1.png"></image>
+	</view>
+	<view class="detail-mid">
+		<view class="detail-tit">
+			<view class="detail-text">面膜</view>
+			<view class="detail-like">收藏</view>
+		</view>
+	</view>
+</view>
