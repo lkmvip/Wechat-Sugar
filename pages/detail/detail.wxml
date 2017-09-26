@@ -1,8 +1,8 @@
+
 <!--pages/detail/detail.wxml-->
 <view class="detail">
 	<view class="detail-bg">
 		<image class="detail-img" src="/image/gf1.png"></image>
-	
 		<view class="detail-mid">
 			<view class="detail-tit">
 				<view class="detail-text">
@@ -24,9 +24,67 @@
 			</view>		
 		</view>
 	</view>
+	<!-- 详情页保障信息开始 -->
 	<view class="detail-save">
-
-		<icon type="success_circle" size="40" color="red"/>
-		<text>销量:333</text>
+		<view style="display: flex;" wx:for="{{saveList}}" wx:key="{{index}}">
+			<icon type="success_circle" style="margin-top:16rpx;" size="16" color="red"/>
+			<view>{{item}}</view>
+		</view>
 	</view>
+	<!-- 详情页主要内容开始 -->
+	<view class="detail-content">
+		<view class="navbar">
+	        <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+	            <view id="{{index}}" class="order-item {{activeIndex == index ? 'item-on' : ''}}" bindtap="tabClick">
+	                <view class="weui-navbar__title">{{item}}</view>
+	            </view>
+	        </block>
+    	</view>
+    	<!-- 详情内容 -->
+    	<view class="navbar-content" hidden="{{activeIndex != 0}}">
+			<image class="detail-img" src="/image/gf1.png"></image>
+			<image class="detail-img" src="/image/gf1.png"></image>
+    	</view>
+    	<!-- 热门内容 -->
+        <view class="navbar-hot" hidden="{{activeIndex != 1}}">
+			<view class="hot-list" wx:for-items="{{hotList}}" wx:key="{{index}}">
+				<image class="hot-img" src="{{item.url}}"></image>
+				<view style="font-size: 30rpx;">{{item.title}}</view>
+				<view class="hot-price">
+					<text class="new-price">￥{{item.newPrice}}</text>
+					<text class="through">/</text>
+					<text class="make-money">赚{{item.oldPrice}}</text>	
+					<image style="float: right;" bindtap="handleAddLike" data-id="1" src="/image/like{{likeIndex == true ? 'on' : ''}}.png" class="like-img"/>					
+				</view>
+			</view>
+        </view>
+	</view>
+</view>
+<!-- 详情页底部 -->
+<view class="detail-bottom">
+	<view class="detail-left">
+		<view class="go-index" bindtap="handleGoIndex">
+			<image class="tab-img" src="/image/tabicon/tabicon-a1.png" background-size="cover"></image>
+			<view>首页</view>
+		</view>
+		<view class="go-cart" bindtap="handleGoCart">
+			<image class="tab-img" src="/image/tabicon/tabicon-a3.png" background-size="cover"></image>
+			<view>购物车</view>
+		</view>
+	</view>
+	<view class="detail-right">
+		<view class="add-cart" bindtap="handleAddCart">
+			加入购物车
+		</view>
+		<view class="go-pay" bindtap="handleGoPay">
+			立即购买
+		</view>
+	</view>
+	
+</view>
+<view class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
+	    <view class="zan-dialog__mask" bindtap="handleAddCart" />
+	    <view class="zan-dialog__container">
+	      <view style="padding: 100px 0; text-align: center;">Dialog内容</view>
+	    </view>
 </view>

@@ -62,7 +62,10 @@
                 <view class="supply-scroll bg">
                     <scroll-view class="scroll-box" scroll-x="true" style="width: 100%;white-space: nowrap; display: flex" >
                         <view wx:for="{{scrollList}}" wx:key="index"  data-index="{{index}}" class="scroll-items" style="display: inline-block">
-                            <image src="{{item.url}}" class="scroll-image"/>
+                                <navigator url="/pages/detail/detail" hover-class="navigator-hover">
+                                    <image src="{{item.url}}" class="scroll-image"/>
+                                </navigator>
+                            
                         </view>
                     </scroll-view>
                 </view>

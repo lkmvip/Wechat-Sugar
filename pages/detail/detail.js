@@ -5,7 +5,43 @@ Page({
     * 页面的初始数据
     */
     data: {
-         likeIndex: false
+        likeIndex: false,
+        tabs: ["详情","热门"],
+        activeIndex: "0",
+        saveList:[
+            "实体店铺",
+            "微信支付认证",
+            "正品保证",
+            "七天无理由退换货。"
+        ],
+        hotList:[
+            {   id:0,
+                url:'/image/gf.png',
+                title:"白熊化妆品，美肤多效面霜50g,白熊化妆品。",
+                newPrice:"998",
+                oldPrice:"1999",
+            },
+            {   id:1,
+                url:'/image/gf.png',
+                title:"白熊化妆品，美肤多效面霜50g,白熊化妆品。",
+                newPrice:"998",
+                oldPrice:"1999",
+            },
+            {   id:2,
+                url:'/image/gf.png',
+                title:"白熊化妆品，美肤多效面霜50g,白熊化妆品。",
+                newPrice:"998",
+                oldPrice:"1999",
+            },
+            {   id:3,
+                url:'/image/gf.png',
+                title:"白熊化妆品，美肤多效面霜50g,白熊化妆品。",
+                newPrice:"998",
+                oldPrice:"1999",
+            },
+        ],
+        showDialog: false
+         
     },
 
     /**
@@ -14,35 +50,6 @@ Page({
     onLoad: function (options) {
 
     },
-
-    /**
-    * 生命周期函数--监听页面初次渲染完成
-    */
-    onReady: function () {
-
-    },
-
-    /**
-    * 生命周期函数--监听页面显示
-    */
-    onShow: function () {
-
-    },
-
-    /**
-    * 生命周期函数--监听页面隐藏
-    */
-    onHide: function () {
-
-    },
-
-    /**
-    * 生命周期函数--监听页面卸载
-    */
-    onUnload: function () {
-
-    },
-
     /**
     * 用户点击右上角分享
     */
@@ -69,6 +76,26 @@ Page({
               mask:true
             })
         }
-
+    },
+    
+    tabClick: function (e) {
+        this.setData({
+            activeIndex: e.currentTarget.id
+        });
+    },
+    handleAddCart:function() {
+         this.setData({
+          showDialog: !this.data.showDialog
+        });
+    },
+    handleGoIndex: function() {
+        wx.navigateTo({
+          url: '/pages/index/index'
+        })
+    },
+    handleGoCart: function() {
+        wx.navigateTo({
+          url: '/pages/cart/index'
+        })
     }
 })
