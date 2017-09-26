@@ -89,12 +89,12 @@ Page({
         });
     },
     handleGoIndex: function() {
-        wx.navigateTo({
+        wx.switchTab({
           url: '/pages/index/index'
         })
     },
     handleGoCart: function() {
-        wx.navigateTo({
+        wx.switchTab({
           url: '/pages/cart/index'
         })
     }

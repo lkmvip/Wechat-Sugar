@@ -1,5 +1,7 @@
 /* pages/detail/detail.wxss */
 @import '../index/index.wxss';
+@import '../cart/index.wxss';
+
 .detail {
 	width: 100%;
 }
@@ -182,4 +184,69 @@
 }
 .zan-dialog--show .zan-dialog__mask {
 	display: block;
+}
+.dialog-content {
+	width: 100%;
+	height: 540rpx;
+	border-top:1rpx solid #eee; 
+
+}
+.dialog-img {
+	width: 210rpx;
+	height: 210rpx;
+	position: absolute;
+	top: -60rpx;
+	left: 30rpx;
+	border-radius: 5rpx; 
+}
+.dialog-closed {
+	width: 50rpx;
+	height: 50rpx;
+	float: right;
+	margin: 30rpx 30rpx 0 0; 
+}
+.dialog-price {
+	width: 370rpx;
+	height: 150rpx;
+	font-size: 40rpx;
+	color: #ff4341;
+	line-height: 150rpx;
+	text-align: right;
+}
+.dialog-data {
+	width: 100%;
+	display: flex;
+	border-top:1rpx solid #eee;
+	margin-top:20rpx;  
+}
+.dialog-text {
+	height: 85rpx;
+	line-height: 85rpx;
+	color: #666;
+	font-size: 30rpx;
+	margin: 0 20rpx; 
+}
+.dialog-more {
+	width: 100%;
+	display: flex;
+	margin-top:20rpx;  
+
+}
+.dialog-num {
+	width: 620rpx;
+	display: flex;
+	justify-content: space-around;
+	padding: 20rpx  0 0 0;
+}
+.now-num {
+	width: 120rpx;
+	height: 60rpx;
+	border: 1rpx solid #6f6f6f;
+	line-height: 60rpx;
+	text-align: center;
+	font-size: 24rpx;
+}
+.ondata {
+	color: #ff8685;
+	border-color: #ff8685;
 }
