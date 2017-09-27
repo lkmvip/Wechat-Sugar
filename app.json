@@ -10,7 +10,10 @@
     "pages/user/incomed/incomed",
     "pages/user/willincome/will",
     "pages/user/addr/addr",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/orderdetail/index",
+    "pages/user/ticket/ticket",
+    "pages/orderpay/order"
   ],
   "window": {
     "navigationBarBackgroundColor": "#f2505d",

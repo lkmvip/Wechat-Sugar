@@ -1,0 +1,5 @@
+/* pages/user/ticket/ticket.wxss */
+@import '../order/order.wxss';
+.width {
+	width: 50%;
+}

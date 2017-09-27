@@ -40,7 +40,9 @@ Page({
                 oldPrice:"1999",
             },
         ],
-        showDialog: false
+        showDialog: false,
+        on:0,
+        num:1
          
     },
 
@@ -77,25 +79,84 @@ Page({
             })
         }
     },
-    
+    // 点击tab选项卡
     tabClick: function (e) {
         this.setData({
             activeIndex: e.currentTarget.id
         });
     },
+    // 显示商品规格弹窗
     handleAddCart:function() {
-         this.setData({
+        this.setData({
           showDialog: !this.data.showDialog
         });
+        if (!this.data.showDialog) {
+            wx.switchTab({
+              url: '/pages/cart/index'
+            })
+        }
     },
+    // 弹窗上的关闭
+    handleClosedModel:function() {
+        this.setData({
+          showDialog: false
+        });
+    },
+    // 前往订单页面
+    handleGoPay:function() {
+        this.setData({
+          showDialog: !this.data.showDialog
+        });
+        if (!this.data.showDialog) {
+            wx.navigateTo({
+              url: '/pages/orderdetail/index'
+            })
+        }
+    },
+    // 前往首页
     handleGoIndex: function() {
         wx.switchTab({
           url: '/pages/index/index'
         })
     },
+    // 前往购物车
     handleGoCart: function() {
         wx.switchTab({
           url: '/pages/cart/index'
         })
+    },
+    // 操作数量
+    handleSpec: function(e) {
+        console.log(e)
+        this.setData({
+            on:e.currentTarget.dataset.index
+        })
+    },
+  /**
+   * 绑定减数量事件
+   */
+    addCount(e) {
+        let num = this.data.num;
+        num = num + 1;
+        this.setData({
+          num: num
+        });
+        // this.getTotalPrice();
+    },
+
+  /**
+   * 绑定减数量事件
+   */
+    minusCount(e) {
+        let num = this.data.num;                 
+        if(num <= 1){
+          return false;
+        }
+        num = num - 1
+        this.setData({
+          num: num
+
+        });
+        // this.getTotalPrice();
     }
 })

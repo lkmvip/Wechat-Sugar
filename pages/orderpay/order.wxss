@@ -1,0 +1,22 @@
+/* pages/orderpay/order.wxss */
+.orderpay-top{
+  width: 100%;
+  padding: 50rpx 0;
+  background: #fff;
+  border-top:1rpx solid #ececec;  
+  
+}
+.orderpay-mid {
+  width: 100%;
+  background: #fff;
+  margin-top:20rpx; 
+  border-top:1rpx solid #ececec;  
+    
+}
+.orderpay-bottom {
+  width: 100%;
+  border-top:1rpx solid #ececec;
+  text-align: center;
+  font-size:30rpx;
+  color: #999; 
+}

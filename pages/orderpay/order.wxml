@@ -1,0 +1,10 @@
+<!--pages/orderpay/order.wxml-->
+<view class='orderpay-top'>
+zhifutoubu
+</view>
+<view class='orderpay-mid'>
+zhifutoubu
+</view>
+<view class='orderpay-bottom'>
+感谢您在本店购物 
+</view>

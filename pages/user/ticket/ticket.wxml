@@ -1,0 +1,18 @@
+<!--pages/user/ticket/ticket.wxml-->
+<view class='ticket'>
+  <view class="navbar">
+        <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+            <view id="{{index}}" class="order-item width {{activeIndex == index ? 'item-on' : ''}}" bindtap="tabClick">
+                <view class="weui-navbar__title">{{item}}</view>
+            </view>
+        </block>
+    </view>
+    <view class="order-content">
+    	<!-- 全部订单内容 -->
+        <view class="order-all" hidden="{{activeIndex != 0}}">
+        	
+        </view>
+        <view class="" hidden="{{activeIndex != 1}}">选项二的内容</view>
+     
+    </view>
+</view>

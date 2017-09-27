@@ -87,23 +87,23 @@
 	    <view class="zan-dialog__container">
 	      <view class="dialog-content">
 			<image class="dialog-img" src="/image/gf.png" background-size="cover"></image>
-			<image bindtap="handleAddCart" class="dialog-closed" src="/image/closed.png" background-size="cover"></image>
+			<image bindtap="handleClosedModel" class="dialog-closed" src="/image/closed.png" background-size="cover"></image>
 			<view class="dialog-price">￥100</view>
 			<view class="dialog-data">
 				<view class="dialog-text" >数量:</view>
 				<view class="cart-count">
                     <text class="cart-count-down" bindtap="minusCount" data-index="{{index}}">－</text>
-                    <text class="cart-count-num">{{item.num}}</text>
+                    <text class="cart-count-num" style="height: 100%;font-size: 30rpx;">{{num}}</text>
                     <text class="cart-count-add" bindtap="addCount" data-index="{{index}}">＋</text>
                 </view>
 			</view>
 			<view class="dialog-more">
 				<view class="dialog-text" >规格:</view>
 				<view class="dialog-num">
-                    <text class="now-num ondata">10ml</text>
-                    <text class="now-num">10ml</text>
-                    <text class="now-num">10ml</text>
-                    <text class="now-num">10ml</text>
+                    <text class="now-num {{on==0?'ondata':''}}" data-index="0" bindtap="handleSpec">10ml</text>
+                    <text class="now-num {{on==1?'ondata':''}}" data-index="1" bindtap="handleSpec">10ml</text>
+                    <text class="now-num {{on==2?'ondata':''}}" data-index="2" bindtap="handleSpec">10ml</text>
+                    <text class="now-num {{on==3?'ondata':''}}" data-index="3" bindtap="handleSpec">10ml</text>
                 </view>
 			</view>
 				
