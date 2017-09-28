@@ -1,0 +1,43 @@
+/* pages/user/shopset/set.wxss */
+.shop-set{
+	width: 100%;
+	margin-top: 20rpx;
+	border-top: 1rpx solid #ececec; 
+
+}
+.shop-list {
+	width: 100%;
+	padding: 20rpx 0;
+	background: #fff;
+	border-bottom: 1rpx solid #ececec;
+	display: flex;
+}
+.shop-text{
+	width: 120rpx;
+	font-size: 30rpx;
+	line-height: 60rpx;
+	margin-left: 20rpx;
+}
+.shop-input {
+	width: 580rpx;
+	font-size: 30rpx;
+	line-height: 60rpx;
+	margin-right: 20rpx;
+	text-indent: left; 
+}
+.shop-area {
+	width: 560rpx;
+	font-size: 30rpx;
+	height: 60rpx;
+	line-height: 60rpx;
+	margin-left: 20rpx;
+}
+.shop-sign {
+	width: 100%;
+	padding: 20rpx 0;
+	background: #fff;
+	border-bottom: 1rpx solid #ececec;
+	border-top: 1rpx solid #ececec;
+	display: flex;
+	margin-top: 20rpx;
+}

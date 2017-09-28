@@ -1,15 +1,9 @@
 // pages/user/ticket/ticket.js
 Page({
     data: {
-        tabs: ["已使用","未使用"],
+        tabs: ["未使用","已使用","已过期"],
         activeIndex: "0",
-        allOrder:[
-            {orderNum:"1231231231231231",orderStatus:"已完成",orderName:"流量宝",orderPirce:"9999",orderSpec:"1",orderUrl:"/image/gf.png"},
-            {orderNum:"1231231231231231",orderStatus:"已完成",orderName:"流量宝",orderPirce:"9999",orderSpec:"1",orderUrl:"/image/gf.png"},
-            {orderNum:"1231231231231231",orderStatus:"已完成",orderName:"流量宝",orderPirce:"9999",orderSpec:"1",orderUrl:"/image/gf.png"},
-            {orderNum:"1231231231231231",orderStatus:"已完成",orderName:"流量宝",orderPirce:"9999",orderSpec:"1",orderUrl:"/image/gf.png"},
-            {orderNum:"1231231231231231",orderStatus:"已完成",orderName:"流量宝",orderPirce:"9999",orderSpec:"1",orderUrl:"/image/gf.png"}
-        ]
+        hasTicket:false
     },
     onLoad: function (options) {
         this.setData({
@@ -20,5 +14,8 @@ Page({
         this.setData({
             activeIndex: e.currentTarget.id
         });
+    },
+    stopDrag(){
+        return false;
     }
 });

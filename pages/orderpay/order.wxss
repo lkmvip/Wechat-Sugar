@@ -1,22 +1,71 @@
 /* pages/orderpay/order.wxss */
 .orderpay-top{
-  width: 100%;
-  padding: 50rpx 0;
-  background: #fff;
-  border-top:1rpx solid #ececec;  
-  
+    width: 100%;
+    padding: 50rpx 0;
+    background: #fff;
+    border-top:1rpx solid #ececec;  
+    text-align: center;
 }
 .orderpay-mid {
-  width: 100%;
-  background: #fff;
-  margin-top:20rpx; 
-  border-top:1rpx solid #ececec;  
-    
+    width: 100%;
+    background: #fff;
+    margin-top:20rpx; 
+    border-top:1rpx solid #ececec;  
+
 }
 .orderpay-bottom {
-  width: 100%;
-  border-top:1rpx solid #ececec;
-  text-align: center;
-  font-size:30rpx;
-  color: #999; 
+    width: 100%;
+    font-size:30rpx;
+    color: #999; 
+    text-align: center;
+    line-height: 90rpx;
+} 
+.pay-for {
+    font-size: 30rpx;
+    color: #666;
+}
+.pay-much {
+    font-size: 50rpx;
+    margin: 40rpx 0;  
+}
+.pay-num,.pay-way {
+    font-size: 24rpx;
+    color: #333;
+    margin-bottom: 20rpx;
+}
+/* 支付选项 */
+.pay-wechat,.pay-alipay{
+    width: 100%;
+    height: 100rpx;
+    margin: 0 auto;
+    border-bottom:1rpx solid #e7e7e7;
+    font-size: 28rpx;
+    display: flex;
+    justify-content: space-between;
+}
+.pay-box {
+    height: 100rpx;
+    display: flex;
+    line-height: 100rpx;
+}
+.wechat-img {
+    width: 65rpx;
+    height: 60rpx;
+    margin:24rpx 20rpx 0 20rpx; 
+}
+.check-img {
+    width: 40rpx;
+    height: 40rpx;
+    margin: 30rpx 20rpx 0 0;
+}
+/* 提交按钮 */
+.orderpay-submit {
+    width: 100%;
+    height: 100rpx;
+    background: #ff4242;
+    line-height: 100rpx;
+    text-align: center;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
 }

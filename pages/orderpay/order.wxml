@@ -1,10 +1,29 @@
 <!--pages/orderpay/order.wxml-->
 <view class='orderpay-top'>
-zhifutoubu
+	<view class="pay-for">应付金额:</view>
+	<view class="pay-much">￥300.00</view>
+	<view class="pay-num">订单号:123123198237912</view>
+	<view class="pay-way">配送方式:快递</view>
 </view>
 <view class='orderpay-mid'>
-zhifutoubu
+	<view class="pay-wechat" bindtap="handleCheck" id="0">
+		<view class="pay-box">
+			<image class="wechat-img" src="/image/pay/wechat.png" background-size="cover"></image>
+			<view>微信支付</view>
+		</view>	
+		<image class="check-img" src="/image/pay/check{{check==0?1:0}}.png" background-size="cover"></image>	
+	</view>
+	<view class="pay-alipay" bindtap="handleCheck" id="1">
+		<view class="pay-box">
+			<image class="wechat-img" src="/image/pay/alipay.png" background-size="cover"></image>
+			<view>余额支付</view>
+		</view>	
+		<image class="check-img" src="/image/pay/check{{check==1?1:0}}.png" background-size="cover"></image>
+	</view>	
 </view>
 <view class='orderpay-bottom'>
 感谢您在本店购物 
+</view>
+<view class='orderpay-submit' bindtap="handlePaySucc">
+	确认支付
 </view>

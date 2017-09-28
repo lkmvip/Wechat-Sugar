@@ -1,5 +1,5 @@
 <!--pages/user/ticket/ticket.wxml-->
-<view class='ticket'>
+<view class='ticket'  bindtouchmove="stopDrag">
   <view class="navbar">
         <block wx:for-items="{{tabs}}" wx:key="{{index}}">
             <view id="{{index}}" class="order-item width {{activeIndex == index ? 'item-on' : ''}}" bindtap="tabClick">
@@ -8,11 +8,84 @@
         </block>
     </view>
     <view class="order-content">
-    	<!-- 全部订单内容 -->
-        <view class="order-all" hidden="{{activeIndex != 0}}">
-        	
+    	<!-- 未使用的内容 -->
+        <view class="ticket-list" hidden="{{activeIndex != 0}}">
+            <block wx:if="{{hasTicket}}">
+            	<view class="not-tiket">
+                    <image class="not-img" src="/image/ticket/not.png"></image>
+                    <view class="not-text">还没有优惠券哦~</view>
+                </view>
+            </block>
+            <view class="not-use">
+                <view class="not-list">
+                    <view class="not-left">
+                        <view class="not-price">
+                            <text>￥</text>
+                            <text style="font-size: 50rpx;">300</text>
+                        </view>
+                        <view class="not-way">满￥399使用</view>  
+                    </view>
+                    <view class="not-right">
+                        <view class="ticket-way">
+                            <view class="ticket-name">满减券</view>  
+                            <view class="name-text">见面礼-满399减100</view>  
+                        </view>
+                        <view class="ticket-date">
+                            <view style="height: 50rpx;line-height: 50rpx;">2017.09.28-2017.10.09</view>
+                            <view class="use-ticket">立即使用</view>     
+                        </view>  
+                    </view>
+                    <image class="use-img" src="/image/ticket/ticket{{activeIndex}}.png"></image> 
+                </view>
+            </view>
         </view>
-        <view class="" hidden="{{activeIndex != 1}}">选项二的内容</view>
-     
+        <!-- 已使用的内容 -->     
+        <view class="ticket-list" hidden="{{activeIndex != 1}}">
+            <view class="not-use">
+                <view class="not-list {{activeIndex == 1 ? 'border' : ''}}">
+                    <view class="not-left {{activeIndex == 1 ? 'border-left' : ''}}">
+                        <view class="not-price ">
+                            <text>￥</text>
+                            <text style="font-size: 50rpx;">300</text>
+                        </view>
+                        <view class="not-way">满￥399使用</view>  
+                    </view>
+                    <view class="not-right">
+                        <view class="ticket-way">
+                            <view class="ticket-name {{activeIndex == 1 ? 'ticket-bg' : ''}}">满减券</view>  
+                            <view class="name-text">见面礼-满399减100</view>  
+                        </view>
+                        <view class="ticket-date">
+                            <view>2017.09.28-2017.10.09</view>  
+                        </view>  
+                    </view>
+                    <image class="use-img" src="/image/ticket/ticket{{activeIndex}}.png"></image> 
+                </view>
+            </view>
+        </view>
+        <!-- 已过期的内容 --> 
+        <view class="ticket-list" hidden="{{activeIndex != 2}}">
+            <view class="not-use">
+                <view class="not-list  {{activeIndex == 2 ? 'border' : ''}}">
+                    <view class="not-left {{activeIndex == 2 ? 'border-left' : ''}}">
+                        <view class="not-price ">
+                            <text>￥</text>
+                            <text style="font-size: 50rpx;">300</text>
+                        </view>
+                        <view class="not-way">满￥399使用</view>  
+                    </view>
+                    <view class="not-right">
+                        <view class="ticket-way">
+                            <view class="ticket-name {{activeIndex == 2 ? 'ticket-bg' : ''}}">满减券</view>  
+                            <view class="name-text">见面礼-满399减100</view>  
+                        </view>
+                        <view class="ticket-date">
+                             2017.09.28-2017.10.09   
+                        </view>  
+                    </view>
+                    <image class="use-img" src="/image/ticket/ticket{{activeIndex}}.png"></image> 
+                </view>
+            </view>
+        </view>
     </view>
 </view>

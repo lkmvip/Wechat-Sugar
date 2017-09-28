@@ -1,0 +1,12 @@
+<!--pages/succpay/succpay.wxml-->
+<view class="pay-succ" wx:if="{{isSucc}}">
+	<image class="succ-img" src="/image/pay/succ.png" background-size="cover"></image>
+	<view class="succ-text">您此次的支付操作已成功</view>
+	<view class="go-index" bindtap="handleGoIndex">返回首页</view>
+	<view class="watch-order" bindtap="handleGoOrder">查看订单</view>	
+</view>
+<view class="pay-fail" wx:else>
+	<image class="succ-img" src="/image/pay/fail.png" background-size="cover"></image>
+	<view class="succ-text">您的支付未完成,请返回上一页完成支付</view>
+	<view class="go-index" bindtap="handleGoLast">返回上一页</view>
+</view>

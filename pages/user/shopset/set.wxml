@@ -1,0 +1,19 @@
+<!--pages/user/shopset/set.wxml-->
+<view class="shop-set">
+	<view class="shop-list">
+		<view class="shop-text">店名</view>
+		<input class="shop-input" type="text" placeholder="店名"/>
+	</view>
+	<view class="shop-list">
+		<view class="shop-text">店铺介绍</view>
+		<textarea class="shop-area"   />
+	</view>
+	<view class="shop-list">
+		<view class="shop-text">头像</view>
+	</view>
+	<view class="shop-sign">
+		<view class="shop-text">店招</view>
+	</view>
+
+
+</view>

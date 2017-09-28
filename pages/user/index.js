@@ -56,4 +56,38 @@ Page({
           url: "/pages/user/incomed/incomed"
         })
     },
+    stopDrag(){
+        return false;
+    },
+    //跳转到地址页面
+    handleAddr() {
+        wx.navigateTo({
+          url: "/pages/user/addr/addr"
+        })
+    },
+    //跳转到地址页面
+    handleTicket() {
+        wx.navigateTo({
+          url: "/pages/user/ticket/ticket"
+        })
+    },
+    //跳转到收藏页面
+    handleLike() {
+        wx.navigateTo({
+          url: "/pages/user/like/like"
+        })
+    },
+    //跳转到店铺设置页面
+    handleShopSet() {
+        wx.navigateTo({
+          url: "/pages/user/shopset/set"
+        })
+    },
+    //跳转到店铺管理页面
+    handleShopHandle() {
+        wx.navigateTo({
+          url: "/pages/user/shophandle/handle"
+        })
+    },
+
 })

@@ -1,11 +1,11 @@
-// pages/orderpay/order.js
+// pages/succpay/succpay.js
 Page({
 
     /**
     * 页面的初始数据
     */
     data: {
-        check:"0"
+        isSucc:true
     },
 
     /**
@@ -14,21 +14,25 @@ Page({
     onLoad: function (options) {
 
     },
-
     /**
     * 用户点击右上角分享
     */
     onShareAppMessage: function () {
 
     },
-    handleCheck(e) {
-        this.setData({
-            check: e.currentTarget.id
-        });
+    handleGoIndex() {
+        wx.switchTab({
+          url: '/pages/index/index'
+        })
     },
-    handlePaySucc() {
+    handleGoOrder() {
         wx.navigateTo({
-          url: '/pages/succpay/succpay'
+          url: '/pages/user/order/order'
+        })
+    },
+    handleGoLast() {
+        wx.navigateTo({
+          url: '/pages/orderpay/order'
         })
     }
 })

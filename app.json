@@ -13,11 +13,16 @@
     "pages/detail/detail",
     "pages/orderdetail/index",
     "pages/user/ticket/ticket",
-    "pages/orderpay/order"
+    "pages/orderpay/order",
+    "pages/succpay/succpay",
+    "pages/user/shopset/set",
+    "pages/user/shophandle/handle",
+    "pages/user/like/like"
   ],
   "window": {
     "navigationBarBackgroundColor": "#f2505d",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": false
   },
   "tabBar": {
     "color": "#373737",

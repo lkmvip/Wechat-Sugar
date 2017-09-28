@@ -1,0 +1,39 @@
+/* pages/succpay/succpay.wxss */
+.pay-succ,.pay-fail{
+	width: 100%;
+	padding-top: 160rpx; 
+}
+.succ-img {
+	display: block;
+	width: 260rpx;
+	height: 260rpx;
+	margin: 0 auto; 
+}
+.succ-text {
+	color: #676767;
+	font-size: 34rpx;
+	text-align: center;
+	margin: 60rpx 0; 
+}
+.go-index {
+	width: 280rpx;
+	height: 70rpx;
+	line-height: 70rpx;
+	text-align: center;
+	margin:0 auto;
+	font-size: 30rpx;
+	background: #ff4242;
+	color: #fff;
+}
+.watch-order {
+	width: 280rpx;
+	height: 70rpx;
+	line-height: 70rpx;
+	text-align: center;
+	margin:0 auto;
+	font-size: 30rpx;
+	border:1rpx solid #676767;
+	color: #676767;
+	margin-top:20rpx;
+	box-sizing: border-box; 
+}

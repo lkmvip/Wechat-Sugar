@@ -1,5 +1,109 @@
 /* pages/user/ticket/ticket.wxss */
 @import '../order/order.wxss';
+.ticket{
+	width: 100%;
+	height: 100%;
+	background: #fff;
+}
 .width {
-	width: 50%;
+	width: 33.33%;
+}
+.ticket-list {
+	border-top: 1rpx solid #f0f0f0;
+}
+/* 没有优惠券的样式 */
+.not-tiket {
+	width: 375rpx;
+	padding-top: 55rpx;
+	margin:0 auto;
+	font-size: 28rpx;
+	text-align: center;
+}
+.not-img {
+	width: 300rpx;
+	height: 300rpx;
+	margin:20rpx auto;
+}
+/* 未使用优惠券的样式 */
+.not-use {
+	width: 100%;
+}
+.not-list {
+	width: 710rpx;
+	height: 190rpx;
+	background: #fefafb;
+	margin: 0 auto;
+	box-sizing: border-box;
+	border-radius: 10rpx;
+	border:1rpx solid #ffa3a4;
+	margin-top: 20rpx;
+	display: flex;
+	position: relative;   
+}
+.not-left {
+	width: 40%;
+	height: 100%;
+	text-align: center;
+	border-right:1rpx dashed #ffa3a4;
+}
+.not-price{
+	margin-top: 30rpx;
+}
+.not-way {
+	font-size: 28rpx;
+}
+.not-right {
+	width: 60%;
+	height: 100%;
+}
+.ticket-way{
+	display: flex;
+	font-size: 26rpx;
+	padding: 35rpx 0 0 20rpx;
+
+}
+.ticket-name {
+	/* width: 80rpx; */
+	height: 35rpx;
+	line-height: 35rpx;
+	background: #ff9d9c;
+	color: #fff;
+	border-radius: 5rpx;
+	margin-right: 10rpx;
+}
+.ticket-date {
+	margin:35rpx 0 0 20rpx; 
+	font-size: 20rpx;
+	color: #676767;
+	width: 100%;
+	display: flex;
+}
+.use-ticket {
+	width: 125rpx;
+	height: 50rpx;
+	line-height: 50rpx;
+	font-size: 26rpx;
+	color: #000;
+	text-align: center;
+	margin-left: 30rpx;
+	border: 1rpx solid #333;
+	border-radius: 25rpx;
+}
+.use-img {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 100rpx;
+	height: 100rpx;
+}
+/* 改变的颜色 */
+.border{
+	border-color: #b8b8b8;
+	background: #f5f5f5;
+}
+.border-left{
+	border-color: #b8b8b8;
+}
+.ticket-bg {
+	background: #999;
 }
