@@ -1,0 +1,22 @@
+<!--pages/ordermsg/msg.wxml-->
+<view class="will-send">
+	<view class="will-box">
+		<view class="send-content">
+			<view class="send-text">
+				代发货
+			</view>
+			<view class="">
+				物流信息:订单支付成功，等待上架发货
+			</view>
+		</view>
+		<view class="arrow">
+			>
+		</view>
+	</view>
+</view>
+<view class="send-user">
+		个人信息
+</view>
+<view class="send-list">
+		个人信息
+</view>

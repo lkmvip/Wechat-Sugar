@@ -56,9 +56,6 @@ Page({
           url: "/pages/user/incomed/incomed"
         })
     },
-    stopDrag(){
-        return false;
-    },
     //跳转到地址页面
     handleAddr() {
         wx.navigateTo({

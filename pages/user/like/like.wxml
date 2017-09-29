@@ -7,44 +7,21 @@
 		</view>
 </view>
 <view class="like-content">
-	<view class="like-item">
-		<image class="item-img" src="/image/like/left.png" background-size="cover"></image>
-		<view class="item-tit">化妆品面霜</view>
-		<view class="item-way">面霜也能清清爽爽</view>
-		<view class="item-price">
-			<view class="item-new">￥100</view>
-			<view class="item-old">￥100</view>		
-			<image class="item-del" src="/image/like/del.png" background-size="cover"></image>
-		</view>	
-	</view>
+	<block wx:for="{{itemList}}" wx:key="{{index}}">
 		<view class="like-item">
-		<image class="item-img" src="/image/like/left.png" background-size="cover"></image>
-		<view class="item-tit">化妆品面霜</view>
-		<view class="item-way">面霜也能清清爽爽</view>
-		<view class="item-price">
-			<view class="item-new">￥100</view>
-			<view class="item-old">￥100</view>		
-			<image class="item-del" src="/image/like/del.png" background-size="cover"></image>
-		</view>	
-	</view>
-		<view class="like-item">
-		<image class="item-img" src="/image/like/left.png" background-size="cover"></image>
-		<view class="item-tit">化妆品面霜</view>
-		<view class="item-way">面霜也能清清爽爽</view>
-		<view class="item-price">
-			<view class="item-new">￥100</view>
-			<view class="item-old">￥100</view>		
-			<image class="item-del" src="/image/like/del.png" background-size="cover"></image>
-		</view>	
-	</view>
-		<view class="like-item">
-		<image class="item-img" src="/image/like/left.png" background-size="cover"></image>
-		<view class="item-tit">化妆品面霜</view>
-		<view class="item-way">面霜也能清清爽爽</view>
-		<view class="item-price">
-			<view class="item-new">￥100</view>
-			<view class="item-old">￥100</view>		
-			<image class="item-del" src="/image/like/del.png" background-size="cover"></image>
-		</view>	
-	</view>
+			<navigator url="/pages/detail/detail">
+		<image class="item-img" src="{{item.url}}" background-size="cover"></image>
+			<view style="padding:0 20rpx;">
+				<view class="item-tit">{{item.tit}}</view>
+				<view class="item-way">{{item.way}}</view>
+				<view class="item-price">
+					<view class="item-new">￥{{item.new}}</view>
+					<view class="item-old">￥{{item.old}}</view>		
+					<image catchtap="handleDelLike" data-id="{{index}}" class="item-del" src="/image/like/del.png" background-size="cover"></image>
+				</view>	
+			</view>
+			</navigator>
+		</view>
+	</block>
+	
 </view>

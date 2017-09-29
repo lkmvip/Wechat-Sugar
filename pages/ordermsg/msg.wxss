@@ -1,0 +1,29 @@
+/* pages/ordermsg/msg.wxss */
+.will-send{
+	width: 100%;
+	padding: 20rpx 0;
+	background: #616775;
+}
+.will-box{
+	width: 710rpx;
+	margin: 0 auto;
+	display: flex;
+	font-size: 28rpx;
+	justify-content: space-between;
+	color: #fff;
+}
+.send-text{
+	font-size: 34rpx;
+	margin-bottom: 20rpx;
+}
+.arrow {
+	height: 90rpx;
+	font-size: 50rpx;
+	line-height: 90rpx;
+}
+.send-user{
+	width: 100%;
+	padding: 0 20rpx;
+	margin:70rpx 0 20rpx 0;
+	background: #fff; 
+}

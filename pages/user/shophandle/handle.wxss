@@ -1,1 +1,28 @@
 /* pages/user/shophandle/handle.wxss */
+@import '../../index/index.wxss';
+.shop-msg{
+    width: 100%;
+    background: #fe4646;
+    padding:125rpx 0 50rpx 0;
+    box-sizing: border-box;
+}
+.msg-content {
+    width: 710rpx;
+    margin: 0 auto;
+    display: flex;
+}
+.msg-img {
+    width: 135rpx;
+    height: 135rpx;
+    background: #fff;
+    margin-right: 20rpx;
+}
+.msg-explain,.msg-name {
+    padding-top: 15rpx;
+    color: #fff;
+    font-size:30rpx;
+}
+.msg-explain {
+    font-size: 26rpx;
+}  
+ 

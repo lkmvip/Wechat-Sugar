@@ -26,13 +26,13 @@ Page({
         })
     },
     handleGoOrder() {
-        wx.navigateTo({
-          url: '/pages/user/order/order'
+        wx.redirectTo({
+          url: '/pages/ordermsg/msg'
         })
     },
     handleGoLast() {
-        wx.navigateTo({
-          url: '/pages/orderpay/order'
+        wx.navigateBack({
+            data:1  
         })
     }
 })

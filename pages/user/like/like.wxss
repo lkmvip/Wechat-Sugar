@@ -18,8 +18,7 @@
 	margin: 20rpx;
 }
 .like-content{
-	display: flex;
-	height: 100%;
+	display: flex;	
 	justify-content: space-between;
 	flex-wrap: wrap;
 }
