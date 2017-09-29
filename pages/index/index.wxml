@@ -65,7 +65,6 @@
                                 <navigator url="/pages/detail/detail" hover-class="navigator-hover">
                                     <image src="{{item.url}}" class="scroll-image"/>
                                 </navigator>
-                            
                         </view>
                     </scroll-view>
                 </view>
