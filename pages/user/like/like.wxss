@@ -1,1 +1,61 @@
 /* pages/user/like/like.wxss */
+.like-num,.like-content{
+	width: 710rpx;
+	margin:0 auto;
+
+}
+.like-box{
+	width: 400rpx;
+	font-size: 30rpx;
+	text-align: center;
+	line-height: 80rpx;
+	display: flex; 
+	margin: 0 auto;
+}
+.like-icon {
+	width: 40rpx;
+	height: 40rpx;
+	margin: 20rpx;
+}
+.like-content{
+	display: flex;
+	height: 100%;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.like-item {
+	width: 45%;
+	padding: 0 20rpx;
+	background: #fff;
+}
+.item-img {
+	width: 100%;
+	height: 340rpx;
+}
+.item-tit {
+	font-size: 30rpx;
+}
+.item-way {
+	font-size: 30rpx;
+	color: #7a7a7a;
+}
+.item-price {
+	width: 100%;
+	height: 80rpx;
+	display: flex;
+	line-height: 80rpx;
+}
+.item-del {
+	width: 40rpx;
+	height: 40rpx;
+	margin:20rpx 0 0 130rpx;
+}
+.item-new {
+	font-size: 26rpx;
+}
+.item-old {
+	font-size: 20rpx;
+	text-decoration:line-through;
+	color: #9a9a9a;
+	margin-left: 20rpx; 
+}

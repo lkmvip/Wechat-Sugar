@@ -1,2 +1,50 @@
 <!--pages/user/like/like.wxml-->
-<text>pages/user/like/like.wxml</text>
+<view class="like-num">
+		<view class="like-box">
+			<image class="like-icon" src="/image/like/left.png" background-size="cover"></image>
+			<view>我已收藏<text style="color: #ed145b">4</text>件商品</view>
+			<image class="like-icon" src="/image/like/right.png" background-size="cover"></image>
+		</view>
+</view>
+<view class="like-content">
+	<view class="like-item">
+		<image class="item-img" src="/image/like/left.png" background-size="cover"></image>
+		<view class="item-tit">化妆品面霜</view>
+		<view class="item-way">面霜也能清清爽爽</view>
+		<view class="item-price">
+			<view class="item-new">￥100</view>
+			<view class="item-old">￥100</view>		
+			<image class="item-del" src="/image/like/del.png" background-size="cover"></image>
+		</view>	
+	</view>
+		<view class="like-item">
+		<image class="item-img" src="/image/like/left.png" background-size="cover"></image>
+		<view class="item-tit">化妆品面霜</view>
+		<view class="item-way">面霜也能清清爽爽</view>
+		<view class="item-price">
+			<view class="item-new">￥100</view>
+			<view class="item-old">￥100</view>		
+			<image class="item-del" src="/image/like/del.png" background-size="cover"></image>
+		</view>	
+	</view>
+		<view class="like-item">
+		<image class="item-img" src="/image/like/left.png" background-size="cover"></image>
+		<view class="item-tit">化妆品面霜</view>
+		<view class="item-way">面霜也能清清爽爽</view>
+		<view class="item-price">
+			<view class="item-new">￥100</view>
+			<view class="item-old">￥100</view>		
+			<image class="item-del" src="/image/like/del.png" background-size="cover"></image>
+		</view>	
+	</view>
+		<view class="like-item">
+		<image class="item-img" src="/image/like/left.png" background-size="cover"></image>
+		<view class="item-tit">化妆品面霜</view>
+		<view class="item-way">面霜也能清清爽爽</view>
+		<view class="item-price">
+			<view class="item-new">￥100</view>
+			<view class="item-old">￥100</view>		
+			<image class="item-del" src="/image/like/del.png" background-size="cover"></image>
+		</view>	
+	</view>
+</view>
