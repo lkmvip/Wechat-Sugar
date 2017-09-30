@@ -21,9 +21,82 @@
 	font-size: 50rpx;
 	line-height: 90rpx;
 }
+.user-box {
+	padding-bottom: 20rpx;
+}
 .send-user{
 	width: 100%;
 	padding: 0 20rpx;
 	margin:70rpx 0 20rpx 0;
 	background: #fff; 
+}
+.user-msg {
+	width: 710rpx;
+	display: flex;
+	font-size: 30rpx;
+	line-height: 80rpx;
+}
+.user-icon {
+	width: 30rpx;
+	height: 30rpx;
+	margin: 20rpx 10rpx;
+	display: inline;
+}
+.user-name {
+	width: 650rpx;
+	height: 80rpx;
+	display: flex;
+	justify-content: space-between;
+}
+.user-addr {
+	font-size: 30rpx;
+	width: 560rpx;
+	margin: 0 0 0 50rpx;
+	color: #676767;
+}
+.send-list {
+	width: 100%;
+	background: #fff;
+	
+}
+.list-item {
+	border-bottom:1rpx solid #ececec; 
+	display: flex;
+}
+.item-icon {
+	width: 165rpx;
+	height: 165rpx;
+	margin: 20rpx 0 20rpx 20rpx;
+	display: block;
+}
+.item-content{
+
+	padding-top: 20rpx;
+	font-size: 30rpx;
+}
+.item-tit {
+	width: 400rpx;
+	margin-right: 20rpx;
+}
+.item-num text{
+	text-align: right;
+	display: block;
+}
+.item-btn {
+	width: 150rpx;
+	height: 50rpx;
+	box-sizing: border-box;
+	border: 1rpx solid #fe585a;
+	line-height: 50rpx;
+	text-align: center;
+	color: #fe585a;
+	float: right;
+	margin-top: 20rpx; 
+}
+.oredr-price {
+	width: 100%;
+	padding-top: 20rpx;
+	margin-top: 20rpx;
+	border-top:1rpx solid #ececec; 
+	background: #fff;
 }

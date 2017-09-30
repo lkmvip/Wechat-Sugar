@@ -15,8 +15,39 @@
 	</view>
 </view>
 <view class="send-user">
-		个人信息
+	<view class='user-box'>
+		<view class="user-msg">
+			<image class="user-icon" src="/image/user/income.png" background-size="cover"></image>
+			<view class="user-name">
+				<text>高俊杰</text>
+				<text>17316240119</text>
+			</view>
+			</view>
+			<view class="user-addr">
+				收获地址: 北京市 石景山去 八角北里11111111111号楼 八单元 602
+			</view>
+	</view>
 </view>
 <view class="send-list">
-		个人信息
+		<view class="list-item">
+			<image class="item-icon" src="/image/user/income.png" background-size="cover"></image>
+			<view class="item-content">
+				<view style="display: flex;">
+					<view class="item-tit">
+						啦啦啦啦啦啦啦啦啦啦啦啦
+						啦啦啦啦啦啦啦啦啦啦啦啦
+					</view>
+					<view class="item-num">
+						<text style="color: #ff4341;">￥69.00</text>
+						<text style="color: #999;">X1</text>
+					</view>
+				</view>
+				
+				<view class="item-btn">申请退货</view>
+
+			</view>
+		</view>
+</view>
+<view class="oredr-price">
+	12312312312
 </view>

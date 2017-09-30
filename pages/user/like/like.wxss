@@ -47,7 +47,7 @@
 .item-del {
 	width: 40rpx;
 	height: 40rpx;
-	margin:20rpx 0 0 130rpx;
+	margin:20rpx 0 0 120rpx;
 }
 .item-new {
 	font-size: 26rpx;
