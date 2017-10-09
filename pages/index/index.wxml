@@ -1,6 +1,4 @@
-<!--引入组件-->
-<import src="../component/like.wxml"/>
-<import src="../component/goods.wxml"/>
+
 <!--index.wxml-->
 <view class="container">
     	<view class="header bg">
@@ -95,24 +93,6 @@
                 </view>
             </view>
         </view>
-        <!-- 人气推荐 -->
-<!--         <view class="recommend bg box">
-            <view class="text">
-                人气推荐
-            </view>
-            <view class="line"></view>
-            <view class="recommend-list"  wx:for="{{recommendList}}" wx:key="index"  data-index="{{index}}">
-                <image src="{{item.url}}" class="recommend-image"/>
-                <view class="recommend-price left">
-                    <view class="recommend-title">{{item.title}}</view>
-                    <view class="new-price left top">{{item.price}}</view>
-                    <view class="through left top">/</view>
-                    <view class="make-money left top">赚{{item.makeMoney}}</view> 
-                    <image src="/image/cart.png" class="add-shopcart right"/>
-                    <image src="/image/add.png" class="add-goods right"/> 
-                </view>
-            </view>
-        </view> -->
         <!-- 猜你喜欢 -->
         <view class="like bg box">
             <view class="text">
