@@ -1,20 +1,14 @@
 //index.js
 //获取应用实例
-const app = getApp()
+const app = getApp();
+const api = require('../../utils/api.js');
 
 Page({
     data: {
         code: "二维码",
         msg: "kefu",
-        tab: [
-            {name:'推荐',id:'tuijian'},
-            {name:'店主推荐',id:'dianhzu'},
-            {name:'护肤',id:'hufu'},
-            {name:'彩妆',id:'caizhuang'},
-            {name:'个户',id:'gehu'}
-        ],
+        tab: [],
         tabIndex: 0,
-        toView: "tuijian",
         imgUrls: [
             '/image/b1.jpg',
             '/image/b2.jpg',
@@ -32,16 +26,7 @@ Page({
             {text:'分享领券',url:'/image/index/share.png'}
         ],
         planIndex: '',
-        extendList: [
-            {id:0,url:'/image/gf.png'},
-            {id:1,url:'/image/gf.png'},
-            {id:2,url:'/image/gf.png'},
-            {id:3,url:'/image/gf.png'},
-            {id:4,url:'/image/gf.png'},
-            {id:5,url:'/image/gf.png'},
-            {id:6,url:'/image/gf.png'},
-            {id:7,url:'/image/gf.png'}
-        ],
+        extendList: [],
         supplyList: [
             {id:0,url:'/image/gf1.png'},
             {id:1,url:'/image/gf1.png'},
@@ -57,27 +42,6 @@ Page({
             {id:7,url:'/image/gf.png'}
         ],
         goodsList: [
-            {   id:0,
-                url:'/image/gf.png',
-                title:"白熊化妆品，美肤多效面霜50g",
-                newPrice:"998",
-                oldPrice:"1999",
-                makeMoney: "500",
-            },
-            {   id:1,
-                url:'/image/gf.png',
-                title:"白熊化妆品，美肤多效面霜50g",
-                newPrice:"998",
-                oldPrice:"1999",
-                makeMoney: "500",
-            },
-            {   id:2,
-                url:'/image/gf.png',
-                title:"白熊化妆品，美肤多效面霜50g",
-                newPrice:"998",
-                oldPrice:"1999",
-                makeMoney: "500",
-            }
         ],
         recommendList: [
             {   id:0,
@@ -137,16 +101,61 @@ Page({
                 oldPrice:"1999",
             },
         ],
-        addIndex: ""
+        addIndex: "",
+        index: "",
+        tabName : [],
+        hasPlan : false
     },
 
     onLoad: function (options) {
+        wx.request({
+              url: api.TabUrl,
+              method:"POST",
+              data: {
+                    // limit: '',
+                    // distribution: '',
+                    // distributionLimit: '',
+                    // orderBy: '',
+                    // productLimit: '',
+                    // id: '',
+                    // code: 123
+
+                },
+              header: {
+                  'content-type': 'application/json'
+              },
+              success: this.handleGetTabSucc.bind(this)
+        });
+        wx.request({
+              url: api.IndexUrl,
+              method:"POST",
+              data: {
+                },
+              header: {
+                  'content-type': 'application/json'
+              },
+              success: this.handleGetIndexSucc.bind(this)
+        });
 
     },
-
-    handleGetDetailSuccess: function(res) {
-        console.log(res.data);
+    //请求TabUrl成功处理函数
+    handleGetTabSucc: function(res) {
+        let tabList = res.data.data;
+        console.log(tabList)
+        this.setData({
+            tab : tabList
+        })
     },
+    //请求IndexUrl成功处理函数 
+    handleGetIndexSucc: function(res) {
+        console.log(res.data.data)
+        let brandList = res.data.brandInfo,
+            goodsInfo = res.data.data;
+        this.setData({
+            extendList : brandList,
+            goodsList : goodsInfo
+        })
+    },  
 
     onShareAppMessage: function () {
         return {
@@ -157,8 +166,8 @@ Page({
     // 头部分类
     switchTab: function(e) {
         this.setData({
-            toView : e.target.dataset.id,
-            tabIndex : e.target.dataset.index
+            tabIndex : e.target.dataset.index,
+            index: '',
         })
     },
 
@@ -173,6 +182,12 @@ Page({
             that = this;
         that.setData({
             addIndex : addId
+        })
+    },
+    switchIndex: function() {
+        this.setData({
+            index: 1,
+            tabIndex : ''
         })
     }
 

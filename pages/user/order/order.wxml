@@ -10,7 +10,7 @@
     <view class="order-content">
     	<!-- 全部订单内容 -->
         <view class="order-all" hidden="{{activeIndex != 0}}">
-        	<view class="all-list" wx:for="{{allOrder}}">
+        	<view class="all-list" wx:for="{{allOrder}}" wx:key="{{index}}">
 				<view class="alllist-top">
 					<view class="mleft">订单编号:{{item.orderNum}}</view>
 					<view class="mright" style='color: #f3515c;'>{{item.Status}}</view>
