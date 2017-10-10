@@ -109,10 +109,7 @@ Page({
     handleGetAllSucc(res) {
         const goods = res.data.data;
         const arr = [];
-        console.log(goods)
-        for (var i = 0,len=goods.length; i <len ; i++){
-            arr.push(goods[i])
-        }
+        goods.map((item,index)=> arr.push(item));
         this.setData({
             allGoodsList : arr
         })
@@ -172,17 +169,13 @@ Page({
         const goods = res.data.data;
         const arr = [];
         let _this = this;
-        for (var i = 0,len=goods.length; i <len ; i++){
-            arr.push(goods[i])
-        }
+        goods.map((item,index)=> arr.push(item));
+        console.log(arr)
         // 拼接原数组+每次上拉加载获取的八条数据
         let moreList = this.data.allGoodsList.concat(arr);
         // 关于上拉加载的性能优化
-        setTimeout(function(){
-            _this.setData({
-                allGoodsList: moreList
-            })
-        },1500)
+        this.batterDode(moreList);
+        
         // 如果数据长度小于8 改变底部提示的内容
         if (goods.length < 8) {
             this.setData({
@@ -190,6 +183,16 @@ Page({
                 isLoading: false
             })
         }
+    },
+    // 关于上拉加载的性能优化的两个函数
+    batterDode(list) {
+        setTimeout(this.isTimeOut(list),1500)
+    },
+    isTimeOut(list) {
+        let _this = this;
+        _this.setData({
+            allGoodsList: list
+        })
     }
 
 })
