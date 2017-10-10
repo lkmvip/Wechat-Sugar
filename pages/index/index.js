@@ -1,8 +1,8 @@
 //index.js
 //获取应用实例
 const app = getApp();
-const api = require('../../utils/api.js');
-const utils = require('../../utils/util.js');
+const api = require('../../utils/api.js');//封装好的借口路径
+const utils = require('../../utils/util.js');//调用封装的request
 
 
 Page({
@@ -79,6 +79,7 @@ Page({
         const data = {
             limitIndex:this.data.limitIndex
         };
+        //传值给后端，获取到全部商品的首次信息
         utils.sendRequest(api.AllGoodsUrl, data, this.handleGetAllSucc.bind(this));
     },
     //请求TabUrl成功处理函数
@@ -106,14 +107,12 @@ Page({
     },
     //请求AllUrl成功处理函数  
     handleGetAllSucc(res) {
-        // console.log(res.data)
         const goods = res.data.data;
         const arr = [];
         console.log(goods)
         for (var i = 0,len=goods.length; i <len ; i++){
             arr.push(goods[i])
         }
-        // console.log(arr) 
         this.setData({
             allGoodsList : arr
         })
@@ -124,14 +123,14 @@ Page({
             path: "pages/index/index?name="+this.data.code
         }
     },
-    // 头部分类
+    // tab分类
     switchTab(e) {
         this.setData({
             tabIndex : e.target.dataset.index,
             index: '',
         })
     },
-
+    //首页tab分类
     switchPlan(e) {
         this.setData({
             planIndex : e.currentTarget.dataset.index
@@ -145,6 +144,7 @@ Page({
             addIndex : addId
         })
     },
+    //tab内容的显示隐藏
     switchIndex() {
         this.setData({
             index: 1,
@@ -160,12 +160,14 @@ Page({
                 limitIndex: num+1,
                 isBtnShow: true
             })
+            // 给后端传下拉刷新的次数+1
             const data = {
                 limitIndex: this.data.limitIndex
             };
             utils.sendRequest(api.AllGoodsUrl, data, this.handleReachBottom.bind(this));
         }
     },
+    // 获取每次上拉数据的函数
     handleReachBottom(res) {
         const goods = res.data.data;
         const arr = [];
@@ -173,12 +175,15 @@ Page({
         for (var i = 0,len=goods.length; i <len ; i++){
             arr.push(goods[i])
         }
+        // 拼接原数组+每次上拉加载获取的八条数据
         let moreList = this.data.allGoodsList.concat(arr);
+        // 关于上拉加载的性能优化
         setTimeout(function(){
             _this.setData({
                 allGoodsList: moreList
             })
         },1500)
+        // 如果数据长度小于8 改变底部提示的内容
         if (goods.length < 8) {
             this.setData({
                 btnTxt: '人家也是有底线的~',
