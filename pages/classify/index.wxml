@@ -1,4 +1,4 @@
-<view class="container">
+<view>
     <view class="goods-search">
 		<input class="search-input" placeholder="面膜"/>
     </view>

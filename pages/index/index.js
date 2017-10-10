@@ -2,6 +2,8 @@
 //获取应用实例
 const app = getApp();
 const api = require('../../utils/api.js');
+const utils = require('../../utils/util.js');
+
 
 Page({
     data: {
@@ -9,11 +11,7 @@ Page({
         msg: "kefu",
         tab: [],
         tabIndex: 0,
-        imgUrls: [
-            '/image/b1.jpg',
-            '/image/b2.jpg',
-            '/image/b3.jpg'
-        ],
+        imgUrls: [],
         indicatorDots: false,
         autoplay: false,
         interval: 3000,
@@ -41,96 +39,152 @@ Page({
             {id:6,url:'/image/gf.png'},
             {id:7,url:'/image/gf.png'}
         ],
-        goodsList: [
-        ],
+        goodsList: [],
         addIndex: "",
         index: "",
         tabName : [],
-        hasPlan : false
+        hasPlan : false,
+        allGoodsList: [],
+        limitIndex: 1,
+        isBtnShow:false,
+        isLoading:true,
+        btnTxt:'加载中'
+
     },
 
-    onLoad: function (options) {
-        wx.request({
-              url: api.TabUrl,
-              method:"POST",
-              data: {
-                    // limit: '',
-                    // distribution: '',
-                    // distributionLimit: '',
-                    // orderBy: '',
-                    // productLimit: '',
-                    // id: '',
-                    // code: 123
+    onLoad(options) {
+        this.getIndexInfo();
+        this.getTabInfo();
+        this.getBannerInfo();
+        this.getAllGoodsInfo();
 
-                },
-              header: {
-                  'content-type': 'application/json'
-              },
-              success: this.handleGetTabSucc.bind(this)
-        });
-        wx.request({
-              url: api.IndexUrl,
-              method:"POST",
-              data: {
-                },
-              header: {
-                  'content-type': 'application/json'
-              },
-              success: this.handleGetIndexSucc.bind(this)
-        });
-
+    },
+    //请求TabUrl函数
+    getTabInfo() {
+        const data = {};
+        utils.sendRequest(api.TabUrl, data, this.handleGetTabSucc.bind(this));
+    },
+    //请求IndexUrl函数 
+    getIndexInfo() {
+        const data = {};
+        utils.sendRequest(api.IndexUrl, data, this.handleGetIndexSucc.bind(this));
+    },
+    //请求BannerUrl函数   
+    getBannerInfo() {
+        const data = {};
+        utils.sendRequest(api.BannerUrl, data, this.handleGetBannerSucc.bind(this));
+    },
+    //请求AllGoodsUrl函数   
+    getAllGoodsInfo() {
+        const data = {
+            limitIndex:this.data.limitIndex
+        };
+        utils.sendRequest(api.AllGoodsUrl, data, this.handleGetAllSucc.bind(this));
     },
     //请求TabUrl成功处理函数
-    handleGetTabSucc: function(res) {
+    handleGetTabSucc(res) {
         let tabList = res.data.data;
-        console.log(tabList)
         this.setData({
             tab : tabList
         })
     },
     //请求IndexUrl成功处理函数 
-    handleGetIndexSucc: function(res) {
-        console.log(res.data.data)
+    handleGetIndexSucc(res) {
         let brandList = res.data.brandInfo,
             goodsInfo = res.data.data;
         this.setData({
             extendList : brandList,
             goodsList : goodsInfo
         })
-    },  
-
-    onShareAppMessage: function () {
+    }, 
+    //请求BannerUrl成功处理函数  
+    handleGetBannerSucc(res){
+        let bannerImg = res.data.data;
+        this.setData({
+            imgUrls: bannerImg
+        }) 
+    },
+    //请求AllUrl成功处理函数  
+    handleGetAllSucc(res) {
+        // console.log(res.data)
+        const goods = res.data.data;
+        const arr = [];
+        console.log(goods)
+        for (var i = 0,len=goods.length; i <len ; i++){
+            arr.push(goods[i])
+        }
+        // console.log(arr) 
+        this.setData({
+            allGoodsList : arr
+        })
+    },
+    onShareAppMessage() {
         return {
             title: "最超值的正品美妆平台",
             path: "pages/index/index?name="+this.data.code
         }
     },
     // 头部分类
-    switchTab: function(e) {
+    switchTab(e) {
         this.setData({
             tabIndex : e.target.dataset.index,
             index: '',
         })
     },
 
-    switchPlan: function(e) {
+    switchPlan(e) {
         this.setData({
             planIndex : e.currentTarget.dataset.index
         })
     },
     // 点击加入购物车
-    handleAddGoods: function(e) {
+    handleAddGoods(e) {
         var addId = e.currentTarget.dataset.id,
             that = this;
         that.setData({
             addIndex : addId
         })
     },
-    switchIndex: function() {
+    switchIndex() {
         this.setData({
             index: 1,
             tabIndex : ''
         })
+    },
+    //上拉刷新商品信息
+    onReachBottom() {
+        let isPush = this.data.index;
+        if (isPush ==1) {
+            let num = this.data.limitIndex;
+            this.setData({
+                limitIndex: num+1,
+                isBtnShow: true
+            })
+            const data = {
+                limitIndex: this.data.limitIndex
+            };
+            utils.sendRequest(api.AllGoodsUrl, data, this.handleReachBottom.bind(this));
+        }
+    },
+    handleReachBottom(res) {
+        const goods = res.data.data;
+        const arr = [];
+        let _this = this;
+        for (var i = 0,len=goods.length; i <len ; i++){
+            arr.push(goods[i])
+        }
+        let moreList = this.data.allGoodsList.concat(arr);
+        setTimeout(function(){
+            _this.setData({
+                allGoodsList: moreList
+            })
+        },1500)
+        if (goods.length < 8) {
+            this.setData({
+                btnTxt: '人家也是有底线的~',
+                isLoading: false
+            })
+        }
     }
 
 })

@@ -1,5 +1,5 @@
 <import src="../component/like.wxml"/>
-<view class="container">
+<view>
 <!-- 如果购物车有商品的页面 -->
 	<view wx:if="{{hasList}}" style="height:100%;width:100%;">
         <view class="cart-box">

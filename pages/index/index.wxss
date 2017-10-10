@@ -2,6 +2,9 @@
 .container {
     width: 100%;
     height: 100%;
+    position: absolute;
+    top: 140rpx;
+    left: 0;
 } 
 .bg {
     background:#fff;
@@ -47,6 +50,7 @@
     display: flex;
     justify-content: space-around;
     line-height: 70rpx;
+    height: 70rpx;
     align-items: center;
 }
 
@@ -312,4 +316,11 @@ swiper{
     background: #fff;
     box-sizing: border-box;
     border-top: 1rpx solid #ececec; 
+}
+.is-more {
+    width: 100%;
+    height: 50rpx;
+    display: block;
+    font-size: 25rpx;
+    line-height: 50rpx;
 }
