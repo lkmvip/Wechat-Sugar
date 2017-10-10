@@ -5,6 +5,7 @@
     position: absolute;
     top: 140rpx;
     left: 0;
+    padding-bottom: 50rpx; 
 } 
 .bg {
     background:#fff;
