@@ -157,27 +157,26 @@ Page({
                 limitIndex: num+1,
                 isBtnShow: true
             })
-            // 给后端传下拉刷新的次数+1
-            const data = {
-                limitIndex: this.data.limitIndex
-            };
-            utils.sendRequest(api.AllGoodsUrl, data, this.handleReachBottom.bind(this));
-        }
+        //关于上拉加载的性能优化
+            setTimeout(()=>{
+                    // 给后端传下拉刷新的次数+1
+                    const data = {
+                        limitIndex: this.data.limitIndex
+                    };
+                    utils.sendRequest(api.AllGoodsUrl, data, this.handleReachBottom.bind(this));
+                },1500)
+        };
     },
     // 获取每次上拉数据的函数
     handleReachBottom(res) {
         const goods = res.data.data;
         const arr = [];
-        let _this = this;
         goods.map((item,index)=> arr.push(item));
         // 拼接原数组+每次上拉加载获取的八条数据
         let moreList = this.data.allGoodsList.concat(arr);
-        // 关于上拉加载的性能优化
-        setTimeout(()=>{
-            _this.setData({
+            this.setData({
                 allGoodsList: moreList
             })
-        },1500)
         // 如果数据长度小于8 改变底部提示的内容
         if (goods.length < 8) {
             this.setData({
