@@ -10,16 +10,16 @@
 	<block wx:for="{{itemList}}" wx:key="{{index}}">
 		<view class="like-item">
 			<navigator url="/pages/detail/detail">
-		<image class="item-img" src="{{item.url}}" background-size="cover"></image>
-			<view style="padding:0 20rpx;">
-				<view class="item-tit">{{item.tit}}</view>
-				<view class="item-way">{{item.way}}</view>
-				<view class="item-price">
-					<view class="item-new">￥{{item.new}}</view>
-					<view class="item-old">￥{{item.old}}</view>		
-					<image catchtap="handleDelLike" data-id="{{index}}" class="item-del" src="/image/like/del.png" background-size="cover"></image>
-				</view>	
-			</view>
+				<image class="item-img" src="{{item.url}}" background-size="cover"></image>
+				<view style="padding:0 20rpx;">
+					<view class="item-tit">{{item.tit}}</view>
+					<view class="item-way">{{item.way}}</view>
+					<view class="item-price">
+						<view class="item-new">￥{{item.new}}</view>
+						<view class="item-old">￥{{item.old}}</view>		
+						<image catchtap="handleDelLike" data-id="{{index}}" class="item-del" src="/image/like/del.png" background-size="cover"></image>
+					</view>	
+				</view>
 			</navigator>
 		</view>
 	</block>

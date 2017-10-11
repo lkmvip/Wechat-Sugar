@@ -42,22 +42,27 @@ Page({
         ],
         showDialog: false,
         on:0,
-        num:1
+        num:1,
+        goodsId:''
          
     },
 
     /**
     * 生命周期函数--监听页面加载
     */
-    onLoad: function (options) {
-
+    onLoad(options) {
+        let id = options.id;
+        this.setData({
+            goodsId: id
+        })
+        console.log(this.data.goodsId)
     },
     /**
     * 用户点击右上角分享
     */
     onShareAppMessage: function () {
       
-      },
+    },
     handleAddLike: function(e) {
         let islike = this.data.likeIndex
         this.setData({

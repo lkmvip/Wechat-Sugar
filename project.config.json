@@ -1,0 +1,52 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": false,
+		"minified": true
+	},
+	"compileType": "weapp",
+	"libVersion": "1.5.3",
+	"appid": "wx14f22768572e9ce4",
+	"projectname": "sugar",
+	"condition": {
+		"weapp": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "个人中心",
+					"pathName": "pages/detail/detail",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "地址",
+					"pathName": "pages/user/addr/addr",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "详情页",
+					"pathName": "pages/orderpay/order",
+					"query": ""
+				},
+				{
+					"id": 3,
+					"name": "收藏",
+					"pathName": "pages/ordermsg/msg",
+					"query": ""
+				}
+			]
+		},
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		}
+	}
+}

@@ -70,6 +70,6 @@ App({
     userInfo: null
   },
   handleGetOpenIdSuccess :function(res) {
-        console.log(res)
+        // console.log(res)
   }
 })

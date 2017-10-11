@@ -5,302 +5,354 @@
         <view class="header-wechat">
             <image class="header-wechat" src="/image/index/code.png"></image>
         </view>
-        <input class="search" placeholder="达芙荻丽面膜" />
+        <input class="search" confirm-type="search" value="{{inputVal}}" placeholder="达芙荻丽面膜" bindconfirm="handleSearch" bindinput="handleSearchValue"/>
         <view class="header-wechat">
             <image class="header-wechat" src="/image/index/message.png"></image>
         </view>
     </view>
-    <view class="tab bg">
-        <scroll-view class="" scroll-x="true" style="width: 100%;white-space: nowrap; display: flex">
-            <view style="display: inline-block" bindtap="switchIndex" class="tab-list {{index === 1 ?'on':''}}">首页</view>
-            <view wx:for="{{tab}}" wx:key="index" data-id="{{item.id}}" data-index="{{index}}"
-               style="display: inline-block" bindtap="switchTab" class="tab-list {{tabIndex === index?'on':''}}">
-                {{item.nav_name}}
-            </view>
-        </scroll-view>
-    </view>
+    <block wx:if="{{inputVal == ''}}">
+        <view class="tab bg">
+            <scroll-view class="" scroll-x="true" style="width: 100%;white-space: nowrap; display: flex">
+                <view style="display: inline-block" bindtap="switchIndex" class="tab-list {{index === 1 ?'on':''}}">首页</view>
+                <view wx:for="{{tab}}" wx:key="index" data-id="{{item.id}}" data-index="{{index}}"
+                   style="display: inline-block" bindtap="switchTab" class="tab-list {{tabIndex === index?'on':''}}">
+                    {{item.nav_name}}
+                </view>
+            </scroll-view>
+        </view>
+    </block>
 </view>
 	
 <!--轮播图开始-->
+<block wx:if="{{inputVal == ''}}">
 <view class="container">
-    <view class="" hidden="{{index != 1}}">
-        <view class="swiper">
-    	    <swiper indicator-color="#e0e1e3" indicator-active-color="#babbbf" indicator-dots="true" autoplay="true" interval="{{interval}}" duration="{{duration}}" circular="true">
-            <block wx:for="{{imgUrls}}" wx:key="{{index}}">
-                <swiper-item>
-                    <image src="{{item.pic_path}}" class="slide-image"/>
-                </swiper-item>
-            </block>
-            </swiper>
-        </view>
-    <!-- 分类开始 --> 
-    <block wx:if="{{hasPlan}}">
-            <view class="plan bg">
-          		<view wx:for="{{plan}}" wx:key="index"  data-index="{{index}}"
-                   bindtap="switchPlan" class="plan-list {{planIndex === index ?'plan-on':''}}">
-                    <image src="{{item.url}}" class="plan-image"/>
-                    <view>{{item.text}}</view>
-                </view>
+        <view class="" hidden="{{index != 1}}">
+            <view class="swiper">
+        	    <swiper indicator-color="#e0e1e3" indicator-active-color="#babbbf" indicator-dots="true" autoplay="true" interval="{{interval}}" duration="{{duration}}" circular="true">
+                <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+                    <swiper-item>
+                        <image src="{{item.pic_path}}" class="slide-image"/>
+                    </swiper-item>
+                </block>
+                </swiper>
             </view>
-    <!-- 品牌推荐 -->
-            <view class="extend bg box">
-                <view class="text">
-                    品牌推荐
-                </view>
-                <view class="line"></view>
-                <view class="extend-list">
-                    <view class="list-content"  wx:for="{{extendList}}" wx:key="index"  data-index="{{index}}">
-                        <image src="{{item.brandlogo}}" class="list-image"/>
+        <!-- 分类开始  ***********************这个暂时不需要实际页面上是隐藏的******************************* -->   
+        <block wx:if="{{hasPlan}}">
+                <view class="plan bg">
+              		<view wx:for="{{plan}}" wx:key="index"  data-index="{{index}}"
+                       bindtap="switchPlan" class="plan-list {{planIndex === index ?'plan-on':''}}">
+                        <image src="{{item.url}}" class="plan-image"/>
+                        <view>{{item.text}}</view>
                     </view>
                 </view>
-            </view>
-            <!-- 品牌直供 -->
-            <view class="supply bg box">
-                <view class="text">
-                    品牌直供
-                </view>
-                <view class="line"></view>
-                <view class="supply-list">
-                    <view class="supply-content" >
-                        <image src="{{item.url}}" wx:for="{{supplyList}}" wx:key="index"  data-index="{{index}}" class="supply-image"/>
+        <!-- 品牌推荐 -->
+                <view class="extend bg box">
+                    <view class="text">
+                        品牌推荐
                     </view>
-                    <view class="supply-hot"></view>
-                        <view class="supply-scroll bg">
-                            <scroll-view class="scroll-box" scroll-x="true" style="width: 100%;white-space: nowrap; display: flex" >
-                                <view wx:for="{{scrollList}}" wx:key="index"  data-index="{{index}}" class="scroll-items" style="display: inline-block">
-                                        <navigator url="/pages/detail/detail" hover-class="navigator-hover">
-                                            <image src="{{item.url}}" class="scroll-image"/>
-                                        </navigator>
-                                </view>
-                            </scroll-view>
+                    <view class="line"></view>
+                    <view class="extend-list">
+                        <view class="list-content"  wx:for="{{extendList}}" wx:key="index"  data-index="{{index}}">
+                            <image src="{{item.brandlogo}}" class="list-image"/>
                         </view>
+                    </view>
                 </view>
-            </view>
-        </block>
-        <!-- 商品推荐 -->
-        <view class="goods bg box">
-            <view class="text">
-                {{goodsList[1].title}}
-            </view>
-            <view class="line"></view>
-            <view class="goods-list"  wx:for="{{goodsList[1].goods}}" wx:key="index"  data-index="{{index}}">
-                <image src="{{item.goods_img}}" class="goods-image"/>
-                <view class="goods-title">{{item.name}}</view>
-                <view class="goods-price">
-                    <view class="new-price left">￥{{item.shopprice}}</view>
-                    <view class="old-price left">￥{{item.market_price}}</view>
-                    <view class="through left">/</view>
-                    <view class="make-money left">赚{{item.makeMoney}}</view> 
-                    <image src="/image/cart.png" class="add-shopcart right"/>
-                    <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
+                <!-- 品牌直供 -->
+                <view class="supply bg box">
+                    <view class="text">
+                        品牌直供
+                    </view>
+                    <view class="line"></view>
+                    <view class="supply-list">
+                        <view class="supply-content" >
+                            <image src="{{item.url}}" wx:for="{{supplyList}}" wx:key="index"  data-index="{{index}}" class="supply-image"/>
+                        </view>
+                        <view class="supply-hot"></view>
+                            <view class="supply-scroll bg">
+                                <scroll-view class="scroll-box" scroll-x="true" style="width: 100%;white-space: nowrap; display: flex" >
+                                    <view wx:for="{{scrollList}}" wx:key="index"  data-index="{{index}}" class="scroll-items" style="display: inline-block">
+                                            <navigator url="/pages/detail/detail" hover-class="navigator-hover">
+                                                <image src="{{item.url}}" class="scroll-image"/>
+                                            </navigator>
+                                    </view>
+                                </scroll-view>
+                            </view>
+                    </view>
                 </view>
-            </view>
-        </view>
-        <!-- 猜你喜欢 -->
-        <view class="like bg box">
-            <view class="text">
-                {{goodsList[0].title}}
-            </view>
-            <view class="line"></view>
-            <view class="like-list">
-                <view class="like-goods bg"  wx:for="{{goodsList[0].goods}}" wx:key="index"  data-index="{{index}}">
-                    <image src="{{item.goods_img}}" class="like-image"/>
-                    <view class="like-price">
-                        <view class="like-title">{{item.name}}</view>
-                        <view class="new-price left" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
-                        <view class="old-price left" style="margin-top:14rpx">￥{{item.market_price}}</view>
-                        <image src="/image/cart.png" class="add-goods right" style="margin:0"/>
-                        <image src="/image/add.png" class="add-goods right" style="margin:0"/>
-                    
+            </block>
+            <!-- 分类开始  ***********************这个暂时不需要实际页面上是隐藏的******************************* -->   
+            <!--  ***************************性价比商品*********************** -->
+            <view class="goods bg box">
+                <view class="text">
+                    {{goodsList[1].title}}
+                </view>
+                <view class="line"></view>
+                <view class="goods-list"  wx:for="{{goodsList[1].goods}}" wx:key="index"  data-index="{{index}}">
+                    <navigator url="/pages/detail/detail?id={{item.id}}">
+                        <image src="{{item.goods_img}}" class="goods-image"/>
+                    </navigator>
+                    <view class="goods-title">{{item.name}}</view>
+                    <view class="goods-price">
+                        <view class="new-price left">￥{{item.shopprice}}</view>
+                        <view class="old-price left">￥{{item.market_price}}</view>
+                        <view class="through left">/</view>
+                        <view class="make-money left">赚{{item.makeMoney}}</view> 
+                        <image src="/image/cart.png" class="add-shopcart right"/>
+                        <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
                     </view>
                 </view>
             </view>
-            <view class="more">
-                查看更多 >
+            <!--  ***************************推荐*********************** -->
+            <view class="like bg box">
+                <view class="text">
+                    {{goodsList[0].title}}
+                </view>
+                <view class="line"></view>
+                <view class="like-list">
+                    <view class="like-goods bg"  wx:for="{{goodsList[0].goods}}" wx:key="index"  data-index="{{index}}">
+                        <navigator url="/pages/detail/detail?id={{item.id}}">
+                            <image src="{{item.goods_img}}" class="like-image"/>
+                        </navigator>
+                        <view class="like-price">
+                            <view class="like-title">{{item.name}}</view>
+                            <view class="new-price left" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
+                            <view class="old-price left" style="margin-top:14rpx">￥{{item.market_price}}</view>
+                            <image src="/image/cart.png" class="add-goods right" style="margin:0"/>
+                            <image src="/image/add.png" class="add-goods right" style="margin:0"/>
+                        
+                        </view>
+                    </view>
+                </view>
+                <view class="more">
+                    查看更多 >
+                </view>
             </view>
+            <!--  ***************************彩妆*********************** -->
+            <view class="like bg box">
+                <view class="text">
+                    {{goodsList[2].title}}
+                </view>
+                <view class="line"></view>
+                <view class="like-list">
+                    <view class="like-goods bg"  wx:for="{{goodsList[2].goods}}" wx:key="index"  data-index="{{index}}">
+                        <navigator url="/pages/detail/detail?id={{item.id}}">
+                            <image src="{{item.goods_img}}" class="like-image"/>
+                        </navigator>
+                        <view class="like-price">
+                            <view class="like-title">{{item.name}}</view>
+                            <view class="new-price left" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
+                            <view class="old-price left" style="margin-top:14rpx">￥{{item.market_price}}</view>
+                            <image src="/image/cart.png" class="add-goods right" style="margin:0"/>
+                            <image src="/image/add.png" class="add-goods right" style="margin:0"/>
+                        
+                        </view>
+                    </view>
+                </view>
+                <view class="more">
+                    查看更多 >
+                </view>
+            </view>
+            <!-- ***************************全部商品************************** -->   
+            <view class="like bg box">
+                <view class="text">
+                    全部商品
+                </view>
+                <view class="line"></view>
+                <view class="like-list">
+                    <view class="like-goods bg"  wx:for="{{allGoodsList}}" wx:key="index"  data-index="{{index}}">
+                        <navigator url="/pages/detail/detail?id={{item.id}}">
+                            <image src="{{item.goods_img}}" class="like-image"/>
+                        </navigator>
+                        <view class="like-price">
+                            <view class="like-title">{{item.name}}</view>
+                            <view class="new-price left" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
+                            <view class="old-price left" style="margin-top:14rpx">￥{{item.market_price}}</view>
+                            <image src="/image/cart.png" class="add-goods right" style="margin:0"/>
+                            <image src="/image/add.png" class="add-goods right" style="margin:0"/>
+                        
+                        </view>
+                    </view>
+                </view>
+                <button wx:if="{{isBtnShow}}" class="is-more" loading="{{isLoading}}" disabled="true">{{btnTxt}}</button>
+            </view>
+           
         </view>
-        <view class="like bg box">
-            <view class="text">
-                {{goodsList[2].title}}
-            </view>
-            <view class="line"></view>
-            <view class="like-list">
-                <view class="like-goods bg"  wx:for="{{goodsList[2].goods}}" wx:key="index"  data-index="{{index}}">
-                    <image src="{{item.goods_img}}" class="like-image"/>
-                    <view class="like-price">
-                        <view class="like-title">{{item.name}}</view>
-                        <view class="new-price left" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
-                        <view class="old-price left" style="margin-top:14rpx">￥{{item.market_price}}</view>
-                        <image src="/image/cart.png" class="add-goods right" style="margin:0"/>
-                        <image src="/image/add.png" class="add-goods right" style="margin:0"/>
-                    
+        <view class="" hidden="{{tabIndex != index}}">
+            <view class="goods bg box">
+                <view class="text">
+                    {{tab[tabIndex].nav_name}}
+                </view>
+                <view class="line"></view>
+                <view class="goods-list"  wx:for="{{tab[tabIndex].goods}}" wx:key="index"  data-index="{{index}}">
+                    <navigator url="/pages/detail/detail?id={{item.id}}">
+                        <image src="{{item.goods_img}}" class="goods-image"/>
+                    </navigator>
+                    <view class="goods-title">{{item.name}}</view>
+                    <view class="goods-price">
+                        <view class="new-price left">￥{{item.shopprice}}</view>
+                        <view class="old-price left">￥{{item.market_price}}</view>
+                        <view class="make-money left">赚{{item.makeMoney}}</view> 
+                        <image src="/image/cart.png" class="add-shopcart right"/>
+                        <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
                     </view>
                 </view>
             </view>
-            <view class="more">
-                查看更多 >
-            </view>
         </view>
-        <!-- 全部商品 -->
-        <view class="like bg box">
-            <view class="text">
-                全部商品
-            </view>
-            <view class="line"></view>
-            <view class="like-list">
-                <view class="like-goods bg"  wx:for="{{allGoodsList}}" wx:key="index"  data-index="{{index}}">
-                    <image src="{{item.goods_img}}" class="like-image"/>
-                    <view class="like-price">
-                        <view class="like-title">{{item.name}}</view>
-                        <view class="new-price left" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
-                        <view class="old-price left" style="margin-top:14rpx">￥{{item.market_price}}</view>
-                        <image src="/image/cart.png" class="add-goods right" style="margin:0"/>
-                        <image src="/image/add.png" class="add-goods right" style="margin:0"/>
-                    
+        <!-- 选项卡二开始 -->
+        <view class="" hidden="{{tabIndex != 1}}">
+            <view class="goods bg box">
+                <view class="text">
+                    {{tab[tabIndex].nav_name}}
+                </view>
+                <view class="line"></view>
+                <view class="goods-list"  wx:for="{{tab[tabIndex].goods}}" wx:key="index"  data-index="{{index}}">
+                    <navigator url="/pages/detail/detail?id={{item.id}}">
+                        <image src="{{item.goods_img}}" class="goods-image"/>
+                    </navigator>
+                    <view class="goods-title">{{item.name}}</view>
+                    <view class="goods-price">
+                        <view class="new-price left">￥{{item.shopprice}}</view>
+                        <view class="old-price left">￥{{item.market_price}}</view>
+                        <view class="make-money left">赚{{item.makeMoney}}</view> 
+                        <image src="/image/cart.png" class="add-shopcart right"/>
+                        <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
                     </view>
                 </view>
             </view>
-            <button wx:if="{{isBtnShow}}" class="is-more" loading="{{isLoading}}" disabled="true">{{btnTxt}}</button>
         </view>
-       
-    </view>
-    <view class="" hidden="{{tabIndex != index}}">
-        <view class="goods bg box">
-            <view class="text">
-                {{tab[tabIndex].nav_name}}
-            </view>
-            <view class="line"></view>
-            <view class="goods-list"  wx:for="{{tab[tabIndex].goods}}" wx:key="index"  data-index="{{index}}">
-                <image src="{{item.goods_img}}" class="goods-image"/>
-                <view class="goods-title">{{item.name}}</view>
-                <view class="goods-price">
-                    <view class="new-price left">￥{{item.shopprice}}</view>
-                    <view class="old-price left">￥{{item.market_price}}</view>
-                    <view class="make-money left">赚{{item.makeMoney}}</view> 
-                    <image src="/image/cart.png" class="add-shopcart right"/>
-                    <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
+        <!-- 选项卡三开始 -->
+        <view class="" hidden="{{tabIndex != 2}}">
+            <view class="goods bg box">
+                <view class="text">
+                    {{tab[tabIndex].nav_name}}
+                </view>
+                <view class="line"></view>
+                <view class="goods-list"  wx:for="{{tab[tabIndex].goods}}" wx:key="index"  data-index="{{index}}">
+                    <navigator url="/pages/detail/detail?id={{item.id}}">
+                        <image src="{{item.goods_img}}" class="goods-image"/>
+                    </navigator>
+                    <view class="goods-title">{{item.name}}</view>
+                    <view class="goods-price">
+                        <view class="new-price left">￥{{item.shopprice}}</view>
+                        <view class="old-price left">￥{{item.market_price}}</view>
+                        <view class="make-money left">赚{{item.makeMoney}}</view> 
+                        <image src="/image/cart.png" class="add-shopcart right"/>
+                        <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
+                    </view>
                 </view>
             </view>
         </view>
-    </view>
-    <!-- 选项卡二开始 -->
-    <view class="" hidden="{{tabIndex != 1}}">
-        <view class="goods bg box">
-            <view class="text">
-                {{tab[tabIndex].nav_name}}
-            </view>
-            <view class="line"></view>
-            <view class="goods-list"  wx:for="{{tab[tabIndex].goods}}" wx:key="index"  data-index="{{index}}">
-                <image src="{{item.goods_img}}" class="goods-image"/>
-                <view class="goods-title">{{item.name}}</view>
-                <view class="goods-price">
-                    <view class="new-price left">￥{{item.shopprice}}</view>
-                    <view class="old-price left">￥{{item.market_price}}</view>
-                    <view class="make-money left">赚{{item.makeMoney}}</view> 
-                    <image src="/image/cart.png" class="add-shopcart right"/>
-                    <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
+        <!-- 选项卡四开始 -->
+        <view class="" hidden="{{tabIndex != 3}}">
+            <view class="goods bg box">
+                <view class="text">
+                    {{tab[tabIndex].nav_name}}
+                </view>
+                <view class="line"></view>
+                <view class="goods-list"  wx:for="{{tab[tabIndex].goods}}" wx:key="index"  data-index="{{index}}">
+                    <navigator url="/pages/detail/detail?id={{item.id}}">
+                        <image src="{{item.goods_img}}" class="goods-image"/>
+                    </navigator>
+                    <view class="goods-title">{{item.name}}</view>
+                    <view class="goods-price">
+                        <view class="new-price left">￥{{item.shopprice}}</view>
+                        <view class="old-price left">￥{{item.market_price}}</view>
+                        <view class="make-money left">赚{{item.makeMoney}}</view> 
+                        <image src="/image/cart.png" class="add-shopcart right"/>
+                        <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
+                    </view>
                 </view>
             </view>
         </view>
-    </view>
-    <!-- 选项卡三开始 -->
-    <view class="" hidden="{{tabIndex != 2}}">
-        <view class="goods bg box">
-            <view class="text">
-                {{tab[tabIndex].nav_name}}
-            </view>
-            <view class="line"></view>
-            <view class="goods-list"  wx:for="{{tab[tabIndex].goods}}" wx:key="index"  data-index="{{index}}">
-                <image src="{{item.goods_img}}" class="goods-image"/>
-                <view class="goods-title">{{item.name}}</view>
-                <view class="goods-price">
-                    <view class="new-price left">￥{{item.shopprice}}</view>
-                    <view class="old-price left">￥{{item.market_price}}</view>
-                    <view class="make-money left">赚{{item.makeMoney}}</view> 
-                    <image src="/image/cart.png" class="add-shopcart right"/>
-                    <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
+        <!-- 选项卡五开始 -->
+        <view class="" hidden="{{tabIndex != 4}}">
+            <view class="goods bg box">
+                <view class="text">
+                    {{tab[tabIndex].nav_name}}
+                </view>
+                <view class="line"></view>
+                <view class="goods-list"  wx:for="{{tab[tabIndex].goods}}" wx:key="index"  data-index="{{index}}">
+                    <navigator url="/pages/detail/detail?id={{item.id}}">
+                        <image src="{{item.goods_img}}" class="goods-image"/>
+                    </navigator>
+                    <view class="goods-title">{{item.name}}</view>
+                    <view class="goods-price">
+                        <view class="new-price left">￥{{item.shopprice}}</view>
+                        <view class="old-price left">￥{{item.market_price}}</view>
+                        <view class="make-money left">赚{{item.makeMoney}}</view> 
+                        <image src="/image/cart.png" class="add-shopcart right"/>
+                        <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
+                    </view>
                 </view>
             </view>
         </view>
-    </view>
-    <!-- 选项卡四开始 -->
-    <view class="" hidden="{{tabIndex != 3}}">
-        <view class="goods bg box">
-            <view class="text">
-                {{tab[tabIndex].nav_name}}
-            </view>
-            <view class="line"></view>
-            <view class="goods-list"  wx:for="{{tab[tabIndex].goods}}" wx:key="index"  data-index="{{index}}">
-                <image src="{{item.goods_img}}" class="goods-image"/>
-                <view class="goods-title">{{item.name}}</view>
-                <view class="goods-price">
-                    <view class="new-price left">￥{{item.shopprice}}</view>
-                    <view class="old-price left">￥{{item.market_price}}</view>
-                    <view class="make-money left">赚{{item.makeMoney}}</view> 
-                    <image src="/image/cart.png" class="add-shopcart right"/>
-                    <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
+        <!-- 选项卡六开始 -->
+        <view class="" hidden="{{tabIndex != 5}}">
+            <view class="goods bg box">
+                <view class="text">
+                    {{tab[tabIndex].nav_name}}
+                </view>
+                <view class="line"></view>
+                <view class="goods-list"  wx:for="{{tab[tabIndex].goods}}" wx:key="index"  data-index="{{index}}">
+                    <navigator url="/pages/detail/detail?id={{item.id}}">
+                        <image src="{{item.goods_img}}" class="goods-image"/>
+                    </navigator>
+                    <view class="goods-title">{{item.name}}</view>
+                    <view class="goods-price">
+                        <view class="new-price left">￥{{item.shopprice}}</view>
+                        <view class="old-price left">￥{{item.market_price}}</view>
+                        <view class="make-money left">赚{{item.makeMoney}}</view> 
+                        <image src="/image/cart.png" class="add-shopcart right"/>
+                        <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
+                    </view>
                 </view>
             </view>
         </view>
-    </view>
-    <!-- 选项卡五开始 -->
-    <view class="" hidden="{{tabIndex != 4}}">
-        <view class="goods bg box">
-            <view class="text">
-                {{tab[tabIndex].nav_name}}
-            </view>
-            <view class="line"></view>
-            <view class="goods-list"  wx:for="{{tab[tabIndex].goods}}" wx:key="index"  data-index="{{index}}">
-                <image src="{{item.goods_img}}" class="goods-image"/>
-                <view class="goods-title">{{item.name}}</view>
-                <view class="goods-price">
-                    <view class="new-price left">￥{{item.shopprice}}</view>
-                    <view class="old-price left">￥{{item.market_price}}</view>
-                    <view class="make-money left">赚{{item.makeMoney}}</view> 
-                    <image src="/image/cart.png" class="add-shopcart right"/>
-                    <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
+        <!-- 选项卡七开始 -->
+        <view class="" hidden="{{tabIndex != 6}}">
+            <view class="goods bg box">
+                <view class="text">
+                    {{tab[tabIndex].nav_name}}
+                </view>
+                <view class="line"></view>
+                <view class="goods-list"  wx:for="{{tab[tabIndex].goods}}" wx:key="index"  data-index="{{index}}">
+                    <navigator url="/pages/detail/detail?id={{item.id}}">
+                        <image src="{{item.goods_img}}" class="goods-image"/>
+                    </navigator>
+                    <view class="goods-title">{{item.name}}</view>
+                    <view class="goods-price">
+                        <view class="new-price left">￥{{item.shopprice}}</view>
+                        <view class="old-price left">￥{{item.market_price}}</view>
+                        <view class="make-money left">赚{{item.makeMoney}}</view> 
+                        <image src="/image/cart.png" class="add-shopcart right"/>
+                        <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
+                    </view>
                 </view>
             </view>
-        </view>
-    </view>
-    <!-- 选项卡六开始 -->
-    <view class="" hidden="{{tabIndex != 5}}">
-        <view class="goods bg box">
-            <view class="text">
-                {{tab[tabIndex].nav_name}}
-            </view>
-            <view class="line"></view>
-            <view class="goods-list"  wx:for="{{tab[tabIndex].goods}}" wx:key="index"  data-index="{{index}}">
-                <image src="{{item.goods_img}}" class="goods-image"/>
-                <view class="goods-title">{{item.name}}</view>
-                <view class="goods-price">
-                    <view class="new-price left">￥{{item.shopprice}}</view>
-                    <view class="old-price left">￥{{item.market_price}}</view>
-                    <view class="make-money left">赚{{item.makeMoney}}</view> 
-                    <image src="/image/cart.png" class="add-shopcart right"/>
-                    <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
-                </view>
-            </view>
-        </view>
-    </view>
-    <!-- 选项卡七开始 -->
-    <view class="" hidden="{{tabIndex != 6}}">
-        <view class="goods bg box">
-            <view class="text">
-                {{tab[tabIndex].nav_name}}
-            </view>
-            <view class="line"></view>
-            <view class="goods-list"  wx:for="{{tab[tabIndex].goods}}" wx:key="index"  data-index="{{index}}">
-                <image src="{{item.goods_img}}" class="goods-image"/>
-                <view class="goods-title">{{item.name}}</view>
-                <view class="goods-price">
-                    <view class="new-price left">￥{{item.shopprice}}</view>
-                    <view class="old-price left">￥{{item.market_price}}</view>
-                    <view class="make-money left">赚{{item.makeMoney}}</view> 
-                    <image src="/image/cart.png" class="add-shopcart right"/>
-                    <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
-                </view>
-            </view>
-        </view>
-    </view>
+        </view>    
 </view>
+</block>
+<block wx:else>
+        <view class="search-box">
+            <view class="search-nomsg" wx:if="{{isErr == 100}}">奴家找不到呀~</view>
+ <!--            <scroll-view wx:else scroll-y="true" style="height:{{windowHeight}}" bindscrolltolower="loadMore" class="loadMoreBox"> -->
+            <!-- 搜索内容 -->
+            <view wx:else class="like-list">
+                <view class="like-goods bg"  wx:for="{{searchList}}" wx:key="index"  data-index="{{index}}">
+                    <navigator url="/pages/detail/detail?id={{item.id}}">
+                        <image src="{{item.goods_img}}" class="goods-image"/>
+                    </navigator>
+                    <view class="like-price">
+                        <view class="like-title">{{item.name}}</view>
+                        <view class="new-price left" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
+                        <view class="old-price left" style="margin-top:14rpx">￥{{item.market_price}}</view>
+                        <image src="/image/cart.png" class="add-goods right" style="margin:0"/>
+                        <image src="/image/add.png" class="add-goods right" style="margin:0"/>
+                    
+                    </view>
+                </view>
+            </view>
+                <button wx:if="{{isBtnShow}}" class="is-more" loading="{{isLoading1}}" disabled="true">{{btnTxt1}}</button>
+            <!-- </scroll-view> -->
+        </view>
+</block>

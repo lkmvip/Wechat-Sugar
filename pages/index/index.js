@@ -4,7 +4,6 @@ const app = getApp();
 const api = require('../../utils/api.js');//封装好的借口路径
 const utils = require('../../utils/util.js');//调用封装的request
 
-
 Page({
     data: {
         code: "二维码",
@@ -48,7 +47,13 @@ Page({
         limitIndex: 1,
         isBtnShow:false,
         isLoading:true,
-        btnTxt:'加载中'
+        isLoading1:true, 
+        btnTxt:'加载中',
+        btnTxt1:'加载中', 
+        inputShowed: false,
+        inputVal: "",
+        searchList: [],
+        isErr:0
 
     },
 
@@ -57,7 +62,15 @@ Page({
         this.getTabInfo();
         this.getBannerInfo();
         this.getAllGoodsInfo();
-
+        wx.getSystemInfo({
+          success: this.handleGetHeight.bind(this)
+        });
+    },
+    // 获取屏幕高度
+    handleGetHeight(res) {
+        this.setData({
+            windowHeight:res.windowHeight+'px'
+        })
     },
     //请求TabUrl函数
     getTabInfo() {
@@ -88,6 +101,7 @@ Page({
         this.setData({
             tab : tabList
         })
+        // console.log(this.data.tab[0].goods)
     },
     //请求IndexUrl成功处理函数 
     handleGetIndexSucc(res) {
@@ -150,12 +164,15 @@ Page({
     },
     //上拉刷新商品信息
     onReachBottom() {
-        let isPush = this.data.index;
+        let isPush = this.data.index,
+            val = this.data.inputVal;
+        this.setData({
+            isBtnShow: true
+        });
         if (isPush ==1) {
             let num = this.data.limitIndex;
             this.setData({
-                limitIndex: num+1,
-                isBtnShow: true
+                limitIndex: num+1
             })
         //关于上拉加载的性能优化
             setTimeout(()=>{
@@ -164,7 +181,23 @@ Page({
                         limitIndex: this.data.limitIndex
                     };
                     utils.sendRequest(api.AllGoodsUrl, data, this.handleReachBottom.bind(this));
-                },1500)
+            },1500)
+        };
+        if (val != '') {
+            setTimeout(()=>{
+                let num = this.data.limitIndex;
+                    this.setData({
+                        limitIndex: num+1
+                    })
+                    // 给后端传下拉刷新的次数+1
+                    const data = {
+                        limitIndex: this.data.limitIndex,
+                         data:{
+                            name: this.data.inputVal,
+                        }
+                    };
+                    utils.sendRequest(api.AllGoodsUrl, data, this.handleLoadMore.bind(this));
+            },1500)
         };
     },
     // 获取每次上拉数据的函数
@@ -184,6 +217,50 @@ Page({
                 isLoading: false
             })
         }
+    },
+    //当用户点击键盘搜索按钮之后执行
+    handleSearch(e) {
+        this.setData({
+            inputVal: e.detail.value
+        });
+        const data = {
+            limitIndex:this.data.limitIndex,
+            data:{
+                name: this.data.inputVal,
+            }
+        };
+        //传值给后端，获取到全部商品的首次信息
+        utils.sendRequest(api.AllGoodsUrl, data, this.handleSearchSucc.bind(this));
+    },
+    //搜索事件
+    handleSearchSucc(res) {
+        this.setData({
+            searchList: res.data.data,
+            isErr: res.data.error
+        })
+    },
+    //当value为空的时候 搜索内容隐藏
+    handleSearchValue(e) {
+        if (e.detail.value == '') {
+            this.setData({
+                inputVal: e.detail.value
+            });
+        }
+    },
+    //搜索内容的数组拼接
+    handleLoadMore(res) {
+        const searchs=res.data.data,
+                arr = [];
+            searchs.map((item)=> arr.push(item));
+            let moreList = this.data.searchList.concat(arr);
+            this.setData({
+                searchList: moreList
+            });
+            if (searchs.length < 8) {
+                this.setData({
+                    btnTxt1: '人家也是有底线的~',
+                    isLoading1: false
+                })
+            };
     }
-
 })

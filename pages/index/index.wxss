@@ -1,4 +1,6 @@
 /**index.wxss**/
+
+/* @import '../../style/weui-searchbar.wxss'; */
 .container {
     width: 100%;
     height: 100%;
@@ -324,4 +326,28 @@ swiper{
     display: block;
     font-size: 25rpx;
     line-height: 50rpx;
+}
+/* 搜索结果样式 */
+.search-box{
+    width: 100%;
+    /* height: 100%; */
+    position: absolute;
+    top: 70rpx;
+    left: 0;
+    bottom: 100rpx;
+    right: 0;
+    padding-bottom: 50rpx; 
+}
+.loadMoreItem{
+    padding:50px 0px;
+    background-color:antiquewhite;
+    border-bottom:2rpx solid #ccc;
+    margin-bottom:5px;
+}
+.search-nomsg {
+    width: 100%;
+    font-size: 45rpx;
+    color: #999;
+    line-height: 200rpx;
+    text-align: center;
 }
