@@ -1,0 +1,2 @@
+/* pages/seemore/seemore.wxss */
+@import '/pages/index/index.wxss';

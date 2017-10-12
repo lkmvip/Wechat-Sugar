@@ -101,7 +101,6 @@ Page({
         this.setData({
             tab : tabList
         })
-        // console.log(this.data.tab[0].goods)
     },
     //请求IndexUrl成功处理函数 
     handleGetIndexSucc(res) {
@@ -111,6 +110,7 @@ Page({
             extendList : brandList,
             goodsList : goodsInfo
         })
+        // console.log(goodsInfo)
     }, 
     //请求BannerUrl成功处理函数  
     handleGetBannerSucc(res){
@@ -250,17 +250,40 @@ Page({
     //搜索内容的数组拼接
     handleLoadMore(res) {
         const searchs=res.data.data,
-                arr = [];
-            searchs.map((item)=> arr.push(item));
-            let moreList = this.data.searchList.concat(arr);
+            arr = [];
+        searchs.map((item)=> arr.push(item));
+        let moreList = this.data.searchList.concat(arr);
+        this.setData({
+            searchList: moreList
+        });
+        if (searchs.length < 8) {
             this.setData({
-                searchList: moreList
-            });
-            if (searchs.length < 8) {
-                this.setData({
-                    btnTxt1: '人家也是有底线的~',
-                    isLoading1: false
-                })
-            };
+                btnTxt1: '人家也是有底线的~',
+                isLoading1: false
+            })
+        };
+    },
+    handleAddCart(e) {
+        let goodsId = e.target.dataset.id,
+            goodsName = e.target.dataset.name,
+            goodsPrice = e.target.dataset.price;
+        const data = {
+            userid:45,
+            goodsId:goodsId,
+            goods_name:goodsName,
+            goods_price:goodsPrice,
+            goods_number:1
+        };
+        utils.sendRequest(api.AddGoodtoCart, data, this.handleAddGoodtoCartSucc.bind(this));
+    },
+    handleAddGoodtoCartSucc(res) {
+        let code = res.statusCode;
+        if(code == 200) {
+            wx.showModal({
+              content: '加入购物车成功',
+              showCancel: false
+            })
+        }
+        console.log(res)
     }
 })

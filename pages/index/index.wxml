@@ -45,18 +45,6 @@
                         <view>{{item.text}}</view>
                     </view>
                 </view>
-        <!-- 品牌推荐 -->
-                <view class="extend bg box">
-                    <view class="text">
-                        品牌推荐
-                    </view>
-                    <view class="line"></view>
-                    <view class="extend-list">
-                        <view class="list-content"  wx:for="{{extendList}}" wx:key="index"  data-index="{{index}}">
-                            <image src="{{item.brandlogo}}" class="list-image"/>
-                        </view>
-                    </view>
-                </view>
                 <!-- 品牌直供 -->
                 <view class="supply bg box">
                     <view class="text">
@@ -80,7 +68,19 @@
                     </view>
                 </view>
             </block>
-            <!-- 分类开始  ***********************这个暂时不需要实际页面上是隐藏的******************************* -->   
+            <!-- 分类开始  ***********************这个暂时不需要实际页面上是隐藏的******************************* --> 
+                <!-- 品牌推荐 -->
+            <view class="extend bg box">
+                <view class="text">
+                    品牌推荐
+                </view>
+                <view class="line"></view>
+                <view class="extend-list">
+                    <view class="list-content"  wx:for="{{extendList}}" wx:key="index"  data-index="{{index}}">
+                        <image src="{{item.brandlogo}}" class="list-image"/>
+                    </view>
+                </view>
+            </view>  
             <!--  ***************************性价比商品*********************** -->
             <view class="goods bg box">
                 <view class="text">
@@ -97,7 +97,7 @@
                         <view class="old-price left">￥{{item.market_price}}</view>
                         <view class="through left">/</view>
                         <view class="make-money left">赚{{item.makeMoney}}</view> 
-                        <image src="/image/cart.png" class="add-shopcart right"/>
+                        <image src="/image/cart.png" class="add-shopcart right" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                         <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
                     </view>
                 </view>
@@ -117,15 +117,18 @@
                             <view class="like-title">{{item.name}}</view>
                             <view class="new-price left" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
                             <view class="old-price left" style="margin-top:14rpx">￥{{item.market_price}}</view>
-                            <image src="/image/cart.png" class="add-goods right" style="margin:0"/>
+                            <image src="/image/cart.png" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                             <image src="/image/add.png" class="add-goods right" style="margin:0"/>
                         
                         </view>
                     </view>
                 </view>
-                <view class="more">
-                    查看更多 >
-                </view>
+                <navigator url="/pages/seemore/seemore?id={{goodsList[0].id}}&&name={{goodsList[0].title}}">
+                    <view class="more">
+                        查看更多 >
+                    </view>
+                </navigator>
+
             </view>
             <!--  ***************************彩妆*********************** -->
             <view class="like bg box">
@@ -142,15 +145,17 @@
                             <view class="like-title">{{item.name}}</view>
                             <view class="new-price left" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
                             <view class="old-price left" style="margin-top:14rpx">￥{{item.market_price}}</view>
-                            <image src="/image/cart.png" class="add-goods right" style="margin:0"/>
+                            <image src="/image/cart.png" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                             <image src="/image/add.png" class="add-goods right" style="margin:0"/>
                         
                         </view>
                     </view>
                 </view>
-                <view class="more">
-                    查看更多 >
-                </view>
+                <navigator url="/pages/seemore/seemore?id={{goodsList[2].id}}&&name={{goodsList[2].title}}">
+                    <view class="more">
+                        查看更多 >
+                    </view>
+                </navigator>
             </view>
             <!-- ***************************全部商品************************** -->   
             <view class="like bg box">
@@ -167,7 +172,7 @@
                             <view class="like-title">{{item.name}}</view>
                             <view class="new-price left" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
                             <view class="old-price left" style="margin-top:14rpx">￥{{item.market_price}}</view>
-                            <image src="/image/cart.png" class="add-goods right" style="margin:0"/>
+                            <image src="/image/cart.png" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                             <image src="/image/add.png" class="add-goods right" style="margin:0"/>
                         
                         </view>
@@ -178,6 +183,7 @@
            
         </view>
         <view class="" hidden="{{tabIndex != index}}">
+        <!-- 选项卡一开始 -->   
             <view class="goods bg box">
                 <view class="text">
                     {{tab[tabIndex].nav_name}}
@@ -192,7 +198,7 @@
                         <view class="new-price left">￥{{item.shopprice}}</view>
                         <view class="old-price left">￥{{item.market_price}}</view>
                         <view class="make-money left">赚{{item.makeMoney}}</view> 
-                        <image src="/image/cart.png" class="add-shopcart right"/>
+                        <image src="/image/cart.png" class="add-shopcart right" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                         <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
                     </view>
                 </view>
@@ -214,7 +220,7 @@
                         <view class="new-price left">￥{{item.shopprice}}</view>
                         <view class="old-price left">￥{{item.market_price}}</view>
                         <view class="make-money left">赚{{item.makeMoney}}</view> 
-                        <image src="/image/cart.png" class="add-shopcart right"/>
+                        <image src="/image/cart.png" class="add-shopcart right" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                         <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
                     </view>
                 </view>
@@ -236,7 +242,7 @@
                         <view class="new-price left">￥{{item.shopprice}}</view>
                         <view class="old-price left">￥{{item.market_price}}</view>
                         <view class="make-money left">赚{{item.makeMoney}}</view> 
-                        <image src="/image/cart.png" class="add-shopcart right"/>
+                        <image src="/image/cart.png" class="add-shopcart right" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                         <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
                     </view>
                 </view>
@@ -258,7 +264,7 @@
                         <view class="new-price left">￥{{item.shopprice}}</view>
                         <view class="old-price left">￥{{item.market_price}}</view>
                         <view class="make-money left">赚{{item.makeMoney}}</view> 
-                        <image src="/image/cart.png" class="add-shopcart right"/>
+                        <image src="/image/cart.png" class="add-shopcart right" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                         <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
                     </view>
                 </view>
@@ -280,7 +286,7 @@
                         <view class="new-price left">￥{{item.shopprice}}</view>
                         <view class="old-price left">￥{{item.market_price}}</view>
                         <view class="make-money left">赚{{item.makeMoney}}</view> 
-                        <image src="/image/cart.png" class="add-shopcart right"/>
+                        <image src="/image/cart.png" class="add-shopcart right" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                         <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
                     </view>
                 </view>
@@ -302,7 +308,7 @@
                         <view class="new-price left">￥{{item.shopprice}}</view>
                         <view class="old-price left">￥{{item.market_price}}</view>
                         <view class="make-money left">赚{{item.makeMoney}}</view> 
-                        <image src="/image/cart.png" class="add-shopcart right"/>
+                        <image src="/image/cart.png" class="add-shopcart right" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                         <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
                     </view>
                 </view>
@@ -324,7 +330,7 @@
                         <view class="new-price left">￥{{item.shopprice}}</view>
                         <view class="old-price left">￥{{item.market_price}}</view>
                         <view class="make-money left">赚{{item.makeMoney}}</view> 
-                        <image src="/image/cart.png" class="add-shopcart right"/>
+                        <image src="/image/cart.png" class="add-shopcart right" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                         <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
                     </view>
                 </view>
@@ -335,7 +341,6 @@
 <block wx:else>
         <view class="search-box">
             <view class="search-nomsg" wx:if="{{isErr == 100}}">奴家找不到呀~</view>
- <!--            <scroll-view wx:else scroll-y="true" style="height:{{windowHeight}}" bindscrolltolower="loadMore" class="loadMoreBox"> -->
             <!-- 搜索内容 -->
             <view wx:else class="like-list">
                 <view class="like-goods bg"  wx:for="{{searchList}}" wx:key="index"  data-index="{{index}}">
@@ -346,13 +351,12 @@
                         <view class="like-title">{{item.name}}</view>
                         <view class="new-price left" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
                         <view class="old-price left" style="margin-top:14rpx">￥{{item.market_price}}</view>
-                        <image src="/image/cart.png" class="add-goods right" style="margin:0"/>
+                        <image src="/image/cart.png" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                         <image src="/image/add.png" class="add-goods right" style="margin:0"/>
                     
                     </view>
                 </view>
             </view>
                 <button wx:if="{{isBtnShow}}" class="is-more" loading="{{isLoading1}}" disabled="true">{{btnTxt1}}</button>
-            <!-- </scroll-view> -->
         </view>
 </block>
