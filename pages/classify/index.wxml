@@ -1,7 +1,13 @@
-<view>
-    <view class="goods-search">
-		<input class="search-input" placeholder="面膜"/>
-    </view>
+<view class="goods-search">
+	<view class="search-content">
+		<view class="search-icon">
+			<icon type="search" size="16"/>
+		</view>
+		<input class="search-input"  confirm-type="search" value="{{inputVal}}" placeholder="达芙荻丽面膜" bindconfirm="handleSearch" bindinput="handleSearchValue"/>
+	</view>
+</view>
+<view class="container-box">
+<block wx:if="{{inputVal == ''}}">
     <!-- 分类选项卡 -->
     <view class="goods-tab">
 		<view class="goods-list">
@@ -11,7 +17,7 @@
     <!-- 分类滚动区域 -->
 	<view class="classify-list" wx:if="{{tabIdx == 0 ?'true':''}}">
 		<view class="classify-list-left" >
-			<view class="list-left-tab {{leftTab == index ?'onleft':''}}"  wx:for="{{listTab}}" wx:key="index" data-id="{{item.id}}" data-index="{{index}}"  bindtap="handleClickTabs">{{item.name}}</view>
+			<view class="list-left-tab {{leftTab == index ?'onleft':''}}"  wx:for="{{listTab}}" wx:key="index" data-id="{{item.goodstypecode}}" data-index="{{index}}"  bindtap="handleClickTabs">{{item.goodstypename}}</view>
 
 		</view>
 	<!-- 品牌细分累 -->
@@ -19,25 +25,15 @@
 			<view class="list-right-content">
 			    <scroll-view class="scroll-box" scroll-y="true" style="width: 100%;height: 880rpx">
         			<view class="scroll-content">
-        				<view class="scroll-tit">面部保养</view>
-        				<view class="scroll-content-list">
-        				        <view class="content-list-box">
-									<image src="/image/gf.png" class="brand-img"/>
-			                		<view class="brand-name">高夫</view>	
-        						</view>
-        						<view class="content-list-box">
-									<image src="/image/gf.png" class="brand-img"/>
-			                		<view class="brand-name">高夫</view>	
-        						</view>
-        						<view class="content-list-box">
-									<image src="/image/gf.png" class="brand-img"/>
-			                		<view class="brand-name">高夫</view>	
-        						</view> 
-        						<view class="content-list-box">
-									<image src="/image/gf.png" class="brand-img"/>
-			                		<view class="brand-name">高夫</view>	
-        						</view>        
-        				</view>
+        				<block wx:for="{{listTab}}" wx:key="index">
+	        				<view class="scroll-tit">{{item.goodstypename}}</view>
+	        				<view class="scroll-content-list" wx:for="{{item.son}}" wx:key="index">
+	        				        <view class="content-list-box">
+										<image src="/image/gf.png" class="brand-img"/>
+				                		<view class="brand-name">{{item.goodstypename}}</view>	
+	        						</view>
+	        				</view>
+        				</block>
         			</view>	
                 </scroll-view>
 			</view>
@@ -138,4 +134,27 @@
 				</view>		
             </scroll-view>	
 	</view>
-</view>   
+</block>
+<block wx:else>
+        <view class="search-box" style="top:0rpx;">
+            <view class="search-nomsg" wx:if="{{isErr == 100}}">奴家找不到呀~</view>
+            <!-- 搜索内容 -->
+            <view wx:else class="like-list">
+                <view class="like-goods bg"  wx:for="{{searchList}}" wx:key="index"  data-index="{{index}}">
+                    <navigator url="/pages/detail/detail?id={{item.id}}">
+                        <image src="{{item.goods_img}}" class="like-image"/>
+                    </navigator>
+                    <view class="like-price">
+                        <view class="like-title">{{item.name}}</view>
+                        <view class="new-price left" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
+                        <view class="old-price left" style="margin-top:14rpx">￥{{item.market_price}}</view>
+                        <image src="/image/cart.png" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
+                        <image src="/image/add.png" class="add-goods right" style="margin:0"/>
+                    
+                    </view>
+                </view>
+            </view>
+                <button wx:if="{{isErr == 0 ? true : false }}" class="is-more" loading="{{isLoading1}}" disabled="true">{{btnTxt1}}</button>
+        </view>
+</block>
+</view>

@@ -1,6 +1,4 @@
 /**index.wxss**/
-
-/* @import '../../style/weui-searchbar.wxss'; */
 .container {
     width: 100%;
     height: 100%;
@@ -52,7 +50,6 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
-    line-height: 70rpx;
     height: 70rpx;
     align-items: center;
 }
@@ -66,9 +63,18 @@
     width: 540rpx;
     height: 50rpx;
     font-size: 28rpx;
-    text-align:center;
-    border-radius: 5%;
+    border-radius: 10rpx;
     background: #ececec;
+    display: flex;
+    line-height: 60rpx;
+}
+.search-input {
+    width: 500rpx;
+    height: 50rpx;
+    color: gray;
+}
+.search-icon {
+    margin:0 10rpx;
 }
 
 .tab{

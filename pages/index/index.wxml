@@ -1,11 +1,15 @@
-
 <!--index.wxml-->
 <view style="position:fixed;left:0;top:0;width: 100%;z-index: 10;">
     <view class="header bg">
         <view class="header-wechat">
             <image class="header-wechat" src="/image/index/code.png"></image>
         </view>
-        <input class="search" confirm-type="search" value="{{inputVal}}" placeholder="达芙荻丽面膜" bindconfirm="handleSearch" bindinput="handleSearchValue"/>
+        <view class="search">
+            <view class="search-icon">
+                <icon type="search" size="16"/>
+            </view>
+            <input class="search-input" confirm-type="search" value="{{inputVal}}" placeholder="达芙荻丽面膜" bindconfirm="handleSearch" bindinput="handleSearchValue"/>
+        </view>
         <view class="header-wechat">
             <image class="header-wechat" src="/image/index/message.png"></image>
         </view>
@@ -77,7 +81,9 @@
                 <view class="line"></view>
                 <view class="extend-list">
                     <view class="list-content"  wx:for="{{extendList}}" wx:key="index"  data-index="{{index}}">
-                        <image src="{{item.brandlogo}}" class="list-image"/>
+                        <navigator url="/pages/seemore/seemore?brandid={{item.id}}&&name=品牌推荐">
+                            <image src="{{item.brandlogo}}" class="list-image"/>
+                        </navigator>
                     </view>
                 </view>
             </view>  
@@ -345,7 +351,7 @@
             <view wx:else class="like-list">
                 <view class="like-goods bg"  wx:for="{{searchList}}" wx:key="index"  data-index="{{index}}">
                     <navigator url="/pages/detail/detail?id={{item.id}}">
-                        <image src="{{item.goods_img}}" class="goods-image"/>
+                        <image src="{{item.goods_img}}" class="like-image"/>
                     </navigator>
                     <view class="like-price">
                         <view class="like-title">{{item.name}}</view>
@@ -357,6 +363,6 @@
                     </view>
                 </view>
             </view>
-                <button wx:if="{{isBtnShow}}" class="is-more" loading="{{isLoading1}}" disabled="true">{{btnTxt1}}</button>
+                <button wx:if="{{isErr == 0 ? true : false }}" class="is-more" loading="{{isLoading1}}" disabled="true">{{btnTxt1}}</button>
         </view>
 </block>

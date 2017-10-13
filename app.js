@@ -1,26 +1,22 @@
 //app.js
 App({
-  onReady: function () {
+  onReady() {
     // 页面渲染完成
   },
-  onUnload: function () {
+  onUnload() {
     // 页面关闭
   },
-  onShow: function () {
-    console.log('App Show')
+  onShow() {
   },
-  onHide: function () {
+  onHide() {
     console.log('App Hide')
-
-
   },
-  onLaunch: function () {
+  onLaunch() {
     // 展示本地存储能力
     console.log('App Launch')
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
+    // var logs = wx.getStorageSync('logs') || []
+    // logs.unshift(Date.now())
+    // wx.setStorageSync('logs', logs)
     // 登录
     wx.login({
       success: res => {
@@ -69,7 +65,7 @@ App({
   globalData: {
     userInfo: null
   },
-  handleGetOpenIdSuccess :function(res) {
+  handleGetOpenIdSuccess(res) {
         // console.log(res)
   }
 })

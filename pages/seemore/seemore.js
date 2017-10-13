@@ -10,7 +10,9 @@ Page({
     data: {
         moreId: '',
         moreGoods: '',
-        title:''
+        title:'',
+        brandId: '',
+        brandList: []
     },
 
     /**
@@ -20,9 +22,11 @@ Page({
         wx.setNavigationBarTitle({
           title: options.name
         })
+        console.log(options)
         this.setData({
             moreId:options.id,
-            title:options.name
+            title:options.name,
+            brandId:options.brandid
         })
         this.getMoreGoodsInfo();
 
@@ -41,14 +45,29 @@ Page({
 
     },
     getMoreGoodsInfo() {
-        let isId = this.data.moreId;
-        const data = {
-            id:isId,
-            type:1
+        let isId = this.data.moreId,
+            listId = this.data.brandId;
+        // 更多商品
+        if(isId) {
+            const data = {
+                id:isId,
+                type:1
+            };
+            utils.sendRequest(api.IndexUrl, data, this.handleMoreGoodsSucc.bind(this)); 
         };
-        utils.sendRequest(api.IndexUrl, data, this.handleMoreGoodsSucc.bind(this));
+        // 品牌商品
+        if(listId) {
+            console.log(listId)
+            const data = {
+                module:0,
+                data: {
+                    brandid:listId,
+                }
+            };
+            utils.sendRequest(api.AllGoodsUrl, data, this.handleMoreBrandSucc.bind(this)); 
+        };
     },
-    //请求IndexUrl成功处理函数 
+    //请求更多商品成功处理函数 
     handleMoreGoodsSucc(res) {
         let goodsInfo = res.data.data,
             arr = [];
@@ -56,7 +75,37 @@ Page({
         this.setData({
             moreGoods : arr
         })
-        // console.log(goodsInfo)
-        console.log(this.data.moreGoods)
-    }, 
+    },
+    //请求品牌商品成功处理函数 
+    handleMoreBrandSucc(res) {
+        let brandInfo = res.data.data;
+        this.setData({
+            brandList : brandInfo
+        });
+    },
+        //点击添加到购物车
+    handleAddCart(e) {
+        // 传商品信息 
+        let goodsId = e.target.dataset.id,
+            goodsName = e.target.dataset.name,
+            goodsPrice = e.target.dataset.price;
+        const data = {
+            userid:45,
+            goodsId:goodsId,
+            goods_name:goodsName,
+            goods_price:goodsPrice,
+            goods_number:1
+        };
+        utils.sendRequest(api.AddGoodtoCart, data, this.handleAddGoodtoCartSucc.bind(this));
+    },
+    //调用成功添加购物车函数
+    handleAddGoodtoCartSucc(res) {
+        let code = res.statusCode;
+        if(code == 200) {
+            wx.showModal({
+              content: '加入购物车成功',
+              showCancel: false
+            })
+        }
+    }
 })

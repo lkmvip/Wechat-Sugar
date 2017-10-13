@@ -62,16 +62,16 @@ Page({
         this.getTabInfo();
         this.getBannerInfo();
         this.getAllGoodsInfo();
-        wx.getSystemInfo({
-          success: this.handleGetHeight.bind(this)
-        });
+        // wx.getSystemInfo({
+        //   success: this.handleGetHeight.bind(this)
+        // });
     },
-    // 获取屏幕高度
-    handleGetHeight(res) {
-        this.setData({
-            windowHeight:res.windowHeight+'px'
-        })
-    },
+    // // 获取屏幕高度
+    // handleGetHeight(res) {
+    //     this.setData({
+    //         windowHeight:res.windowHeight+'px'
+    //     })
+    // },
     //请求TabUrl函数
     getTabInfo() {
         const data = {};
@@ -104,13 +104,13 @@ Page({
     },
     //请求IndexUrl成功处理函数 
     handleGetIndexSucc(res) {
+        // 返回商品列表和品牌列表的信息
         let brandList = res.data.brandInfo,
             goodsInfo = res.data.data;
         this.setData({
             extendList : brandList,
             goodsList : goodsInfo
         })
-        // console.log(goodsInfo)
     }, 
     //请求BannerUrl成功处理函数  
     handleGetBannerSucc(res){
@@ -165,10 +165,12 @@ Page({
     //上拉刷新商品信息
     onReachBottom() {
         let isPush = this.data.index,
-            val = this.data.inputVal;
+            val = this.data.inputVal,
+            err = this.data.isErr;
         this.setData({
-            isBtnShow: true
+            isBtnShow: true 
         });
+
         if (isPush ==1) {
             let num = this.data.limitIndex;
             this.setData({
@@ -183,7 +185,7 @@ Page({
                     utils.sendRequest(api.AllGoodsUrl, data, this.handleReachBottom.bind(this));
             },1500)
         };
-        if (val != '') {
+        if (val != ''&& err == 0) {
             setTimeout(()=>{
                 let num = this.data.limitIndex;
                     this.setData({
@@ -218,7 +220,7 @@ Page({
             })
         }
     },
-    //当用户点击键盘搜索按钮之后执行
+    //当用户点击键盘搜索按钮之后执行 商品搜索
     handleSearch(e) {
         this.setData({
             inputVal: e.detail.value
@@ -229,7 +231,7 @@ Page({
                 name: this.data.inputVal,
             }
         };
-        //传值给后端，获取到全部商品的首次信息
+        //传值给后端，获取到搜索的商品信息
         utils.sendRequest(api.AllGoodsUrl, data, this.handleSearchSucc.bind(this));
     },
     //搜索事件
@@ -263,7 +265,9 @@ Page({
             })
         };
     },
+    //点击添加到购物车
     handleAddCart(e) {
+        // 传商品信息 
         let goodsId = e.target.dataset.id,
             goodsName = e.target.dataset.name,
             goodsPrice = e.target.dataset.price;
@@ -276,6 +280,7 @@ Page({
         };
         utils.sendRequest(api.AddGoodtoCart, data, this.handleAddGoodtoCartSucc.bind(this));
     },
+    //调用成功添加购物车函数
     handleAddGoodtoCartSucc(res) {
         let code = res.statusCode;
         if(code == 200) {
@@ -284,6 +289,5 @@ Page({
               showCancel: false
             })
         }
-        console.log(res)
     }
 })

@@ -4,7 +4,7 @@ Page({
     	userInfo: {}
     },
 
-    onLoad: function () {
+    onLoad() {
     	console.log(app.globalData.userInfo)
     	this.setData({
     		userInfo : app.globalData.userInfo
@@ -25,21 +25,21 @@ Page({
     },
   //待付款
     handleWillPay(e) {
-        var indexNum = e.currentTarget.dataset.id; 
+        let indexNum = e.currentTarget.dataset.id; 
         wx.navigateTo({
           url: '/pages/user/order/order?id='+indexNum
         })
     },
   //待发货  
     handleWillSend(e) {
-        var indexNum = e.currentTarget.dataset.id; 
+        let indexNum = e.currentTarget.dataset.id; 
         wx.navigateTo({
           url: '/pages/user/order/order?id='+indexNum
         })
     },
   //待收货
     handleWillTake(e) {
-        var indexNum = e.currentTarget.dataset.id; 
+        let indexNum = e.currentTarget.dataset.id; 
         wx.navigateTo({
           url: '/pages/user/order/order?id='+indexNum
         })

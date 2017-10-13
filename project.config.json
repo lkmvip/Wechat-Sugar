@@ -12,7 +12,7 @@
 	"projectname": "sugar",
 	"condition": {
 		"weapp": {
-			"current": -1,
+			"current": 4,
 			"list": [
 				{
 					"id": 0,
@@ -36,6 +36,12 @@
 					"id": 3,
 					"name": "收藏",
 					"pathName": "pages/ordermsg/msg",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "分类",
+					"pathName": "pages/classify/index",
 					"query": ""
 				}
 			]

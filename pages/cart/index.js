@@ -38,13 +38,26 @@ Page({
                 oldPrice:"1999",
             },
         ],
-        carts:[],               // 购物车列表
+        carts:[
+            {id:1,title:'新鲜芹菜 新鲜芹菜  新鲜芹菜  新鲜芹菜 ',image:'/image/gf.png',num:1,price:0.01,selected:true,stock:1000},      
+            {id:2,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
+            {id:3,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
+            {id:4,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
+            {id:5,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
+            {id:6,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
+            {id:7,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
+            {id:8,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
+            {id:9,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
+            {id:10,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},     
+            {id:11,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800}
+        ],               // 购物车列表
         hasList:false,          // 列表是否有数据
         totalPrice:0,           // 总价，初始为0
         selectAllStatus:true,    // 全选状态，默认全选,
         goodsNums:0
     },
     onLoad(options) {
+      
     },
     onShow() {
         this.setData({
