@@ -69,7 +69,7 @@ Page({
         //当选项卡为品牌的时候请求接口
         if (this.data.tabIdx == 1) {
             const data = {};
-            utils.sendRequest(api.BrandInfoUrl, data, this.handleBrand Info.bind(this));
+            utils.sendRequest(api.BrandInfoUrl, data, this.handleBrandInfo.bind(this));
         }
     },
     //全部品牌接口成功
