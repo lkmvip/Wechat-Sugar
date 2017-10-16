@@ -17,25 +17,26 @@ Page({
         btnTxt1:'加载中', 
         searchList: [],
         tabSonList: [],
-        isErr:0
+        isErr:0,
+        brandList:[]
 
     },
     onLoad(options) {
-        this.getClassifyInfo();
+        this.getClassifyInfo();//调用分类接口
     },
     getClassifyInfo() {
         const data ={};
         utils.sendRequest(api.AllType, data, this.handleClassifyInfo.bind(this));
     },
+    //首屏加载渲染出分类里面的所有东西
     handleClassifyInfo(res) {
-        console.log(res)
+        console.log('android')
         let classtab = res.data.data.type,
             tabSon = res.data.data.typeSon;
         this.setData({
             listTab:classtab,
             tabSonList:tabSon
         })
-        console.log(this.data.tabSonList)
     },
     onReachBottom() {
         let val = this.data.inputVal,
@@ -64,12 +65,39 @@ Page({
     handleClickGoods(e) {
         this.setData({
             tabIdx : e.target.dataset.index
+        });
+        //当选项卡为品牌的时候请求接口
+        if (this.data.tabIdx == 1) {
+            const data = {};
+            utils.sendRequest(api.BrandInfoUrl, data, this.handleBrand Info.bind(this));
+        }
+    },
+    //全部品牌接口成功
+    handleBrandInfo(res) {
+        let brand = res.data;
+        this.setData({
+            brandList: brand
         })
+
     },
     // 点击分类里面的细分选项卡
     handleClickTabs(e) {
+        let id = e.target.dataset.index,
+            code = e.target.dataset.id;
         this.setData({
-            leftTab : e.target.dataset.index
+            leftTab : id
+        });
+
+        const data = {
+            goodsTypeCode: code
+        };
+        utils.sendRequest(api.ClassifySon, data, this.handleGoodsSon.bind(this));
+    },
+    // //分类里面的内容
+    handleGoodsSon(res) {
+        let list = res.data;
+         this.setData({
+            tabSonList:list
         })
     },
     //当用户点击键盘搜索按钮之后执行 商品搜索

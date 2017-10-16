@@ -1,2 +1,8 @@
 /* pages/seemore/seemore.wxss */
 @import '/pages/index/index.wxss';
+.see-image {
+	width: 240rpx;
+	height: 240rpx;
+	margin: 0 auto;
+	display: block;
+}

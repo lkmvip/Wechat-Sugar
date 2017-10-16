@@ -4,9 +4,9 @@
 	    {{title}}
 	</view>
 	<view class="line"></view>
-	<view class="goods-list"  wx:for="{{brandId ? brandList : moreGoods[0]}}" wx:key="index"  data-index="{{index}}">
+	<view class="goods-list"  wx:for="{{brandId ||code ? brandList : moreGoods[0]}}" wx:key="index"  data-index="{{index}}">
 	    <navigator url="/pages/detail/detail?id={{item.id}}">
-	        <image src="{{item.goods_img}}" class="goods-image"/>
+	        <image src="{{item.goods_img}}" class="see-image" mode="scaleToFill"/>
 	    </navigator>
 	    <view class="goods-title">{{item.name}}</view>
 	    <view class="goods-price">

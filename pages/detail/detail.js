@@ -1,4 +1,6 @@
 // pages/detail/detail.js
+const api = require('../../utils/api.js');//封装好的借口路径
+const utils = require('../../utils/util.js');//调用封装的request
 Page({
 
     /**
@@ -43,7 +45,8 @@ Page({
         showDialog: false,
         on:0,
         num:1,
-        goodsId:''
+        goodsId:'',
+        goodsInfo:[]
          
     },
 
@@ -56,6 +59,7 @@ Page({
             goodsId: id
         })
         console.log(this.data.goodsId)
+        this.getDetailInfo();
     },
     /**
     * 用户点击右上角分享
@@ -63,6 +67,22 @@ Page({
     onShareAppMessage: function () {
       
     },
+    //获取详情页数据
+    getDetailInfo() {
+        let id = this.data.goodsId;
+        const data ={
+            goods_id:id
+        };
+        utils.sendRequest(api.DetailInfoUrl, data, this.handleDetailInfo.bind(this));
+    },
+    //处理成功详情页函数
+    handleDetailInfo(res) {
+        let goodsList = res.data.data;
+        this.setData({
+            goodsInfo:goodsList
+        })
+    },
+    // 添加收藏
     handleAddLike: function(e) {
         let islike = this.data.likeIndex
         this.setData({

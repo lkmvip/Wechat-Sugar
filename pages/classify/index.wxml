@@ -25,11 +25,13 @@
 			<view class="list-right-content">
 			    <scroll-view class="scroll-box" scroll-y="true" style="width: 100%;height: 880rpx">
         			<view class="scroll-content">
-        				<block wx:for="{{listTab}}" wx:key="index">
+        				<block wx:for="{{tabSonList}}" wx:key="index">
 	        				<view class="scroll-tit">{{item.goodstypename}}</view>
-	        				<view class="scroll-content-list" wx:for="{{item.son}}" wx:key="index">
-	        				        <view class="content-list-box">
-										<image src="/image/gf.png" class="brand-img"/>
+	        				<view class="scroll-content-list">
+	        				        <view class="content-list-box" wx:for="{{item.son}}" wx:key="index">
+                    				<navigator url="/pages/seemore/seemore?codeid={{item.goodstypecode}}&&name={{item.goodstypename}}">
+									<image src="/image/gf.png" class="brand-img" lazy-load="true"/>
+                    				</navigator>
 				                		<view class="brand-name">{{item.goodstypename}}</view>	
 	        						</view>
 	        				</view>
@@ -43,95 +45,15 @@
 	<view class="classify-list" wx:if="{{tabIdx == 1 ?'true':''}}">
 		    <scroll-view class="scroll-brand" scroll-y="true" style="width: 100%;height: 880rpx">
 				<view class="brand-list">
-        			<view class="brand-content">
-	                	<image src="/image/gf.png" class="brand-img"/>
-	                	<view class="brand-name">高夫</view>	
-        			</view>
-        			<view class="brand-content">
-	                	<image src="/image/gf.png" class="brand-img"/>
-	                	<view class="brand-name">高夫</view>	
-        			</view>
-        			<view class="brand-content">
-	                	<image src="/image/gf.png" class="brand-img"/>
-	                	<view class="brand-name">高夫</view>	
-        			</view>
-        			<view class="brand-content">
-	                	<image src="/image/gf.png" class="brand-img"/>
-	                	<view class="brand-name">高夫</view>	
-        			</view>
+					<block wx:for="{{brandList}}" wx:key="index">
+	        			<view class="brand-content">
+                        	<navigator url="/pages/seemore/seemore?brandid={{item.id}}&&name={{item.brandname}}">
+		                		<image src="{{item.brandlogo}}" class="brand-img"/>
+                        	</navigator>
+		                	<view class="brand-name">{{item.brandname}}</view>	
+	        			</view>
+        			</block>
 				</view>
-				<view class="brand-list">
-        			<view class="brand-content">
-	                	<image src="/image/gf.png" class="brand-img"/>
-	                	<view class="brand-name">高夫</view>	
-        			</view>
-        			<view class="brand-content">
-	                	<image src="/image/gf.png" class="brand-img"/>
-	                	<view class="brand-name">高夫</view>	
-        			</view>
-        			<view class="brand-content">
-	                	<image src="/image/gf.png" class="brand-img"/>
-	                	<view class="brand-name">高夫</view>	
-        			</view>
-        			<view class="brand-content">
-	                	<image src="/image/gf.png" class="brand-img"/>
-	                	<view class="brand-name">高夫</view>	
-        			</view>
-				</view>
-				<view class="brand-list">
-        			<view class="brand-content">
-	                	<image src="/image/gf.png" class="brand-img"/>
-	                	<view class="brand-name">高夫</view>	
-        			</view>
-        			<view class="brand-content">
-	                	<image src="/image/gf.png" class="brand-img"/>
-	                	<view class="brand-name">高夫</view>	
-        			</view>
-        			<view class="brand-content">
-	                	<image src="/image/gf.png" class="brand-img"/>
-	                	<view class="brand-name">高夫</view>	
-        			</view>
-        			<view class="brand-content">
-	                	<image src="/image/gf.png" class="brand-img"/>
-	                	<view class="brand-name">高夫</view>	
-        			</view>
-				</view>	
-				<view class="brand-list">
-        			<view class="brand-content">
-	                	<image src="/image/gf.png" class="brand-img"/>
-	                	<view class="brand-name">高夫</view>	
-        			</view>
-        			<view class="brand-content">
-	                	<image src="/image/gf.png" class="brand-img"/>
-	                	<view class="brand-name">高夫</view>	
-        			</view>
-        			<view class="brand-content">
-	                	<image src="/image/gf.png" class="brand-img"/>
-	                	<view class="brand-name">高夫</view>	
-        			</view>
-        			<view class="brand-content">
-	                	<image src="/image/gf.png" class="brand-img"/>
-	                	<view class="brand-name">高夫</view>	
-        			</view>
-				</view>	
-				<view class="brand-list">
-        			<view class="brand-content">
-	                	<image src="/image/gf.png" class="brand-img"/>
-	                	<view class="brand-name">高夫</view>	
-        			</view>
-        			<view class="brand-content">
-	                	<image src="/image/gf.png" class="brand-img"/>
-	                	<view class="brand-name">高夫</view>	
-        			</view>
-        			<view class="brand-content">
-	                	<image src="/image/gf.png" class="brand-img"/>
-	                	<view class="brand-name">高夫</view>	
-        			</view>
-        			<view class="brand-content">
-	                	<image src="/image/gf.png" class="brand-img"/>
-	                	<view class="brand-name">高夫</view>	
-        			</view>
-				</view>		
             </scroll-view>	
 	</view>
 </block>

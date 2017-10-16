@@ -12,7 +12,8 @@ Page({
         moreGoods: '',
         title:'',
         brandId: '',
-        brandList: []
+        brandList: [],
+        code:''
     },
 
     /**
@@ -22,11 +23,11 @@ Page({
         wx.setNavigationBarTitle({
           title: options.name
         })
-        console.log(options)
         this.setData({
             moreId:options.id,
             title:options.name,
-            brandId:options.brandid
+            brandId:options.brandid,
+            code:options.codeid
         })
         this.getMoreGoodsInfo();
 
@@ -34,9 +35,9 @@ Page({
     /**
     * 页面上拉触底事件的处理函数
     */
-    onReachBottom() {
+    // onReachBottom() {
 
-    },
+    // },
 
     /**
     * 用户点击右上角分享
@@ -46,7 +47,8 @@ Page({
     },
     getMoreGoodsInfo() {
         let isId = this.data.moreId,
-            listId = this.data.brandId;
+            listId = this.data.brandId,
+            codeId = this.data.code;
         // 更多商品
         if(isId) {
             const data = {
@@ -57,7 +59,6 @@ Page({
         };
         // 品牌商品
         if(listId) {
-            console.log(listId)
             const data = {
                 module:0,
                 data: {
@@ -66,6 +67,14 @@ Page({
             };
             utils.sendRequest(api.AllGoodsUrl, data, this.handleMoreBrandSucc.bind(this)); 
         };
+        if(codeId) {
+            const data = {
+                data: {
+                    goodstypecode:codeId,
+                }
+            };
+            utils.sendRequest(api.AllGoodsUrl, data, this.handleMoreClassifySucc.bind(this)); 
+        }
     },
     //请求更多商品成功处理函数 
     handleMoreGoodsSucc(res) {
@@ -81,6 +90,12 @@ Page({
         let brandInfo = res.data.data;
         this.setData({
             brandList : brandInfo
+        });
+    },
+    handleMoreClassifySucc(res) {
+        let calssList = res.data.data;
+        this.setData({
+            brandList : calssList
         });
     },
         //点击添加到购物车

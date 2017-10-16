@@ -2,27 +2,29 @@
 <!--pages/detail/detail.wxml-->
 <view class="detail">
 	<view class="detail-bg">
-		<image class="detail-img" src="/image/gf1.png"></image>
-		<view class="detail-mid">
-			<view class="detail-tit">
-				<view class="detail-text">
-					雪域宏景天静去黑头泡沫洗面奶卸妆洗面奶 补水洁面慕斯
-					<view class="detail-price">
-						<text class="new-price">￥89.00</text>
-						<text class="through">/</text>
-						<text class="make-money">赚29.4</text>						
+		<block wx:for="{{goodsInfo}}" wx:key="index">
+			<image class="detail-img" src="{{item.goods_img}}"></image>
+			<view class="detail-mid">
+				<view class="detail-tit">
+					<view class="detail-text">
+						{{item.name}}
+						<view class="detail-price">
+							<text class="new-price">{{item.price}}</text>
+							<text class="through">/</text>
+							<text class="make-money">赚29.4</text>						
+						</view>
 					</view>
+					<view class="detail-like">
+						<image bindtap="handleAddLike" data-id="1" src="/image/like{{likeIndex == true ? 'on' : ''}}.png" class="like-img"/>
+					</view>				
 				</view>
-				<view class="detail-like">
-					<image bindtap="handleAddLike" data-id="1" src="/image/like{{likeIndex == true ? 'on' : ''}}.png" class="like-img"/>
-				</view>				
+				<view class="detail-msg">
+					<text>在售人数:1234</text>
+					<text>库存:999</text>
+					<text>销量:333</text>
+				</view>		
 			</view>
-			<view class="detail-msg">
-				<text>在售人数:1234</text>
-				<text>库存:999</text>
-				<text>销量:333</text>
-			</view>		
-		</view>
+		</block>
 	</view>
 	<!-- 详情页保障信息开始 -->
 	<view class="detail-save">
