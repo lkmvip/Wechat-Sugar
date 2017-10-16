@@ -25,8 +25,30 @@ Page({
         this.getClassifyInfo();//调用分类接口
     },
     getClassifyInfo() {
-        const data ={};
-        utils.sendRequest(api.AllType, data, this.handleClassifyInfo.bind(this));
+        // const data ={};
+        // utils.sendRequest(api.AllType, data, this.handleClassifyInfo.bind(this));
+        wx.request({
+        url: "https://wstcsd.1haomei.com/html/shop/index.php/WstInterFace/GoodsType/getAllGoodsType", 
+        data: {},
+        header: {
+            'content-type': 'application/json'
+        },
+        method: "POST",
+            success:(res) => {
+                let classtab = res.data.data.type,
+                tabSon = res.data.data.typeSon;
+                this.setData({
+                    listTab:classtab,
+                    tabSonList:tabSon
+                })
+            },
+            fail:(res) => {
+                console.log(111)
+            },
+            complete:(res) => {
+                console.log(222)
+            }
+        })
     },
     //首屏加载渲染出分类里面的所有东西
     handleClassifyInfo(res) {
