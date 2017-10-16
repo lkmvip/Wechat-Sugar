@@ -84,7 +84,7 @@ Page({
     },
     // 添加收藏
     handleAddLike: function(e) {
-        let islike = this.data.likeIndex
+        let islike = this.data.likeIndex;
         this.setData({
             likeIndex : !islike
         });
