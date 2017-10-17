@@ -18,46 +18,46 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-    onLoad: function (options) {
+    onLoad(options) {
 
     },
 
     /**
     * 生命周期函数--监听页面初次渲染完成
     */
-    onReady: function () {
+    onReady() {
 
     },
 
     /**
     * 生命周期函数--监听页面显示
     */
-    onShow: function () {
+    onShow() {
 
     },
 
     /**
     * 生命周期函数--监听页面隐藏
     */
-    onHide: function () {
+    onHide() {
 
     },
 
     /**
     * 生命周期函数--监听页面卸载
     */
-    onUnload: function () {
+    onUnload() {
 
     },
     /**
     * 用户点击右上角分享
     */
-    onShareAppMessage: function () {
+    onShareAppMessage() {
 
     },
     // 选择户主
     handleName(e) {
-        var user = e.detail.value,
+        let user = e.detail.value,
             reg = /^[\u4E00-\u9FA5]{2,4}$/;
         if (!reg.test(user)) {
             var _this = this;
@@ -83,7 +83,7 @@ Page({
     },
     // 输入银行卡号
     handleBankCard(e) {
-        var bankNum = e.detail.value,
+        let bankNum = e.detail.value,
             reg = /^\d{16}|\d{19}$/;
         if (!reg.test(bankNum)) {
             var _this = this;
@@ -107,14 +107,14 @@ Page({
         }
     },
     // 选择银行
-    bindPickerChange: function(e) {
+    bindPickerChange(e) {
         this.setData({
           index: e.detail.value
         })
     },
     //选择提现金额验证
     handleCash(e) {
-        var max = this.data.maxNum,
+        let max = this.data.maxNum,
             val = Number(e.detail.value),
             reg =/^[1-9][0-9]*0{2}$/;
         if (reg.test(val) && val<max) {
@@ -124,7 +124,7 @@ Page({
                 disabled: false
             })
         }else{
-            var _this = this;
+            let  _this = this;
                wx.showModal({
                 title:'提示',
                 content:'提现金额必须为100的倍数，而且小于您的余额。',

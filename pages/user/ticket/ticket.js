@@ -5,12 +5,12 @@ Page({
         activeIndex: "0",
         hasTicket:false
     },
-    onLoad: function (options) {
+    onLoad(options) {
         this.setData({
             activeIndex: options.id
         });
     },
-    tabClick: function (e) {
+    tabClick(e) {
         this.setData({
             activeIndex: e.currentTarget.id
         });

@@ -17,9 +17,9 @@ Page({
 	  	}]
 	},
 
-	onLoad: function (options) {
+	onLoad(options) {
 		console.log(options)
-		var arr =[];
+		let arr =[];
 		arr.push({
 			cashNum:options.cash,
 			time:util.formatTime(new Date())

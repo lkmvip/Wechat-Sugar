@@ -13,14 +13,14 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad(options) {
   
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-    onReady: function () {
+    onReady () {
   
     },
     handleAddr() {
@@ -28,7 +28,7 @@ Page({
             url: '/pages/user/addr/addr'
         })
     },
-    checkboxChange: function(e) {
+    checkboxChange(e) {
         console.log('checkbox发生change事件，携带value值为：', e.detail.value)
     },
     handleTicket() {

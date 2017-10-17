@@ -18,7 +18,7 @@ Page({
     area:false,
     addAddr:true
   },
-      bindChange: function(e) {
+      bindChange(e) {
         console.log(e);
         var val = e.detail.value
         var t = this.data.values;
@@ -78,14 +78,14 @@ Page({
 
 
       },
-      open: function() {
+      open() {
         this.setData({
           condition: !this.data.condition,
           newAddr:!this.data.newAddr,
           area:true
         })
       },
-      addDot: function(arr) {
+      addDot(arr) {
         if (arr instanceof Array) {
           arr.map(val => {
             if (val.fullName.length > 4) {
@@ -98,13 +98,13 @@ Page({
           })
         }
       },
-      onLoad: function() {
+      onLoad() {
         console.log("onLoad");
-        var that = this;
+        let that = this;
 
         tcity.init(that);
 
-        var cityData = that.data.cityData;
+        let cityData = that.data.cityData;
 
 
         const provinces = [];
