@@ -49,7 +49,7 @@ Page({
         let isId = this.data.moreId,
             listId = this.data.brandId,
             codeId = this.data.code;
-        // 更多商品
+        // 更多商品进入时调用
         if(isId) {
             const data = {
                 id:isId,
@@ -57,7 +57,7 @@ Page({
             };
             utils.sendRequest(api.IndexUrl, data, this.handleMoreGoodsSucc.bind(this)); 
         };
-        // 品牌商品
+        // 品牌商品进入时调用
         if(listId) {
             const data = {
                 module:0,
@@ -67,7 +67,9 @@ Page({
             };
             utils.sendRequest(api.AllGoodsUrl, data, this.handleMoreBrandSucc.bind(this)); 
         };
+        // 分类商品进入时调用
         if(codeId) {
+            console.log(codeId)
             const data = {
                 data: {
                     goodstypecode:codeId,
@@ -87,18 +89,21 @@ Page({
     },
     //请求品牌商品成功处理函数 
     handleMoreBrandSucc(res) {
+        console.log(res)
         let brandInfo = res.data.data;
         this.setData({
             brandList : brandInfo
         });
     },
+    // 请求分类商品成功处理函数
     handleMoreClassifySucc(res) {
+        console.log(res)
         let calssList = res.data.data;
         this.setData({
             brandList : calssList
         });
     },
-        //点击添加到购物车
+    //点击添加到购物车
     handleAddCart(e) {
         // 传商品信息 
         let goodsId = e.target.dataset.id,

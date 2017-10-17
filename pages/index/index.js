@@ -146,15 +146,7 @@ Page({
         this.setData({
             planIndex : e.currentTarget.dataset.index
         })
-    },
-    // 点击加入购物车
-    handleAddGoods(e) {
-        var addId = e.currentTarget.dataset.id,
-            that = this;
-        that.setData({
-            addIndex : addId
-        })
-    },
+    },     
     //tab内容的显示隐藏
     switchIndex() {
         this.setData({

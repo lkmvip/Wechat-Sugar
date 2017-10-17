@@ -3,7 +3,8 @@ var NewApiRootUrl = 'https://wstcsd.1haomei.com/html/shop/index.php/WstInterFace
 	ShopCart= 'https://wstcsd.1haomei.com/html/shop/index.php/WstInterFace/ShoppingCart/',//购物车接口
 	Classify= 'https://wstcsd.1haomei.com/html/shop/index.php/WstInterFace/GoodsType/',//分类接口
 	BrandInfo='https://wstcsd.1haomei.com/html/shop/index.php/WstInterFace/BrandInfo/',//分类品牌接口
-	DetailInfo='https://wstcsd.1haomei.com/html/shop/index.php/WstInterFace/goodsDetailsServic/';//详情接口
+	DetailInfo='https://wstcsd.1haomei.com/html/shop/index.php/WstInterFace/goodsDetailsServic/',//详情接口
+	LikeInfo = 'https://wstcsd.1haomei.com/html/shop/index.php/WstInterFace/Collection/';//详情接口
 
 module.exports = {
 	IndexUrl:NewApiRootUrl+ 'getIndexProduct',//首页信息
@@ -15,5 +16,9 @@ module.exports = {
 	AllType:Classify+'getAllGoodsType',//分类详情
 	ClassifySon:Classify+'getTypeSon',//分类tab子元素的内容
 	BrandInfoUrl:BrandInfo+'getBrandInfo',//分类品牌接口
-	DetailInfoUrl:DetailInfo+'goodsDetails'//详情页数据接口
+	DetailInfoUrl:DetailInfo+'goodsDetails',//详情页数据接口
+	LikeInfoAdd:LikeInfo+'addCollection',//添加收藏
+	LikeInfoDel:LikeInfo+'removeCollection',//删除收藏
+	LikeInfoUrl:LikeInfo+'getCollectionList'//获取收藏列表
+
 }

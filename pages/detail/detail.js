@@ -46,7 +46,8 @@ Page({
         on:0,
         num:1,
         goodsId:'',
-        goodsInfo:[]
+        goodsInfo:[],
+        likeNum:''
          
     },
 
@@ -58,7 +59,6 @@ Page({
         this.setData({
             goodsId: id
         })
-        console.log(this.data.goodsId)
         this.getDetailInfo();
     },
     /**
@@ -84,17 +84,28 @@ Page({
     },
     // 添加收藏
     handleAddLike: function(e) {
-        let islike = this.data.likeIndex;
-        this.setData({
-            likeIndex : !islike
-        });
+        let islike = this.data.likeIndex,
+            id = e.target.dataset.id,
+            goods = this.data.goodsId;
+            this.setData({
+                likeIndex : !islike
+            });
         if (!islike) {
             wx.showToast({
               title: '收藏成功',
               icon: 'success',
               duration: 2000,
               mask:true
-            })
+            });
+            console.log(id)
+            this.setData({
+                likeNum : id
+            });
+            const data ={
+                userid:45,
+                id:id
+            };
+            utils.sendRequest(api.LikeInfoAdd, data, this.handleAddLikeSucc.bind(this));
         }else {
             wx.showToast({
               title: '取消收藏',
@@ -102,7 +113,18 @@ Page({
               duration: 2000,
               mask:true
             })
+            this.setData({
+                likeNum : ''
+            })
+            const data ={
+                userid:45,
+                id:id
+            };
+            utils.sendRequest(api.LikeInfoDel, data, this.handleAddLikeSucc.bind(this));  
         }
+    },
+    handleAddLikeSucc(res) {
+        console.log(res)
     },
     // 点击tab选项卡
     tabClick: function (e) {

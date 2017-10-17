@@ -15,13 +15,13 @@
 						</view>
 					</view>
 					<view class="detail-like">
-						<image bindtap="handleAddLike" data-id="1" src="/image/like{{likeIndex == true ? 'on' : ''}}.png" class="like-img"/>
+						<image bindtap="handleAddLike" data-id="{{item.id}}" src="/image/like{{likeNum != '' ? 'on' : ''}}.png" class="like-img"/>
 					</view>				
 				</view>
 				<view class="detail-msg">
 					<text>在售人数:1234</text>
-					<text>库存:999</text>
-					<text>销量:333</text>
+					<text>库存:{{item.inventory == null ? 0 : item.inventory}}</text>
+					<text>销量:{{item.goodsnumber}}</text>
 				</view>		
 			</view>
 		</block>
