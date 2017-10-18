@@ -19,6 +19,7 @@ module.exports = {
 	DetailInfoUrl:DetailInfo+'goodsDetails',//详情页数据接口
 	LikeInfoAdd:LikeInfo+'addCollection',//添加收藏
 	LikeInfoDel:LikeInfo+'removeCollection',//删除收藏
-	LikeInfoUrl:LikeInfo+'getCollectionList'//获取收藏列表
-
+	LikeInfoUrl:LikeInfo+'getCollectionList',//获取收藏列表
+	CartGoodsNum:ShopCart+'showCarListCount',// 获取购物车商品数量
+	CartInfo:ShopCart+'getCarList'//购物车信息
 }

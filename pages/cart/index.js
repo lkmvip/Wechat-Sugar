@@ -1,3 +1,5 @@
+const api = require('../../utils/api.js');//封装好的借口路径
+const utils = require('../../utils/util.js');//调用封装的request
 Page({
     data: {
     	    likeList: [
@@ -39,17 +41,17 @@ Page({
             },
         ],
         carts:[
-            {id:1,title:'新鲜芹菜 新鲜芹菜  新鲜芹菜  新鲜芹菜 ',image:'/image/gf.png',num:1,price:0.01,selected:true,stock:1000},      
-            {id:2,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
-            {id:3,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
-            {id:4,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
-            {id:5,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
-            {id:6,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
-            {id:7,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
-            {id:8,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
-            {id:9,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
-            {id:10,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},     
-            {id:11,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800}
+            // {id:1,title:'新鲜芹菜 新鲜芹菜  新鲜芹菜  新鲜芹菜 ',image:'/image/gf.png',num:1,price:0.01,selected:true,stock:1000},      
+            // {id:2,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
+            // {id:3,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
+            // {id:4,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
+            // {id:5,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
+            // {id:6,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
+            // {id:7,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
+            // {id:8,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
+            // {id:9,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},      
+            // {id:10,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800},     
+            // {id:11,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800}
         ],               // 购物车列表
         hasList:false,          // 列表是否有数据
         totalPrice:0,           // 总价，初始为0
@@ -57,13 +59,27 @@ Page({
         goodsNums:0
     },
     onLoad(options) {
-      
+        this.getCartInfo();
     },
     onShow() {
-        this.setData({
-          hasList: true,
-        });
+        // this.setData({
+        //   hasList: true,
+        // });
         this.getTotalPrice();
+    },
+    getCartInfo() {
+        const data ={
+            userid:45
+        };
+        utils.sendRequest(api.CartInfo, data, this.handleCartInfo.bind(this));
+    },
+    handleCartInfo(res) {
+        let list = res.data.result;
+        this.setData({
+            hasList: true,
+            carts:list
+        });
+        console.log(this.data.carts)
     },
   /**
    * 当前商品选中事件
@@ -71,8 +87,8 @@ Page({
     selectList(e) {
         const index = e.currentTarget.dataset.index;
         let carts = this.data.carts;
-        const selected = carts[index].selected;
-        carts[index].selected = !selected;
+        const selected = carts[index].select;
+        carts[index].select = !selected;
         this.setData({
           carts: carts
         });
@@ -102,13 +118,12 @@ Page({
    * 购物车全选事件
    */
     selectAll(e) {
-        console.log(e)
         let selectAllStatus = this.data.selectAllStatus;
         selectAllStatus = !selectAllStatus;
         let carts = this.data.carts;
 
         for (let i = 0; i < carts.length; i++) {
-          carts[i].selected = selectAllStatus;
+          carts[i].select = selectAllStatus;
         }
 
         this.setData({
@@ -122,6 +137,7 @@ Page({
    * 绑定加数量事件
    */
     addCount(e) {
+        // console.log(e)
         const index = e.currentTarget.dataset.index;
         let carts = this.data.carts;
         let num = carts[index].num;
@@ -131,6 +147,7 @@ Page({
           carts: carts
         });
         this.getTotalPrice();
+        // console.log(carts)
     },
 
   /**
@@ -139,13 +156,13 @@ Page({
     minusCount(e) {
         const index = e.currentTarget.dataset.index;
         let carts = this.data.carts;
-        let num = carts[index].num;
+        let num = carts[index].goods_number;
         let goods = carts.length;                       
         if(num <= 1){
           return false;
         }
         num = num - 1;
-        carts[index].num = num;
+        carts[index].goods_number = goods_number;
         this.setData({
           carts: carts,
           goodsNums: goods

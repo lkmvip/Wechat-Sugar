@@ -27,7 +27,7 @@
 .detail-text {
 	width: 600rpx;
 	font-size: 30rpx;
-	border-right: 1rpx solid #ebebeb;
+	line-height: 60rpx;
 }
 .detail-price {
 	width: 300rpx;
@@ -49,7 +49,6 @@
 	font-size: 26rpx;
 	color: #666;
 	display: flex;
-	justify-content: space-between;
 }
 /*商品保障信息*/
 .detail-save {
@@ -101,8 +100,11 @@
 	width: 355rpx;
 }
 .hot-img{
-	width: 355rpx;
-	height: 400rxp;
+	width: 280rpx;
+	height: 280rpx;
+	margin: 0 auto;
+	display: block; 
+	border: 1 solid #ececec;
 }
 .hot-price{
 	width: 100%;
@@ -138,7 +140,7 @@
 }
 .go-index {
 	box-sizing: border-box;
-	border-right:1rpx solid #eee; 
+	border-right:1rpx solid #eee;
 }
 .tab-img{
 	width: 50rpx;
@@ -197,21 +199,23 @@
 	position: absolute;
 	top: -60rpx;
 	left: 30rpx;
-	border-radius: 5rpx; 
+	border-radius: 5rpx;
+	display: block; 
 }
 .dialog-closed {
-	width: 50rpx;
-	height: 50rpx;
+	width: 30rpx;
+	height: 30rpx;
 	float: right;
-	margin: 30rpx 30rpx 0 0; 
+	margin: 20rpx 20rpx 0 0; 
 }
 .dialog-price {
-	width: 370rpx;
+	width: 400rpx;
 	height: 150rpx;
 	font-size: 40rpx;
 	color: #ff4341;
 	line-height: 150rpx;
-	text-align: right;
+	float: right;
+
 }
 .dialog-data {
 	width: 100%;
@@ -220,13 +224,13 @@
 	margin-top:20rpx;  
 }
 .dialog-text {
-	height: 85rpx;
-	line-height: 85rpx;
+	height: 90rpx;
+	line-height: 90rpx;
 	color: #666;
 	font-size: 30rpx;
 	margin: 0 20rpx; 
 }
-.dialog-more {
+/* .dialog-more {
 	width: 100%;
 	display: flex;
 	margin-top:20rpx;  
@@ -249,4 +253,16 @@
 .ondata {
 	color: #ff8685;
 	border-color: #ff8685;
+} */
+.all-num {
+	width: 30rpx;
+	height: 30rpx;
+	position: absolute;
+	left: 175rpx;
+	background: #fe4241;
+	color: #fff;
+	border-radius: 50%;
+	font-size: 14rpx;
+	text-align: center;
+	line-height: 30rpx; 
 }

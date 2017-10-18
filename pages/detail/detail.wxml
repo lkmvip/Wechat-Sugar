@@ -14,14 +14,15 @@
 							<text class="make-money">赚29.4</text>						
 						</view>
 					</view>
-					<view class="detail-like">
-						<image bindtap="handleAddLike" data-id="{{item.id}}" src="/image/like{{likeNum != '' ? 'on' : ''}}.png" class="like-img"/>
-					</view>				
+<!-- 暂时不需要					<block wx:if="{{notNeed}}">
+						<view class="detail-like">
+							<image bindtap="handleAddLike" data-id="{{item.id}}" src="/image/like{{likeNum != '' ? 'on' : ''}}.png" class="like-img"/>
+						</view>
+					</block>	 -->			
 				</view>
 				<view class="detail-msg">
-					<text>在售人数:1234</text>
 					<text>库存:{{item.inventory == null ? 0 : item.inventory}}</text>
-					<text>销量:{{item.goodsnumber}}</text>
+					<text style="margin-left: 150rpx;">销量:{{item.goodsnumber}}</text>
 				</view>		
 			</view>
 		</block>
@@ -44,19 +45,22 @@
     	</view>
     	<!-- 详情内容 -->
     	<view class="navbar-content" hidden="{{activeIndex != 0}}">
-			<image class="detail-img" src="/image/gf1.png"></image>
-			<image class="detail-img" src="/image/gf1.png"></image>
+    		<block wx:for="{{goodsInfo}}" wx:key="index">
+				<image class="detail-img" wx:for="{{item.goods_desc}}"  wx:key="index" src="{{item}}"></image>
+			</block>
     	</view>
     	<!-- 热门内容 -->
         <view class="navbar-hot" hidden="{{activeIndex != 1}}">
 			<view class="hot-list" wx:for-items="{{hotList}}" wx:key="{{index}}">
-				<image class="hot-img" src="{{item.url}}"></image>
-				<view style="font-size: 30rpx;">{{item.title}}</view>
+					<image class="hot-img" src="{{item.goods_img}}" data-id="{{item.id}}" bindtap="handleGoDetail"></image>
+				<view style="font-size: 30rpx;">{{item.name}}</view>
 				<view class="hot-price">
-					<text class="new-price">￥{{item.newPrice}}</text>
+					<text class="new-price">￥{{item.shopprice}}</text>
 					<text class="through">/</text>
-					<text class="make-money">赚{{item.oldPrice}}</text>	
-					<image style="float: right;" bindtap="handleAddLike" data-id="1" src="/image/like{{likeIndex == true ? 'on' : ''}}.png" class="like-img"/>					
+					<text class="make-money">赚{{item.market_price}}</text>
+					<block wx:if="{{notNeed}}">
+						<image style="float: right;" bindtap="handleAddLike" data-id="1" src="/image/like{{likeIndex == true ? 'on' : ''}}.png" class="like-img"/>	
+					</block>				
 				</view>
 			</view>
         </view>
@@ -66,21 +70,24 @@
 <view class="detail-bottom">
 	<view class="detail-left">
 		<view class="go-index" bindtap="handleGoIndex">
-			<image class="tab-img" src="/image/tabicon/tabicon-a1.png" background-size="cover"></image>
+			<image class="tab-img" src="/image/tabicon/tabicon-a1.png"></image>
 			<view>首页</view>
 		</view>
 		<view class="go-cart" bindtap="handleGoCart">
-			<image class="tab-img" src="/image/tabicon/tabicon-a3.png" background-size="cover"></image>
+			<view class="all-num">{{cartNums}}</view>
+			<image class="tab-img" src="/image/tabicon/tabicon-a3.png"></image>
 			<view>购物车</view>
 		</view>
 	</view>
 	<view class="detail-right">
-		<view class="add-cart" bindtap="handleAddCart">
-			加入购物车
-		</view>
-		<view class="go-pay" bindtap="handleGoPay">
-			立即购买
-		</view>
+		<block wx:for="{{goodsInfo}}" wx:key="index">
+			<view class="add-cart" bindtap="handleAddCart" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}">
+				加入购物车
+			</view>
+			<view class="go-pay" bindtap="handleGoPay" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}">
+				立即购买
+			</view>
+		</block>
 	</view>
 	
 </view>
@@ -88,28 +95,30 @@
 	    <view class="zan-dialog__mask"  />
 	    <view class="zan-dialog__container">
 	      <view class="dialog-content">
-			<image class="dialog-img" src="/image/gf.png" background-size="cover"></image>
-			<image bindtap="handleClosedModel" class="dialog-closed" src="/image/closed.png" background-size="cover"></image>
-			<view class="dialog-price">￥100</view>
+			<block wx:for="{{goodsInfo}}" wx:key="index">
+				<image class="dialog-img" src="{{item.goods_img}}"></image>
+				<image bindtap="handleClosedModel" class="dialog-closed" src="/image/closed.png"></image>
+				<view class="dialog-price">￥{{item.price}}</view>
+			</block>
 			<view class="dialog-data">
 				<view class="dialog-text" >数量:</view>
 				<view class="cart-count">
-                    <text class="cart-count-down" bindtap="minusCount" data-index="{{index}}">－</text>
-                    <text class="cart-count-num" style="height: 100%;font-size: 30rpx;">{{num}}</text>
-                    <text class="cart-count-add" bindtap="addCount" data-index="{{index}}">＋</text>
+                    <text class="cart-count-down" bindtap="minusCount">－</text>
+                    <text class="cart-count-num" >{{num}}</text>
+                    <text class="cart-count-add" bindtap="addCount">＋</text>
                 </view>
 			</view>
-			<view class="dialog-more">
-				<view class="dialog-text" >规格:</view>
-				<view class="dialog-num">
-                    <text class="now-num {{on==0?'ondata':''}}" data-index="0" bindtap="handleSpec">10ml</text>
-                    <text class="now-num {{on==1?'ondata':''}}" data-index="1" bindtap="handleSpec">10ml</text>
-                    <text class="now-num {{on==2?'ondata':''}}" data-index="2" bindtap="handleSpec">10ml</text>
-                    <text class="now-num {{on==3?'ondata':''}}" data-index="3" bindtap="handleSpec">10ml</text>
-                </view>
-			</view>
-				
-				
+<!-- 			<block wx:if="{{notNeed}}">                           不知道需要不需要
+				<view class="dialog-more">
+					<view class="dialog-text" >规格:</view>
+					<view class="dialog-num">
+	                    <text class="now-num {{on==0?'ondata':''}}" data-index="0" bindtap="handleSpec">10ml</text>
+	                    <text class="now-num {{on==1?'ondata':''}}" data-index="1" bindtap="handleSpec">10ml</text>
+	                    <text class="now-num {{on==2?'ondata':''}}" data-index="2" bindtap="handleSpec">10ml</text>
+	                    <text class="now-num {{on==3?'ondata':''}}" data-index="3" bindtap="handleSpec">10ml</text>
+	                </view>
+				</view>
+			</block> -->
 	      </view>
 	    </view>
 </view>

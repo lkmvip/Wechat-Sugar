@@ -16,38 +16,14 @@ Page({
             "正品保证",
             "七天无理由退换货。"
         ],
-        hotList:[
-            {   id:0,
-                url:'/image/gf.png',
-                title:"白熊化妆品，美肤多效面霜50g,白熊化妆品。",
-                newPrice:"998",
-                oldPrice:"1999",
-            },
-            {   id:1,
-                url:'/image/gf.png',
-                title:"白熊化妆品，美肤多效面霜50g,白熊化妆品。",
-                newPrice:"998",
-                oldPrice:"1999",
-            },
-            {   id:2,
-                url:'/image/gf.png',
-                title:"白熊化妆品，美肤多效面霜50g,白熊化妆品。",
-                newPrice:"998",
-                oldPrice:"1999",
-            },
-            {   id:3,
-                url:'/image/gf.png',
-                title:"白熊化妆品，美肤多效面霜50g,白熊化妆品。",
-                newPrice:"998",
-                oldPrice:"1999",
-            },
-        ],
+        hotList:[],
         showDialog: false,
         on:0,
         num:1,
         goodsId:'',
         goodsInfo:[],
-        likeNum:''
+        likeNum:'',
+        notNeed:false
          
     },
 
@@ -60,6 +36,9 @@ Page({
             goodsId: id
         })
         this.getDetailInfo();
+    },
+    onReady() {
+        this.getCartGoodsNum();
     },
     /**
     * 用户点击右上角分享
@@ -82,105 +61,170 @@ Page({
             goodsInfo:goodsList
         })
     },
-    // 添加收藏
-    handleAddLike: function(e) {
-        let islike = this.data.likeIndex,
-            id = e.target.dataset.id,
-            goods = this.data.goodsId;
-            this.setData({
-                likeIndex : !islike
-            });
-        if (!islike) {
-            wx.showToast({
-              title: '收藏成功',
-              icon: 'success',
-              duration: 2000,
-              mask:true
-            });
-            console.log(id)
-            this.setData({
-                likeNum : id
-            });
-            const data ={
-                userid:45,
-                id:id
-            };
-            utils.sendRequest(api.LikeInfoAdd, data, this.handleAddLikeSucc.bind(this));
-        }else {
-            wx.showToast({
-              title: '取消收藏',
-              icon: 'success',
-              duration: 2000,
-              mask:true
-            })
-            this.setData({
-                likeNum : ''
-            })
-            const data ={
-                userid:45,
-                id:id
-            };
-            utils.sendRequest(api.LikeInfoDel, data, this.handleAddLikeSucc.bind(this));  
-        }
+    getCartGoodsNum() {
+        const data ={
+            userid:45
+        };
+        utils.sendRequest(api.CartGoodsNum, data, this.handleCartNum.bind(this));
     },
-    handleAddLikeSucc(res) {
-        console.log(res)
+    handleCartNum(res) {
+        let num = res.data.result;
+        this.setData({
+            cartNums:num
+        })
     },
+    // // 添加收藏
+    // handleAddLike: function(e) {
+    //     let islike = this.data.likeIndex,
+    //         id = e.target.dataset.id,
+    //         goods = this.data.goodsId;
+    //         this.setData({
+    //             likeIndex : !islike
+    //         });
+    //     if (!islike) {
+    //         wx.showToast({
+    //           title: '收藏成功',
+    //           icon: 'success',
+    //           duration: 2000,
+    //           mask:true
+    //         });
+    //         console.log(id)
+    //         this.setData({
+    //             likeNum : id
+    //         });
+    //         const data ={
+    //             userid:45,
+    //             id:id
+    //         };
+    //         utils.sendRequest(api.LikeInfoAdd, data, this.handleAddLikeSucc.bind(this));
+    //     }else {
+    //         wx.showToast({
+    //           title: '取消收藏',
+    //           icon: 'success',
+    //           duration: 2000,
+    //           mask:true
+    //         })
+    //         this.setData({
+    //             likeNum : ''
+    //         })
+    //         const data ={
+    //             userid:45,
+    //             id:id
+    //         };
+    //         utils.sendRequest(api.LikeInfoDel, data, this.handleAddLikeSucc.bind(this));  
+    //     }
+    // },
+    // handleAddLikeSucc(res) {
+    //     console.log(res)
+    // },                                   ---------------------- 暂时不添加收藏这个功能 -----------------
     // 点击tab选项卡
     tabClick: function (e) {
+        let ifget = e.currentTarget.id;
+        if (ifget == 1) {
+            const data ={
+                limit:2,  
+                limitIndex:0
+            };
+            utils.sendRequest(api.AllGoodsUrl, data, this.handleHotInfo.bind(this));
+        }
         this.setData({
             activeIndex: e.currentTarget.id
         });
     },
+    //请求热门商品的接口
+    handleHotInfo(res) {
+        let list = res.data.data;
+         this.setData({
+            hotList: list
+        });
+    },
     // 显示商品规格弹窗
-    handleAddCart:function() {
+    handleAddCart(e) {
         this.setData({
           showDialog: !this.data.showDialog
         });
+        let goodsId = e.target.dataset.id,
+            goodsName = e.target.dataset.name,
+            goodsPrice = e.target.dataset.price,
+            num = this.data.num,
+            _this = this;
         if (!this.data.showDialog) {
-            wx.switchTab({
-              url: '/pages/cart/index'
-            })
+            const data = {
+                userid:45,
+                goodsId:goodsId,
+                goods_name:goodsName,
+                goods_price:goodsPrice,
+                goods_number:num
+            };
+            utils.sendRequest(api.AddGoodtoCart, data, _this.handleAddGoodtoCartSucc.bind(_this));
         }
     },
+    handleAddGoodtoCartSucc(res) {
+        let code = res.statusCode;
+        if(code == 200) {
+            wx.showModal({
+              content: '加入购物车成功',
+              showCancel: false
+            })
+        }
+        this.getCartGoodsNum()
+    },
     // 弹窗上的关闭
-    handleClosedModel:function() {
+    handleClosedModel() {
         this.setData({
           showDialog: false
         });
     },
     // 前往订单页面
-    handleGoPay:function() {
+    handleGoPay(e) {
         this.setData({
           showDialog: !this.data.showDialog
         });
+        let goodsId = e.target.dataset.id,
+            goodsName = e.target.dataset.name,
+            goodsPrice = e.target.dataset.price,
+            num = this.data.num,
+            _this = this;
         if (!this.data.showDialog) {
-            wx.navigateTo({
+            const data = {
+                userid:45,
+                goodsId:goodsId,
+                goods_name:goodsName,
+                goods_price:goodsPrice,
+                goods_number:num
+            };
+            utils.sendRequest(api.AddGoodtoCart, data, _this.handleGoPaySucc.bind(_this));
+        }
+    },
+    //请求成功后跳转
+    handleGoPaySucc(res) {
+        let code = res.statusCode;
+        if (code == 200) {
+            wx.redirectTo({
               url: '/pages/orderdetail/index'
             })
         }
     },
     // 前往首页
-    handleGoIndex: function() {
+    handleGoIndex() {
         wx.switchTab({
           url: '/pages/index/index'
         })
     },
     // 前往购物车
-    handleGoCart: function() {
+    handleGoCart() {
         wx.switchTab({
           url: '/pages/cart/index'
         })
     },
     // 操作数量
-    handleSpec: function(e) {
-        console.log(e)
+    handleSpec(e) {
         this.setData({
             on:e.currentTarget.dataset.index
         })
     },
   /**
-   * 绑定减数量事件
+   * 绑定加数量事件
    */
     addCount(e) {
         let num = this.data.num;
@@ -188,7 +232,6 @@ Page({
         this.setData({
           num: num
         });
-        // this.getTotalPrice();
     },
 
   /**
@@ -204,6 +247,11 @@ Page({
           num: num
 
         });
-        // this.getTotalPrice();
+    },
+    handleGoDetail(e) {
+        let isId = e. currentTarget.dataset.id;
+        wx.redirectTo({
+            url: '/pages/detail/detail?id='+isId
+        });
     }
 })
