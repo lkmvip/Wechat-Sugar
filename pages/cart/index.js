@@ -54,7 +54,7 @@ Page({
             // {id:11,title:'素米 500g',image:'/image/gf.png',num:1,price:100.80,selected:true,stock:800}
         ],               // 购物车列表
         hasList:false,          // 列表是否有数据
-        totalPrice:0,           // 总价，初始为0
+        //totalPrice:0,         // 总价，初始为0
         selectAllStatus:true,    // 全选状态，默认全选,
         goodsNums:0
     },
@@ -65,7 +65,7 @@ Page({
         // this.setData({
         //   hasList: true,
         // });
-        this.getTotalPrice();
+        // this.getTotalPrice();
     },
     getCartInfo() {
         const data ={
@@ -75,11 +75,13 @@ Page({
     },
     handleCartInfo(res) {
         let list = res.data.result;
+        console.log(list)
         this.setData({
             hasList: true,
             carts:list
         });
-        console.log(this.data.carts)
+        this.getTotalPrice();
+
     },
   /**
    * 当前商品选中事件
@@ -140,14 +142,13 @@ Page({
         // console.log(e)
         const index = e.currentTarget.dataset.index;
         let carts = this.data.carts;
-        let num = carts[index].num;
+        let num = parseInt(carts[index].goods_number);
         num = num + 1;
-        carts[index].num = num;
+        carts[index].goods_number = num;
         this.setData({
           carts: carts
         });
         this.getTotalPrice();
-        // console.log(carts)
     },
 
   /**
@@ -156,13 +157,13 @@ Page({
     minusCount(e) {
         const index = e.currentTarget.dataset.index;
         let carts = this.data.carts;
-        let num = carts[index].goods_number;
+        let num = parseInt(carts[index].goods_number);
         let goods = carts.length;                       
         if(num <= 1){
           return false;
         }
         num = num - 1;
-        carts[index].goods_number = goods_number;
+        carts[index].goods_number = num;
         this.setData({
           carts: carts,
           goodsNums: goods
@@ -178,8 +179,8 @@ Page({
         let carts = this.data.carts;             // 获取购物车列表
         let total = 0;
         for(let i = 0; i<carts.length; i++) {         // 循环列表得到每个数据
-          if(carts[i].selected) {                     // 判断选中才会计算价格
-            total += carts[i].num * carts[i].price;   // 所有价格加起来
+          if(carts[i].select) {                     // 判断选中才会计算价格
+            total += carts[i].goods_number * carts[i].goods_price;   // 所有价格加起来
           }
         }
         this.setData({                                // 最后赋值到data中渲染到页面

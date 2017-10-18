@@ -42,7 +42,7 @@
 }
 .cart-list .cart-pro-name{
     display: inline-block;
-    width: 280rpx;
+    width: 415rpx;
     font-size: 28rpx;
     overflow: hidden;
 }
@@ -89,8 +89,8 @@
 }
 .cart-del{
 	position: absolute;
-	right: 0rpx;
-	top: -40rpx;
+	right: -10rpx;
+	top: -30rpx;
     width: 50rpx;
     height: 50rpx;
     text-align: center;

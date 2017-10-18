@@ -9,9 +9,9 @@
                     <icon wx:else type="circle" class="cart-pro-select" color="#000" data-index="{{index}}" bindtap="selectList"/>
                     <navigator url="../detail/detail?id={{item.goods_id}}"><image class="cart-thumb" src="{{item.goods_img}}"></image></navigator>
                     <view style="width: 100%;position: relative;">
-                        <text class="cart-pro-name">{{item.name}}</text>
+                        <text class="cart-pro-name">{{item.goods_name}}</text>
                         <view class="cart-msg">
-                            <text class="cart-pro-stock left">库存:{{item.qty}}</text>
+                            <text class="cart-pro-stock left">库存:{{item.qty == null ? 0 : item.qty}}</text>
                             <text class="cart-pro-spec right">规格:1</text>  
                         </view>
                         <view class="cart-count-box">
