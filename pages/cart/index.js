@@ -250,7 +250,7 @@ Page({
         let islist = this.data.CartIdList,
             isGo = this.data.selectAllStatus,
             carList = this.data.carts,
-            isNext= " ";
+            isNext=false;
             carList.map( item => {
                         if(item.select){
                             isNext = true;

@@ -292,7 +292,7 @@ swiper{
 }
 
 .like-goods {
-    width: 350rpx;
+    width: 355rpx;
     margin-top: 16rpx;
     padding-bottom: 20rpx;
 
@@ -304,8 +304,7 @@ swiper{
 }
 
 .like-price {
-    padding: 0 15rpx;
-    /* height:140rpx; */
+    padding: 0 10rpx;
 }
 
 .like-title {
