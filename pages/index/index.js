@@ -97,6 +97,7 @@ Page({
     },
     //请求TabUrl成功处理函数
     handleGetTabSucc(res) {
+        console.log(111)
         let tabList = res.data.data;
         this.setData({
             tab : tabList
@@ -277,7 +278,7 @@ Page({
         let code = res.statusCode;
         if(code == 200) {
             wx.showModal({
-              content: '加入购物车成功',
+              content: '在购物车等您哟~',
               showCancel: false
             })
         }

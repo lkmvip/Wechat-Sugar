@@ -21,7 +21,10 @@ function sendRequest(path, data, callback) {
             'content-type': 'application/json'
         },
         method: "POST",
-        success: callback
+        success: callback,
+        fail:(res)=>{
+          console.log(res)
+        }
     })
 }
 

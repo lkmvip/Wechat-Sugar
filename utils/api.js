@@ -21,5 +21,7 @@ module.exports = {
 	LikeInfoDel:LikeInfo+'removeCollection',//删除收藏
 	LikeInfoUrl:LikeInfo+'getCollectionList',//获取收藏列表
 	CartGoodsNum:ShopCart+'showCarListCount',// 获取购物车商品数量
-	CartInfo:ShopCart+'getCarList'//购物车信息
+	CartInfo:ShopCart+'getCarList',//购物车信息
+	CartDelInfo:ShopCart+'DelGoodtoCart',//删除购物车信息
+	UpdateGoodsAmount:ShopCart+'UpdateGoodsAmount'//改变商品数量接口
 }
