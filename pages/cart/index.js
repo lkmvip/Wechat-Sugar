@@ -51,10 +51,6 @@ Page({
         this.getCartInfo();
     },
     onShow() {
-        // this.setData({
-        //   hasList: true,
-        // });
-        // this.getTotalPrice();
         this.getCartInfo();
 
     },
@@ -72,8 +68,7 @@ Page({
         this.setData({
             hasList: true,
             carts:list,
-            CartIdList:arr,
-            isGoOn:arr
+            CartIdList:arr
         });
         this.getTotalPrice();
 
@@ -150,8 +145,6 @@ Page({
                     });
                     this.getTotalPrice();
             };
-
-        // console.log(this.data.CartIdList)
     },
     
 /**
@@ -256,54 +249,26 @@ Page({
     handleGoOrder() {
         let islist = this.data.CartIdList,
             isGo = this.data.selectAllStatus,
-            carList = [];
-        const islist1 = this.data.isGoOn;
-
-            // if(isGo == true) {
-       
-                if(islist1.length != islist1.length){
-                    // wx.redirectTo({
-                    //      //目的页面地址
-                    //      url: '../orderdetail/index?cartid='+islist,
-                     
-                    // })
-                             console.log(2)
-                
-            }else {
-                             console.log(1)
-                
-            }
-            // if(isGo == false){
-            //     carList = [];
-
-            // }
-            // console.log(islist.length)
-            // console.log(islist1.length)
-
-        //     // carList.map( item => {
-        //     //     fff.push(item.select)
-        //     // })
-        //         // wx.redirectTo({
-        //         //      //目的页面地址
-        //         //      url: '../orderdetail/index?cartid='+islist,
-                 
-        //         // })
-          
-        //         // if(isGo = true){
-        //             carList.map( item => {
-        //                 if(item.select = true){
-        //                     wx.redirectTo({
-        //                          //目的页面地址
-        //                          url: '../orderdetail/index?cartid='+islist,
+            carList = this.data.carts,
+            isNext= " ";
+            carList.map( item => {
+                        if(item.select){
+                            isNext = true;
+                        }
+                    })
+                    if(isNext){
+                            wx.redirectTo({
+                                 //目的页面地址
+                                 url: '../orderdetail/index?cartid='+islist,
                              
-        //                     })
-        //                     return 
-        //                 }
-        //             })
-        //         // }else {
-        //         //     console.log(2)
-        //         // }
-        // return
+                            })
+                    }else{
+                        wx.showModal({
+                          content: '在购物车等您哟~',
+                          showCancel: false
+                        })
+                    }
+
     }
     // // 清空购物车   取消这个功能
     // clearCart() {
