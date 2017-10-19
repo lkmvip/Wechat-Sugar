@@ -188,7 +188,7 @@ Page({
           totalPrice: total.toFixed(2),
         });
     },
-    // 清空购物车
+    // 清空购物车   取消这个功能
     clearCart() {
         let _this = this
         wx.showModal({
