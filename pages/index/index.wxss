@@ -292,7 +292,7 @@ swiper{
 }
 
 .like-goods {
-    width: 355rpx;
+    width: 360rpx;
     margin-top: 16rpx;
     padding-bottom: 20rpx;
 
