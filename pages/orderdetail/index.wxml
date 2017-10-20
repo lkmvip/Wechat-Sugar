@@ -4,20 +4,22 @@
 	<view class="addr-arrow">></view>
 </view>
 <!-- 订单页详情 -->
-<view class="goods-msg">
-	<image class="msg-img" src="/image/gf.png"></image>
-	<view class="msg-text">
-		<view class="msg-tit">贝斯面膜</view>
-		<view class="msg-day">七天退换</view>
-		<view class="msg-price">
-			<text style="color: #ff4242;font-size: 30rpx;">￥89.00</text>
-			<text style="color: #666;font-size: 30rpx;">X1</text>	
+<block wx:for="{{orderList}}" wx:key="index">
+	<view class="goods-msg">
+		<image class="msg-img" src="{{item.goods_img}}"></image>
+		<view class="msg-text">
+			<view class="msg-tit">{{item.goods_name}}</view>
+			<view class="msg-day">七天退换</view>
+			<view class="msg-price">
+				<text style="color: #ff4242;font-size: 30rpx;">￥{{item.goods_price}}</text>
+				<text style="color: #666;font-size: 30rpx;">X{{item.goods_number}}</text>	
+			</view>
 		</view>
 	</view>
-</view>
+</block>
 <view class="shop-way">
 	<text style="font-size: 30rpx;margin-left:20rpx; ">配送方式</text>
-	<text style="font-size: 30rpx;margin-right:20rpx;">快递:￥89</text>	
+	<text style="font-size: 30rpx;margin-right:20rpx;">快递:￥{{freightNum}}</text>	
 </view>
 <view class="msg-ticket">
 	<!-- <text style="font-size: 30rpx;margin-left:20rpx; ">优惠卷 -->
@@ -36,7 +38,7 @@
 	<view class="msg-gopay">
 		<view class="gopay-price">
 			应付金额:￥
-			<text style="color: #ff4242;">00123</text>
+			<text style="color: #ff4242;">{{orderPrice}}</text>
 
 		</view>
 		<view class="go-submit" bindtap="handleOrderPay">提交订单</view>

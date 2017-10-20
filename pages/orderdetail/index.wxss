@@ -20,6 +20,7 @@
 	width: 100%;
 	background: #fff;
 	display: flex;
+	margin-top: 10rpx; 
 }
 .msg-img {
 	width: 160rpx;

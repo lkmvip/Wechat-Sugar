@@ -37,7 +37,7 @@
       <view bindtap="open" class="city-true">确定</view>
     </view>
     <picker-view-column>
-      <view wx:for="{{provinces}}" wx:key="item" style="line-height: 50rpx;padding-left:10rpx;text-align: center;">{{item}}</view>
+      <view wx:for="{{provinces}}" wx:key="{{item.id}}" style="line-height: 50rpx;padding-left:10rpx;text-align: center;">{{item.name}}</view>
     </picker-view-column>
     <picker-view-column>
       <view wx:for="{{citys}}" wx:key="item" style="line-height: 50rpx;padding-left:10rpx;text-align: center;">{{item}}</view>

@@ -97,7 +97,6 @@ Page({
     },
     //请求TabUrl成功处理函数
     handleGetTabSucc(res) {
-        console.log(111)
         let tabList = res.data.data;
         this.setData({
             tab : tabList

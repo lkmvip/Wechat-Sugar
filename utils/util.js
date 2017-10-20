@@ -24,8 +24,8 @@ function sendRequest(path, data, callback) {
         success: callback,
         fail:(res)=>{
           console.log(res)
-        }
-    })
+        } 
+    })  
 }
 
 module.exports = {

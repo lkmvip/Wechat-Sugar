@@ -2,11 +2,11 @@ var cityData = [
   {
     "name":"北京",
     "code":"110000",
-    "sub": [
+    "child": [
       {
         "name": "北京市",
         "code": "110000",
-        "sub":[
+        "child":[
             {
               "name":"东城区",
               "code":"110101"
@@ -78,11 +78,11 @@ var cityData = [
   {
     "name":"天津",
     "code":"120000",
-    "sub": [
+    "child": [
       {
         "name": "天津市",
         "code": "120000",
-        "sub":[
+        "child":[
             {
               "name":"和平区",
               "code":"120101"
@@ -154,11 +154,11 @@ var cityData = [
   {
     "name":"河北省",
     "code":"130000",
-    "sub":[
+    "child":[
       {
         "name":"石家庄市",
         "code":"130100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"130101"
@@ -256,7 +256,7 @@ var cityData = [
       {
         "name":"唐山市",
         "code":"130200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"130201"
@@ -322,7 +322,7 @@ var cityData = [
       {
         "name":"秦皇岛市",
         "code":"130300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"130301"
@@ -360,7 +360,7 @@ var cityData = [
       {
         "name":"邯郸市",
         "code":"130400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"130401"
@@ -446,7 +446,7 @@ var cityData = [
       {
         "name":"邢台市",
         "code":"130500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"130501"
@@ -532,7 +532,7 @@ var cityData = [
       {
         "name":"保定市",
         "code":"130600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"130601"
@@ -642,7 +642,7 @@ var cityData = [
       {
         "name":"张家口市",
         "code":"130700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"130701"
@@ -720,7 +720,7 @@ var cityData = [
       {
         "name":"承德市",
         "code":"130800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"130801"
@@ -774,7 +774,7 @@ var cityData = [
       {
         "name":"沧州市",
         "code":"130900",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"130901"
@@ -848,7 +848,7 @@ var cityData = [
       {
         "name":"廊坊市",
         "code":"131000",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"131001"
@@ -898,7 +898,7 @@ var cityData = [
       {
         "name":"衡水市",
         "code":"131100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"131101"
@@ -954,11 +954,11 @@ var cityData = [
   {
     "name":"山西省",
     "code":"140000",
-    "sub":[
+    "child":[
       {
         "name":"太原市",
         "code":"140100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"140101"
@@ -1008,7 +1008,7 @@ var cityData = [
       {
         "name":"大同市",
         "code":"140200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"140201"
@@ -1062,7 +1062,7 @@ var cityData = [
       {
         "name":"阳泉市",
         "code":"140300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"140301"
@@ -1092,7 +1092,7 @@ var cityData = [
       {
         "name":"长治市",
         "code":"140400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"140401"
@@ -1154,7 +1154,7 @@ var cityData = [
       {
         "name":"晋城市",
         "code":"140500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"140501"
@@ -1188,7 +1188,7 @@ var cityData = [
       {
         "name":"朔州市",
         "code":"140600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"140601"
@@ -1222,7 +1222,7 @@ var cityData = [
       {
         "name":"晋中市",
         "code":"140700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"140701"
@@ -1276,7 +1276,7 @@ var cityData = [
       {
         "name":"运城市",
         "code":"140800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"140801"
@@ -1338,7 +1338,7 @@ var cityData = [
       {
         "name":"忻州市",
         "code":"140900",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"140901"
@@ -1404,7 +1404,7 @@ var cityData = [
       {
         "name":"临汾市",
         "code":"141000",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"141001"
@@ -1482,7 +1482,7 @@ var cityData = [
       {
         "name":"吕梁市",
         "code":"141100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"141101"
@@ -1546,11 +1546,11 @@ var cityData = [
   {
     "name":"内蒙古自治区",
     "code":"150000",
-    "sub":[
+    "child":[
       {
         "name":"呼和浩特市",
         "code":"150100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"150101"
@@ -1596,7 +1596,7 @@ var cityData = [
       {
         "name":"包头市",
         "code":"150200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"150201"
@@ -1642,7 +1642,7 @@ var cityData = [
       {
         "name":"乌海市",
         "code":"150300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"150301"
@@ -1664,7 +1664,7 @@ var cityData = [
       {
         "name":"赤峰市",
         "code":"150400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"150401"
@@ -1722,7 +1722,7 @@ var cityData = [
       {
         "name":"通辽市",
         "code":"150500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"150501"
@@ -1764,7 +1764,7 @@ var cityData = [
       {
         "name":"鄂尔多斯市",
         "code":"150600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"150601"
@@ -1806,7 +1806,7 @@ var cityData = [
       {
         "name":"呼伦贝尔市",
         "code":"150700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"150701"
@@ -1872,7 +1872,7 @@ var cityData = [
       {
         "name":"巴彦淖尔市",
         "code":"150800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"150801"
@@ -1910,7 +1910,7 @@ var cityData = [
       {
         "name":"乌兰察布市",
         "code":"150900",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"150901"
@@ -1964,7 +1964,7 @@ var cityData = [
       {
         "name":"兴安盟",
         "code":"152200",
-        "sub":[
+        "child":[
           {
             "name":"乌兰浩特市",
             "code":"152201"
@@ -1994,7 +1994,7 @@ var cityData = [
       {
         "name":"锡林郭勒盟",
         "code":"152500",
-        "sub":[
+        "child":[
           {
             "name":"二连浩特市",
             "code":"152501"
@@ -2048,7 +2048,7 @@ var cityData = [
       {
         "name":"阿拉善盟",
         "code":"152900",
-        "sub":[
+        "child":[
           {
             "name":"阿拉善左旗",
             "code":"152921"
@@ -2068,11 +2068,11 @@ var cityData = [
   {
     "name":"辽宁省",
     "code":"210000",
-    "sub":[
+    "child":[
       {
         "name":"沈阳市",
         "code":"210100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"210101"
@@ -2134,7 +2134,7 @@ var cityData = [
       {
         "name":"大连市",
         "code":"210200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"210201"
@@ -2184,7 +2184,7 @@ var cityData = [
       {
         "name":"鞍山市",
         "code":"210300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"210301"
@@ -2222,7 +2222,7 @@ var cityData = [
       {
         "name":"抚顺市",
         "code":"210400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"210401"
@@ -2260,7 +2260,7 @@ var cityData = [
       {
         "name":"本溪市",
         "code":"210500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"210501"
@@ -2294,7 +2294,7 @@ var cityData = [
       {
         "name":"丹东市",
         "code":"210600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"210601"
@@ -2328,7 +2328,7 @@ var cityData = [
       {
         "name":"锦州市",
         "code":"210700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"210701"
@@ -2366,7 +2366,7 @@ var cityData = [
       {
         "name":"营口市",
         "code":"210800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"210801"
@@ -2400,7 +2400,7 @@ var cityData = [
       {
         "name":"阜新市",
         "code":"210900",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"210901"
@@ -2438,7 +2438,7 @@ var cityData = [
       {
         "name":"辽阳市",
         "code":"211000",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"211001"
@@ -2476,7 +2476,7 @@ var cityData = [
       {
         "name":"盘锦市",
         "code":"211100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"211101"
@@ -2502,7 +2502,7 @@ var cityData = [
       {
         "name":"铁岭市",
         "code":"211200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"211201"
@@ -2540,7 +2540,7 @@ var cityData = [
       {
         "name":"朝阳市",
         "code":"211300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"211301"
@@ -2578,7 +2578,7 @@ var cityData = [
       {
         "name":"葫芦岛市",
         "code":"211400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"211401"
@@ -2614,11 +2614,11 @@ var cityData = [
   {
     "name":"吉林省",
     "code":"220000",
-    "sub":[
+    "child":[
       {
         "name":"长春市",
         "code":"220100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"220101"
@@ -2668,7 +2668,7 @@ var cityData = [
       {
         "name":"吉林市",
         "code":"220200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"220201"
@@ -2714,7 +2714,7 @@ var cityData = [
       {
         "name":"四平市",
         "code":"220300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"220301"
@@ -2748,7 +2748,7 @@ var cityData = [
       {
         "name":"辽源市",
         "code":"220400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"220401"
@@ -2774,7 +2774,7 @@ var cityData = [
       {
         "name":"通化市",
         "code":"220500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"220501"
@@ -2812,7 +2812,7 @@ var cityData = [
       {
         "name":"白山市",
         "code":"220600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"220601"
@@ -2846,7 +2846,7 @@ var cityData = [
       {
         "name":"松原市",
         "code":"220700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"220701"
@@ -2876,7 +2876,7 @@ var cityData = [
       {
         "name":"白城市",
         "code":"220800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"220801"
@@ -2906,7 +2906,7 @@ var cityData = [
       {
         "name":"延边朝鲜族自治州",
         "code":"222400",
-        "sub":[
+        "child":[
           {
             "name":"延吉市",
             "code":"222401"
@@ -2946,11 +2946,11 @@ var cityData = [
   {
     "name":"黑龙江省",
     "code":"230000",
-    "sub":[
+    "child":[
       {
         "name":"哈尔滨市",
         "code":"230100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"230101"
@@ -3032,7 +3032,7 @@ var cityData = [
       {
         "name":"齐齐哈尔市",
         "code":"230200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"230201"
@@ -3106,7 +3106,7 @@ var cityData = [
       {
         "name":"鸡西市",
         "code":"230300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"230301"
@@ -3152,7 +3152,7 @@ var cityData = [
       {
         "name":"鹤岗市",
         "code":"230400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"230401"
@@ -3194,7 +3194,7 @@ var cityData = [
       {
         "name":"双鸭山市",
         "code":"230500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"230501"
@@ -3236,7 +3236,7 @@ var cityData = [
       {
         "name":"大庆市",
         "code":"230600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"230601"
@@ -3282,7 +3282,7 @@ var cityData = [
       {
         "name":"伊春市",
         "code":"230700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"230701"
@@ -3360,7 +3360,7 @@ var cityData = [
       {
         "name":"佳木斯市",
         "code":"230800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"230801"
@@ -3410,7 +3410,7 @@ var cityData = [
       {
         "name":"七台河市",
         "code":"230900",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"230901"
@@ -3436,7 +3436,7 @@ var cityData = [
       {
         "name":"牡丹江市",
         "code":"231000",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"231001"
@@ -3486,7 +3486,7 @@ var cityData = [
       {
         "name":"黑河市",
         "code":"231100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"231101"
@@ -3520,7 +3520,7 @@ var cityData = [
       {
         "name":"绥化市",
         "code":"231200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"231201"
@@ -3570,7 +3570,7 @@ var cityData = [
       {
         "name":"大兴安岭地区",
         "code":"232700",
-        "sub":[
+        "child":[
           {
             "name":"呼玛县",
             "code":"232721"
@@ -3590,11 +3590,11 @@ var cityData = [
   {
     "name":"上海",
     "code":"310000",
-    "sub": [
+    "child": [
       {
         "name":"上海市",
         "code": "310000",
-        "sub":[
+        "child":[
             {
               "name":"黄浦区",
               "code":"310101"
@@ -3670,11 +3670,11 @@ var cityData = [
   {
     "name":"江苏省",
     "code":"320000",
-    "sub":[
+    "child":[
       {
         "name":"南京市",
         "code":"320100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"320101"
@@ -3728,7 +3728,7 @@ var cityData = [
       {
         "name":"无锡市",
         "code":"320200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"320201"
@@ -3770,7 +3770,7 @@ var cityData = [
       {
         "name":"徐州市",
         "code":"320300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"320301"
@@ -3820,7 +3820,7 @@ var cityData = [
       {
         "name":"常州市",
         "code":"320400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"320401"
@@ -3858,7 +3858,7 @@ var cityData = [
       {
         "name":"苏州市",
         "code":"320500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"320501"
@@ -3904,7 +3904,7 @@ var cityData = [
       {
         "name":"南通市",
         "code":"320600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"320601"
@@ -3946,7 +3946,7 @@ var cityData = [
       {
         "name":"连云港市",
         "code":"320700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"320701"
@@ -3980,7 +3980,7 @@ var cityData = [
       {
         "name":"淮安市",
         "code":"320800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"320801"
@@ -4022,7 +4022,7 @@ var cityData = [
       {
         "name":"盐城市",
         "code":"320900",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"320901"
@@ -4068,7 +4068,7 @@ var cityData = [
       {
         "name":"扬州市",
         "code":"321000",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"321001"
@@ -4102,7 +4102,7 @@ var cityData = [
       {
         "name":"镇江市",
         "code":"321100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"321101"
@@ -4136,7 +4136,7 @@ var cityData = [
       {
         "name":"泰州市",
         "code":"321200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"321201"
@@ -4170,7 +4170,7 @@ var cityData = [
       {
         "name":"宿迁市",
         "code":"321300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"321301"
@@ -4202,11 +4202,11 @@ var cityData = [
   {
     "name":"浙江省",
     "code":"330000",
-    "sub":[
+    "child":[
       {
         "name":"杭州市",
         "code":"330100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"330101"
@@ -4268,7 +4268,7 @@ var cityData = [
       {
         "name":"宁波市",
         "code":"330200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"330201"
@@ -4322,7 +4322,7 @@ var cityData = [
       {
         "name":"温州市",
         "code":"330300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"330301"
@@ -4376,7 +4376,7 @@ var cityData = [
       {
         "name":"嘉兴市",
         "code":"330400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"330401"
@@ -4414,7 +4414,7 @@ var cityData = [
       {
         "name":"湖州市",
         "code":"330500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"330501"
@@ -4444,7 +4444,7 @@ var cityData = [
       {
         "name":"绍兴市",
         "code":"330600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"330601"
@@ -4478,7 +4478,7 @@ var cityData = [
       {
         "name":"金华市",
         "code":"330700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"330701"
@@ -4524,7 +4524,7 @@ var cityData = [
       {
         "name":"衢州市",
         "code":"330800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"330801"
@@ -4558,7 +4558,7 @@ var cityData = [
       {
         "name":"舟山市",
         "code":"330900",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"330901"
@@ -4584,7 +4584,7 @@ var cityData = [
       {
         "name":"台州市",
         "code":"331000",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"331001"
@@ -4630,7 +4630,7 @@ var cityData = [
       {
         "name":"丽水市",
         "code":"331100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"331101"
@@ -4678,11 +4678,11 @@ var cityData = [
   {
     "name":"安徽省",
     "code":"340000",
-    "sub":[
+    "child":[
       {
         "name":"合肥市",
         "code":"340100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"340101"
@@ -4728,7 +4728,7 @@ var cityData = [
       {
         "name":"芜湖市",
         "code":"340200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"340201"
@@ -4770,7 +4770,7 @@ var cityData = [
       {
         "name":"蚌埠市",
         "code":"340300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"340301"
@@ -4808,7 +4808,7 @@ var cityData = [
       {
         "name":"淮南市",
         "code":"340400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"340401"
@@ -4842,7 +4842,7 @@ var cityData = [
       {
         "name":"马鞍山市",
         "code":"340500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"340501"
@@ -4876,7 +4876,7 @@ var cityData = [
       {
         "name":"淮北市",
         "code":"340600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"340601"
@@ -4902,7 +4902,7 @@ var cityData = [
       {
         "name":"铜陵市",
         "code":"340700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"340701"
@@ -4928,7 +4928,7 @@ var cityData = [
       {
         "name":"安庆市",
         "code":"340800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"340801"
@@ -4982,7 +4982,7 @@ var cityData = [
       {
         "name":"黄山市",
         "code":"341000",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"341001"
@@ -5020,7 +5020,7 @@ var cityData = [
       {
         "name":"滁州市",
         "code":"341100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"341101"
@@ -5062,7 +5062,7 @@ var cityData = [
       {
         "name":"阜阳市",
         "code":"341200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"341201"
@@ -5104,7 +5104,7 @@ var cityData = [
       {
         "name":"宿州市",
         "code":"341300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"341301"
@@ -5134,7 +5134,7 @@ var cityData = [
       {
         "name":"六安市",
         "code":"341500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"341501"
@@ -5172,7 +5172,7 @@ var cityData = [
       {
         "name":"亳州市",
         "code":"341600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"341601"
@@ -5198,7 +5198,7 @@ var cityData = [
       {
         "name":"池州市",
         "code":"341700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"341701"
@@ -5224,7 +5224,7 @@ var cityData = [
       {
         "name":"宣城市",
         "code":"341800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"341801"
@@ -5264,11 +5264,11 @@ var cityData = [
   {
     "name":"福建省",
     "code":"350000",
-    "sub":[
+    "child":[
       {
         "name":"福州市",
         "code":"350100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"350101"
@@ -5330,7 +5330,7 @@ var cityData = [
       {
         "name":"厦门市",
         "code":"350200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"350201"
@@ -5364,7 +5364,7 @@ var cityData = [
       {
         "name":"莆田市",
         "code":"350300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"350301"
@@ -5394,7 +5394,7 @@ var cityData = [
       {
         "name":"三明市",
         "code":"350400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"350401"
@@ -5452,7 +5452,7 @@ var cityData = [
       {
         "name":"泉州市",
         "code":"350500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"350501"
@@ -5510,7 +5510,7 @@ var cityData = [
       {
         "name":"漳州市",
         "code":"350600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"350601"
@@ -5564,7 +5564,7 @@ var cityData = [
       {
         "name":"南平市",
         "code":"350700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"350701"
@@ -5614,7 +5614,7 @@ var cityData = [
       {
         "name":"龙岩市",
         "code":"350800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"350801"
@@ -5652,7 +5652,7 @@ var cityData = [
       {
         "name":"宁德市",
         "code":"350900",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"350901"
@@ -5700,11 +5700,11 @@ var cityData = [
   {
     "name":"江西省",
     "code":"360000",
-    "sub":[
+    "child":[
       {
         "name":"南昌市",
         "code":"360100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"360101"
@@ -5750,7 +5750,7 @@ var cityData = [
       {
         "name":"景德镇市",
         "code":"360200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"360201"
@@ -5776,7 +5776,7 @@ var cityData = [
       {
         "name":"萍乡市",
         "code":"360300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"360301"
@@ -5806,7 +5806,7 @@ var cityData = [
       {
         "name":"九江市",
         "code":"360400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"360401"
@@ -5868,7 +5868,7 @@ var cityData = [
       {
         "name":"新余市",
         "code":"360500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"360501"
@@ -5886,7 +5886,7 @@ var cityData = [
       {
         "name":"鹰潭市",
         "code":"360600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"360601"
@@ -5908,7 +5908,7 @@ var cityData = [
       {
         "name":"赣州市",
         "code":"360700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"360701"
@@ -5990,7 +5990,7 @@ var cityData = [
       {
         "name":"吉安市",
         "code":"360800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"360801"
@@ -6052,7 +6052,7 @@ var cityData = [
       {
         "name":"宜春市",
         "code":"360900",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"360901"
@@ -6102,7 +6102,7 @@ var cityData = [
       {
         "name":"抚州市",
         "code":"361000",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"361001"
@@ -6156,7 +6156,7 @@ var cityData = [
       {
         "name":"上饶市",
         "code":"361100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"361101"
@@ -6216,11 +6216,11 @@ var cityData = [
   {
     "name":"山东省",
     "code":"370000",
-    "sub":[
+    "child":[
       {
         "name":"济南市",
         "code":"370100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"370101"
@@ -6270,7 +6270,7 @@ var cityData = [
       {
         "name":"青岛市",
         "code":"370200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"370201"
@@ -6320,7 +6320,7 @@ var cityData = [
       {
         "name":"淄博市",
         "code":"370300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"370301"
@@ -6362,7 +6362,7 @@ var cityData = [
       {
         "name":"枣庄市",
         "code":"370400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"370401"
@@ -6396,7 +6396,7 @@ var cityData = [
       {
         "name":"东营市",
         "code":"370500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"370501"
@@ -6426,7 +6426,7 @@ var cityData = [
       {
         "name":"烟台市",
         "code":"370600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"370601"
@@ -6484,7 +6484,7 @@ var cityData = [
       {
         "name":"潍坊市",
         "code":"370700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"370701"
@@ -6542,7 +6542,7 @@ var cityData = [
       {
         "name":"济宁市",
         "code":"370800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"370801"
@@ -6596,7 +6596,7 @@ var cityData = [
       {
         "name":"泰安市",
         "code":"370900",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"370901"
@@ -6630,7 +6630,7 @@ var cityData = [
       {
         "name":"威海市",
         "code":"371000",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"371001"
@@ -6656,7 +6656,7 @@ var cityData = [
       {
         "name":"日照市",
         "code":"371100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"371101"
@@ -6682,7 +6682,7 @@ var cityData = [
       {
         "name":"莱芜市",
         "code":"371200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"371201"
@@ -6700,7 +6700,7 @@ var cityData = [
       {
         "name":"临沂市",
         "code":"371300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"371301"
@@ -6758,7 +6758,7 @@ var cityData = [
       {
         "name":"德州市",
         "code":"371400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"371401"
@@ -6812,7 +6812,7 @@ var cityData = [
       {
         "name":"聊城市",
         "code":"371500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"371501"
@@ -6854,7 +6854,7 @@ var cityData = [
       {
         "name":"滨州市",
         "code":"371600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"371601"
@@ -6892,7 +6892,7 @@ var cityData = [
       {
         "name":"菏泽市",
         "code":"371700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"371701"
@@ -6940,11 +6940,11 @@ var cityData = [
   {
     "name":"河南省",
     "code":"410000",
-    "sub":[
+    "child":[
       {
         "name":"郑州市",
         "code":"410100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"410101"
@@ -7002,7 +7002,7 @@ var cityData = [
       {
         "name":"开封市",
         "code":"410200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"410201"
@@ -7048,7 +7048,7 @@ var cityData = [
       {
         "name":"洛阳市",
         "code":"410300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"410301"
@@ -7118,7 +7118,7 @@ var cityData = [
       {
         "name":"平顶山市",
         "code":"410400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"410401"
@@ -7168,7 +7168,7 @@ var cityData = [
       {
         "name":"安阳市",
         "code":"410500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"410501"
@@ -7214,7 +7214,7 @@ var cityData = [
       {
         "name":"鹤壁市",
         "code":"410600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"410601"
@@ -7244,7 +7244,7 @@ var cityData = [
       {
         "name":"新乡市",
         "code":"410700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"410701"
@@ -7302,7 +7302,7 @@ var cityData = [
       {
         "name":"焦作市",
         "code":"410800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"410801"
@@ -7352,7 +7352,7 @@ var cityData = [
       {
         "name":"濮阳市",
         "code":"410900",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"410901"
@@ -7386,7 +7386,7 @@ var cityData = [
       {
         "name":"许昌市",
         "code":"411000",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"411001"
@@ -7420,7 +7420,7 @@ var cityData = [
       {
         "name":"漯河市",
         "code":"411100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"411101"
@@ -7450,7 +7450,7 @@ var cityData = [
       {
         "name":"三门峡市",
         "code":"411200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"411201"
@@ -7484,7 +7484,7 @@ var cityData = [
       {
         "name":"南阳市",
         "code":"411300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"411301"
@@ -7546,7 +7546,7 @@ var cityData = [
       {
         "name":"商丘市",
         "code":"411400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"411401"
@@ -7592,7 +7592,7 @@ var cityData = [
       {
         "name":"信阳市",
         "code":"411500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"411501"
@@ -7642,7 +7642,7 @@ var cityData = [
       {
         "name":"周口市",
         "code":"411600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"411601"
@@ -7692,7 +7692,7 @@ var cityData = [
       {
         "name":"驻马店市",
         "code":"411700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"411701"
@@ -7748,11 +7748,11 @@ var cityData = [
   {
     "name":"湖北省",
     "code":"420000",
-    "sub":[
+    "child":[
       {
         "name":"武汉市",
         "code":"420100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"420101"
@@ -7814,7 +7814,7 @@ var cityData = [
       {
         "name":"黄石市",
         "code":"420200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"420201"
@@ -7848,7 +7848,7 @@ var cityData = [
       {
         "name":"十堰市",
         "code":"420300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"420301"
@@ -7890,7 +7890,7 @@ var cityData = [
       {
         "name":"宜昌市",
         "code":"420500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"420501"
@@ -7952,7 +7952,7 @@ var cityData = [
       {
         "name":"襄阳市",
         "code":"420600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"420601"
@@ -7998,7 +7998,7 @@ var cityData = [
       {
         "name":"鄂州市",
         "code":"420700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"420701"
@@ -8020,7 +8020,7 @@ var cityData = [
       {
         "name":"荆门市",
         "code":"420800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"420801"
@@ -8050,7 +8050,7 @@ var cityData = [
       {
         "name":"孝感市",
         "code":"420900",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"420901"
@@ -8088,7 +8088,7 @@ var cityData = [
       {
         "name":"荆州市",
         "code":"421000",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"421001"
@@ -8130,7 +8130,7 @@ var cityData = [
       {
         "name":"黄冈市",
         "code":"421100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"421101"
@@ -8180,7 +8180,7 @@ var cityData = [
       {
         "name":"咸宁市",
         "code":"421200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"421201"
@@ -8214,7 +8214,7 @@ var cityData = [
       {
         "name":"随州市",
         "code":"421300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"421301"
@@ -8236,7 +8236,7 @@ var cityData = [
       {
         "name":"恩施土家族苗族自治州",
         "code":"422800",
-        "sub":[
+        "child":[
           {
             "name":"恩施市",
             "code":"422801"
@@ -8292,11 +8292,11 @@ var cityData = [
   {
     "name":"湖南省",
     "code":"430000",
-    "sub":[
+    "child":[
       {
         "name":"长沙市",
         "code":"430100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"430101"
@@ -8342,7 +8342,7 @@ var cityData = [
       {
         "name":"株洲市",
         "code":"430200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"430201"
@@ -8388,7 +8388,7 @@ var cityData = [
       {
         "name":"湘潭市",
         "code":"430300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"430301"
@@ -8418,7 +8418,7 @@ var cityData = [
       {
         "name":"衡阳市",
         "code":"430400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"430401"
@@ -8476,7 +8476,7 @@ var cityData = [
       {
         "name":"邵阳市",
         "code":"430500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"430501"
@@ -8534,7 +8534,7 @@ var cityData = [
       {
         "name":"岳阳市",
         "code":"430600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"430601"
@@ -8580,7 +8580,7 @@ var cityData = [
       {
         "name":"常德市",
         "code":"430700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"430701"
@@ -8626,7 +8626,7 @@ var cityData = [
       {
         "name":"张家界市",
         "code":"430800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"430801"
@@ -8652,7 +8652,7 @@ var cityData = [
       {
         "name":"益阳市",
         "code":"430900",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"430901"
@@ -8686,7 +8686,7 @@ var cityData = [
       {
         "name":"郴州市",
         "code":"431000",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"431001"
@@ -8740,7 +8740,7 @@ var cityData = [
       {
         "name":"永州市",
         "code":"431100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"431101"
@@ -8794,7 +8794,7 @@ var cityData = [
       {
         "name":"怀化市",
         "code":"431200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"431201"
@@ -8852,7 +8852,7 @@ var cityData = [
       {
         "name":"娄底市",
         "code":"431300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"431301"
@@ -8882,7 +8882,7 @@ var cityData = [
       {
         "name":"湘西土家族苗族自治州",
         "code":"433100",
-        "sub":[
+        "child":[
           {
             "name":"吉首市",
             "code":"433101"
@@ -8922,11 +8922,11 @@ var cityData = [
   {
     "name":"广东省",
     "code":"440000",
-    "sub":[
+    "child":[
       {
         "name":"广州市",
         "code":"440100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"440101"
@@ -8980,7 +8980,7 @@ var cityData = [
       {
         "name":"韶关市",
         "code":"440200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"440201"
@@ -9030,7 +9030,7 @@ var cityData = [
       {
         "name":"深圳市",
         "code":"440300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"440301"
@@ -9064,7 +9064,7 @@ var cityData = [
       {
         "name":"珠海市",
         "code":"440400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"440401"
@@ -9086,7 +9086,7 @@ var cityData = [
       {
         "name":"汕头市",
         "code":"440500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"440501"
@@ -9124,7 +9124,7 @@ var cityData = [
       {
         "name":"佛山市",
         "code":"440600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"440601"
@@ -9154,7 +9154,7 @@ var cityData = [
       {
         "name":"江门市",
         "code":"440700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"440701"
@@ -9192,7 +9192,7 @@ var cityData = [
       {
         "name":"湛江市",
         "code":"440800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"440801"
@@ -9238,7 +9238,7 @@ var cityData = [
       {
         "name":"茂名市",
         "code":"440900",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"440901"
@@ -9268,7 +9268,7 @@ var cityData = [
       {
         "name":"肇庆市",
         "code":"441200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"441201"
@@ -9310,7 +9310,7 @@ var cityData = [
       {
         "name":"惠州市",
         "code":"441300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"441301"
@@ -9340,7 +9340,7 @@ var cityData = [
       {
         "name":"梅州市",
         "code":"441400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"441401"
@@ -9382,7 +9382,7 @@ var cityData = [
       {
         "name":"汕尾市",
         "code":"441500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"441501"
@@ -9408,7 +9408,7 @@ var cityData = [
       {
         "name":"河源市",
         "code":"441600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"441601"
@@ -9442,7 +9442,7 @@ var cityData = [
       {
         "name":"阳江市",
         "code":"441700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"441701"
@@ -9468,7 +9468,7 @@ var cityData = [
       {
         "name":"清远市",
         "code":"441800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"441801"
@@ -9510,21 +9510,21 @@ var cityData = [
       {
         "name":"东莞市",
         "code":"441900",
-        "sub":[
+        "child":[
 
         ]
       },
       {
         "name":"中山市",
         "code":"442000",
-        "sub":[
+        "child":[
 
         ]
       },
       {
         "name":"潮州市",
         "code":"445100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"445101"
@@ -9546,7 +9546,7 @@ var cityData = [
       {
         "name":"揭阳市",
         "code":"445200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"445201"
@@ -9576,7 +9576,7 @@ var cityData = [
       {
         "name":"云浮市",
         "code":"445300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"445301"
@@ -9608,11 +9608,11 @@ var cityData = [
   {
     "name":"广西壮族自治区",
     "code":"450000",
-    "sub":[
+    "child":[
       {
         "name":"南宁市",
         "code":"450100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"450101"
@@ -9670,7 +9670,7 @@ var cityData = [
       {
         "name":"柳州市",
         "code":"450200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"450201"
@@ -9720,7 +9720,7 @@ var cityData = [
       {
         "name":"桂林市",
         "code":"450300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"450301"
@@ -9798,7 +9798,7 @@ var cityData = [
       {
         "name":"梧州市",
         "code":"450400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"450401"
@@ -9836,7 +9836,7 @@ var cityData = [
       {
         "name":"北海市",
         "code":"450500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"450501"
@@ -9862,7 +9862,7 @@ var cityData = [
       {
         "name":"防城港市",
         "code":"450600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"450601"
@@ -9888,7 +9888,7 @@ var cityData = [
       {
         "name":"钦州市",
         "code":"450700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"450701"
@@ -9914,7 +9914,7 @@ var cityData = [
       {
         "name":"贵港市",
         "code":"450800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"450801"
@@ -9944,7 +9944,7 @@ var cityData = [
       {
         "name":"玉林市",
         "code":"450900",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"450901"
@@ -9982,7 +9982,7 @@ var cityData = [
       {
         "name":"百色市",
         "code":"451000",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"451001"
@@ -10040,7 +10040,7 @@ var cityData = [
       {
         "name":"贺州市",
         "code":"451100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"451101"
@@ -10070,7 +10070,7 @@ var cityData = [
       {
         "name":"河池市",
         "code":"451200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"451201"
@@ -10124,7 +10124,7 @@ var cityData = [
       {
         "name":"来宾市",
         "code":"451300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"451301"
@@ -10158,7 +10158,7 @@ var cityData = [
       {
         "name":"崇左市",
         "code":"451400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"451401"
@@ -10198,11 +10198,11 @@ var cityData = [
   {
     "name":"海南省",
     "code":"460000",
-    "sub":[
+    "child":[
       {
         "name":"海口市",
         "code":"460100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"460101"
@@ -10228,7 +10228,7 @@ var cityData = [
       {
         "name":"三亚市",
         "code":"460200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"460201"
@@ -10254,7 +10254,7 @@ var cityData = [
       {
         "name":"三沙市",
         "code":"460300",
-        "sub":[
+        "child":[
           {
             "name":"西沙群岛",
             "code":"460321"
@@ -10338,11 +10338,11 @@ var cityData = [
   {
     "name":"重庆",
     "code":"500000",
-    "sub": [
+    "child": [
       {
         "name": "重庆市",
         "code": "500000",
-        "sub":[
+        "child":[
             {
               "name":"万州区",
               "code":"500101"
@@ -10502,11 +10502,11 @@ var cityData = [
   {
     "name":"四川省",
     "code":"510000",
-    "sub":[
+    "child":[
       {
         "name":"成都市",
         "code":"510100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"510101"
@@ -10592,7 +10592,7 @@ var cityData = [
       {
         "name":"自贡市",
         "code":"510300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"510301"
@@ -10626,7 +10626,7 @@ var cityData = [
       {
         "name":"攀枝花市",
         "code":"510400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"510401"
@@ -10656,7 +10656,7 @@ var cityData = [
       {
         "name":"泸州市",
         "code":"510500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"510501"
@@ -10694,7 +10694,7 @@ var cityData = [
       {
         "name":"德阳市",
         "code":"510600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"510601"
@@ -10728,7 +10728,7 @@ var cityData = [
       {
         "name":"绵阳市",
         "code":"510700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"510701"
@@ -10774,7 +10774,7 @@ var cityData = [
       {
         "name":"广元市",
         "code":"510800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"510801"
@@ -10812,7 +10812,7 @@ var cityData = [
       {
         "name":"遂宁市",
         "code":"510900",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"510901"
@@ -10842,7 +10842,7 @@ var cityData = [
       {
         "name":"内江市",
         "code":"511000",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"511001"
@@ -10872,7 +10872,7 @@ var cityData = [
       {
         "name":"乐山市",
         "code":"511100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"511101"
@@ -10926,7 +10926,7 @@ var cityData = [
       {
         "name":"南充市",
         "code":"511300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"511301"
@@ -10972,7 +10972,7 @@ var cityData = [
       {
         "name":"眉山市",
         "code":"511400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"511401"
@@ -11006,7 +11006,7 @@ var cityData = [
       {
         "name":"宜宾市",
         "code":"511500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"511501"
@@ -11056,7 +11056,7 @@ var cityData = [
       {
         "name":"广安市",
         "code":"511600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"511601"
@@ -11090,7 +11090,7 @@ var cityData = [
       {
         "name":"达州市",
         "code":"511700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"511701"
@@ -11128,7 +11128,7 @@ var cityData = [
       {
         "name":"雅安市",
         "code":"511800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"511801"
@@ -11170,7 +11170,7 @@ var cityData = [
       {
         "name":"巴中市",
         "code":"511900",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"511901"
@@ -11200,7 +11200,7 @@ var cityData = [
       {
         "name":"资阳市",
         "code":"512000",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"512001"
@@ -11226,7 +11226,7 @@ var cityData = [
       {
         "name":"阿坝藏族羌族自治州",
         "code":"513200",
-        "sub":[
+        "child":[
           {
             "name":"汶川县",
             "code":"513221"
@@ -11284,7 +11284,7 @@ var cityData = [
       {
         "name":"甘孜藏族自治州",
         "code":"513300",
-        "sub":[
+        "child":[
           {
             "name":"康定县",
             "code":"513321"
@@ -11362,7 +11362,7 @@ var cityData = [
       {
         "name":"凉山彝族自治州",
         "code":"513400",
-        "sub":[
+        "child":[
           {
             "name":"西昌市",
             "code":"513401"
@@ -11438,11 +11438,11 @@ var cityData = [
   {
     "name":"贵州省",
     "code":"520000",
-    "sub":[
+    "child":[
       {
         "name":"贵阳市",
         "code":"520100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"520101"
@@ -11492,7 +11492,7 @@ var cityData = [
       {
         "name":"六盘水市",
         "code":"520200",
-        "sub":[
+        "child":[
           {
             "name":"钟山区",
             "code":"520201"
@@ -11514,7 +11514,7 @@ var cityData = [
       {
         "name":"遵义市",
         "code":"520300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"520301"
@@ -11580,7 +11580,7 @@ var cityData = [
       {
         "name":"安顺市",
         "code":"520400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"520401"
@@ -11614,7 +11614,7 @@ var cityData = [
       {
         "name":"毕节市",
         "code":"520500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"520501"
@@ -11656,7 +11656,7 @@ var cityData = [
       {
         "name":"铜仁市",
         "code":"520600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"520601"
@@ -11706,7 +11706,7 @@ var cityData = [
       {
         "name":"黔西南布依族苗族自治州",
         "code":"522300",
-        "sub":[
+        "child":[
           {
             "name":"兴义市",
             "code":"522301"
@@ -11744,7 +11744,7 @@ var cityData = [
       {
         "name":"黔东南苗族侗族自治州",
         "code":"522600",
-        "sub":[
+        "child":[
           {
             "name":"凯里市",
             "code":"522601"
@@ -11814,7 +11814,7 @@ var cityData = [
       {
         "name":"黔南布依族苗族自治州",
         "code":"522700",
-        "sub":[
+        "child":[
           {
             "name":"都匀市",
             "code":"522701"
@@ -11870,11 +11870,11 @@ var cityData = [
   {
     "name":"云南省",
     "code":"530000",
-    "sub":[
+    "child":[
       {
         "name":"昆明市",
         "code":"530100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"530101"
@@ -11940,7 +11940,7 @@ var cityData = [
       {
         "name":"曲靖市",
         "code":"530300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"530301"
@@ -11986,7 +11986,7 @@ var cityData = [
       {
         "name":"玉溪市",
         "code":"530400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"530401"
@@ -12032,7 +12032,7 @@ var cityData = [
       {
         "name":"保山市",
         "code":"530500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"530501"
@@ -12062,7 +12062,7 @@ var cityData = [
       {
         "name":"昭通市",
         "code":"530600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"530601"
@@ -12116,7 +12116,7 @@ var cityData = [
       {
         "name":"丽江市",
         "code":"530700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"530701"
@@ -12146,7 +12146,7 @@ var cityData = [
       {
         "name":"普洱市",
         "code":"530800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"530801"
@@ -12196,7 +12196,7 @@ var cityData = [
       {
         "name":"临沧市",
         "code":"530900",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"530901"
@@ -12238,7 +12238,7 @@ var cityData = [
       {
         "name":"楚雄彝族自治州",
         "code":"532300",
-        "sub":[
+        "child":[
           {
             "name":"楚雄市",
             "code":"532301"
@@ -12284,7 +12284,7 @@ var cityData = [
       {
         "name":"红河哈尼族彝族自治州",
         "code":"532500",
-        "sub":[
+        "child":[
           {
             "name":"个旧市",
             "code":"532501"
@@ -12342,7 +12342,7 @@ var cityData = [
       {
         "name":"文山壮族苗族自治州",
         "code":"532600",
-        "sub":[
+        "child":[
           {
             "name":"文山市",
             "code":"532601"
@@ -12380,7 +12380,7 @@ var cityData = [
       {
         "name":"西双版纳傣族自治州",
         "code":"532800",
-        "sub":[
+        "child":[
           {
             "name":"景洪市",
             "code":"532801"
@@ -12398,7 +12398,7 @@ var cityData = [
       {
         "name":"大理白族自治州",
         "code":"532900",
-        "sub":[
+        "child":[
           {
             "name":"大理市",
             "code":"532901"
@@ -12452,7 +12452,7 @@ var cityData = [
       {
         "name":"德宏傣族景颇族自治州",
         "code":"533100",
-        "sub":[
+        "child":[
           {
             "name":"瑞丽市",
             "code":"533102"
@@ -12478,7 +12478,7 @@ var cityData = [
       {
         "name":"怒江傈僳族自治州",
         "code":"533300",
-        "sub":[
+        "child":[
           {
             "name":"泸水县",
             "code":"533321"
@@ -12500,7 +12500,7 @@ var cityData = [
       {
         "name":"迪庆藏族自治州",
         "code":"533400",
-        "sub":[
+        "child":[
           {
             "name":"香格里拉市",
             "code":"533401"
@@ -12520,11 +12520,11 @@ var cityData = [
   {
     "name":"西藏自治区",
     "code":"540000",
-    "sub":[
+    "child":[
       {
         "name":"拉萨市",
         "code":"540100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"540101"
@@ -12566,7 +12566,7 @@ var cityData = [
       {
         "name":"日喀则市",
         "code":"540200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"540201"
@@ -12648,7 +12648,7 @@ var cityData = [
       {
         "name":"昌都市",
         "code":"540300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"540301"
@@ -12702,7 +12702,7 @@ var cityData = [
       {
         "name":"山南地区",
         "code":"542200",
-        "sub":[
+        "child":[
           {
             "name":"乃东县",
             "code":"542221"
@@ -12756,7 +12756,7 @@ var cityData = [
       {
         "name":"那曲地区",
         "code":"542400",
-        "sub":[
+        "child":[
           {
             "name":"那曲县",
             "code":"542421"
@@ -12806,7 +12806,7 @@ var cityData = [
       {
         "name":"阿里地区",
         "code":"542500",
-        "sub":[
+        "child":[
           {
             "name":"普兰县",
             "code":"542521"
@@ -12840,7 +12840,7 @@ var cityData = [
       {
         "name":"林芝地区",
         "code":"542600",
-        "sub":[
+        "child":[
           {
             "name":"林芝县",
             "code":"542621"
@@ -12876,11 +12876,11 @@ var cityData = [
   {
     "name":"陕西省",
     "code":"610000",
-    "sub":[
+    "child":[
       {
         "name":"西安市",
         "code":"610100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"610101"
@@ -12942,7 +12942,7 @@ var cityData = [
       {
         "name":"铜川市",
         "code":"610200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"610201"
@@ -12968,7 +12968,7 @@ var cityData = [
       {
         "name":"宝鸡市",
         "code":"610300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"610301"
@@ -13026,7 +13026,7 @@ var cityData = [
       {
         "name":"咸阳市",
         "code":"610400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"610401"
@@ -13092,7 +13092,7 @@ var cityData = [
       {
         "name":"渭南市",
         "code":"610500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"610501"
@@ -13146,7 +13146,7 @@ var cityData = [
       {
         "name":"延安市",
         "code":"610600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"610601"
@@ -13208,7 +13208,7 @@ var cityData = [
       {
         "name":"汉中市",
         "code":"610700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"610701"
@@ -13262,7 +13262,7 @@ var cityData = [
       {
         "name":"榆林市",
         "code":"610800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"610801"
@@ -13320,7 +13320,7 @@ var cityData = [
       {
         "name":"安康市",
         "code":"610900",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"610901"
@@ -13366,7 +13366,7 @@ var cityData = [
       {
         "name":"商洛市",
         "code":"611000",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"611001"
@@ -13406,11 +13406,11 @@ var cityData = [
   {
     "name":"甘肃省",
     "code":"620000",
-    "sub":[
+    "child":[
       {
         "name":"兰州市",
         "code":"620100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"620101"
@@ -13452,7 +13452,7 @@ var cityData = [
       {
         "name":"嘉峪关市",
         "code":"620200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"620201"
@@ -13462,7 +13462,7 @@ var cityData = [
       {
         "name":"金昌市",
         "code":"620300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"620301"
@@ -13480,7 +13480,7 @@ var cityData = [
       {
         "name":"白银市",
         "code":"620400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"620401"
@@ -13510,7 +13510,7 @@ var cityData = [
       {
         "name":"天水市",
         "code":"620500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"620501"
@@ -13548,7 +13548,7 @@ var cityData = [
       {
         "name":"武威市",
         "code":"620600",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"620601"
@@ -13574,7 +13574,7 @@ var cityData = [
       {
         "name":"张掖市",
         "code":"620700",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"620701"
@@ -13608,7 +13608,7 @@ var cityData = [
       {
         "name":"平凉市",
         "code":"620800",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"620801"
@@ -13646,7 +13646,7 @@ var cityData = [
       {
         "name":"酒泉市",
         "code":"620900",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"620901"
@@ -13684,7 +13684,7 @@ var cityData = [
       {
         "name":"庆阳市",
         "code":"621000",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"621001"
@@ -13726,7 +13726,7 @@ var cityData = [
       {
         "name":"定西市",
         "code":"621100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"621101"
@@ -13764,7 +13764,7 @@ var cityData = [
       {
         "name":"陇南市",
         "code":"621200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"621201"
@@ -13810,7 +13810,7 @@ var cityData = [
       {
         "name":"临夏回族自治州",
         "code":"622900",
-        "sub":[
+        "child":[
           {
             "name":"临夏市",
             "code":"622901"
@@ -13848,7 +13848,7 @@ var cityData = [
       {
         "name":"甘南藏族自治州",
         "code":"623000",
-        "sub":[
+        "child":[
           {
             "name":"合作市",
             "code":"623001"
@@ -13888,11 +13888,11 @@ var cityData = [
   {
     "name":"青海省",
     "code":"630000",
-    "sub":[
+    "child":[
       {
         "name":"西宁市",
         "code":"630100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"630101"
@@ -13930,7 +13930,7 @@ var cityData = [
       {
         "name":"海东市",
         "code":"630200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"630201"
@@ -13964,7 +13964,7 @@ var cityData = [
       {
         "name":"海北藏族自治州",
         "code":"632200",
-        "sub":[
+        "child":[
           {
             "name":"门源回族自治县",
             "code":"632221"
@@ -13986,7 +13986,7 @@ var cityData = [
       {
         "name":"黄南藏族自治州",
         "code":"632300",
-        "sub":[
+        "child":[
           {
             "name":"同仁县",
             "code":"632321"
@@ -14008,7 +14008,7 @@ var cityData = [
       {
         "name":"海南藏族自治州",
         "code":"632500",
-        "sub":[
+        "child":[
           {
             "name":"共和县",
             "code":"632521"
@@ -14034,7 +14034,7 @@ var cityData = [
       {
         "name":"果洛藏族自治州",
         "code":"632600",
-        "sub":[
+        "child":[
           {
             "name":"玛沁县",
             "code":"632621"
@@ -14064,7 +14064,7 @@ var cityData = [
       {
         "name":"玉树藏族自治州",
         "code":"632700",
-        "sub":[
+        "child":[
           {
             "name":"玉树市",
             "code":"632701"
@@ -14094,7 +14094,7 @@ var cityData = [
       {
         "name":"海西蒙古族藏族自治州",
         "code":"632800",
-        "sub":[
+        "child":[
           {
             "name":"格尔木市",
             "code":"632801"
@@ -14122,11 +14122,11 @@ var cityData = [
   {
     "name":"宁夏回族自治区",
     "code":"640000",
-    "sub":[
+    "child":[
       {
         "name":"银川市",
         "code":"640100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"640101"
@@ -14160,7 +14160,7 @@ var cityData = [
       {
         "name":"石嘴山市",
         "code":"640200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"640201"
@@ -14182,7 +14182,7 @@ var cityData = [
       {
         "name":"吴忠市",
         "code":"640300",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"640301"
@@ -14212,7 +14212,7 @@ var cityData = [
       {
         "name":"固原市",
         "code":"640400",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"640401"
@@ -14242,7 +14242,7 @@ var cityData = [
       {
         "name":"中卫市",
         "code":"640500",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"640501"
@@ -14266,11 +14266,11 @@ var cityData = [
   {
     "name":"新疆维吾尔自治区",
     "code":"650000",
-    "sub":[
+    "child":[
       {
         "name":"乌鲁木齐市",
         "code":"650100",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"650101"
@@ -14312,7 +14312,7 @@ var cityData = [
       {
         "name":"克拉玛依市",
         "code":"650200",
-        "sub":[
+        "child":[
           {
             "name":"市辖区",
             "code":"650201"
@@ -14338,7 +14338,7 @@ var cityData = [
       {
         "name":"吐鲁番地区",
         "code":"652100",
-        "sub":[
+        "child":[
           {
             "name":"吐鲁番市",
             "code":"652101"
@@ -14356,7 +14356,7 @@ var cityData = [
       {
         "name":"哈密地区",
         "code":"652200",
-        "sub":[
+        "child":[
           {
             "name":"哈密市",
             "code":"652201"
@@ -14374,7 +14374,7 @@ var cityData = [
       {
         "name":"昌吉回族自治州",
         "code":"652300",
-        "sub":[
+        "child":[
           {
             "name":"昌吉市",
             "code":"652301"
@@ -14408,7 +14408,7 @@ var cityData = [
       {
         "name":"博尔塔拉蒙古自治州",
         "code":"652700",
-        "sub":[
+        "child":[
           {
             "name":"博乐市",
             "code":"652701"
@@ -14430,7 +14430,7 @@ var cityData = [
       {
         "name":"巴音郭楞蒙古自治州",
         "code":"652800",
-        "sub":[
+        "child":[
           {
             "name":"库尔勒市",
             "code":"652801"
@@ -14472,7 +14472,7 @@ var cityData = [
       {
         "name":"阿克苏地区",
         "code":"652900",
-        "sub":[
+        "child":[
           {
             "name":"阿克苏市",
             "code":"652901"
@@ -14514,7 +14514,7 @@ var cityData = [
       {
         "name":"克孜勒苏柯尔克孜自治州",
         "code":"653000",
-        "sub":[
+        "child":[
           {
             "name":"阿图什市",
             "code":"653001"
@@ -14536,7 +14536,7 @@ var cityData = [
       {
         "name":"喀什地区",
         "code":"653100",
-        "sub":[
+        "child":[
           {
             "name":"喀什市",
             "code":"653101"
@@ -14590,7 +14590,7 @@ var cityData = [
       {
         "name":"和田地区",
         "code":"653200",
-        "sub":[
+        "child":[
           {
             "name":"和田市",
             "code":"653201"
@@ -14628,7 +14628,7 @@ var cityData = [
       {
         "name":"伊犁哈萨克自治州",
         "code":"654000",
-        "sub":[
+        "child":[
           {
             "name":"伊宁市",
             "code":"654002"
@@ -14742,7 +14742,7 @@ var cityData = [
       {
         "name":"自治区直辖县级行政区划",
         "code":"659000",
-        "sub":[
+        "child":[
           {
             "name":"石河子市",
             "code":"659001"
@@ -14778,11 +14778,11 @@ var cityData = [
   {
     "name":"台湾省",
     "code":"710000",
-    "sub":[
+    "child":[
       {
         "name":"台北市",
         "code":"710100",
-        "sub":[
+        "child":[
           {
             "name":"松山区",
             "code":"710101"
@@ -14836,7 +14836,7 @@ var cityData = [
       {
         "name":"高雄市",
         "code":"710200",
-        "sub":[
+        "child":[
           {
             "name":"盐埕区",
             "code":"710201"
@@ -14994,7 +14994,7 @@ var cityData = [
       {
         "name":"基隆市",
         "code":"710300",
-        "sub":[
+        "child":[
           {
             "name":"中正区",
             "code":"710301"
@@ -15028,7 +15028,7 @@ var cityData = [
       {
         "name":"台中市",
         "code":"710400",
-        "sub":[
+        "child":[
           {
             "name":"中区",
             "code":"710401"
@@ -15150,7 +15150,7 @@ var cityData = [
       {
         "name":"台南市",
         "code":"710500",
-        "sub":[
+        "child":[
           {
             "name":"东区",
             "code":"710501"
@@ -15304,7 +15304,7 @@ var cityData = [
       {
         "name":"新竹市",
         "code":"710600",
-        "sub":[
+        "child":[
           {
             "name":"东区",
             "code":"710601"
@@ -15322,7 +15322,7 @@ var cityData = [
       {
         "name":"嘉义市",
         "code":"710700",
-        "sub":[
+        "child":[
           {
             "name":"东区",
             "code":"710701"
@@ -15336,7 +15336,7 @@ var cityData = [
       {
         "name":"新北市",
         "code":"710800",
-        "sub":[
+        "child":[
           {
             "name":"板桥区",
             "code":"710801"
@@ -15458,7 +15458,7 @@ var cityData = [
       {
         "name":"宜兰县",
         "code":"712200",
-        "sub":[
+        "child":[
           {
             "name":"宜兰市",
             "code":"712201"
@@ -15512,7 +15512,7 @@ var cityData = [
       {
         "name":"桃园县",
         "code":"712300",
-        "sub":[
+        "child":[
           {
             "name":"桃园市",
             "code":"712301"
@@ -15570,7 +15570,7 @@ var cityData = [
       {
         "name":"新竹县",
         "code":"712400",
-        "sub":[
+        "child":[
           {
             "name":"竹北市",
             "code":"712401"
@@ -15628,7 +15628,7 @@ var cityData = [
       {
         "name":"苗栗县",
         "code":"712500",
-        "sub":[
+        "child":[
           {
             "name":"苗栗市",
             "code":"712501"
@@ -15706,7 +15706,7 @@ var cityData = [
       {
         "name":"彰化县",
         "code":"712700",
-        "sub":[
+        "child":[
           {
             "name":"彰化市",
             "code":"712701"
@@ -15816,7 +15816,7 @@ var cityData = [
       {
         "name":"南投县",
         "code":"712800",
-        "sub":[
+        "child":[
           {
             "name":"南投市",
             "code":"712801"
@@ -15874,7 +15874,7 @@ var cityData = [
       {
         "name":"云林县",
         "code":"712900",
-        "sub":[
+        "child":[
           {
             "name":"斗六市",
             "code":"712901"
@@ -15960,7 +15960,7 @@ var cityData = [
       {
         "name":"嘉义县",
         "code":"713000",
-        "sub":[
+        "child":[
           {
             "name":"太保市",
             "code":"713001"
@@ -16038,7 +16038,7 @@ var cityData = [
       {
         "name":"屏东县",
         "code":"713300",
-        "sub":[
+        "child":[
           {
             "name":"屏东市",
             "code":"713301"
@@ -16176,7 +16176,7 @@ var cityData = [
       {
         "name":"台东县",
         "code":"713400",
-        "sub":[
+        "child":[
           {
             "name":"台东市",
             "code":"713401"
@@ -16246,7 +16246,7 @@ var cityData = [
       {
         "name":"花莲县",
         "code":"713500",
-        "sub":[
+        "child":[
           {
             "name":"花莲市",
             "code":"713501"
@@ -16304,7 +16304,7 @@ var cityData = [
       {
         "name":"澎湖县",
         "code":"713600",
-        "sub":[
+        "child":[
           {
             "name":"马公市",
             "code":"713601"
@@ -16336,11 +16336,11 @@ var cityData = [
   {
     "name":"香港特别行政区",
     "code":"810000",
-    "sub":[
+    "child":[
       {
         "name":"香港岛",
         "code":"810100",
-        "sub":[
+        "child":[
           {
             "name":"中西区",
             "code":"810101"
@@ -16362,7 +16362,7 @@ var cityData = [
       {
         "name":"九龙",
         "code":"810200",
-        "sub":[
+        "child":[
           {
             "name":"油尖旺区",
             "code":"810201"
@@ -16388,7 +16388,7 @@ var cityData = [
       {
         "name":"新界",
         "code":"810300",
-        "sub":[
+        "child":[
           {
             "name":"荃湾区",
             "code":"810301"
@@ -16432,11 +16432,11 @@ var cityData = [
   {
     "name":"澳门特别行政区",
     "code":"820000",
-    "sub":[
+    "child":[
       {
         "name":"澳门半岛",
         "code":"820100",
-        "sub":[
+        "child":[
           {
             "name":"花地玛堂区",
             "code":"820101"
@@ -16462,7 +16462,7 @@ var cityData = [
       {
         "name":"氹仔岛",
         "code":"820200",
-        "sub":[
+        "child":[
           {
             "name":"嘉模堂区",
             "code":"820201"
@@ -16472,7 +16472,7 @@ var cityData = [
       {
         "name":"路环岛",
         "code":"820300",
-        "sub":[
+        "child":[
           {
             "name":"圣方济各堂区",
             "code":"820301"

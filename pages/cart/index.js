@@ -44,8 +44,7 @@ Page({
         hasList:false,          // 列表是否有数据
         //totalPrice:0,         // 总价，初始为0
         selectAllStatus:false,    // 全选状态，默认全选,
-        goodsNums:0,
-        CartIdList:[]
+        goodsNums:0
     },
     onLoad(options) {
         this.getCartInfo();
@@ -61,14 +60,10 @@ Page({
         utils.sendRequest(api.CartInfo, data, this.handleCartInfo.bind(this));
     },
     handleCartInfo(res) {
-        let list = res.data.result,
-            arr = [];
-            // console.log(list)
-        list.map( item => arr.push(item.rec_id))
+        let list = res.data.result;
         this.setData({
             hasList: true,
             carts:list,
-            CartIdList:arr
         });
         this.getTotalPrice();
 
@@ -79,17 +74,14 @@ Page({
     deleteList(e) {
         const index = e.currentTarget.dataset.index,
               id = e.currentTarget.dataset.id;
-        let carts = this.data.carts,
-            cartIdList = this.data.CartIdList;
+        let carts = this.data.carts;
         wx.showModal({
           content: '您真的不要人家了嘛？',
           success: res => {
             if (res.confirm) {
                 carts.splice(index,1);
-                cartIdList.splice(index,1);
                 this.setData({
                   carts: carts,
-                  CartIdList:cartIdList
                 });
                 if(!carts.length){
                   this.setData({
@@ -119,31 +111,21 @@ Page({
     selectAll(e) {
         let selectAllStatus = this.data.selectAllStatus;
         selectAllStatus = !selectAllStatus;
-        let carts = this.data.carts,
-            arr = [];
+        let carts = this.data.carts;
             this.setData({// 为true的时候改成false
                 selectAllStatus: selectAllStatus,
             })
 
             if(selectAllStatus == false) {// 当全选没有勾选的时候全部改变商品信息里的按钮为false
-                for (let i = 0; i < carts.length; i++) {
-                    carts[i].select = selectAllStatus;
-                };
-                this.setData({
-                    carts: carts,
-                    CartIdList:[]
-                });
+                carts.map( item => {
+                    item.select = selectAllStatus
+                })
                 this.getTotalPrice();
             }else {// 当全选勾选的时候全部改变商品信息里的按钮为true
-                for (let i = 0; i < carts.length; i++) {
-                  carts[i].select = selectAllStatus;
-                    arr.push(carts[i].rec_id)
-                };
-                    this.setData({
-                      carts: carts,
-                      CartIdList:arr
-                    });
-                    this.getTotalPrice();
+                carts.map( item => {
+                    item.select = selectAllStatus
+                })
+                this.getTotalPrice();
             };
     },
     
@@ -151,30 +133,17 @@ Page({
    * 当前商品选中事件
    */
     selectList(e) {
-        const index = e.currentTarget.dataset.index,//定义下标
-            bindId = e.currentTarget.dataset.id;// 获取每一个点击的购物车ID
+        const index = e.currentTarget.dataset.index;// 获取每一个点击的购物车ID
         let carts = this.data.carts,
-            selected = carts[index].select,
-            idList = this.data.CartIdList,// 获取页面加载是购物车数量数组
-            arr = [];
+            selected = carts[index].select;
         carts[index].select = !selected;
         this.getTotalPrice();
         if (selected != false) {// 点击选中的状态 不是 false时
-            for (var i = 0, len = idList.length; i<len ; i++ ) {// 在这里处理点击每一个删除对应的结算数据
-                if(idList[i] == bindId){//下标对应数据  等于 购物车id 时 才截取数据
-                    idList.splice(i,1)
-                };
-            }
             this.setData({
                 selectAllStatus: false
             })
-        }else {
-            idList.push(bindId)
+            
         };
-        // 修改 购物车ID 列表 点击结算时使用
-        this.setData({
-            CartIdList:idList
-        })
     },
   /**
    * 绑定加数量事件
@@ -236,39 +205,29 @@ Page({
     getTotalPrice() {
         let carts = this.data.carts;             // 获取购物车列表
         let total = 0;
-        for(let i = 0; i<carts.length; i++) {         // 循环列表得到每个数据
-          if(carts[i].select) {                     // 判断选中才会计算价格
-            total += carts[i].goods_number * carts[i].goods_price;   // 所有价格加起来
-          }
-        }
-        this.setData({                                // 最后赋值到data中渲染到页面
+        // 循环列表得到每个数据,判断选中才会计算价格, 所有价格加起来
+        carts.map(item=> item.select?total += item.goods_number * item.goods_price:'')
+        // 最后赋值到data中渲染到页面
+        this.setData({                                
           carts: carts,
           totalPrice: total.toFixed(2),
         });
     },
     handleGoOrder() {
-        let islist = this.data.CartIdList,
-            isGo = this.data.selectAllStatus,
+        let isGo = this.data.selectAllStatus,
             carList = this.data.carts,
-            isNext=false;
+            isNext = false,
+            newArr = [];
             carList.map( item => {
                         if(item.select){
                             isNext = true;
+                            newArr.push(item.rec_id)//跳转页面传值的数组
                         }
-                    })
-                    if(isNext){
-                            wx.redirectTo({
-                                 //目的页面地址
-                                 url: '../orderdetail/index?cartid='+islist,
-                             
-                            })
-                    }else{
-                        wx.showModal({
-                          content: '在购物车等您哟~',
-                          showCancel: false
-                        })
-                    }
-
+            });
+            isNext ?
+            wx.navigateTo({url: '../orderdetail/index?cartid='+newArr})
+            :
+            wx.showModal({content: '在购物车等您哟~',showCancel: false});
     }
     // // 清空购物车   取消这个功能
     // clearCart() {
