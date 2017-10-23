@@ -33,7 +33,6 @@ Page({
         utils.sendRequest(api.OrderList, data, this.handleOrderList.bind(this));
     },
     handleOrderList(res) {
-        console.log(res)
         let result = res.data;
         this.setData({
             orderList: result.cartgoods,
