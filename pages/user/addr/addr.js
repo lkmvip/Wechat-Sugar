@@ -90,7 +90,6 @@ Page({
                 id: id+1
             })
         list.push({name:"收货人",phone:"联系电话",p:province,c:city,sc:county,index:id})
-        console.log(list)
         this.setData({
             addAddr:true,
             addrList:list
@@ -161,14 +160,8 @@ Page({
           newAddr:!this.data.newAddr,
           area:true
         })
-        console.log(this.data.addrArray)
-
     },
     handleName(e) {
-        // let val = e.detail.value;
-        // this.setData({
-        //     Name:val
-        // })
         let user = e.detail.value,
             reg = /^[\u4E00-\u9FA5]{2,4}$/;
         if (!reg.test(user)) {
@@ -194,9 +187,6 @@ Page({
     handlePhone(e) {
         let val = e.detail.value,
             reg = /^1(3|4|5|7|8)\d{9}$/;
-        // this.setData({
-        //     Phone:val
-        // })
         if (!reg.test(val)) {
             var _this = this;
                wx.showModal({
@@ -213,7 +203,7 @@ Page({
             })
         }else{
             this.setData({
-                Phone: user
+                Phone: val
             })
         }
     },

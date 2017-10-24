@@ -1,13 +1,15 @@
 var NoOne = 'https://wstcsd.1haomei.com',
 	NewApiRootUrl = NoOne+'/html/shop/index.php/WstInterFace/GetProduct/',//全部商品接口
 	BannerImg = NoOne+'/html/shop/index.php/WstInterFace/ShopDecoration/',//轮播图接口
-	ShopCart =NoOne +'/html/shop/index.php/WstInterFace/ShoppingCart/',//购物车接口
-	Classify =NoOne +'/html/shop/index.php/WstInterFace/GoodsType/',//分类接口
-	BrandInfo =NoOne +'/html/shop/index.php/WstInterFace/BrandInfo/',//分类品牌接口
-	DetailInfo =NoOne +'/html/shop/index.php/WstInterFace/goodsDetailsServic/',//详情接口
-	LikeInfo =NoOne +'/html/shop/index.php/WstInterFace/Collection/',//详情接口
-	OrderInfo =NoOne +'/html/shop/index.php/WstInterFace/goodsDetails/',//结算订单接口
-	AddrInfo = NoOne + '/html/shop/index.php/WstInterFace/GetAddress/';// 地址接口
+	ShopCart = NoOne +'/html/shop/index.php/WstInterFace/ShoppingCart/',//购物车接口
+	Classify = NoOne +'/html/shop/index.php/WstInterFace/GoodsType/',//分类接口
+	BrandInfo = NoOne +'/html/shop/index.php/WstInterFace/BrandInfo/',//分类品牌接口
+	DetailInfo = NoOne +'/html/shop/index.php/WstInterFace/goodsDetailsServic/',//详情接口
+	LikeInfo = NoOne +'/html/shop/index.php/WstInterFace/Collection/',//详情接口
+	OrderInfo = NoOne +'/html/shop/index.php/WstInterFace/goodsDetails/',//结算订单接口
+	AddrInfo = NoOne + '/html/shop/index.php/WstInterFace/GetAddress/',// 地址接口
+	StoreManage = NoOne+'/html/shop/index.php/WstInterFace/StoreManage/',//店铺管理接口
+	TicketInfo = NoOne+'/html/shop/index.php/WstInterFace/Coupon/';//优惠卷接口
 module.exports = {
 	NoOneJson:NoOne+'/html/shop/Public/Home/js/data.json',//地址json
 	IndexUrl:NewApiRootUrl+ 'getIndexProduct',//首页信息
@@ -28,5 +30,9 @@ module.exports = {
 	CartDelInfo:ShopCart+'DelGoodtoCart',//删除购物车信息
 	UpdateGoodsAmount:ShopCart+'UpdateGoodsAmount',//改变商品数量接口
 	OrderList:OrderInfo+'addressInfo',//结算订单接口
-	AddNewAddrInfo:AddrInfo+'addAddress'
+	NewOrderInfo:OrderInfo+'orderInfo',//生成订单接口
+	AddNewAddrInfo:AddrInfo+'addAddress',//添加地址接口
+	GetAddrInfo:AddrInfo+'getAddressInfo',//获取地址接口
+	DelAddInfo:AddrInfo+'delAddress',//删除地址接口
+
 }

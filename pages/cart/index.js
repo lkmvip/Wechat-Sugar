@@ -214,8 +214,7 @@ Page({
         });
     },
     handleGoOrder() {
-        let isGo = this.data.selectAllStatus,
-            carList = this.data.carts,
+        let carList = this.data.carts,
             isNext = false,
             newArr = [];
             carList.map( item => {
