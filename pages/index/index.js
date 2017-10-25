@@ -164,12 +164,12 @@ Page({
         });
 
         if (isPush ==1) {
-            let num = this.data.limitIndex;
-            this.setData({
-                limitIndex: num+1
-            })
         //关于上拉加载的性能优化
             setTimeout(()=>{
+                    let num = this.data.limitIndex;
+                    this.setData({
+                        limitIndex: num+1
+                    })
                     // 给后端传下拉刷新的次数+1
                     const data = {
                         limitIndex: this.data.limitIndex
