@@ -12,15 +12,22 @@ Page({
     ],
     orderList:[],
     freightNum:'',
-    orderPrice:''
+    orderPrice:'',
+    cartId:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
     onLoad(options) {
-        let id = options.cartid;
-        this.getOrderInfo(id)
+        let id = options.cartid,
+            addrid = options.addrid;
+        console.log(options)
+        this.setData({
+            cartId:id
+        });
+        this.getOrderInfo(id);
+        this.getAddrInfo(addrid);
     },
     getOrderInfo(id) {
         const data ={
@@ -40,6 +47,18 @@ Page({
             orderPrice: result.goodsmoney.data
         })
     },
+    getAddrInfo(id) {
+        console.log(id)
+        const data ={
+            user_id:3,
+            status:'1',
+            address_id:id
+        };
+        utils.sendRequest(api.GetAddrInfo, data, this.handleAddrList.bind(this));
+    },
+    handleAddrList(res) {
+        console.log(res)
+    },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -48,7 +67,7 @@ Page({
     },
     handleAddr() {
         wx.navigateTo({
-            url: '/pages/user/addr/addr'
+            url: '/pages/user/addr/addr?cartid='+this.data.cartId
         })
     },
     checkboxChange(e) {

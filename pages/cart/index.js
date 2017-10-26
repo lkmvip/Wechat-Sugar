@@ -59,7 +59,7 @@ Page({
         };
         utils.sendRequest(api.CartInfo, data, this.handleCartInfo.bind(this));
     },
-    handleCartInfo(res) {
+    handleCartInfo(res) {// 这里让史伟给我加了一个 select 的字段
         let list = res.data.result;
         this.setData({
             hasList: true,
@@ -92,7 +92,7 @@ Page({
                   this.getTotalPrice();
                 };
                 const data ={
-                    user_id:45,
+                    user_id:3,
                     rec_id:id
 
                 };
@@ -160,7 +160,7 @@ Page({
         });
         this.getTotalPrice();
         const data ={
-            user_id:45,
+            user_id:3,
             rec_id:id,
             amount:num
 
@@ -191,7 +191,7 @@ Page({
         });
         this.getTotalPrice();
         const data ={
-            user_id:45,
+            user_id:3,
             rec_id:id,
             amount:num
 

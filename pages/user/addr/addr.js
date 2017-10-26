@@ -14,18 +14,29 @@ Page({
         value: [0, 0, 0],
         values: [0, 0, 0],
         condition: false,
-        area:false,
+        area:true,
         addAddr:false,
         newAddr:true,
         cityData:[],
         addrList:[],
-        id:0,
+        id:'',
         Name:'',
         Phone:'',
         AddrDetail:'',
         back:false
     },
-    onLoad() {
+    onLoad(options) {
+        let id = options.cartid;
+        // console.log(options)
+        this.setData({
+            cartId:id
+        })
+        const data ={
+            user_id:3,
+            status:'',
+            address_id:''
+        };
+        utils.sendRequest(api.GetAddrInfo, data, this.handleAddrList.bind(this));
         try {
             let localInfo = wx.getStorageSync("AddrJson");
             if(!localInfo){
@@ -57,6 +68,17 @@ Page({
             console.log(e);
         }
     },
+    onShow() {
+
+    },
+    // 获取所有地址信息
+    handleAddrList(res) { //这里接口让史伟给我返回数据加了两个字段 area true 和 index
+        console.log(res.data.data)
+        this.setData({
+            addrList:res.data.data
+        })
+    },
+    // 三级联动
     handleJsonAddr(res) {
         let Data = res.data.data;
         const provinces = [];
@@ -80,35 +102,48 @@ Page({
                     cityData[0].child[0].child[0].id]
         })
     },
+    //增加一个新的地址
     handleNewAddr() {
         let list = this.data.addrList,
             province = this.data.province,
             city = this.data.city,
-            county = this.data.county,
-            id = this.data.id;
-            this.setData({
-                id: id+1
-            })
-        list.push({name:"收货人",phone:"联系电话",p:province,c:city,sc:county,index:id})
+            county = this.data.county;
+        list.push({
+            address:"八角北里",
+            address_id:"413",
+            address_name:"",
+            area:true,
+            city:"52",
+            cityName:"北京",
+            consignee:"高俊杰",
+            district:"500",
+            districtName:"东城区",
+            index:0,
+            mobile:"18649307981",
+            province:"2",
+            provinceName:"北京"
+        })
         this.setData({
             addAddr:true,
             addrList:list
         });
     },
+    //选择三级联动
     bindChange(e) {
         let val = e.detail.value,
             t = this.data.values,
             cityData = this.data.cityData,
             index = this.data.id,
             list = this.data.addrList;
+            console.log(index)
         if (val[0] != t[0]) { //当val是选择省份的时候
           const citys = [];
           const countys = [];
             cityData[val[0]].child.map(item => citys.push({name:item.name,id:item.id}));
             cityData[val[0]].child[0].child.map(item => countys.push({name:item.name,id:item.id}));
-            list[index-1].p = this.data.provinces[val[0]].name;
-            list[index-1].c = cityData[val[0]].child[0].name;
-            list[index-1].sc = cityData[val[0]].child[0].child[0].name;
+            list[index].provinceName = this.data.provinces[val[0]].name;
+            list[index].cityName = cityData[val[0]].child[0].name;
+            list[index].districtName = cityData[val[0]].child[0].child[0].name;
           this.setData({
             province: this.data.provinces[val[0]].name,
             city: cityData[val[0]].child[0].name,
@@ -127,7 +162,7 @@ Page({
         if (val[1] != t[1]) {//当val是选择城市的时候
             const countys = [];
             cityData[val[0]].child[val[1]].child.map(item => countys.push({name:item.name,id:item.id}));
-            list[index-1].c = this.data.citys[val[1]].name;
+            list[index].cityName = this.data.citys[val[1]].name;
             this.setData({
                 city: this.data.citys[val[1]].name,
                 county: cityData[val[0]].child[val[1]].child[0].name,
@@ -142,7 +177,7 @@ Page({
           return;
         }
         if (val[2] != t[2]) {//当val是选择城区的时候
-            list[index-1].sc = this.data.countys[val[2]].name;
+            list[index].districtName = this.data.countys[val[2]].name;
             this.setData({
                 county: this.data.countys[val[2]].name,
                 values: val,
@@ -158,7 +193,15 @@ Page({
         this.setData({
           condition: !this.data.condition,
           newAddr:!this.data.newAddr,
-          area:true
+          area:false
+        })
+    },
+    openThere(e) {
+        this.setData({
+            condition: !this.data.condition,
+            newAddr:!this.data.newAddr,
+            area:false,
+            id:e.target.dataset.id
         })
     },
     handleName(e) {
@@ -225,32 +268,50 @@ Page({
         }
 
     },
-    handleDelAddr() {
-        let index = this.data.id,
+    handleDelAddr(e) {
+        let index = e.target.dataset.id,
+            addrid = e.target.dataset.addr,
             list = this.data.addrList;
-            index = index -1
-        list.splice(index,1);
-        this.setData({
-            id:index,
-            addrList:list
-        })
+        wx.showModal({
+          content: '您真的不要人家了嘛？',
+          success: res => {
+            if (res.confirm) {
+                    list.splice(index,1);
+                    this.setData({
+                        id:index,
+                        addrList:list
+                    })
+                }
+                const data ={
+                    user_id:3,
+                    address_id:addrid
+                };
+                utils.sendRequest(api.DelAddInfo, data, this.handleDelAddrSucc.bind(this));
+            }
+        });
+    },
+    handleDelAddrSucc(res) {
+        console.log(res)
     },
     handleAddNewAddr() {
-        let isBack = this.data.back;
+        let isBack = this.data.back,
+            name = this.data.Name,
+            phone = this.data.Phone,
+            area = this.data.addrArray.toString(),
+            detail = this.data.AddrDetail;
         if (isBack) {
-            // var _this = this;
-            //    wx.showModal({
-            //     content:'请输入正确的手机号',
-            //     showCancel:false,
-            //     confirmColor:'#3cc51f',//默认值为#3cc51f
-            //     success:function(res){
-            //         if(res.confirm){
-            //             _this.setData({
-            //                 Phone: ''
-            //             })
-            //         }
-            //     }
-            // })
+            const data ={
+                user_id:3,
+                addAddress:{
+                    type:'',
+                    address_id:'',
+                    consignee:"高俊杰",
+                    mobile:18649307981,
+                    hd_area:"2,52,500",
+                    address:"八角北里"
+                }
+            };
+            // utils.sendRequest(api.AddNewAddrInfo, data, this.handleNewAddrSucc.bind(this));
         }else{
             wx.showModal({
                 content:'请输入完整地址信息',
@@ -258,20 +319,14 @@ Page({
                 confirmColor:'#3cc51f'//默认值为#3cc51f
             })
         }
-        // const data ={
-        //     user_id:45,
-        //     addAddress:[
-        //         {type:'',
-        //         address_id:'',
-        //         consignee:'高俊杰',
-        //         mobile:17316240119,
-        //         hd_area:["2", "52", "500"],
-        //         address:'八角北里'}
-        //     ]
-        // };
-        // utils.sendRequest(api.AddNewAddrInfo, data, this.handleNewAddrSucc.bind(this));
     },
     handleNewAddrSucc(res) {
-
+        let isId = res.data.data;
+        console.log(isId)
+        // if(isId) {
+        //     wx.redirectTo({
+        //         url: '../../orderdetail/index?addrid='+isId+'&&cartid='+this.data.cartId
+        //     });
+        // }
     }
 })

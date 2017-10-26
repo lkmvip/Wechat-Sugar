@@ -4,49 +4,50 @@
 		<view class="addr-content">
 <!-- 			<block wx:if="{{addAddr}}"> -->
 				<view class="addr-name">
-					<view class="addr-txt">{{item.name}}:</view>
-					<input class="addr-input" data-id="{{item.index}}" value="{{Name}}" bindconfirm="handleName"  type="text" placeholder="请填写收货人姓名"/>
+					<view class="addr-txt">收货人:</view>
+					<input class="addr-input" data-id="{{item.index}}" value="{{item.consignee}}" bindconfirm="handleName"  type="text" placeholder="请填写收货人姓名"/>
 				</view>
 				<view class="addr-num">
-					<view class="addr-txt">{{item.phone}}:</view>
-					<input class="addr-input" data-id="{{item.index}}" value="{{Phone}}" bindconfirm="handlePhone"  type="text" placeholder="请输入联系电话"/>
+					<view class="addr-txt">收货电话:</view>
+					<input class="addr-input" data-id="{{item.index}}" value="{{item.mobile}}" bindconfirm="handlePhone"  type="text" placeholder="请输入联系电话"/>
 				</view>
 				<view class="addr-area">
 					<view class="addr-txt">配送地区:</view>
-					<view class="addr-input" data-id="{{item.index}}" bindtap="open">
-						<block wx:if="{{area}}" data-id="{{item.index}}">{{item.p}}-{{item.c}}-{{item.sc}}</block>
+					<view class="addr-input" data-id="{{item.index}}" bindtap="openThere">
+						<block wx:if="{{item.area}}" data-id="{{item.index}}">{{item.provinceName}}-{{item.cityName}}-{{item.districtName}}</block>
 						<block wx:else>点此选择地区</block>
 					</view>
 				</view>
 				<view class="addr-detail">
 					<view class="addr-txt">详细地址:</view>
-					<textarea class="addr-textarea" data-id="{{item.index}}" value="{{AddrDetail}}" bindconfirm="handleAddrDetail"  type="text" placeholder="请输入详细地址"/>
+					<textarea class="addr-textarea" data-id="{{item.index}}" value="{{item.address}}" bindblur="handleAddrDetail"  type="text" placeholder="请输入详细地址"/>
 				</view>
 				<view class="addr-handle">
-					<view class="addr-del" bindtap="handleDelAddr" data-id="{{item.index}}">删除</view>
-					<view class="addr-save" bindtap="handleAddNewAddr" data-id="{{item.index}}" >保存</view>
+					<view class="addr-del" bindtap="handleDelAddr" data-id="{{index}}" data-addr="{{item.address_id}}">删除</view>
+					<view class="addr-save" bindtap="handleAddNewAddr" >保存</view>
 				</view>
 			<!-- </block>	 -->
 		</view>
-	</block>
+	</block> 
 	<view wx:if="{{newAddr}}" bindtap="handleNewAddr" class="new-addr">新增收货地址</view>
 		 <!-- ********************* 三级联动 ****************** -->
-	<view wx:if="{{condition}}" class="citypicker">
-	  <picker-view indicator-style="height: 50rpx;" style="width: 100%; height: 500rpx;font-size: 30rpx; background: #fff;z-index: 10;" value="{{value}}" bindchange="bindChange" class="citybody">
-	    <view class="cityheader">
-	      <view bindtap="open" class="city-cancel">取消</view>
-	      <view bindtap="open" class="city-true">确定</view>
-	    </view>
-	    <picker-view-column>
-	      <view wx:for="{{provinces}}" wx:key="item" data-id="1" style="line-height: 50rpx;padding-left:10rpx;text-align: center;">{{item.name}}</view>
-	    </picker-view-column>
-	    <picker-view-column>
-	      <view wx:for="{{citys}}" wx:key="item" data-id="{{item.id}}" style="line-height: 50rpx;padding-left:10rpx;text-align: center;">{{item.name}}</view>
-	    </picker-view-column>
-	    <picker-view-column>
-	      <view wx:for="{{countys}}" wx:key="item" data-id="{{item.id}}" style="line-height: 50rpx;padding-left:10rpx;text-align: center;">{{item.name}}</view>
-	    </picker-view-column>
-	  </picker-view>
-	</view>
+		<view wx:if="{{condition}}" class="citypicker" data-index="{{item.index}}">
+			<picker-view  indicator-style="height: 50rpx;" style="width: 100%; height: 500rpx;font-size: 30rpx; background: #fff;z-index: 10;" value="{{value}}" bindchange="bindChange" class="citybody">
+			    <view class="cityheader">
+			      <view bindtap="open" class="city-cancel">取消</view>
+			      <view bindtap="open" class="city-cancel">取消</view>
+			      <view  bindtap="open" class="city-true">确定</view>
+			    </view>
+			    <picker-view-column>
+			      <view wx:for="{{provinces}}" wx:key="item" style="line-height: 50rpx;padding-left:10rpx;text-align: center;">{{item.name}}</view>
+			    </picker-view-column>
+			    <picker-view-column>
+			      <view wx:for="{{citys}}" wx:key="item"  style="line-height: 50rpx;padding-left:10rpx;text-align: center;">{{item.name}}</view>
+			    </picker-view-column>
+			    <picker-view-column>						
+			      <view wx:for="{{countys}}" wx:key="item"  style="line-height: 50rpx;padding-left:10rpx;text-align: center;">{{item.name}}</view>
+			    </picker-view-column>
+			 </picker-view>
+		</view>
 </view>
 
