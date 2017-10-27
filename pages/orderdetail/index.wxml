@@ -1,6 +1,8 @@
 <!--pages/orderdetail/index.wxml-->
 <view class="shop-addr" bindtap="handleAddr">
 	<text>收货地址:</text>
+	
+
 	<view class="addr-arrow">></view>
 </view>
 <!-- 订单页详情 -->

@@ -158,12 +158,14 @@ Page({
     onReachBottom() {
         let isPush = this.data.index,
             val = this.data.inputVal,
-            err = this.data.isErr;
+            err = this.data.isErr,
+            load = this.data.isLoading,
+            load1 = this.data.isLoading1;
         this.setData({
             isBtnShow: true 
         });
 
-        if (isPush ==1) {
+        if (isPush ==1&& load) {
         //关于上拉加载的性能优化
             setTimeout(()=>{
                     let num = this.data.limitIndex;
@@ -177,7 +179,7 @@ Page({
                     utils.sendRequest(api.AllGoodsUrl, data, this.handleReachBottom.bind(this));
             },1500)
         };
-        if (val != ''&& err == 0) {
+        if (val != ''&& err == 0 && load1) {
             setTimeout(()=>{
                 let num = this.data.limitIndex;
                     this.setData({

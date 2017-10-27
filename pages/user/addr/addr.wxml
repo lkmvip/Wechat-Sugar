@@ -5,26 +5,26 @@
 <!-- 			<block wx:if="{{addAddr}}"> -->
 				<view class="addr-name">
 					<view class="addr-txt">收货人:</view>
-					<input class="addr-input" data-id="{{item.index}}" value="{{item.consignee}}" bindconfirm="handleName"  type="text" placeholder="请填写收货人姓名"/>
+					<input class="addr-input" data-id="{{index}}" value="{{item.consignee}}" bindconfirm="handleName"  type="text" placeholder="请填写收货人姓名"/>
 				</view>
 				<view class="addr-num">
 					<view class="addr-txt">收货电话:</view>
-					<input class="addr-input" data-id="{{item.index}}" value="{{item.mobile}}" bindconfirm="handlePhone"  type="text" placeholder="请输入联系电话"/>
+					<input class="addr-input" data-id="{{index}}" value="{{item.mobile}}" bindconfirm="handlePhone"  type="text" placeholder="请输入联系电话"/>
 				</view>
 				<view class="addr-area">
 					<view class="addr-txt">配送地区:</view>
-					<view class="addr-input" data-id="{{item.index}}" bindtap="openThere">
-						<block wx:if="{{item.area}}" data-id="{{item.index}}">{{item.provinceName}}-{{item.cityName}}-{{item.districtName}}</block>
+					<view class="addr-input" data-id="{{index}}" bindtap="openThere">
+						<block wx:if="{{item.area}}">{{item.provinceName}}-{{item.cityName}}-{{item.districtName}}</block>
 						<block wx:else>点此选择地区</block>
 					</view>
 				</view>
 				<view class="addr-detail">
 					<view class="addr-txt">详细地址:</view>
-					<textarea class="addr-textarea" data-id="{{item.index}}" value="{{item.address}}" bindblur="handleAddrDetail"  type="text" placeholder="请输入详细地址"/>
+					<textarea class="addr-textarea" data-id="{{index}}" value="{{item.address}}" bindinput="handleAddrDetail"  type="text" placeholder="请输入详细地址"/>
 				</view>
 				<view class="addr-handle">
 					<view class="addr-del" bindtap="handleDelAddr" data-id="{{index}}" data-addr="{{item.address_id}}">删除</view>
-					<view class="addr-save" bindtap="handleAddNewAddr" >保存</view>
+					<view class="addr-save" bindtap="handleAddNewAddr" data-id="{{index}}">保存</view>
 				</view>
 			<!-- </block>	 -->
 		</view>
@@ -34,7 +34,6 @@
 		<view wx:if="{{condition}}" class="citypicker" data-index="{{item.index}}">
 			<picker-view  indicator-style="height: 50rpx;" style="width: 100%; height: 500rpx;font-size: 30rpx; background: #fff;z-index: 10;" value="{{value}}" bindchange="bindChange" class="citybody">
 			    <view class="cityheader">
-			      <view bindtap="open" class="city-cancel">取消</view>
 			      <view bindtap="open" class="city-cancel">取消</view>
 			      <view  bindtap="open" class="city-true">确定</view>
 			    </view>
