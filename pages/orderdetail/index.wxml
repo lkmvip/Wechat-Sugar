@@ -1,8 +1,10 @@
 <!--pages/orderdetail/index.wxml-->
 <view class="shop-addr" bindtap="handleAddr">
-	<text>收货地址:</text>
-	
-
+	<image class="addr-icon" src="/image/user/iconaddress.png"></image>
+	<view class="addr-content">
+		<view style="color:#000">{{name}}  {{phone}}</view>
+		<view>{{province}} {{city}} {{district}} {{addr}}</view>
+	</view>
 	<view class="addr-arrow">></view>
 </view>
 <!-- 订单页详情 -->

@@ -198,10 +198,11 @@ Page({
     },
     //请求成功后跳转
     handleGoPaySucc(res) {
-        let code = res.statusCode;
+        let code = res.statusCode,
+            goodsid = res.data.rec_id;
         if (code == 200) {
             wx.redirectTo({
-              url: '/pages/orderdetail/index'
+              url: '/pages/orderdetail/index?cartid='+goodsid
             })
         }
     },

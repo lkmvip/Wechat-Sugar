@@ -24,7 +24,8 @@ Page({
             addrid = options.addrid;
         console.log(options)
         this.setData({
-            cartId:id
+            cartId:id,
+            addrId:addrid
         });
         this.getOrderInfo(id);
         this.getAddrInfo(addrid);
@@ -57,11 +58,21 @@ Page({
         utils.sendRequest(api.GetAddrInfo, data, this.handleAddrList.bind(this));
     },
     handleAddrList(res) {
-        console.log(res)
+        let list = res.data.addressInfo;
+        console.log(list)
+        this.setData({
+            addr: list[0].address,
+            name: list[0].consignee,
+            province: list[0].provinceName,
+            city: list[0].cityName,
+            district: list[0].districtName,
+            addrId:list[0].address_id,
+            phone:list[0].mobile
+        })
     },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
+    /**
+    * 生命周期函数--监听页面初次渲染完成
+    */
     onReady () {
   
     },
@@ -79,8 +90,25 @@ Page({
         })
     },
     handleOrderPay() {
-        wx.navigateTo({
-            url: '/pages/orderpay/order'
-        })
+        let addrid = this.data.addrId,
+            carid = this.data.cartId,
+            reightrmb = this.data.freightNum,
+            allprice = this.data.orderPrice;
+        // wx.navigateTo({
+        //     url: '/pages/orderpay/order'
+        // })
+        const data ={
+            user_id:3,
+            address_id:addrid,
+            rec_id:carid,
+            reight:reightrmb,
+            totalPrice:allprice
+        };
+        // console.log(data)
+        utils.sendRequest(api.NewOrderInfo, data, this.handleNewOrderInfo.bind(this));
+    },
+    //请求提交订单成功
+    handleNewOrderInfo(res) {
+        console.log(res)
     }
 })

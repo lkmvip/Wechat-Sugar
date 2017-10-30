@@ -206,7 +206,7 @@ Page({
         let carts = this.data.carts;             // 获取购物车列表
         let total = 0;
         // 循环列表得到每个数据,判断选中才会计算价格, 所有价格加起来
-        carts.map(item=> item.select?total += item.goods_number * item.goods_price:'')
+        carts.map(item => item.select?total += item.goods_number * item.goods_price:'')
         // 最后赋值到data中渲染到页面
         this.setData({                                
           carts: carts,
