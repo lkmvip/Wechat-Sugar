@@ -63,7 +63,7 @@ Page({
     },
     getCartGoodsNum() {
         const data ={
-            userid:45
+            userid:3
         };
         utils.sendRequest(api.CartGoodsNum, data, this.handleCartNum.bind(this));
     },
@@ -150,7 +150,7 @@ Page({
             _this = this;
         if (!this.data.showDialog) {
             const data = {
-                userid:45,
+                userid:3,
                 goodsId:goodsId,
                 goods_name:goodsName,
                 goods_price:goodsPrice,
@@ -187,7 +187,7 @@ Page({
             _this = this;
         if (!this.data.showDialog) {
             const data = {
-                userid:45,
+                userid:3,
                 goodsId:goodsId,
                 goods_name:goodsName,
                 goods_price:goodsPrice,

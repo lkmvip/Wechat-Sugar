@@ -266,7 +266,7 @@ Page({
             goodsName = e.target.dataset.name,
             goodsPrice = e.target.dataset.price;
         const data = {
-            userid:45,
+            userid:3,
             goodsId:goodsId,
             goods_name:goodsName,
             goods_price:goodsPrice,

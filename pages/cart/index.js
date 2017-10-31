@@ -53,20 +53,26 @@ Page({
         this.getCartInfo();
 
     },
+    //获取购物车信息
     getCartInfo() {
         const data ={
-            userid:45
+            userid:3
         };
         utils.sendRequest(api.CartInfo, data, this.handleCartInfo.bind(this));
     },
     handleCartInfo(res) {// 这里让史伟给我加了一个 select 的字段
         let list = res.data.result;
-        this.setData({
-            hasList: true,
-            carts:list,
-        });
+        if (list.length >=1 ) {
+            this.setData({
+                hasList: true,
+                carts:list,
+            });
+        }else {
+            this.setData({
+                hasList: false
+            });
+        }
         this.getTotalPrice();
-
     },
   /**
    * 删除购物车当前商品
@@ -179,7 +185,7 @@ Page({
             num = parseInt(carts[index].goods_number),
             id = e.currentTarget.dataset.id,
             goods = carts.length;//列表长度                     
-        if(num <= 1){
+        if(num <= 0){
           return false;
         }
         num = num - 1;
@@ -213,6 +219,7 @@ Page({
           totalPrice: total.toFixed(2),
         });
     },
+    //去支付页面
     handleGoOrder() {
         let carList = this.data.carts,
             isNext = false,

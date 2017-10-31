@@ -30,9 +30,10 @@ Page({
         this.getOrderInfo(id);
         this.getAddrInfo(addrid);
     },
+    // 获取支付页面列表
     getOrderInfo(id) {
         const data ={
-            user:45,
+            user:3,
             cart:id,
             address_id:'',
             val:'',
@@ -48,6 +49,7 @@ Page({
             orderPrice: result.goodsmoney.data
         })
     },
+    // 如果有 地址id 请求地址列表
     getAddrInfo(id) {
         console.log(id)
         const data ={
@@ -59,7 +61,6 @@ Page({
     },
     handleAddrList(res) {
         let list = res.data.addressInfo;
-        console.log(list)
         this.setData({
             addr: list[0].address,
             name: list[0].consignee,
@@ -76,6 +77,7 @@ Page({
     onReady () {
   
     },
+    // 地址页面
     handleAddr() {
         wx.navigateTo({
             url: '/pages/user/addr/addr?cartid='+this.data.cartId
@@ -89,26 +91,46 @@ Page({
             url: '/pages/user/ticket/ticket'
         })
     },
+    //提交订单
     handleOrderPay() {
         let addrid = this.data.addrId,
             carid = this.data.cartId,
             reightrmb = this.data.freightNum,
             allprice = this.data.orderPrice;
-        // wx.navigateTo({
-        //     url: '/pages/orderpay/order'
-        // })
         const data ={
             user_id:3,
-            address_id:addrid,
             rec_id:carid,
-            reight:reightrmb,
-            totalPrice:allprice
+            totalPrice:allprice,
+            post:{
+                address_id:addrid,
+                freight:reightrmb
+            }
         };
-        // console.log(data)
+        //请求生成订单接口
         utils.sendRequest(api.NewOrderInfo, data, this.handleNewOrderInfo.bind(this));
     },
     //请求提交订单成功
     handleNewOrderInfo(res) {
-        console.log(res)
+        try {
+            if (res.data.error == 0) {
+                //处理传值
+                let msg = JSON.stringify(res.data.data),
+                id = this.data.cartId;
+                wx.navigateTo({
+                    url: '/pages/orderpay/order?msg='+msg
+                });
+                const data ={
+                    user_id:3,
+                    rec_id:id
+                };
+                //点击提交订单清空购物车接口
+                utils.sendRequest(api.DelOrderCar, data, this.handleCartDelInfo.bind(this));
+            }
+        } catch(e) {
+            // statements
+            console.log(e);
+        }
+    },
+    handleCartDelInfo(res) {
     }
 })
