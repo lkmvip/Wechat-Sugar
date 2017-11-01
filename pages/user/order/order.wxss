@@ -22,6 +22,7 @@
 }
 .order-content {
 	width: 100%;
+	padding-bottom:20rpx;
 }
 .mleft {
 	margin-left: 20rpx; 
@@ -53,6 +54,12 @@
 	justify-content: space-between;
 	border-top: 1rpx solid #ececec; 
 }
+.alllist-bottom{
+	width: 100%;
+	height: 100rpx;
+	font-size: 24rpx;
+	border-top: 1rpx solid #ececec; 
+}
 .alllist-mid {
 	width: 100%;
 	border-top: 1rpx solid #ececec;
@@ -70,4 +77,14 @@
 	display: flex;
 	justify-content: space-between;	
 	line-height: 40rpx;
+}
+.order-btn {
+	width: 150rpx;
+	text-align: center;
+	border: 1rpx solid #000;
+	height: 60rpx;
+	line-height: 60rpx;
+	margin-top: 20rpx;
+	border-radius: 5rpx;
+	color:#999;
 }

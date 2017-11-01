@@ -230,10 +230,11 @@ Page({
                             newArr.push(item.rec_id)//跳转页面传值的数组
                         }
             });
+            console.log(carList)
             isNext ?
             wx.navigateTo({url: '../orderdetail/index?cartid='+newArr})
             :
-            wx.showModal({content: '在购物车等您哟~',showCancel: false});
+            wx.showModal({content: '请选一个嘛~',showCancel: false});
     }
     // // 清空购物车   取消这个功能
     // clearCart() {

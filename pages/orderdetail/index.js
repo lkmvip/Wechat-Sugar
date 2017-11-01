@@ -51,7 +51,6 @@ Page({
     },
     // 如果有 地址id 请求地址列表
     getAddrInfo(id) {
-        console.log(id)
         const data ={
             user_id:3,
             status:'1',

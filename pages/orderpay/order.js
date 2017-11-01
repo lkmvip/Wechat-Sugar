@@ -1,5 +1,5 @@
 // pages/orderpay/order.js
-const api = require('../../utils/api.js');//封装好的借口路径
+const api = require('../../utils/api.js');//封装好的接口路径
 const utils = require('../../utils/util.js');//调用封装的request
 Page({
 
@@ -63,9 +63,45 @@ Page({
     },
     //支付成功
     handlePaySucc() {
-        wx.navigateTo({
-          url: '/pages/succpay/succpay'
-        })
+        let orderSn = this.data.orderNum,
+            orderId = this.data.orderId,
+            wxCheck = this.data.check,
+            rmbCheck = this.data.checkRmb,
+            payWay = '',
+            zuHe = 0;
+            //判断支付状态
+            wxCheck ? payWay=9: payWay=8;
+            rmbCheck&&wxCheck? zuHe=1 : zuHe =0;
+            // 确认支付
+            if(rmbCheck&&wxCheck){
+                const data ={
+                    payment:payWay,
+                    order_sn:orderSn,
+                    userId:3,
+                    zuheflag:zuHe, 
+                    order_id:orderId,
+                    yue_amount:0,
+                    other_amount:0,
+                    other_payment:9,
+                    wxOrderSn:''
+                };
+                //调用余额支付接口。
+                utils.sendRequest(api.UserRmbPay, data, this.handleOrderPaySucc.bind(this));
+            }
+            // if (wxCheck) {
+            //      wx.showModal({content: '微信支付正在开发哦~',showCancel: false});
+            // }
+ 
+        // wx.navigateTo({
+        //   url: '/pages/succpay/succpay'
+        // })
+    },
+    handleOrderPaySucc(res) {
+        if (res.data.error == 0 ) {
+            wx.navigateTo({
+              url: '/pages/succpay/succpay'
+            })
+        }
     },
     // 选择余额支付的逻辑
     handleRmb(e) {

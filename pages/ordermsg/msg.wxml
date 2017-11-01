@@ -1,53 +1,77 @@
 <!--pages/ordermsg/msg.wxml-->
+<block wx:for="{{orderInfo}}" wx:key="index">
 <view class="will-send">
 	<view class="will-box">
 		<view class="send-content">
 			<view class="send-text">
-				代发货
+				{{item.status_msg}}
 			</view>
 			<view class="">
-				物流信息:订单支付成功，等待上架发货
+				{{item.add_time}}
 			</view>
-		</view>
-		<view class="arrow">
-			>
 		</view>
 	</view>
 </view>
 <view class="send-user">
 	<view class='user-box'>
 		<view class="user-msg">
-			<image class="user-icon" src="/image/user/income.png" background-size="cover"></image>
+			<image class="user-icon" src="/image/user/iconaddress.png" ></image>
 			<view class="user-name">
-				<text>高俊杰</text>
-				<text>17316240119</text>
+				<text>收货人:{{item.consignee}}</text>
+				<text>电话:{{item.mobile}}</text>
 			</view>
 			</view>
 			<view class="user-addr">
-				收获地址: 北京市 石景山去 八角北里11111111111号楼 八单元 602
+				收货地址: {{item.province}} {{item.city}} {{item.district}} {{item.address}}
 			</view>
 	</view>
 </view>
 <view class="send-list">
 		<view class="list-item">
-			<image class="item-icon" src="/image/user/income.png" background-size="cover"></image>
+			<block wx:for="{{item.ordergoods}}" wx:key="{{index}}">
+			<image class="item-icon" src="{{item.goods_img}}"></image>
 			<view class="item-content">
 				<view style="display: flex;">
 					<view class="item-tit">
-						啦啦啦啦啦啦啦啦啦啦啦啦
-						啦啦啦啦啦啦啦啦啦啦啦啦
+						{{item.name}}
 					</view>
 					<view class="item-num">
-						<text style="color: #ff4341;">￥69.00</text>
-						<text style="color: #999;">X1</text>
+						<text style="color: #ff4341;">￥{{item.goodsamount}}</text>
+						<text style="color: #999;">X{{item.goods_number}}</text>
 					</view>
 				</view>
-				
-				<view class="item-btn">申请退货</view>
-
+			</view>
+			</block>
+		</view>
+		<view class="list-item">
+			<view class="list-text">
+				<view>商品总价:</view>
+				<view>￥{{item.goods_amount}}</view>
+			</view>
+			<view class="list-text">
+				<view>运费:</view>
+				<view>￥{{item.shipping_fee}}</view>
+			</view>
+			<view class="list-text">
+				<view>优惠卷优惠:</view>
+				<view>￥{{item.coupon_money}}</view>
+			</view>
+		</view>
+		<view class="list-item">
+			<view class="list-text">
+				<view>余额支付:</view>
+				<view>￥{{item.order_amount}}</view>
+			</view>
+		</view>
+		<view class="list-item">
+			<view class="list-text">
+				<view>实付金额:</view>
+				<view>￥{{item.order_amount}}</view>
 			</view>
 		</view>
 </view>
 <view class="oredr-price">
-	12312312312
+	<view style="color: #000">订单编号:{{item.order_sn}}</view>
+	<view>创建时间:{{item.add_time}}</view>
 </view>
+</block>

@@ -11,7 +11,9 @@ var NoOne = 'https://wstcsd.1haomei.com',
 	StoreManage = NoOne+'/html/shop/index.php/WstInterFace/StoreManage/',//店铺管理接口
 	TicketInfo = NoOne+'/html/shop/index.php/WstInterFace/Coupon/',//优惠卷接口
 	CreateOrder = NoOne+'/html/shop/index.php/WstInterFace/GoodsDetails/',//提交订单
-	UserMsg = NoOne+'/html/shop/index.php/WstInterFace/UserInfo/';
+	UserMsg = NoOne+'/html/shop/index.php/WstInterFace/UserInfo/',
+	RmbPay = NoOne+'/html/shop/index.php/WstInterFace/BalancePayment/',//余额支付接口
+	OrderDetailInfo = NoOne+'/html/shop/index.php/WstInterFace/OrderInfo/';//订单详情
 module.exports = {
 	NoOneJson:NoOne+'/html/shop/Public/Home/js/data.json',//地址json
 	IndexUrl:NewApiRootUrl+ 'getIndexProduct',//首页信息
@@ -37,5 +39,8 @@ module.exports = {
 	GetAddrInfo:AddrInfo+'getAddressInfo',//获取地址接口
 	DelAddInfo:AddrInfo+'delAddress',//删除地址接口
 	DelOrderCar:ShopCart+'deleteCart',//提交订单清空购物车信息
-	UserMainMsg:UserMsg+'getUserInfo'//支付页面的接口获取余额
+	UserMainMsg:UserMsg+'getUserInfo',//支付页面的接口获取余额
+	UserRmbPay:RmbPay+'balancePay',//余额支付
+	OrderInfoList:OrderDetailInfo+'getOrderList',//订单列表
+	OrderInfoDetail:OrderDetailInfo+'getOrderDetail'//订单详情
 }

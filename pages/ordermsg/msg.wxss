@@ -26,8 +26,7 @@
 }
 .send-user{
 	width: 100%;
-	padding: 0 20rpx;
-	margin:70rpx 0 20rpx 0;
+	margin:0 0 20rpx 0;
 	background: #fff; 
 }
 .user-msg {
@@ -38,8 +37,8 @@
 }
 .user-icon {
 	width: 30rpx;
-	height: 30rpx;
-	margin: 20rpx 10rpx;
+	height: 50rpx;
+	margin: 20rpx;
 	display: inline;
 }
 .user-name {
@@ -60,8 +59,11 @@
 	
 }
 .list-item {
+	width: 100%;
 	border-bottom:1rpx solid #ececec; 
 	display: flex;
+	flex-wrap: wrap;
+	padding: 20rpx 0; 
 }
 .item-icon {
 	width: 165rpx;
@@ -95,8 +97,21 @@
 }
 .oredr-price {
 	width: 100%;
-	padding-top: 20rpx;
+	padding: 20rpx;
 	margin-top: 20rpx;
 	border-top:1rpx solid #ececec; 
 	background: #fff;
+	font-size: 28rpx;
+	line-height: 60rpx;
+	color: #676767
+	
+}
+.list-text{
+	width: 100%;
+	font-size: 30rpx;
+	line-height: 50rpx;
+	display: flex;
+	justify-content: space-between;
+	padding: 0 25rpx;
+	color: #676767
 }

@@ -74,7 +74,7 @@
 			<view>首页</view>
 		</view>
 		<view class="go-cart" bindtap="handleGoCart">
-			<view class="all-num">{{cartNums}}</view>
+			<view class="all-num">{{cartNums == null?0:cartNums}}</view>
 			<image class="tab-img" src="/image/tabicon/tabicon-a3.png"></image>
 			<view>购物车</view>
 		</view>

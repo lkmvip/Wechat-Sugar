@@ -12,19 +12,36 @@
         <view class="order-all" hidden="{{activeIndex != 0}}">
         	<view class="all-list" wx:for="{{allOrder}}" wx:key="{{index}}">
 				<view class="alllist-top">
-					<view class="mleft">订单编号:{{item.orderNum}}</view>
-					<view class="mright" style='color: #f3515c;'>{{item.Status}}</view>
+					<view class="mleft">订单编号:{{item.order_sn}}</view>
+					<view class="mright" style='color: #f2505d;'>{{item.status_msg}}</view>
 				</view>
-				<view class="alllist-mid">
-					<image class="mid-img mleft" src="{{item.orderUrl}}" background-size="cover"></image>
-					<view class="mid-content">
-						<view class="mleft">{{item.orderName}}</view>
-						<view class="mleft">
-							<view class="">￥{{item.orderPirce}}</view>
-							<view class="fright" style='color: #ececec;'>X{{item.orderSpec}}</view>
-						</view>
-					</view>
-				</view>
+                <navigator url="/pages/ordermsg/msg?orderid={{item.order_id}}">
+    				<view class="alllist-mid" wx:for="{{item.ordergoods}}" wx:key="{{index}}">
+        					<image class="mid-img mleft" src="{{item.goods_img}}"></image>
+        					<view class="mid-content">
+        						<view class="mleft">{{item.name}}</view>
+        						<view class="mleft">
+        							<view class="">￥{{item.goodsamount}}</view>
+        							<view class="fright" style='color: #ececec;'>X{{item.goods_number}}</view>
+        						</view>
+        					</view>
+    				</view>
+                </navigator>
+                <block wx:if="{{item.status == 1 ? true : false}}">
+                    <view class="alllist-bottom">
+                        <view class="order-btn fright mright">取消订单</view>
+                    </view>
+                </block>
+                <block wx:if="{{item.status == 2 ? true : false}}">
+                    <view class="alllist-bottom">
+                        <view class="order-btn fright mright">申请退款</view>
+                    </view>
+                </block>
+                <block wx:if="{{item.status == 3 ? true : false}}">
+                    <view class="alllist-bottom fright">
+                            查看物流-确认收货
+                    </view>
+                </block>
         	</view>
         </view>
         <view class="" hidden="{{activeIndex != 1}}">选项二的内容</view>

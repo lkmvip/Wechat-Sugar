@@ -7,7 +7,7 @@
 	</view>
 	<!-- 个人中心工具开始 -->
 	<view class="user-wallet">
-		<view class="balance">可用余额:<text style="color:#ff4041">122.00</text></view>
+		<view class="balance">可用余额:<text style="color:#ff4041">{{rmb}}</text></view>
 		<view bindtap="handleCash" class="withdraw">提现 <text class="arrow-icon">></text></view>
 	</view>
 	<view class="income">
@@ -29,18 +29,18 @@
 	<view class="user-orders">
 		<view class="orders-tit">
 			<view class="orders-my">我的订单</view>
-			<view bindtap="handleAllOrder" class="oders-link">查看全部订单<text class="arrow-icon">></text></view>
+			<view catchtap="handleWillPay" data-id="0" class="oders-link">查看全部订单<text class="arrow-icon">></text></view>
 		</view>
-		<view class="odres-tools" bindtap="handleWillPay" data-id="1">
+		<view class="odres-tools" catchtap="handleWillPay" data-id="1">
 			<view class="odres-list">
 				<image class="oders-icon" src="/image/user/pay.png" background-size="cover"></image>
 				<view class="oders-text">待付款</view>
 			</view>
-			<view class="odres-list" bindtap="handleWillSend" data-id="2">
+			<view class="odres-list" catchtap="handleWillPay" data-id="2">
 				<image class="oders-icon" src="/image/user/send.png" background-size="cover"></image>
 				<view class="oders-text">待发货</view>
 			</view>
-			<view class="odres-list" bindtap="handleWillTake" data-id="3">
+			<view class="odres-list" catchtap="handleWillPay" data-id="3">
 				<image class="oders-icon" src="/image/user/staygoods.png" background-size="cover"></image>
 				<view class="oders-text">待收货</view>
 			</view>

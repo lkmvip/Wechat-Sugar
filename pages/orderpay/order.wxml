@@ -27,10 +27,13 @@
 	<view class="pay-rmb">
 		<view>可用余额:￥{{rmb}}</view>
 	</view>
-	<view class="pay-rmb">
-		<view>使用余额:</view>
-		<input class="pay-input" type="digit"  bindblur="handleRmb" />
-	</view>		
+	<block wx:if="{{showPrice}}">
+		<view class="pay-rmb">
+			<view>使用余额:</view>
+			<input class="pay-input" type="digit"  bindblur="handleRmb" />
+		</view>	
+	</block>
+		
 </view>
 <view class='orderpay-bottom'>
 感谢您在本店购物 

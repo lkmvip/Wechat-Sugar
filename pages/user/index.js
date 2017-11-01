@@ -1,4 +1,6 @@
 var app = getApp();
+const api = require('../../utils/api.js');//封装好的借口路径
+const utils = require('../../utils/util.js');//调用封装的request
 Page({
     data: {
     	userInfo: {}
@@ -9,7 +11,16 @@ Page({
     	this.setData({
     		userInfo : app.globalData.userInfo
     	})
-
+        const data ={
+            userId:3
+        };
+        //调用主要信息，获取余额。
+        utils.sendRequest(api.UserMainMsg, data, this.handleUserMainSucc.bind(this));
+    },
+    handleUserMainSucc(res) {
+        this.setData({
+            rmb:res.data.accountbalance
+        })
     },
   // 点击跳转到提现页面
     handleCash() {
@@ -18,32 +29,35 @@ Page({
         })
     },
   // 点击跳转到订单页面
-    handleAllOrder() {
-        wx.navigateTo({
-          url: '/pages/user/order/order'
-        })
-    },
+    // handleAllOrder() {
+    //     wx.navigateTo({
+    //       url: '/pages/user/order/order'
+    //     })
+    // },
   //待付款
     handleWillPay(e) {
         let indexNum = e.currentTarget.dataset.id; 
         wx.navigateTo({
-          url: '/pages/user/order/order?id='+indexNum
+            url: '/pages/user/order/order',
+            success(res) {
+                console.log(res)
+            }
         })
     },
-  //待发货  
-    handleWillSend(e) {
-        let indexNum = e.currentTarget.dataset.id; 
-        wx.navigateTo({
-          url: '/pages/user/order/order?id='+indexNum
-        })
-    },
-  //待收货
-    handleWillTake(e) {
-        let indexNum = e.currentTarget.dataset.id; 
-        wx.navigateTo({
-          url: '/pages/user/order/order?id='+indexNum
-        })
-    },
+  // //待发货  
+  //   handleWillSend(e) {
+  //       let indexNum = e.currentTarget.dataset.id; 
+  //       wx.navigateTo({
+  //         url: '/pages/user/order/order?id='+indexNum
+  //       })
+  //   },
+  // //待收货
+  //   handleWillTake(e) {
+  //       let indexNum = e.currentTarget.dataset.id; 
+  //       wx.navigateTo({
+  //         url: '/pages/user/order/order?id='+indexNum
+  //       })
+  //   },
   // 跳转到待收收益
     handleWillIncome(e) {
         wx.navigateTo({
