@@ -87,7 +87,7 @@
                     </view>
                 </view>
             </view>  
-            <!--  ***************************性价比商品*********************** -->
+            <!--  ***************************推荐*********************** -->
             <view class="goods bg box">
                 <view class="text">
                     {{goodsList[1].title}}
@@ -103,12 +103,12 @@
                         <view class="old-price left">￥{{item.market_price}}</view>
                         <view class="through left">/</view>
                         <view class="make-money left">赚{{item.makeMoney}}</view> 
-                        <image src="/image/cart.png" class="add-shopcart right" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
+                        <image src="/image/cart.png" class="add-shopcart right" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                         <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
                     </view>
                 </view>
             </view>
-            <!--  ***************************推荐*********************** -->
+            <!--  ***************************性价比商品彩妆*********************** -->
             <view class="like bg box">
                 <view class="text">
                     {{goodsList[0].title}}
@@ -123,7 +123,7 @@
                             <view class="like-title">{{item.name}}</view>
                             <view class="new-price left" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
                             <view class="old-price left" style="margin-top:14rpx">￥{{item.market_price}}</view>
-                            <image src="/image/cart.png" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
+                            <image src="/image/cart.png" class="add-goods right" style="margin:0" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                             <image src="/image/add.png" class="add-goods right" style="margin:0"/>
                         
                         </view>
@@ -136,7 +136,7 @@
                 </navigator>
 
             </view>
-            <!--  ***************************彩妆*********************** -->
+            <!--  ***************************性价比商品*********************** -->
             <view class="like bg box">
                 <view class="text">
                     {{goodsList[2].title}}
@@ -151,7 +151,7 @@
                             <view class="like-title">{{item.name}}</view>
                             <view class="new-price left" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
                             <view class="old-price left" style="margin-top:14rpx">￥{{item.market_price}}</view>
-                            <image src="/image/cart.png" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
+                            <image src="/image/cart.png" data-it="{{item.inventory}}" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                             <image src="/image/add.png" class="add-goods right" style="margin:0"/>
                         
                         </view>
@@ -178,7 +178,7 @@
                             <view class="like-title">{{item.name}}</view>
                             <view class="new-price left" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
                             <view class="old-price left" style="margin-top:14rpx">￥{{item.market_price}}</view>
-                            <image src="/image/cart.png" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
+                            <image src="/image/cart.png" class="add-goods right" data-it="{{item.inventory}}" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                             <image src="/image/add.png" class="add-goods right" style="margin:0"/>
                         
                         </view>
@@ -204,7 +204,7 @@
                         <view class="new-price left">￥{{item.shopprice}}</view>
                         <view class="old-price left">￥{{item.market_price}}</view>
                         <view class="make-money left">赚{{item.makeMoney}}</view> 
-                        <image src="/image/cart.png" class="add-shopcart right" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
+                        <image src="/image/cart.png" class="add-shopcart right" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                         <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
                     </view>
                 </view>
@@ -226,7 +226,7 @@
                         <view class="new-price left">￥{{item.shopprice}}</view>
                         <view class="old-price left">￥{{item.market_price}}</view>
                         <view class="make-money left">赚{{item.makeMoney}}</view> 
-                        <image src="/image/cart.png" class="add-shopcart right" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
+                        <image src="/image/cart.png" class="add-shopcart right" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                         <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
                     </view>
                 </view>
@@ -248,7 +248,7 @@
                         <view class="new-price left">￥{{item.shopprice}}</view>
                         <view class="old-price left">￥{{item.market_price}}</view>
                         <view class="make-money left">赚{{item.makeMoney}}</view> 
-                        <image src="/image/cart.png" class="add-shopcart right" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
+                        <image src="/image/cart.png" class="add-shopcart right" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                         <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
                     </view>
                 </view>
@@ -270,7 +270,7 @@
                         <view class="new-price left">￥{{item.shopprice}}</view>
                         <view class="old-price left">￥{{item.market_price}}</view>
                         <view class="make-money left">赚{{item.makeMoney}}</view> 
-                        <image src="/image/cart.png" class="add-shopcart right" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
+                        <image src="/image/cart.png" class="add-shopcart right" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                         <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
                     </view>
                 </view>
@@ -292,7 +292,7 @@
                         <view class="new-price left">￥{{item.shopprice}}</view>
                         <view class="old-price left">￥{{item.market_price}}</view>
                         <view class="make-money left">赚{{item.makeMoney}}</view> 
-                        <image src="/image/cart.png" class="add-shopcart right" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
+                        <image src="/image/cart.png" class="add-shopcart right" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                         <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
                     </view>
                 </view>
@@ -314,7 +314,7 @@
                         <view class="new-price left">￥{{item.shopprice}}</view>
                         <view class="old-price left">￥{{item.market_price}}</view>
                         <view class="make-money left">赚{{item.makeMoney}}</view> 
-                        <image src="/image/cart.png" class="add-shopcart right" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
+                        <image src="/image/cart.png" class="add-shopcart right" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                         <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
                     </view>
                 </view>
@@ -336,7 +336,7 @@
                         <view class="new-price left">￥{{item.shopprice}}</view>
                         <view class="old-price left">￥{{item.market_price}}</view>
                         <view class="make-money left">赚{{item.makeMoney}}</view> 
-                        <image src="/image/cart.png" class="add-shopcart right" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
+                        <image src="/image/cart.png" class="add-shopcart right" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                         <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
                     </view>
                 </view>
@@ -357,7 +357,7 @@
                         <view class="like-title">{{item.name}}</view>
                         <view class="new-price left" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
                         <view class="old-price left" style="margin-top:14rpx">￥{{item.market_price}}</view>
-                        <image src="/image/cart.png" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
+                        <image src="/image/cart.png" class="add-goods right" style="margin:0" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                         <image src="/image/add.png" class="add-goods right" style="margin:0"/>
                     
                     </view>

@@ -42,5 +42,8 @@ module.exports = {
 	UserMainMsg:UserMsg+'getUserInfo',//支付页面的接口获取余额
 	UserRmbPay:RmbPay+'balancePay',//余额支付
 	OrderInfoList:OrderDetailInfo+'getOrderList',//订单列表
-	OrderInfoDetail:OrderDetailInfo+'getOrderDetail'//订单详情
+	OrderInfoDetail:OrderDetailInfo+'getOrderDetail',//订单详情
+	CancelOredr:OrderDetailInfo+'cancelOrder',//取消订单
+	CancelMoney:OrderDetailInfo+'cancelMoney',//申请退款
+
 }

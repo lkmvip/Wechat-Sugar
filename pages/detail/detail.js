@@ -57,6 +57,7 @@ Page({
     //处理成功详情页函数
     handleDetailInfo(res) {
         let goodsList = res.data.data;
+        console.log(goodsList)
         this.setData({
             goodsInfo:goodsList
         })
@@ -147,16 +148,22 @@ Page({
             goodsName = e.target.dataset.name,
             goodsPrice = e.target.dataset.price,
             num = this.data.num,
-            _this = this;
+            _this = this,
+            goodsit = e.target.dataset.it;
         if (!this.data.showDialog) {
-            const data = {
-                userid:3,
-                goodsId:goodsId,
-                goods_name:goodsName,
-                goods_price:goodsPrice,
-                goods_number:num
-            };
-            utils.sendRequest(api.AddGoodtoCart, data, _this.handleAddGoodtoCartSucc.bind(_this));
+            if (goodsit == null|| goodsit<=0 ) {//库存判断
+                wx.showModal({content: '库存不足抱歉哟~',showCancel: false})
+            }else{
+                const data = {
+                    userid:3,
+                    goodsId:goodsId,
+                    goods_name:goodsName,
+                    goods_price:goodsPrice,
+                    goods_number:num
+                };
+                utils.sendRequest(api.AddGoodtoCart, data, _this.handleAddGoodtoCartSucc.bind(_this));
+            }
+            
         }
     },
     handleAddGoodtoCartSucc(res) {
@@ -184,16 +191,21 @@ Page({
             goodsName = e.target.dataset.name,
             goodsPrice = e.target.dataset.price,
             num = this.data.num,
-            _this = this;
+            _this = this,
+            goodsit = e.target.dataset.it;
         if (!this.data.showDialog) {
-            const data = {
-                userid:3,
-                goodsId:goodsId,
-                goods_name:goodsName,
-                goods_price:goodsPrice,
-                goods_number:num
-            };
-            utils.sendRequest(api.AddGoodtoCart, data, _this.handleGoPaySucc.bind(_this));
+             if (goodsit == null|| goodsit<=0 ) {//库存判断
+                wx.showModal({content: '库存不足抱歉哟~',showCancel: false})
+            }else{
+                const data = {
+                    userid:3,
+                    goodsId:goodsId,
+                    goods_name:goodsName,
+                    goods_price:goodsPrice,
+                    goods_number:num
+                };
+                utils.sendRequest(api.AddGoodtoCart, data, _this.handleGoPaySucc.bind(_this));
+            }
         }
     },
     //请求成功后跳转

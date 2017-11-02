@@ -81,10 +81,10 @@
 	</view>
 	<view class="detail-right">
 		<block wx:for="{{goodsInfo}}" wx:key="index">
-			<view class="add-cart" bindtap="handleAddCart" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}">
+			<view class="add-cart" bindtap="handleAddCart" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}">
 				加入购物车
 			</view>
-			<view class="go-pay" bindtap="handleGoPay" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}">
+			<view class="go-pay" bindtap="handleGoPay" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}">
 				立即购买
 			</view>
 		</block>

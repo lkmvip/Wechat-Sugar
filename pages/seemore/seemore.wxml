@@ -14,7 +14,7 @@
 	        <view class="old-price left">￥{{item.market_price}}</view>
 	        <view class="through left">/</view>
 	        <view class="make-money left">赚{{item.makeMoney}}</view> 
-	        <image src="/image/cart.png" class="add-shopcart right" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
+	        <image src="/image/cart.png" class="add-shopcart right" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
 	        <image bindtap="handleAddGoods" data-id="{{index}}" src="/image/add{{addIndex === index ? 'suc' : ''}}.png" class="add-goods right"/>
 	    </view>
 	</view>

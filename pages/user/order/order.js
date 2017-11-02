@@ -11,18 +11,44 @@ Page({
         this.setData({
             activeIndex: options.id
         });
-        // wx.navigateBack({
-        //   delta: 1
-        // })
+
         this.handleGetList();
     },
     tabClick(e) {
         this.setData({
             activeIndex: e.currentTarget.id
         });
+        let status = this.data.activeIndex;
+        if (status == 1) {//未付款
+            const data ={
+                    user_id:3,
+                    status:1,
+                    orderBy:'',
+                    distribution_id:''
+                };
+            utils.sendRequest(api.OrderInfoList, data, this.handleWillPaySucc.bind(this));
+        }
+        if (status == 2) {//待收货
+            const data ={
+                    user_id:3,
+                    status:3,
+                    orderBy:'',
+                    distribution_id:''
+                };
+            utils.sendRequest(api.OrderInfoList, data, this.handleWillTakeSucc.bind(this));
+        }
+        if (status == 3) {//已收货
+            const data ={
+                    user_id:3,
+                    status:2,
+                    orderBy:'',
+                    distribution_id:''
+                };
+            utils.sendRequest(api.OrderInfoList, data, this.handleTakeDownSucc.bind(this));
+        }
     },
     handleGetList() {
-         const data ={
+        const data ={
                     user_id:3,
                     status:'',
                     orderBy:'',
@@ -34,6 +60,63 @@ Page({
         this.setData({
             allOrder:res.data.data.reverse()
         })
-        // console.log(this.data.allOrder)
+    },
+    handleWillPaySucc(res) {        
+        this.setData({
+            WillPayOrder:res.data.data.reverse()
+        })
+    },
+    handleWillTakeSucc(res) {
+        this.setData({
+            WillTakeOrder:res.data.data.reverse()
+        })
+    },
+    handleTakeDownSucc(res) {
+        this.setData({
+            TakeDownOrder:res.data.data.reverse()
+        })
+    },
+    // 操作订单状态 取消订单
+    handleCancelOredr(e) {
+        let id = e.target.dataset.id;
+        console.log(e.target.dataset.id)
+        const data ={
+                    admin_userid:3,
+                    order_id:id,
+                    type:''
+                };
+        utils.sendRequest(api.CancelOredr, data, this.handleCancelOredrSucc.bind(this));
+    },
+    handleCancelOredrSucc(res) {
+        try {
+            res.data ?
+            wx.showModal({content: '取消成功，期待您下次宠幸~',showCancel: false})
+            :
+            wx.showModal({content: '出错啦，工程师正在抢修~',showCancel: false});
+        } catch(e) {
+            // statements
+            console.log(e);
+        }
+    },
+    // 操作订单状态 申请退款
+    handleCancelMoney(e) {
+        let id = e.target.dataset.id;
+        const data ={
+                    user_id:3,
+                    order_id:id,
+                    type:1
+                };
+        utils.sendRequest(api.CancelMoney, data, this.handleCancelMoneySucc.bind(this));
+    },
+    handleCancelMoneySucc(res){
+        try {
+            res.data ?
+            wx.showModal({content: '申请成功，请您耐心等待~',showCancel: false})
+            :
+            wx.showModal({content: '出错啦，工程师正在抢修~',showCancel: false});
+        } catch(e) {
+            // statements
+            console.log(e);
+        }  
     }
 });

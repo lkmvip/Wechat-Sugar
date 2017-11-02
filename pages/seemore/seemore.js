@@ -108,15 +108,20 @@ Page({
         // 传商品信息 
         let goodsId = e.target.dataset.id,
             goodsName = e.target.dataset.name,
-            goodsPrice = e.target.dataset.price;
-        const data = {
-            userid:3,
-            goodsId:goodsId,
-            goods_name:goodsName,
-            goods_price:goodsPrice,
-            goods_number:1
-        };
-        utils.sendRequest(api.AddGoodtoCart, data, this.handleAddGoodtoCartSucc.bind(this));
+            goodsPrice = e.target.dataset.price,
+            goodsit = e.target.dataset.it;
+            if (goodsit == null|| goodsit<=0 ) {//库存判断
+                wx.showModal({content: '库存不足抱歉哟~',showCancel: false})
+            }else {
+                const data = {
+                    userid:3,
+                    goodsId:goodsId,
+                    goods_name:goodsName,
+                    goods_price:goodsPrice,
+                    goods_number:1
+                };
+                utils.sendRequest(api.AddGoodtoCart, data, this.handleAddGoodtoCartSucc.bind(this))
+            } 
     },
     //调用成功添加购物车函数
     handleAddGoodtoCartSucc(res) {

@@ -74,7 +74,9 @@ Page({
     // },
     //请求TabUrl函数
     getTabInfo() {
-        const data = {};
+        const data = {
+            limit:6
+        };
         utils.sendRequest(api.TabUrl, data, this.handleGetTabSucc.bind(this));
     },
     //请求IndexUrl函数 
@@ -107,6 +109,7 @@ Page({
         // 返回商品列表和品牌列表的信息
         let brandList = res.data.brandInfo,
             goodsInfo = res.data.data;
+            console.log(goodsInfo)
         this.setData({
             extendList : brandList,
             goodsList : goodsInfo
@@ -122,6 +125,7 @@ Page({
     //请求AllUrl成功处理函数  
     handleGetAllSucc(res) {
         const goods = res.data.data;
+        console.log(goods)
         const arr = [];
         goods.map((item,index)=> arr.push(item));
         this.setData({
@@ -264,15 +268,21 @@ Page({
         // 传商品信息 
         let goodsId = e.target.dataset.id,
             goodsName = e.target.dataset.name,
-            goodsPrice = e.target.dataset.price;
-        const data = {
-            userid:3,
-            goodsId:goodsId,
-            goods_name:goodsName,
-            goods_price:goodsPrice,
-            goods_number:1
-        };
-        utils.sendRequest(api.AddGoodtoCart, data, this.handleAddGoodtoCartSucc.bind(this));
+            goodsPrice = e.target.dataset.price,
+            goodsit = e.target.dataset.it;
+            if (goodsit == null|| goodsit<=0 ) {//库存判断
+                wx.showModal({content: '库存不足抱歉哟~',showCancel: false})
+            }else {
+                const data = {
+                    userid:3,
+                    goodsId:goodsId,
+                    goods_name:goodsName,
+                    goods_price:goodsPrice,
+                    goods_number:1
+                };
+                utils.sendRequest(api.AddGoodtoCart, data, this.handleAddGoodtoCartSucc.bind(this))
+            } 
+           
     },
     //调用成功添加购物车函数
     handleAddGoodtoCartSucc(res) {

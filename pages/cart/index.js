@@ -185,7 +185,7 @@ Page({
             num = parseInt(carts[index].goods_number),
             id = e.currentTarget.dataset.id,
             goods = carts.length;//列表长度                     
-        if(num <= 0){
+        if(num <= 1){
           return false;
         }
         num = num - 1;
