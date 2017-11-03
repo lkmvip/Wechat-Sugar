@@ -58,6 +58,7 @@
 	width: 100%;
 	height: 100rpx;
 	font-size: 24rpx;
+/* 	background: red; */
 	border-top: 1rpx solid #ececec; 
 }
 .alllist-mid {
@@ -87,4 +88,12 @@
 	margin-top: 20rpx;
 	border-radius: 5rpx;
 	color:#999;
+}
+.flex-way{
+	display: flex;
+	flex-direction: row-reverse; 
+}
+.btn-color{
+	color: #f2505d;
+	border: 1rpx solid #f2505d;
 }

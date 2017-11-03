@@ -14,6 +14,9 @@ Page({
 
         this.handleGetList();
     },
+    onShow() {
+        this.handleGetList();
+    },
     tabClick(e) {
         this.setData({
             activeIndex: e.currentTarget.id
@@ -40,7 +43,7 @@ Page({
         if (status == 3) {//已收货
             const data ={
                     user_id:3,
-                    status:2,
+                    status:4,
                     orderBy:'',
                     distribution_id:''
                 };
@@ -57,6 +60,7 @@ Page({
         utils.sendRequest(api.OrderInfoList, data, this.handleOrderInfoListSucc.bind(this));
     },
     handleOrderInfoListSucc(res) {
+        console.log(res)
         this.setData({
             allOrder:res.data.data.reverse()
         })
@@ -67,6 +71,7 @@ Page({
         })
     },
     handleWillTakeSucc(res) {
+        console.log(res)
         this.setData({
             WillTakeOrder:res.data.data.reverse()
         })
@@ -100,7 +105,7 @@ Page({
     },
     // 操作订单状态 申请退款
     handleCancelMoney(e) {
-        let id = e.target.dataset.id;
+        let id = e.target.dataset.msg;
         const data ={
                     user_id:3,
                     order_id:id,
@@ -112,6 +117,33 @@ Page({
         try {
             res.data ?
             wx.showModal({content: '申请成功，请您耐心等待~',showCancel: false})
+            :
+            wx.showModal({content: '出错啦，工程师正在抢修~',showCancel: false});
+        } catch(e) {
+            // statements
+            console.log(e);
+        }  
+    },
+    handleWatchMsg(e) {
+        let msg = e.target.dataset.msg;
+        console.log(msg)
+        wx.navigateTo({
+            url: '../logistics/index'
+        })
+    },
+    handleTakeGoods(e) {
+        let id = e.target.dataset.id;
+        console.log(id)
+        const data ={
+                    user_id:3,
+                    order_id:id
+                };
+        utils.sendRequest(api.TakeGoods, data, this.handleTakeGoodsSucc.bind(this));
+    },
+    handleTakeGoodsSucc(res) {
+        try {
+            res.data ?
+            wx.showModal({content: '收货成功，期待您下次光临~',showCancel: false})
             :
             wx.showModal({content: '出错啦，工程师正在抢修~',showCancel: false});
         } catch(e) {

@@ -16,7 +16,7 @@
     </view>
     <block wx:if="{{inputVal == ''}}">
         <view class="tab bg">
-            <scroll-view class="" scroll-x="true" style="width: 100%;white-space: nowrap; display: flex">
+            <scroll-view class="" scroll-x="true" style="width: 100%;white-space: nowrap; display: flex;overflow-x: auto;">
                 <view style="display: inline-block" bindtap="switchIndex" class="tab-list {{index === 1 ?'on':''}}">首页</view>
                 <view wx:for="{{tab}}" wx:key="index" data-id="{{item.id}}" data-index="{{index}}"
                    style="display: inline-block" bindtap="switchTab" class="tab-list {{tabIndex === index?'on':''}}">

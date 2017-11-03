@@ -19,7 +19,8 @@
     "pages/user/shophandle/handle",
     "pages/user/like/like",
     "pages/ordermsg/msg",
-    "pages/seemore/seemore"
+    "pages/seemore/seemore",
+    "pages/user/logistics/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#f2505d",

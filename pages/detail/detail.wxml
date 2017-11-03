@@ -21,7 +21,7 @@
 					</block>	 -->			
 				</view>
 				<view class="detail-msg">
-					<text>库存:{{item.inventory == null ? 0 : item.inventory}}</text>
+					<text>库存:{{item.inventory == null||item.inventory <=0 ? 0 : item.inventory}}</text>
 					<text style="margin-left: 150rpx;">销量:{{item.goodsnumber}}</text>
 				</view>		
 			</view>

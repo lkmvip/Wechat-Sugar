@@ -13,7 +13,8 @@ var NoOne = 'https://wstcsd.1haomei.com',
 	CreateOrder = NoOne+'/html/shop/index.php/WstInterFace/GoodsDetails/',//提交订单
 	UserMsg = NoOne+'/html/shop/index.php/WstInterFace/UserInfo/',
 	RmbPay = NoOne+'/html/shop/index.php/WstInterFace/BalancePayment/',//余额支付接口
-	OrderDetailInfo = NoOne+'/html/shop/index.php/WstInterFace/OrderInfo/';//订单详情
+	OrderDetailInfo = NoOne+'/html/shop/index.php/WstInterFace/OrderInfo/',//订单详情
+	LogisticsInfo = NoOne+'/html/shop/index.php/WstInterFace/Logistics/';//物流详情
 module.exports = {
 	NoOneJson:NoOne+'/html/shop/Public/Home/js/data.json',//地址json
 	IndexUrl:NewApiRootUrl+ 'getIndexProduct',//首页信息
@@ -45,5 +46,7 @@ module.exports = {
 	OrderInfoDetail:OrderDetailInfo+'getOrderDetail',//订单详情
 	CancelOredr:OrderDetailInfo+'cancelOrder',//取消订单
 	CancelMoney:OrderDetailInfo+'cancelMoney',//申请退款
+	TakeGoods:OrderDetailInfo+'takeGoods',//确认收货
+	GetLogisticsInfo:LogisticsInfo+'getLogisticsInfo'//物流信息
 
 }

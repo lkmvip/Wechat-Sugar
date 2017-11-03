@@ -38,8 +38,8 @@
                     </view>
                 </block>
                 <block wx:if="{{item.status == 3 ? true : false}}">
-                    <view class="alllist-bottom fright">
-                            查看物流-确认收货
+                    <view class="alllist-bottom flex-way">
+                            <view class="order-btn btn-color mright" data-id="{{item.order_id}}" bindtap="handleTakeGoods">确认收货</view> <view class="order-btn btn-color mright" data-msg="{{item.invoice_no}}" bindtap="handleWatchMsg">查看物流</view>
                     </view>
                 </block>
         	</view>
@@ -110,8 +110,8 @@
                     </view>
                 </block>
                 <block wx:if="{{item.status == 3 ? true : false}}">
-                    <view class="alllist-bottom fright">
-                            查看物流-确认收货
+                    <view class="alllist-bottom flex-way">
+                            <view class="order-btn btn-color mright" data-id="{{item.order_id}}" bindtap="handleTakeGoods">确认收货</view> <view class="order-btn btn-color mright" data-msg="{{item.invoice_no}}" bindtap="handleWatchMsg">查看物流</view>
                     </view>
                 </block>
             </view>
