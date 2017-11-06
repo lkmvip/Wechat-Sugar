@@ -115,7 +115,7 @@ Page({
                 //处理传值
                 let msg = JSON.stringify(res.data.data),
                 id = this.data.cartId;
-                wx.navigateTo({
+                wx.redirectTo({
                     url: '/pages/orderpay/order?msg='+msg
                 });
                 const data ={

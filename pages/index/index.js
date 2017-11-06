@@ -125,7 +125,6 @@ Page({
     //请求AllUrl成功处理函数  
     handleGetAllSucc(res) {
         const goods = res.data.data;
-        console.log(goods)
         const arr = [];
         goods.map((item,index)=> arr.push(item));
         this.setData({

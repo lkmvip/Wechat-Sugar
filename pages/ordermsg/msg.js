@@ -16,7 +16,6 @@ Page({
     onLoad(options) {
         let id = options.orderid;
         this.handleGetInfo(id);
-        console.log(id)
     },
     handleGetInfo(id) {
         const data ={
@@ -28,9 +27,10 @@ Page({
     },
     handleOrderInfoDetailSucc(res) {
         this.setData({
-            orderInfo:res.data.data
+            orderInfo:res.data.data,
+            status:res.data.data[0].status
         })
-        console.log(res.data.data)
+        console.log(this.data.status)
     },
     /**
     * 生命周期函数--监听页面初次渲染完成

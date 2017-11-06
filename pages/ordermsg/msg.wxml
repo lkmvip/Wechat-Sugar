@@ -38,6 +38,9 @@
 					<view class="item-num">
 						<text style="color: #ff4341;">￥{{item.goodsamount}}</text>
 						<text style="color: #999;">X{{item.goods_number}}</text>
+						<navigator url="/pages/user/cancelGoods/index" open-type="redirect">
+						<text wx:if="{{status==4?true:false}}" style="color: #ff4341; border: 1rpx solid #ff4341;margin-top: 20rpx;border-radius: 5rpx;">申请退款</text>
+						</navigator>						
 					</view>
 				</view>
 			</view>

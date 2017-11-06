@@ -46,6 +46,7 @@
 	height: 80rpx;
 	display: flex;
 	justify-content: space-between;
+	white-space:pre-wrap;
 }
 .user-addr {
 	font-size: 30rpx;

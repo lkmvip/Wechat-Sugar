@@ -1,2 +1,22 @@
 <!--pages/user/logistics/index.wxml-->
-<text>pages/user/logistics/index.wxml</text>
+<view>
+	<view class="logistics-top">
+        <image class="top-img" src="/image/user/send.png"></image>
+		<view class="top-text">
+			<view>承运公司:{{company}}</view>
+			<view>快递单号:{{num}}</view>
+		</view>
+	</view>
+	<view class="logistics-bottom">
+		<view class="bottom-msg" wx:for="{{msgList}}" wx:key="index">
+			<view class="bottom-line"></view>
+			<view class="bottom-text {{index==0?'on1':''}}">
+				<view class="bottom-tab {{index==0?'on2':''}}"></view>
+					{{item.AcceptStation}}
+				<view class="bottom-time">
+				{{item.AcceptTime}}
+				</view>	
+			</view>	
+		</view>
+	</view>
+</view>

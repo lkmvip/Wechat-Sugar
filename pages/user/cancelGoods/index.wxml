@@ -1,0 +1,61 @@
+<!--pages/user/cancelGoods/index.wxml-->
+<!--pages/user/order.wxml-->
+<view class="order">
+    <view class="navbar">
+        <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+            <view id="{{index}}" class="order-item {{activeIndex == index ? 'item-on' : ''}}">
+                <view class="weui-navbar__title">{{item}}</view>
+            </view>
+        </block>
+    </view>
+    <view class="cancel-box">
+        <!--************************************ 申请退货 **************************************-->
+        <view class="" hidden="{{activeIndex != 0}}">
+			<view class="cancel-requset">
+        		<image class="requset-img" src="/image/user/send.png"></image>
+        		<view>asdasdjhlkaskdjhaksjhasd</view>
+        		<view class="requset-text">
+        			<view >￥111.11</view>
+        			<view >X1</view>	
+        		</view>				
+			</view>
+			<view class="cancel-requset">
+				<view class="mleft cancel-choice">选择数量</view>
+				<view class="count mright">
+					<text class="count-down">－</text>
+					<text class="count-num">1</text>
+					<text class="count-add">＋</text>
+				</view>
+			</view>
+			<view class="cancel-requset">
+				<view class="mleft cancel-choice">退款金额:￥111.11</view>
+			</view>	
+			<view class="cancel-requset">
+				<view class="mleft cancel-choice">最多退款:￥111.11</view>
+			</view>
+			<view class="cancel-requset" style="display: block;">
+				<view class="mleft cancel-choice">退货说明</view>
+				<textarea class="cancel-textarea mleft" value="{{item.address}}" bindinput="handleAddrDetail"  type="text" placeholder="在此处填写退货说明..."/>
+			</view>
+			<view class="cancel-requset" style="display: block;">
+				<view class="mleft pic-box" bindtap="handleCancelPic">
+        			<image class="requset-pic" src="/image/user/requset.png"></image>
+					<text class="pic-text">上传照片</text>
+				</view>
+			</view>
+			<view class="request-btn">申请退货</view>
+        </view>
+        <!--************************************ 退货审核 **************************************-->
+        <view class="" hidden="{{activeIndex != 1}}">
+          
+        </view>
+        <!--************************************ 用户发货 **************************************-->
+        <view class="" hidden="{{activeIndex != 2}}">
+           
+        </view>
+        <!--************************************ 收货退款 **************************************-->
+        <view class="" hidden="{{activeIndex != 3}}">
+           
+        </view>
+    </view>
+</view>

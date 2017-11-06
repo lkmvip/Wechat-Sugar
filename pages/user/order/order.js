@@ -1,4 +1,4 @@
-const api = require('../../../utils/api.js');//封装好的借口路径
+const api = require('../../../utils/api.js');//封装好的接口路径
 const utils = require('../../../utils/util.js');//调用封装的request
 
 Page({
@@ -60,7 +60,6 @@ Page({
         utils.sendRequest(api.OrderInfoList, data, this.handleOrderInfoListSucc.bind(this));
     },
     handleOrderInfoListSucc(res) {
-        console.log(res)
         this.setData({
             allOrder:res.data.data.reverse()
         })
@@ -71,7 +70,6 @@ Page({
         })
     },
     handleWillTakeSucc(res) {
-        console.log(res)
         this.setData({
             WillTakeOrder:res.data.data.reverse()
         })
@@ -126,9 +124,8 @@ Page({
     },
     handleWatchMsg(e) {
         let msg = e.target.dataset.msg;
-        console.log(msg)
         wx.navigateTo({
-            url: '../logistics/index'
+            url: '../logistics/index?id='+msg
         })
     },
     handleTakeGoods(e) {
