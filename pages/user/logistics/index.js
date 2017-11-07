@@ -18,17 +18,16 @@ Page({
         this.setData({
             num:id
         })
-        // console.log(options)
         this.getListInfo(id);
         this.getListCode(id);
     },
-    getListInfo(id){
+    getListInfo(id){//获取物流信息
             const data ={
                 shopId:id
             };
             utils.sendRequest(api.GetLogisticsInfo, data, this.handleListInfoSucc.bind(this));
     },
-    getListCode(id){
+    getListCode(id){//获取物流公司
         const data ={
                 shopId:id
         };

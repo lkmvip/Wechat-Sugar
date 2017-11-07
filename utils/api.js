@@ -47,6 +47,10 @@ module.exports = {
 	CancelOredr:OrderDetailInfo+'cancelOrder',//取消订单
 	CancelMoney:OrderDetailInfo+'cancelMoney',//申请退款
 	TakeGoods:OrderDetailInfo+'takeGoods',//确认收货
+	CancelTakeGoods:OrderDetailInfo+'OrderRefund',//获取退货商品信息
+	CancelGoods:OrderDetailInfo+'cancelGoods',//申请退货
+	CancelRequest:OrderDetailInfo+'disagreeCancelGoods',//取消退货
+	CustomerDelivery:OrderDetailInfo+'customerDelivery',//用户发货
 	GetLogisticsInfo:LogisticsInfo+'getLogisticsInfo',//物流信息
 	GetLogisticsCode:LogisticsInfo+'getCode'//物流信息
 }

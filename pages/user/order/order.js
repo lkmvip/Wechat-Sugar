@@ -50,7 +50,7 @@ Page({
             utils.sendRequest(api.OrderInfoList, data, this.handleTakeDownSucc.bind(this));
         }
     },
-    handleGetList() {
+    handleGetList() {// 获取全部订单列表
         const data ={
                     user_id:3,
                     status:'',
@@ -60,7 +60,7 @@ Page({
         utils.sendRequest(api.OrderInfoList, data, this.handleOrderInfoListSucc.bind(this));
     },
     handleOrderInfoListSucc(res) {
-        this.setData({
+        this.setData({//反转数组 
             allOrder:res.data.data.reverse()
         })
     },
@@ -75,6 +75,7 @@ Page({
         })
     },
     handleTakeDownSucc(res) {
+        console.log(res)
         this.setData({
             TakeDownOrder:res.data.data.reverse()
         })
@@ -123,12 +124,13 @@ Page({
         }  
     },
     handleWatchMsg(e) {
+        //跳转到物流信息页面
         let msg = e.target.dataset.msg;
         wx.navigateTo({
             url: '../logistics/index?id='+msg
         })
     },
-    handleTakeGoods(e) {
+    handleTakeGoods(e) {//确认收货操作
         let id = e.target.dataset.id;
         console.log(id)
         const data ={

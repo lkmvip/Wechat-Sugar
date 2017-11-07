@@ -31,18 +31,22 @@
 			<block wx:for="{{item.ordergoods}}" wx:key="{{index}}">
 			<image class="item-icon" src="{{item.goods_img}}"></image>
 			<view class="item-content">
-				<view style="display: flex;">
+				<view style="width:100%;display: flex;justify-content: space-around;">
 					<view class="item-tit">
 						{{item.name}}
 					</view>
 					<view class="item-num">
 						<text style="color: #ff4341;">￥{{item.goodsamount}}</text>
 						<text style="color: #999;">X{{item.goods_number}}</text>
-						<navigator url="/pages/user/cancelGoods/index" open-type="redirect">
-						<text wx:if="{{status==4?true:false}}" style="color: #ff4341; border: 1rpx solid #ff4341;margin-top: 20rpx;border-radius: 5rpx;">申请退款</text>
-						</navigator>						
 					</view>
-				</view>
+							</view>
+					<navigator url="/pages/user/cancelGoods/index?id={{item.rec_id}}&&status={{item.goods_status}}" open-type="redirect">
+						<text wx:if="{{item.goods_status==0?true:false}}" class="cancel-btn">申请退款</text>
+						<text wx:if="{{item.goods_status==1?true:false}}" class="cancel-btn">退款审核中</text>
+						<text wx:if="{{item.goods_status==2?true:false}}" class="cancel-btn">退货中(等待发货)</text>
+						<text wx:if="{{item.goods_status==3?true:false}}" class="cancel-btn">退货中(用户已发货)</text>
+						<text wx:if="{{item.goods_status==4?true:false}}" class="cancel-btn">退货完成</text>
+					</navigator>						
 			</view>
 			</block>
 		</view>

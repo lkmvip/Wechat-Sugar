@@ -30,8 +30,14 @@ Page({
             orderInfo:res.data.data,
             status:res.data.data[0].status
         })
-        console.log(this.data.status)
+        console.log(this.data.orderInfo)
     },
+    // handleCancelGoods() {
+    //     let id = this.data.orderInfo[0].order_id;
+    //     wx.redirectTo({
+    //         url:'/pages/user/cancelGoods/index?id='+id
+    //     })
+    // },
     /**
     * 生命周期函数--监听页面初次渲染完成
     */

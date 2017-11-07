@@ -11,51 +11,166 @@
     <view class="cancel-box">
         <!--************************************ 申请退货 **************************************-->
         <view class="" hidden="{{activeIndex != 0}}">
+        	<!-- <block wx:for="{{cancelList}}"> -->
 			<view class="cancel-requset">
-        		<image class="requset-img" src="/image/user/send.png"></image>
-        		<view>asdasdjhlkaskdjhaksjhasd</view>
+        		<image class="requset-img" src="{{cancelList.goods_img}}"></image>
+        		<view>{{cancelList.name}}</view>
         		<view class="requset-text">
-        			<view >￥111.11</view>
-        			<view >X1</view>	
+        			<view >￥{{cancelList.shopprice}}</view>
+        			<view >X{{cancelList.goods_number}}</view>	
         		</view>				
 			</view>
 			<view class="cancel-requset">
 				<view class="mleft cancel-choice">选择数量</view>
 				<view class="count mright">
-					<text class="count-down">－</text>
-					<text class="count-num">1</text>
-					<text class="count-add">＋</text>
+					<text class="count-down" bindtap="minusCount">－</text>
+					<text class="count-num">{{num}}</text>
+					<text class="count-add" bindtap="addCount">＋</text>
 				</view>
 			</view>
 			<view class="cancel-requset">
-				<view class="mleft cancel-choice">退款金额:￥111.11</view>
+				<view class="mleft cancel-choice">退款金额:￥{{cancelPrice}}</view>
 			</view>	
 			<view class="cancel-requset">
-				<view class="mleft cancel-choice">最多退款:￥111.11</view>
+				<view class="mleft cancel-choice">最多退款:￥{{max}}</view>
 			</view>
 			<view class="cancel-requset" style="display: block;">
 				<view class="mleft cancel-choice">退货说明</view>
-				<textarea class="cancel-textarea mleft" value="{{item.address}}" bindinput="handleAddrDetail"  type="text" placeholder="在此处填写退货说明..."/>
+				<textarea class="cancel-textarea mleft" value="{{remark}}" bindinput="handleAddrDetail"  type="text" placeholder="在此处填写退货说明..."/>
 			</view>
 			<view class="cancel-requset" style="display: block;">
-				<view class="mleft pic-box" bindtap="handleCancelPic">
+				<view class="mleft pic-box" bindtap="  ">
         			<image class="requset-pic" src="/image/user/requset.png"></image>
 					<text class="pic-text">上传照片</text>
 				</view>
 			</view>
-			<view class="request-btn">申请退货</view>
+			<!-- </block> -->
+			<view class="request-btn" bindtap="handleRequest">申请退货</view>
         </view>
         <!--************************************ 退货审核 **************************************-->
         <view class="" hidden="{{activeIndex != 1}}">
-          
+        	<view class="cancel-requset">
+        		<image class="requset-img" src="{{cancelList.goods_img}}"></image>
+        		<view>{{cancelList.name}}</view>
+        		<view class="requset-text">
+        			<view >￥{{cancelList.shopprice}}</view>
+        			<view >X{{cancelList.goods_number}}</view>	
+        		</view>				
+			</view>
+			<view class="cancel-examine">
+				<view class="mleft mright examine-pirce">
+					<view>商品总价:</view>
+					<view>￥{{cancelList.goods_amount}}</view>
+				</view>
+				<view class="mleft mright examine-pirce">
+					<view>运费:</view>
+					<view>￥{{cancelList.shipping_fee}}</view>
+				</view>
+				<view class="mleft mright examine-pirce">
+					<view>优惠:</view>
+					<view>￥{{cancelList.youhui}}</view>
+				</view>
+			</view>
+			<view class="cancel-examine">
+				<view class="mleft mright examine-pirce">
+					<view>预计退款金额:</view>
+					<view>￥{{cancelList.max_refund}}</view>
+				</view>
+				<view class="mleft mright examine-pirce">
+					<view style="width: 180rpx;">退货说明:</view>
+					<view>{{cancelList.refund_remark}}</view>
+				</view>
+			</view>	
+			<view class="request-btn" bindtap="handleCancelRequest">取消退货</view>
         </view>
         <!--************************************ 用户发货 **************************************-->
         <view class="" hidden="{{activeIndex != 2}}">
-           
+            <view class="cancel-requset">
+        		<image class="requset-img" src="{{cancelList.goods_img}}"></image>
+        		<view>{{cancelList.name}}</view>
+        		<view class="requset-text">
+        			<view >￥{{cancelList.shopprice}}</view>
+        			<view >X{{cancelList.goods_number}}</view>	
+        		</view>				
+			</view>
+			<view class="cancel-examine">
+				<view class="mleft mright examine-pirce">
+					<view>商品总价:</view>
+					<view>￥{{cancelList.goods_amount}}</view>
+				</view>
+				<view class="mleft mright examine-pirce">
+					<view>运费:</view>
+					<view>￥{{cancelList.shipping_fee}}</view>
+				</view>
+				<view class="mleft mright examine-pirce">
+					<view>优惠:</view>
+					<view>￥{{cancelList.youhui}}</view>
+				</view>
+			</view>
+			<view class="cancel-examine">
+				<view class="mleft mright examine-pirce">
+					<view>预计退款金额:</view>
+					<view>￥{{cancelList.max_refund}}</view>
+				</view>
+				<view class="mleft mright examine-pirce">
+					<view style="width: 180rpx;">退货说明:</view>
+					<view>{{cancelList.refund_remark}}</view>
+				</view>
+			</view>
+			<view class="cancel-examine">
+				<view class="mleft mright examine-pirce">
+					<view>退货单号</view>
+					<view>
+						<input class="examine-input" value="{{odd}}" bindconfirm="handleGoodsNum"  type="text" placeholder="请输入快递单号"/>
+					</view>
+				</view>
+			</view>
+			<view class="request-btn" bindtap="handleSendGoods">提交发货</view>
+
         </view>
         <!--************************************ 收货退款 **************************************-->
         <view class="" hidden="{{activeIndex != 3}}">
-           
+            <view class="cancel-requset">
+        		<image class="requset-img" src="{{cancelList.goods_img}}"></image>
+        		<view>{{cancelList.name}}</view>
+        		<view class="requset-text">
+        			<view >￥{{cancelList.shopprice}}</view>
+        			<view >X1</view>	
+        		</view>				
+			</view>
+			<view class="cancel-examine">
+				<view class="mleft mright examine-pirce">
+					<view>商品总价:</view>
+					<view>￥{{cancelList.goods_amount}}</view>
+				</view>
+				<view class="mleft mright examine-pirce">
+					<view>运费:</view>
+					<view>￥{{cancelList.shipping_fee}}</view>
+				</view>
+				<view class="mleft mright examine-pirce">
+					<view>优惠:</view>
+					<view>￥{{cancelList.youhui}}</view>
+				</view>
+			</view>
+			<view class="cancel-examine">
+				<view class="mleft mright examine-pirce">
+					<view>预计退款金额:</view>
+					<view>￥{{cancelList.max_refund}}</view>
+				</view>
+				<view class="mleft mright examine-pirce">
+					<view style="width: 180rpx;">退货说明:</view>
+					<view>{{cancelList.refund_remark}}</view>
+				</view>
+			</view>
+			<view class="cancel-examine">
+				<view class="mleft mright examine-pirce">
+					<view>退货单号</view>
+					<view>
+						<input class="examine-input" value="{{cancelList.refund_sn}}" bindconfirm="handlePhone"  type="text" />
+					</view>
+				</view>
+			</view>
+			<view class="request-btn" bindtap="handleCancelDone">退货完成</view>
         </view>
     </view>
 </view>

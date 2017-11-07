@@ -73,12 +73,11 @@
 	display: block;
 }
 .item-content{
-
+	width: 550rpx;
 	padding-top: 20rpx;
 	font-size: 30rpx;
 }
 .item-tit {
-	width: 400rpx;
 	margin-right: 20rpx;
 }
 .item-num text{
@@ -115,4 +114,8 @@
 	justify-content: space-between;
 	padding: 0 25rpx;
 	color: #676767
+}
+.cancel-btn{
+	color: #ff4341; border: 1rpx solid #ff4341;margin-top: 20rpx;border-radius: 5rpx;float: right;
+	margin-right: 20rpx; 
 }

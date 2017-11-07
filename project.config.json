@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
@@ -48,9 +48,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "退货",
-					"pathName": "pages/user/cancelGoods/index"
+					"pathName": "pages/user/cancelGoods/index",
+					"query": ""
 				}
 			]
 		}
