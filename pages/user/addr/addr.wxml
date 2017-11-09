@@ -5,11 +5,11 @@
 <!-- 			<block wx:if="{{addAddr}}"> -->
 				<view class="addr-name">
 					<view class="addr-txt">收货人:</view>
-					<input class="addr-input" data-id="{{index}}" value="{{item.consignee}}" bindconfirm="handleName"  type="text" placeholder="请填写收货人姓名"/>
+					<input class="addr-input" data-id="{{index}}" value="{{item.consignee}}" bindblur="handleName"  type="text" placeholder="请填写收货人姓名"/>
 				</view>
 				<view class="addr-num">
 					<view class="addr-txt">收货电话:</view>
-					<input class="addr-input" data-id="{{index}}" value="{{item.mobile}}" bindconfirm="handlePhone"  type="text" placeholder="请输入联系电话"/>
+					<input class="addr-input" data-id="{{index}}" value="{{item.mobile}}" bindblur="handlePhone"  type="text" placeholder="请输入联系电话"/>
 				</view>
 				<view class="addr-area">
 					<view class="addr-txt">配送地区:</view>
@@ -20,16 +20,16 @@
 				</view>
 				<view class="addr-detail">
 					<view class="addr-txt">详细地址:</view>
-					<textarea class="addr-textarea" data-id="{{index}}" value="{{item.address}}" bindinput="handleAddrDetail"  type="text" placeholder="请输入详细地址"/>
+					<textarea class="addr-textarea" data-id="{{index}}" value="{{item.address}}" bindblur="handleAddrDetail"  type="text" placeholder="请输入详细地址"/>
 				</view>
 				<view class="addr-handle">
 					<view class="addr-del" bindtap="handleDelAddr" data-id="{{index}}" data-addr="{{item.address_id}}">删除</view>
-					<view class="addr-save" bindtap="handleAddNewAddr" data-id="{{index}}">保存</view>
+					<button class="addr-save {{item.show?'border':''}}" disabled="{{item.show}}" bindtap="handleAddNewAddr" data-id="{{index}}">{{cartId?'配送到这个地址':'保存'}}</button>
 				</view>
 			<!-- </block>	 -->
 		</view>
 	</block> 
-	<view wx:if="{{newAddr}}" bindtap="handleNewAddr" class="new-addr">新增收货地址</view>
+	<view wx:if="{{newAddr}}" catchtap="handleNewAddr" class="new-addr">新增收货地址</view>
 		 <!-- ********************* 三级联动 ****************** -->
 		<view wx:if="{{condition}}" class="citypicker" data-index="{{item.index}}">
 			<picker-view  indicator-style="height: 50rpx;" style="width: 100%; height: 500rpx;font-size: 30rpx; background: #fff;z-index: 10;" value="{{value}}" bindchange="bindChange" class="citybody">

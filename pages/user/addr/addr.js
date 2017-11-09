@@ -23,11 +23,11 @@ Page({
         Name:'',
         Phone:'',
         AddrDetail:'',
-        back:false
+        back:false,
+        disabled: true
     },
     onLoad(options) {
         let id = options.cartid;
-        // console.log(options)
         this.setData({
             cartId:id
         })
@@ -73,8 +73,9 @@ Page({
     },
     // 获取所有地址信息
     handleAddrList(res) { //这里接口让史伟给我返回数据加了两个字段 area true 和 index
+        console.log(res)
         this.setData({
-            addrList:res.data.addressInfo
+            addrList:res.data.addressInfo.reverse()
         })
     },
     // 三级联动
@@ -104,7 +105,7 @@ Page({
             province = this.data.province,
             city = this.data.city,
             county = this.data.county;
-        list.push({
+        list.unshift({
             address:"",
             address_id:"",
             address_name:"",
@@ -223,9 +224,11 @@ Page({
             })
         }else{
             list[index].consignee = user;
+            list[index].show = false;
             this.setData({
                 addrList: list
-            })
+            });
+
         }
     },
     //电话校验
@@ -251,9 +254,11 @@ Page({
             })
         }else{
             list[index].mobile = val;
+            list[index].show = false;
             this.setData({
                 addrList: list
             });
+
         }
     },
     // 详细地址校验
@@ -270,6 +275,7 @@ Page({
             })
         }else{
             list[index].address = val;
+            list[index].show = false;
             this.setData({
                 addrList: list
             });
@@ -305,6 +311,9 @@ Page({
     },
     // 存新地址信息并且跳转
     handleAddNewAddr(e) {// 修改 对应的数组里面的 地址信息数据
+        wx.pageScrollTo({
+          scrollTop: 0
+        });
         let index = e.target.dataset.id,
             list = this.data.addrList,
             isBack = list[index].area,
@@ -313,20 +322,30 @@ Page({
             arrdid = list[index].address_id,
             area = [list[index].province,list[index].city,list[index].district].toString(),
             detail = list[index].address;
+            list[index].show = true;//改变当前对应按钮的disable属性
+            this.setData({
+                addrList: list
+            })
         if (isBack) {
-            const data ={
-                user_id:3,
-                addAddress:{
-                    type:'',
-                    address_id:arrdid,
-                    consignee:name,
-                    mobile:phone,
-                    hd_area:area,
-                    address:detail
-                }
-            };
-            // console.log(data)
-            utils.sendRequest(api.AddNewAddrInfo, data, this.handleNewAddrSucc.bind(this));
+            setTimeout(()=>{
+                wx.showModal({
+                    content:'保存成功~',
+                    showCancel:false,
+                    confirmColor:'#3cc51f'//默认值为#3cc51f
+                });
+                const data ={
+                    user_id:3,
+                    addAddress:{
+                        type:'',
+                        address_id:arrdid,
+                        consignee:name,
+                        mobile:phone,
+                        hd_area:area,
+                        address:detail
+                    }
+                };
+                utils.sendRequest(api.AddNewAddrInfo, data, this.handleNewAddrSucc.bind(this));
+            },1500)
         }else{
             wx.showModal({
                 content:'请输入完整地址信息',
@@ -337,11 +356,10 @@ Page({
     },
     //存地址成功
     handleNewAddrSucc(res) {
-        let isId = res.data.data;
-        if(isId) {
-            wx.redirectTo({
+        let isId = res.data.data,
+            cartId = this.data.cartId;
+        isId&&cartId? wx.redirectTo({
                 url: '../../orderdetail/index?addrid='+isId+'&&cartid='+this.data.cartId
-            });
-        }
+            }):'';
     }
 })

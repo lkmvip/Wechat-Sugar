@@ -30,7 +30,6 @@ Page({
             orderInfo:res.data.data,
             status:res.data.data[0].status
         })
-        console.log(this.data.orderInfo)
     },
     // handleCancelGoods() {
     //     let id = this.data.orderInfo[0].order_id;

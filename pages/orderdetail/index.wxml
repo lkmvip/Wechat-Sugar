@@ -42,7 +42,7 @@
 	<view class="msg-gopay">
 		<view class="gopay-price">
 			应付金额:￥
-			<text style="color: #ff4242;">{{orderPrice}}</text>
+			<text style="color: #ff4242;">{{orderPrice+freightNum}}</text>
 
 		</view>
 		<view class="go-submit" bindtap="handleOrderPay">提交订单</view>

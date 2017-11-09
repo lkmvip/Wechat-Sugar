@@ -248,6 +248,7 @@ Page({
     },
     //搜索内容的数组拼接
     handleLoadMore(res) {
+        console.log(res)
         const searchs=res.data.data,
             arr = [];
         searchs.map((item)=> arr.push(item));
@@ -255,7 +256,7 @@ Page({
         this.setData({
             searchList: moreList
         });
-        if (searchs.length < 8) {
+        if (searchs.length < 7) {
             this.setData({
                 btnTxt1: '人家也是有底线的~',
                 isLoading1: false

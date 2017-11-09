@@ -97,6 +97,7 @@ Page({
         // })
     },
     handleOrderPaySucc(res) {
+        console.log(res)
         if (res.data.error == 0 ) {
             wx.navigateTo({
               url: '/pages/succpay/succpay'

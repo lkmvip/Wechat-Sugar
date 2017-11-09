@@ -90,7 +90,7 @@
             <!--  ***************************推荐*********************** -->
             <view class="goods bg box">
                 <view class="text">
-                    {{goodsList[1].title}}
+                    {{goodsList[0].title}}
                 </view>
                 <view class="line"></view>
                 <view class="goods-list"  wx:for="{{goodsList[1].goods}}" wx:key="index"  data-index="{{index}}">

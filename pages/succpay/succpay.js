@@ -27,7 +27,7 @@ Page({
     },
     handleGoOrder() {
         wx.redirectTo({
-          url: '/pages/ordermsg/msg'
+          url: '/pages/order/order'
         })
     },
     handleGoLast() {
