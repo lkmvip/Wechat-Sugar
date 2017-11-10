@@ -206,7 +206,7 @@ Page({
         let index = e.target.dataset.id,
             list = this.data.addrList,
             user = e.detail.value,
-            reg = /^[\u4E00-\u9FA5]{2,4}$/;
+            reg = /^[a-zA-Z0-9\u4e00-\u9fa5]{2,20}$/;
         if (!reg.test(user)) {
             var _this = this;
                wx.showModal({
