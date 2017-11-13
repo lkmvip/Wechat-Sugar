@@ -26,6 +26,7 @@ Page({
         utils.sendRequest(api.OrderInfoDetail, data, this.handleOrderInfoDetailSucc.bind(this));
     },
     handleOrderInfoDetailSucc(res) {
+        // console.log(res.data.data)
         this.setData({
             orderInfo:res.data.data,
             status:res.data.data[0].status

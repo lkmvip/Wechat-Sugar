@@ -233,10 +233,18 @@ Page({
     },
     //搜索事件
     handleSearchSucc(res) {
+        console.log(res)
+        let searchs=res.data.data;
         this.setData({
             searchList: res.data.data,
             isErr: res.data.error
         })
+        if (searchs.length < 7) {
+            this.setData({
+                btnTxt1: '人家也是有底线的~',
+                isLoading1: false
+            })
+        };
     },
     //当value为空的时候 搜索内容隐藏
     handleSearchValue(e) {

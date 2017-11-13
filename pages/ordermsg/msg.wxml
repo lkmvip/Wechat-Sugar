@@ -39,14 +39,17 @@
 						<text style="color: #ff4341;">￥{{item.goodsamount}}</text>
 						<text style="color: #999;">X{{item.goods_number}}</text>
 					</view>
-							</view>
+				</view>
+				<block>
+					{{status}}
 					<navigator url="/pages/user/cancelGoods/index?id={{item.rec_id}}&&status={{item.goods_status}}" open-type="redirect">
 						<text wx:if="{{item.goods_status==0?true:false}}" class="cancel-btn">申请退货</text>
 						<text wx:if="{{item.goods_status==1?true:false}}" class="cancel-btn">退款审核中</text>
 						<text wx:if="{{item.goods_status==2?true:false}}" class="cancel-btn">退货中(等待发货)</text>
 						<text wx:if="{{item.goods_status==3?true:false}}" class="cancel-btn">退货中(用户已发货)</text>
 						<text wx:if="{{item.goods_status==4?true:false}}" class="cancel-btn">退货完成</text>
-					</navigator>						
+					</navigator>
+				</block>						
 			</view>
 			</block>
 		</view>
