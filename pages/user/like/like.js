@@ -1,4 +1,5 @@
-    // pages/user/like/like.js
+const api = require('../../../utils/api.js');//封装好的接口路径
+const utils = require('../../../utils/util.js');//调用封装的request
 Page({
 
     /**
@@ -18,6 +19,19 @@ Page({
     * 生命周期函数--监听页面加载
     */
     onLoad(options) {
+        this.getLikeList();
+    },
+    getLikeList() {
+        const data ={
+            limit:20,
+            user_id:3,
+            Config:''
+        };
+        //调用收藏商品接口
+        utils.sendRequest(api.LikeInfoUrl, data, this.handleLikeInfoSucc.bind(this));
+    },
+    handleLikeInfoSucc(res) {
+        console.log(res)
     },
     handleDelLike(e) {
         const index = e.currentTarget.dataset.id;

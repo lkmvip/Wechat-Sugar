@@ -159,8 +159,7 @@ Page({
     },
     //上拉刷新商品信息
     onReachBottom() {
-        let isPush = this.data.index,
-            val = this.data.inputVal,
+        let val = this.data.inputVal,
             err = this.data.isErr,
             load = this.data.isLoading,
             load1 = this.data.isLoading1;
@@ -168,7 +167,7 @@ Page({
             isBtnShow: true 
         });
 
-        if (isPush ==1&& load) {
+        if (load) {
         //关于上拉加载的性能优化
             setTimeout(()=>{
                     let num = this.data.limitIndex;

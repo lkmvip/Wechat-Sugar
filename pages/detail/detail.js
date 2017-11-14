@@ -11,10 +11,9 @@ Page({
         tabs: ["详情","热门"],
         activeIndex: "0",
         saveList:[
-            "实体店铺",
-            "微信支付认证",
             "正品保证",
-            "七天无理由退换货。"
+            "名品授权",
+            "七天退货"
         ],
         hotList:[],
         showDialog: false,
@@ -74,50 +73,53 @@ Page({
             cartNums:num
         })
     },
-    // // 添加收藏
-    // handleAddLike: function(e) {
-    //     let islike = this.data.likeIndex,
-    //         id = e.target.dataset.id,
-    //         goods = this.data.goodsId;
-    //         this.setData({
-    //             likeIndex : !islike
-    //         });
-    //     if (!islike) {
-    //         wx.showToast({
-    //           title: '收藏成功',
-    //           icon: 'success',
-    //           duration: 2000,
-    //           mask:true
-    //         });
-    //         console.log(id)
-    //         this.setData({
-    //             likeNum : id
-    //         });
-    //         const data ={
-    //             userid:45,
-    //             id:id
-    //         };
-    //         utils.sendRequest(api.LikeInfoAdd, data, this.handleAddLikeSucc.bind(this));
-    //     }else {
-    //         wx.showToast({
-    //           title: '取消收藏',
-    //           icon: 'success',
-    //           duration: 2000,
-    //           mask:true
-    //         })
-    //         this.setData({
-    //             likeNum : ''
-    //         })
-    //         const data ={
-    //             userid:45,
-    //             id:id
-    //         };
-    //         utils.sendRequest(api.LikeInfoDel, data, this.handleAddLikeSucc.bind(this));  
-    //     }
-    // },
-    // handleAddLikeSucc(res) {
-    //     console.log(res)
-    // },                                   ---------------------- 暂时不添加收藏这个功能 -----------------
+    // 添加收藏
+    handleAddLike: function(e) {
+        let recid = e.target.dataset.recid,
+            id = e.target.dataset.id,
+            goods = this.data.goodsId;
+        if(recid != 0) {
+            wx.showToast({
+              title: '取消收藏',
+              icon: 'success',
+              duration: 2000,
+              mask:true
+            })
+            const data ={
+                userid:3,
+                id:id
+            };
+            utils.sendRequest(api.LikeInfoDel, data, this.handleCancelLikeSucc.bind(this));
+        }
+        if(recid == 0) {
+            wx.showToast({
+              title: '收藏成功',
+              icon: 'success',
+              duration: 2000,
+              mask:true
+            });
+            const data ={
+                userid:3,
+                id:id
+            };
+            utils.sendRequest(api.LikeInfoAdd, data, this.handleAddLikeSucc.bind(this)); 
+        }
+    },
+    handleAddLikeSucc(res) {
+        let list = this.data.goodsInfo;
+        list[0].rec_id = res.data.rec_id;
+        this.setData({
+            goodsInfo:list
+        })
+    },
+    handleCancelLikeSucc(res) {
+        let list = this.data.goodsInfo;
+        list[0].rec_id = res.data.error;
+        this.setData({
+            goodsInfo:list
+        })
+    },                                   
+    // ---------------------- 暂时不添加收藏这个功能 -----------------
     // 点击tab选项卡
     tabClick: function (e) {
         let ifget = e.currentTarget.id;

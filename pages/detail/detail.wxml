@@ -9,19 +9,19 @@
 					<view class="detail-text">
 						{{item.name}}
 						<view class="detail-price">
-							<text class="new-price">{{item.price}}</text>
-							<text class="through">/</text>
-							<text class="make-money">赚29.4</text>						
+							<text class="new-price">￥{{item.price}}</text>
+							<text class="make-money" style="display: none;">赚29.4</text>
+							<view class="old-price">专柜价:￥{{item.market_price}}</view>					
 						</view>
 					</view>
-<!-- 暂时不需要					<block wx:if="{{notNeed}}">
+					<block>
 						<view class="detail-like">
-							<image bindtap="handleAddLike" data-id="{{item.id}}" src="/image/like{{likeNum != '' ? 'on' : ''}}.png" class="like-img"/>
+							<image bindtap="handleAddLike" data-id="{{item.id}}" data-recid="{{item.rec_id}}" src="/image/like{{item.rec_id != 0 ? 'on' : ''}}.png" class="like-img"/>
 						</view>
-					</block>	 -->			
+					</block>				
 				</view>
 				<view class="detail-msg">
-					<text>库存:{{item.inventory == null||item.inventory <=0 ? 0 : item.inventory}}</text>
+					<text>满包邮</text>
 					<text style="margin-left: 150rpx;">销量:{{item.goodsnumber}}</text>
 				</view>		
 			</view>
