@@ -43,9 +43,11 @@ Page({
     },
     handleOrderList(res) {
         let result = res.data;
+
+        console.log(result)
         this.setData({
             orderList: result.cartgoods,
-            freightNum: result.freight.data,
+            freightNum: Number(result.new_freight),
             orderPrice: result.goodsmoney.data
         })
     },
@@ -60,6 +62,7 @@ Page({
     },
     handleAddrList(res) {
         let list = res.data.addressInfo;
+        console.log(res)
         this.setData({
             addr: list[0].address,
             name: list[0].consignee,
@@ -78,7 +81,7 @@ Page({
     },
     // 地址页面
     handleAddr() {
-        wx.navigateTo({
+        wx.redirectTo({
             url: '/pages/user/addr/addr?cartid='+this.data.cartId
         })
     },

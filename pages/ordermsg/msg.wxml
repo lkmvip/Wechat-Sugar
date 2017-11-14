@@ -40,8 +40,8 @@
 						<text style="color: #999;">X{{item.goods_number}}</text>
 					</view>
 				</view>
-				<block>
-					{{status}}
+				<block wx:if="{{status ==4 ? true :false}}">
+					
 					<navigator url="/pages/user/cancelGoods/index?id={{item.rec_id}}&&status={{item.goods_status}}" open-type="redirect">
 						<text wx:if="{{item.goods_status==0?true:false}}" class="cancel-btn">申请退货</text>
 						<text wx:if="{{item.goods_status==1?true:false}}" class="cancel-btn">退款审核中</text>

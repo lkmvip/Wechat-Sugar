@@ -11,7 +11,6 @@ Page({
         this.setData({
             activeIndex: options.id
         });
-
         this.handleGetList();
     },
     onShow() {
@@ -60,6 +59,7 @@ Page({
         utils.sendRequest(api.OrderInfoList, data, this.handleOrderInfoListSucc.bind(this));
     },
     handleOrderInfoListSucc(res) {
+        console.log(res)
         this.setData({//反转数组 
             allOrder:res.data.data.reverse()
         })

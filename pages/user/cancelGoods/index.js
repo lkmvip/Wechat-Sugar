@@ -17,13 +17,14 @@ Page({
        * 生命周期函数--监听页面加载
        */
     onLoad(options) {
-        console.log(options)
+        // 接受商品id和商品状态
         let id = options.id,
             status = options.status;
         this.handleGetInfo(id);
         this.setData({
             recId:id
         })
+        //判断状态改变tab内容
         if ( status == 0 ) { this.setData({activeIndex:0})}
         if ( status == 1 ) { this.setData({activeIndex:1})}
         if ( status == 2 || status==3) { this.setData({activeIndex:2})}
@@ -33,11 +34,13 @@ Page({
         const data ={
             rec_id:id
         };
+        //调用取消商品接口
         utils.sendRequest(api.CancelTakeGoods, data, this.handleCancelDetailSucc.bind(this));
     },
+    //取消成功接口
     handleCancelDetailSucc(res) {
-        console.log(res)
         let info = res.data;
+        //修改请求数据显示价格和最多退多少
         this.setData({
             cancelList:info,
             cancelPrice:info.shopprice,
@@ -123,7 +126,7 @@ Page({
               }
             })
     },
-      //减少
+    //减少
     minusCount() {
         let count = this.data.num,
             goodsNum = this.data.cancelList.goods_number,//获取商品数量
@@ -140,7 +143,7 @@ Page({
         })
 
     },
-      //增加
+    //增加
     addCount() {
         let count = this.data.num,
             goodsNum = this.data.cancelList.goods_number,
@@ -155,14 +158,14 @@ Page({
             cancelPrice:price.toFixed(2)
         })
     },
-      // 退货说明操作
+    // 退货说明操作
     handleAddrDetail(e) {
         let val = e.detail.value;
         this.setData({
             remark:val
         })
     },
-      // 操作申请退货按钮
+    // 操作申请退货按钮
     handleRequest() {
         let id = this.data.recId,
             num = this.data.cancelList.goods_number,
@@ -180,6 +183,7 @@ Page({
                 refund_img:''
             }
         };
+        // 给后端传值取消订单的信息。
         utils.sendRequest(api.CancelGoods, data, this.handleRequestSucc.bind(this));
     },
     handleRequestSucc(res) {

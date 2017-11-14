@@ -2,7 +2,7 @@
 <view class="shop-addr" bindtap="handleAddr">
 	<image class="addr-icon" src="/image/user/iconaddress.png"></image>
 	<view class="addr-content">
-		<view style="color:#000">{{name}}  {{phone}}</view>
+		<view style="color:#000;overflow: hidden;">{{name}}  {{phone}}</view>
 		<view>{{province}} {{city}} {{district}} {{addr}}</view>
 	</view>
 	<view class="addr-arrow">></view>
@@ -23,7 +23,7 @@
 </block>
 <view class="shop-way">
 	<text style="font-size: 30rpx;margin-left:20rpx; ">配送方式</text>
-	<text style="font-size: 30rpx;margin-right:20rpx;">快递:￥{{freightNum == null ? 0 :freightNum}}</text>	
+	<text style="font-size: 30rpx;margin-right:20rpx;">快递:￥{{freightNum}}</text>	
 </view>
 <view class="msg-ticket">
 	<!-- <text style="font-size: 30rpx;margin-left:20rpx; ">优惠卷 -->

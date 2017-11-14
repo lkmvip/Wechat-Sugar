@@ -68,7 +68,8 @@ Page({
             wxCheck = this.data.check,
             rmbCheck = this.data.checkRmb,
             payWay = '',
-            zuHe = 0;
+            zuHe = 0,
+            allPrice = this.data.orderPrice;
             //判断支付状态
             wxCheck ? payWay=9: payWay=8;
             rmbCheck&&wxCheck? zuHe=1 : zuHe =0;
@@ -86,11 +87,18 @@ Page({
                     wxOrderSn:''
                 };
                 //调用余额支付接口。
-                utils.sendRequest(api.UserRmbPay, data, this.handleOrderPaySucc.bind(this));
+                // utils.sendRequest(api.UserRmbPay, data, this.handleOrderPaySucc.bind(this));
             }
-            // if (wxCheck) {
-            //      wx.showModal({content: '微信支付正在开发哦~',showCancel: false});
-            // }
+            if (wxCheck) {
+                const data ={
+                    order_sn:orderSn,
+                    openId:"oBs4B0cZEL8NBB4Nqe6qLgUOXaLE",
+                    order_amount:allPrice, 
+                };
+                 // wx.showModal({content: '微信支付正在开发哦~',showCancel: false});
+                utils.sendRequest(api.WxPayment, data, this.handleWxPaySucc.bind(this));
+
+            }
  
         // wx.navigateTo({
         //   url: '/pages/succpay/succpay'
@@ -103,6 +111,9 @@ Page({
               url: '/pages/succpay/succpay'
             })
         }
+    },
+    handleWxPaySucc(res) {
+        console.log(res)
     },
     // 选择余额支付的逻辑
     handleRmb(e) {

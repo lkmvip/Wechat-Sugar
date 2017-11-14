@@ -65,7 +65,7 @@ App({
         userInfo: null
     },
     handleGetOpenIdSuccess(res) {
-        // console.log(res)
+        console.log(res)
     },
     userInfoReadyCallback(res) {
         try {

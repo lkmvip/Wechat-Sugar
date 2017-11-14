@@ -356,10 +356,11 @@ Page({
     },
     //存地址成功
     handleNewAddrSucc(res) {
+        console.log(res)
         let isId = res.data.data,
             cartId = this.data.cartId;
         isId&&cartId? wx.redirectTo({
                 url: '../../orderdetail/index?addrid='+isId+'&&cartid='+this.data.cartId
-            }):'';
+        }):'';
     }
 })

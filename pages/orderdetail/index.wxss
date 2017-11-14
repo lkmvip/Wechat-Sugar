@@ -1,7 +1,6 @@
 /* pages/orderdetail/index.wxss */
 .shop-addr {
 	width:100%;
-	height:100rpx;
 	color:#999;
 	background:#fff;
 	font-size:30rpx;
@@ -114,4 +113,5 @@
 	width: 650rpx;
 	margin-top: 10rpx;
 	padding-left: 20rpx;
+	margin-bottom: 20rpx;
 }

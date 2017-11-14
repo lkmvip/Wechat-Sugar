@@ -24,20 +24,14 @@ Page({
         };
         //调用主要信息，获取余额。
         utils.sendRequest(api.OrderInfoDetail, data, this.handleOrderInfoDetailSucc.bind(this));
+        
     },
     handleOrderInfoDetailSucc(res) {
-        // console.log(res.data.data)
         this.setData({
             orderInfo:res.data.data,
             status:res.data.data[0].status
         })
     },
-    // handleCancelGoods() {
-    //     let id = this.data.orderInfo[0].order_id;
-    //     wx.redirectTo({
-    //         url:'/pages/user/cancelGoods/index?id='+id
-    //     })
-    // },
     /**
     * 生命周期函数--监听页面初次渲染完成
     */

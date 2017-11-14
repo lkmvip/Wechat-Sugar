@@ -121,7 +121,7 @@
 				<view class="mleft mright examine-pirce">
 					<view>退货单号</view>
 					<view>
-						<input class="examine-input" value="{{odd}}" bindconfirm="handleGoodsNum"  type="text" placeholder="请输入快递单号"/>
+						<input class="examine-input" value="{{odd}}" bindblur="handleGoodsNum"  type="text" placeholder="请输入快递单号"/>
 					</view>
 				</view>
 			</view>

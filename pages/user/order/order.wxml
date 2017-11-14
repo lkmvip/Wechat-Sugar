@@ -58,7 +58,7 @@
                 <navigator url="/pages/ordermsg/msg?orderid={{item.order_id}}">
                     <view class="alllist-mid" wx:for="{{item.ordergoods}}" wx:key="{{index}}">
                             <image class="mid-img mleft" src="{{item.goods_img}}"></image>
-                            <view class="mid-content">
+                            <view class="mid-content mright">
                                 <view class="mleft">{{item.name}}</view>
                                 <view class="mleft">
                                     <view class="">￥{{item.goodsamount}}</view>
@@ -94,7 +94,7 @@
                 <navigator url="/pages/ordermsg/msg?orderid={{item.order_id}}">
                     <view class="alllist-mid" wx:for="{{item.ordergoods}}" wx:key="{{index}}">
                             <image class="mid-img mleft" src="{{item.goods_img}}"></image>
-                            <view class="mid-content">
+                            <view class="mid-content mright">
                                 <view class="mleft">{{item.name}}</view>
                                 <view class="mleft">
                                     <view class="">￥{{item.goodsamount}}</view>
