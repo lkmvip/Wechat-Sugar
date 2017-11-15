@@ -2,22 +2,20 @@
 <view class="like-num">
 		<view class="like-box">
 			<image class="like-icon" src="/image/like/left.png" background-size="cover"></image>
-			<view>我已收藏<text style="color: #ed145b">4</text>件商品</view>
+			<view>我已收藏<text style="color: #ed145b">{{num}}</text>件商品</view>
 			<image class="like-icon" src="/image/like/right.png" background-size="cover"></image>
 		</view>
 </view>
 <view class="like-content">
 	<block wx:for="{{itemList}}" wx:key="{{index}}">
 		<view class="like-item">
-			<navigator url="/pages/detail/detail">
-				<image class="item-img" src="{{item.url}}" background-size="cover"></image>
+			<navigator open-type="redirect" url="/pages/detail/detail?id={{item.id}}">
+				<image class="item-img" src="{{item.goods_img}}"></image>
 				<view style="padding:0 20rpx;">
-					<view class="item-tit">{{item.tit}}</view>
-					<view class="item-way">{{item.way}}</view>
+					<view class="item-tit">{{item.name}}</view>
 					<view class="item-price">
-						<view class="item-new">￥{{item.new}}</view>
-						<view class="item-old">￥{{item.old}}</view>		
-						<image catchtap="handleDelLike" data-id="{{index}}" class="item-del" src="/image/like/del.png" background-size="cover"></image>
+						<view class="item-new">￥{{item.shopprice}}</view>	
+						<image catchtap="handleDelLike" data-index="{{index}}" data-id="{{item.id}}" class="item-del" src="/image/like/del.png"></image>
 					</view>	
 				</view>
 			</navigator>

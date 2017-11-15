@@ -63,20 +63,20 @@
 				<view>￥{{item.shipping_fee}}</view>
 			</view>
 			<view class="list-text">
-				<view>优惠卷优惠:</view>
+				<view>优惠券优惠:</view>
 				<view>￥{{item.coupon_money}}</view>
 			</view>
 		</view>
 		<view class="list-item">
 			<view class="list-text">
 				<view>余额支付:</view>
-				<view>￥{{item.order_amount}}</view>
+				<view>￥{{item.order_amount+item.shipping_fee}}</view>
 			</view>
 		</view>
 		<view class="list-item">
 			<view class="list-text">
 				<view>实付金额:</view>
-				<view>￥{{item.order_amount}}</view>
+				<view>￥{{item.order_amount+item.shipping_fee}}</view>
 			</view>
 		</view>
 </view>

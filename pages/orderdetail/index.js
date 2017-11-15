@@ -114,12 +114,13 @@ Page({
     //请求提交订单成功
     handleNewOrderInfo(res) {
         try {
+            let frt = this.data.freightNum;
             if (res.data.error == 0) {
                 //处理传值
                 let msg = JSON.stringify(res.data.data),
                 id = this.data.cartId;
                 wx.redirectTo({
-                    url: '/pages/orderpay/order?msg='+msg
+                    url: '/pages/orderpay/order?msg='+msg+'&&count='+frt
                 });
                 const data ={
                     user_id:3,

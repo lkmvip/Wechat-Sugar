@@ -6,13 +6,7 @@ Page({
     * 页面的初始数据
     */
     data: {
-        itemList:[
-            {tit:"化妆品面霜",way:"面霜也能清清爽爽",url:"/image/like/left.png",new:120,old:240},
-            {tit:"化妆品面霜",way:"面霜也能清清爽爽",url:"/image/like/left.png",new:120,old:240},
-            {tit:"化妆品面霜",way:"面霜也能清清爽爽",url:"/image/like/left.png",new:120,old:240},
-            {tit:"化妆品面霜",way:"面霜也能清清爽爽",url:"/image/like/left.png",new:120,old:240},
-            {tit:"化妆品面霜",way:"面霜也能清清爽爽",url:"/image/like/left.png",new:120,old:240}
-        ]
+        itemList:[]
     },
 
     /**
@@ -23,34 +17,52 @@ Page({
     },
     getLikeList() {
         const data ={
-            limit:20,
-            user_id:3,
-            Config:''
+            userid:3
         };
         //调用收藏商品接口
         utils.sendRequest(api.LikeInfoUrl, data, this.handleLikeInfoSucc.bind(this));
     },
     handleLikeInfoSucc(res) {
-        console.log(res)
+        try {
+            this.setData({
+                itemList:res.data.data,
+                num:res.data.data.length
+            })
+            console.log(res.data.data)
+
+        } catch(e) {
+            // statements
+            console.log(e);
+        }
+        
     },
     handleDelLike(e) {
-        const index = e.currentTarget.dataset.id;
-        let list = this.data.itemList;
-        let _this =this;
+        const id = e.currentTarget.dataset.id,
+            index = e.currentTarget.dataset.index;
+        let list = this.data.itemList,
+            _this =this;
         list.splice(index,1);
         wx.showModal({
-            title:'提示',
             content:'您确定要删除嘛？',
             showCancel:true,
             confirmColor:'#3cc51f',//默认值为#3cc51f
             success:function(res){
                 if(res.confirm){
                     _this.setData({
-                      itemList: list
+                      itemList: list,
+                      num:list.length
                     });
+                    const data ={
+                        userid:3,
+                        id:id
+                    };
+                    utils.sendRequest(api.LikeInfoDel, data, _this.handleCancelLikeSucc.bind(_this));
                 }
             }
         })
+    },
+    handleCancelLikeSucc(res) {
+        console.log(res)
     }
    
 })

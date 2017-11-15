@@ -58,6 +58,12 @@
 					"name": "地址",
 					"pathName": "pages/user/addr/addr",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "安安送达",
+					"pathName": "pages/succpay/succpay",
+					"query": ""
 				}
 			]
 		}

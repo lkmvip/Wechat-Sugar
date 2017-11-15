@@ -109,7 +109,7 @@ Page({
         // 返回商品列表和品牌列表的信息
         let brandList = res.data.brandInfo,
             goodsInfo = res.data.data;
-            console.log(goodsInfo)
+            console.log(res)
         this.setData({
             extendList : brandList,
             goodsList : goodsInfo

@@ -17,15 +17,17 @@ Page({
     * 生命周期函数--监听页面加载
     */
     onLoad(options) {
-        let order = JSON.parse(options.msg);
+        let order = JSON.parse(options.msg),
+            freight = options.count;
+        console.log(options.count)
         //操作页面传值的参数
         this.setData({
-            orderPrice:order.money,
+            orderPrice:order.money+Number(freight),
             orderNum:order.order_sn,
             orderWay:order.shipping_mode,
             orderId:order.new_order_id,
             orderAmount:order.order_amount,
-            handlePrice:order.money
+            handlePrice:(order.money+Number(freight)).toFixed(2)
         });
         const data ={
             userId:3
@@ -69,12 +71,14 @@ Page({
             rmbCheck = this.data.checkRmb,
             payWay = '',
             zuHe = 0,
-            allPrice = this.data.orderPrice;
+            allPrice = this.data.orderPrice,
+            wxPrice = this.data.handlePrice,
+            rmbNum = this.data.rmbNum;
             //判断支付状态
             wxCheck ? payWay=9: payWay=8;
             rmbCheck&&wxCheck? zuHe=1 : zuHe =0;
             // 确认支付
-            if(rmbCheck&&wxCheck){
+            if(allPrice==rmbNum||!wxCheck){
                 const data ={
                     payment:payWay,
                     order_sn:orderSn,
@@ -87,39 +91,121 @@ Page({
                     wxOrderSn:''
                 };
                 //调用余额支付接口。
-                // utils.sendRequest(api.UserRmbPay, data, this.handleOrderPaySucc.bind(this));
+                utils.sendRequest(api.UserRmbPay, data, this.handleOrderPaySucc.bind(this));
             }
-            if (wxCheck) {
+            if (rmbNum==0||rmbNum=='') {
                 const data ={
                     order_sn:orderSn,
                     openId:"oBs4B0cZEL8NBB4Nqe6qLgUOXaLE",
-                    order_amount:allPrice, 
+                    order_amount:wxPrice, 
                 };
                  // wx.showModal({content: '微信支付正在开发哦~',showCancel: false});
                 utils.sendRequest(api.WxPayment, data, this.handleWxPaySucc.bind(this));
-
+            }
+            if (rmbNum>0&&rmbNum<allPrice) {
+                const data ={
+                    order_sn:orderSn,
+                    openId:"oBs4B0cZEL8NBB4Nqe6qLgUOXaLE",
+                    order_amount:wxPrice, 
+                };
+                 // wx.showModal({content: '微信支付正在开发哦~',showCancel: false});
+                utils.sendRequest(api.WxPayment, data, this.handleZuHePaySucc.bind(this));
+            }
+            if (wxCheck==false&&rmbCheck==false) {
+                wx.showModal({content: '请选择支付方式',showCancel: false})
             }
  
         // wx.navigateTo({
         //   url: '/pages/succpay/succpay'
         // })
     },
+    handleZuHePaySucc(res) {
+            let orderSn = this.data.orderNum,
+            orderId = this.data.orderId,
+            wxCheck = this.data.check,
+            rmbCheck = this.data.checkRmb,
+            payWay = '',
+            zuHe = 0,
+            allPrice = this.data.orderPrice,
+            wxPrice = this.data.handlePrice,
+            rmbNum = this.data.rmbNum,
+            _this = this,
+            result = res.data;
+            wx.requestPayment({
+                'appId': result.appId,
+               'timeStamp': result.timeStamp,
+               'nonceStr': result.nonceStr,
+               'package': result.package,
+               'signType': 'MD5',
+               'paySign': result.paySign,
+               'success':function(res){
+                    wxCheck ? payWay=9: payWay=8;
+                    rmbCheck&&wxCheck? zuHe=1 : zuHe =0;
+                    const data ={
+                            payment:payWay,
+                            order_sn:orderSn,
+                            userId:3,
+                            zuheflag:zuHe, 
+                            order_id:orderId,
+                            yue_amount:0,
+                            other_amount:0,
+                            other_payment:9,
+                            wxOrderSn:''
+                    };
+                        //调用余额支付接口。
+                    utils.sendRequest(api.UserRmbPay, data, _this.handleZuHeRmbPaySucc.bind(_this));
+                },
+               'fail':function(res){
+                    wx.showModal({content: '支付失败',showCancel: false})
+                }
+            })
+            
+    },
+    handleZuHeRmbPaySucc(res) {
+        if (res.data.error == 0 ) {
+            wx.redirectTo({
+              url: '/pages/succpay/succpay'
+            })
+        }else {
+            wx.showModal({content: '服务器出现问题，我们会尽快处理~',showCancel: false})
+
+        }
+    },
     handleOrderPaySucc(res) {
         console.log(res)
         if (res.data.error == 0 ) {
-            wx.navigateTo({
+            wx.redirectTo({
               url: '/pages/succpay/succpay'
             })
+        }else {
+            wx.showModal({content: '服务器出现问题，我们会尽快处理~',showCancel: false})
         }
     },
     handleWxPaySucc(res) {
-        console.log(res)
+        let result = res.data;
+        console.log(result)
+        wx.requestPayment({
+            'appId': result.appId,
+           'timeStamp': result.timeStamp,
+           'nonceStr': result.nonceStr,
+           'package': result.package,
+           'signType': 'MD5',
+           'paySign': result.paySign,
+           'success':function(res){
+                wx.redirectTo({
+                  url: '/pages/succpay/succpay'
+                })
+            },
+           'fail':function(res){
+                wx.showModal({content: '支付失败',showCancel: false})
+            }
+        })
     },
     // 选择余额支付的逻辑
     handleRmb(e) {
         let allPrice = this.data.orderPrice;
         e.detail.value > allPrice ?
         wx.showModal({content: '您给的太多了哟',showCancel: false}) :
-        this.setData({rmbNum:e.detail.value||0,handlePrice:allPrice-e.detail.value})
+        this.setData({rmbNum:e.detail.value||0,handlePrice:(allPrice-e.detail.value).toFixed(2)})
     }
 })

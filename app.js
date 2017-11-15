@@ -68,6 +68,7 @@ App({
         console.log(res)
     },
     userInfoReadyCallback(res) {
+        console.log(res)
         try {
             wx.setStorageSync('UserInFo', res.userInfo)
         } catch (e) {    

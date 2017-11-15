@@ -46,7 +46,6 @@
                             <view class="old-price left" style="margin-top:14rpx">￥{{item.market_price}}</view>
                             <image src="/image/cart.png" class="add-goods right" data-it="{{item.inventory}}" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
                             <image src="/image/add.png" class="add-goods right" style="margin:0"/>
-                        
                         </view>
                     </view>
                 </view>
