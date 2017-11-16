@@ -59,7 +59,6 @@ Page({
 
     onLoad(options) {
         this.getIndexInfo();
-        this.getTabInfo();
         this.getBannerInfo();
         this.getAllGoodsInfo();
         // wx.getSystemInfo({
@@ -72,13 +71,6 @@ Page({
     //         windowHeight:res.windowHeight+'px'
     //     })
     // },
-    //请求TabUrl函数
-    getTabInfo() {
-        const data = {
-            limit:6
-        };
-        utils.sendRequest(api.TabUrl, data, this.handleGetTabSucc.bind(this));
-    },
     //请求IndexUrl函数 
     getIndexInfo() {
         const data = {};
@@ -96,13 +88,6 @@ Page({
         };
         //传值给后端，获取到全部商品的首次信息
         utils.sendRequest(api.AllGoodsUrl, data, this.handleGetAllSucc.bind(this));
-    },
-    //请求TabUrl成功处理函数
-    handleGetTabSucc(res) {
-        let tabList = res.data.data;
-        this.setData({
-            tab : tabList
-        })
     },
     //请求IndexUrl成功处理函数 
     handleGetIndexSucc(res) {

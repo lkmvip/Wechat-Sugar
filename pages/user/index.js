@@ -1,4 +1,3 @@
-var app = getApp();
 const api = require('../../utils/api.js');//封装好的接口路径
 const utils = require('../../utils/util.js');//调用封装的request
 Page({
@@ -7,22 +6,29 @@ Page({
     },
 
     onLoad() {
-      let user = wx.getStorageSync("UserInFo");
-    	// console.log(user)
+      let user = wx.getStorageSync("UserInFo"),
+        card = wx.getStorageSync('UserCard');
+
+    	console.log(card.user_id)
     	this.setData({
     		userInfo : user
     	})
         const data ={
-            userId:3
+            userId:card.user_id
         };
+        console.log(data)
         //调用主要信息，获取余额。
         utils.sendRequest(api.UserMainMsg, data, this.handleUserMainSucc.bind(this));
     },
     handleUserMainSucc(res) {
         console.log(res)
+        res.data == null ?
+        this.setData({
+            rmb:0
+        }):
         this.setData({
             rmb:res.data.accountbalance
-        })
+        });
     },
   // 点击跳转到提现页面
     handleCash() {
