@@ -59,10 +59,10 @@ Page({
         };
         // 品牌商品进入时调用
         if(listId) {
+            console.log(listId)
             const data = {
-                module:0,
                 data: {
-                    brandid:listId,
+                    goodstypecode:listId,
                 }
             };
             utils.sendRequest(api.AllGoodsUrl, data, this.handleMoreBrandSucc.bind(this)); 

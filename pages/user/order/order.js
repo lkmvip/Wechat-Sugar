@@ -8,15 +8,53 @@ Page({
         allOrder:[]
     },
     onLoad(options) {
+        wx.showToast({
+            title: '加载中',
+            icon: 'loading',
+            duration: 3500
+        });
         this.setData({
             activeIndex: options.id
         });
         this.handleGetList();
+        let status = this.data.activeIndex;
+        if (status == 1) {//未付款
+            const data ={
+                    user_id:3,
+                    status:1,
+                    orderBy:'',
+                    distribution_id:''
+                };
+            utils.sendRequest(api.OrderInfoList, data, this.handleWillPaySucc.bind(this));
+        }
+        if (status == 2) {//待收货
+            const data ={
+                    user_id:3,
+                    status:3,
+                    orderBy:'',
+                    distribution_id:''
+                };
+            utils.sendRequest(api.OrderInfoList, data, this.handleWillTakeSucc.bind(this));
+        }
+        if (status == 3) {//已收货
+            const data ={
+                    user_id:3,
+                    status:4,
+                    orderBy:'',
+                    distribution_id:''
+                };
+            utils.sendRequest(api.OrderInfoList, data, this.handleTakeDownSucc.bind(this));
+        }
     },
     onShow() {
         this.handleGetList();
     },
     tabClick(e) {
+        wx.showToast({
+            title: '加载中',
+            icon: 'loading',
+            duration: 3500
+        });
         this.setData({
             activeIndex: e.currentTarget.id
         });
@@ -59,22 +97,26 @@ Page({
         utils.sendRequest(api.OrderInfoList, data, this.handleOrderInfoListSucc.bind(this));
     },
     handleOrderInfoListSucc(res) {
+        wx.showToast("请求完成");
         console.log(res)
         this.setData({//反转数组 
             allOrder:res.data.data.reverse()
         })
     },
-    handleWillPaySucc(res) {        
+    handleWillPaySucc(res) {
+        wx.showToast({title: '加载成功',icon: 'success'});      
         this.setData({
             WillPayOrder:res.data.data.reverse()
         })
     },
     handleWillTakeSucc(res) {
+        wx.showToast({title: '加载成功',icon: 'success'});      
         this.setData({
             WillTakeOrder:res.data.data.reverse()
         })
     },
     handleTakeDownSucc(res) {
+        wx.showToast({title: '加载成功',icon: 'success'});   
         console.log(res)
         this.setData({
             TakeDownOrder:res.data.data.reverse()

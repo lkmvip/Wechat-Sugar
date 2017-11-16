@@ -61,6 +61,7 @@ Page({
         this.getIndexInfo();
         this.getBannerInfo();
         this.getAllGoodsInfo();
+        this.getTabInfo();
         // wx.getSystemInfo({
         //   success: this.handleGetHeight.bind(this)
         // });
@@ -71,6 +72,11 @@ Page({
     //         windowHeight:res.windowHeight+'px'
     //     })
     // },
+        //请求TabUrl函数
+    getTabInfo() {
+        const data = {};
+        utils.sendRequest(api.IndexNewTab, data, this.handleGetTabSucc.bind(this));
+    },
     //请求IndexUrl函数 
     getIndexInfo() {
         const data = {};
@@ -89,14 +95,20 @@ Page({
         //传值给后端，获取到全部商品的首次信息
         utils.sendRequest(api.AllGoodsUrl, data, this.handleGetAllSucc.bind(this));
     },
+        //请求TabUrl成功处理函数
+    handleGetTabSucc(res) {
+        console.log(res)
+        let brandList = res.data;
+        this.setData({
+            extendList : brandList
+        })
+    },
     //请求IndexUrl成功处理函数 
     handleGetIndexSucc(res) {
         // 返回商品列表和品牌列表的信息
-        let brandList = res.data.brandInfo,
-            goodsInfo = res.data.data;
+        let goodsInfo = res.data.data;
             console.log(res)
         this.setData({
-            extendList : brandList,
             goodsList : goodsInfo
         })
     }, 

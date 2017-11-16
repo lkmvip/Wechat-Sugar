@@ -30,9 +30,13 @@ Page({
     * 生命周期函数--监听页面加载
     */
     onLoad(options) {
-        let id = options.id;
+        let id = options.id,
+            card = wx.getStorageSync('UserCard');
+            console.log(card)
         this.setData({
-            goodsId: id
+            goodsId: id,
+            userId:card.user_id,
+            subId:card.subwebId
         })
         this.getDetailInfo();
     },
@@ -47,16 +51,21 @@ Page({
     },
     //获取详情页数据
     getDetailInfo() {
-        let id = this.data.goodsId;
+        let id = this.data.goodsId,
+            user = this.data.userId,
+            sub = this.data.subId;
+            console.log(user)
         const data ={
-            goods_id:id
+            goods_id:id,
+            user_id:user,
+            subwebId:sub
         };
         utils.sendRequest(api.DetailInfoUrl, data, this.handleDetailInfo.bind(this));
     },
     //处理成功详情页函数
     handleDetailInfo(res) {
+        console.log(res)
         let goodsList = res.data.data;
-        console.log(goodsList)
         this.setData({
             goodsInfo:goodsList
         })

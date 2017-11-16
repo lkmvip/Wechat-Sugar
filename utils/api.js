@@ -15,11 +15,11 @@ var NoOne = 'https://wstcsd.1haomei.com',
 	RmbPay = NoOne+'/html/shop/index.php/WstInterFace/BalancePayment/',//余额支付接口
 	OrderDetailInfo = NoOne+'/html/shop/index.php/WstInterFace/OrderInfo/',//订单详情
 	LogisticsInfo = NoOne+'/html/shop/index.php/WstInterFace/Logistics/',//物流详情
-	WxPay = NoOne+'/html/shop/index.php/WstInterFace/WxPayment/'
+	WxPay = NoOne+'/html/shop/index.php/WstInterFace/WxPayment/',//微信支付接口
+	NewTab = NoOne+'/html/shop/index.php/WstInterFace/CommendCat/'//首页新版分类接口
 module.exports = {
 	NoOneJson:NoOne+'/html/shop/Public/Home/js/data.json',//地址json
 	IndexUrl:NewApiRootUrl+ 'getIndexProduct',//首页信息
-	TabUrl:NewApiRootUrl+ 'getNavProduct',//选项卡信息
 	BannerUrl:BannerImg+'getBanner',
 	AllGoodsUrl:NewApiRootUrl+'getProduct',//搜索信息
 	AddGoodtoCart:ShopCart+'AddGoodtoCart',//添加购物车
@@ -54,5 +54,6 @@ module.exports = {
 	CustomerDelivery:OrderDetailInfo+'customerDelivery',//用户发货
 	GetLogisticsInfo:LogisticsInfo+'getLogisticsInfo',//物流信息
 	GetLogisticsCode:LogisticsInfo+'getCode',//物流信息
-	WxPayment:WxPay+'WxRet'
+	WxPayment:WxPay+'WxRet',//微信支付接口
+	IndexNewTab:NewTab+'getCommendCat'//新版首页分类接口
 }

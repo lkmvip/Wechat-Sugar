@@ -76,28 +76,6 @@
 .search-icon {
     margin:0 10rpx;
 }
-
-.tab{
-    width: 100%;
-    box-sizing: border-box;
-    font-size: 28rpx;
-    display: flex;
-    justify-content: space-around;
-}
-
-.tab-list{
-    height: 70rpx;
-    line-height: 70rpx;
-    text-align: center;
-    border-bottom: 3px solid #fff;
-    box-sizing: border-box;
-    margin: 0 25rpx;
-    padding: 0 15rpx;
-}
-
-.tab .tab-list.on{
-    border-color: #f2505d;
-}
 /* 轮播开始 */
 .swiper{
     width: 100%;
@@ -143,16 +121,16 @@ swiper{
 
 .list-content {
     float: left;
-    margin: 15rpx 0 0 20rpx;
-    width: 160rpx;
-    height: 160rpx;
+    margin: 15rpx 0 0 18rpx;
+    width: 125rpx;
+    height: 150rpx;
     border: 1rpx solid #fff;
 }
 
 .list-image {
-    width: 160rpx;
-    height: 160rpx;
-    border: 1rpx solid #000;
+    width: 125rpx;
+    height: 125rpx;
+    display: block;
 }
 
 .supply-list {

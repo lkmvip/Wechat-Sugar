@@ -34,6 +34,20 @@
 			<view>{{item}}</view>
 		</view>
 	</view>
+	<!-- 猜你喜欢 -->
+	<view class="guess-box">
+		<text style="margin-left:20rpx;font-size: 24rpx;">猜你喜欢</text>
+		<view class="detail-guess">
+			<view class="like-content">
+				<image bindtap="handleAddLike" data-id="{{item.id}}" data-recid="{{item.rec_id}}" src="/image/gf.png" class="guess-img"/>
+				<view class="guess-content">
+					<view>asdjkhkjh</view>
+					<view>asdjkhkjh</view>
+					<view>asdjkhkjh</view>
+				</view>
+			</view>
+		</view>
+	</view>
 	<!-- 详情页主要内容开始 -->
 	<view class="detail-content">
 		<view class="navbar">

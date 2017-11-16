@@ -29,12 +29,20 @@
                 </block>
                 </swiper>
             </view>
+            <!-- ***************************品牌分类************************** -->              
             <view class="extend bg box">
                 <view class="extend-list">
                     <view class="list-content"  wx:for="{{extendList}}" wx:key="index"  data-index="{{index}}">
-                        <navigator url="/pages/seemore/seemore?brandid={{item.id}}&&name=品牌推荐">
-                            <image src="{{item.brandlogo}}" class="list-image"/>
+                        <navigator open-type="navigate" url="/pages/seemore/seemore?brandid={{item.cat_id}}&&name={{item.cat_name}}">
+                            <image src="{{item.pic_path}}" class="list-image"/>
                         </navigator>
+                        <view style="font-size: 20rpx;text-align: center;margin-top: 5rpx;">{{item.cat_name}}</view>
+                    </view>
+                    <view class="list-content">
+                        <navigator open-type="switchTab" url="/pages/classify/index">
+                            <image src="/image/index/message.png" class="list-image"/>
+                        </navigator>
+                        <view style="font-size: 20rpx;text-align: center;margin-top: 5rpx;">更多</view>
                     </view>
                 </view>
             </view>  

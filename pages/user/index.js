@@ -8,24 +8,17 @@ Page({
     onLoad() {
       let user = wx.getStorageSync("UserInFo"),
         card = wx.getStorageSync('UserCard');
-
-    	console.log(card.user_id)
     	this.setData({
     		userInfo : user
     	})
         const data ={
-            userId:card.user_id
+            userId:card.user_id,
+            status:2
         };
-        console.log(data)
         //调用主要信息，获取余额。
         utils.sendRequest(api.UserMainMsg, data, this.handleUserMainSucc.bind(this));
     },
     handleUserMainSucc(res) {
-        console.log(res)
-        res.data == null ?
-        this.setData({
-            rmb:0
-        }):
         this.setData({
             rmb:res.data.accountbalance
         });
@@ -37,35 +30,18 @@ Page({
         })
     },
   // 点击跳转到订单页面
-    // handleAllOrder() {
-    //     wx.navigateTo({
-    //       url: '/pages/user/order/order'
-    //     })
-    // },
+    handleAllOrder() {
+        wx.navigateTo({
+          url: '/pages/user/order/order'
+        })
+    },
   //待付款
     handleWillPay(e) {
         let indexNum = e.currentTarget.dataset.id; 
         wx.navigateTo({
-            url: '/pages/user/order/order',
-            success(res) {
-                console.log(res)
-            }
+            url: '/pages/user/order/order?id='+indexNum
         })
     },
-  // //待发货  
-  //   handleWillSend(e) {
-  //       let indexNum = e.currentTarget.dataset.id; 
-  //       wx.navigateTo({
-  //         url: '/pages/user/order/order?id='+indexNum
-  //       })
-  //   },
-  // //待收货
-  //   handleWillTake(e) {
-  //       let indexNum = e.currentTarget.dataset.id; 
-  //       wx.navigateTo({
-  //         url: '/pages/user/order/order?id='+indexNum
-  //       })
-  //   },
   // 跳转到待收收益
     handleWillIncome(e) {
         wx.navigateTo({
