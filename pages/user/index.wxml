@@ -3,6 +3,7 @@
 		<view class="userbg box-img" background-size="aspectFit">
 			<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     		<text class="userinfo-nickname">{{userInfo.nickName}}</text>
+			<image class="userinfo-lv" src="/image/vip0.png" ></image>
     	</view>
 	</view>
 	<!-- 个人中心工具开始 -->

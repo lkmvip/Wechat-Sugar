@@ -23,7 +23,6 @@ Page({
         let id = options.cartid,
             addrid = options.addrid,
             card = wx.getStorageSync('UserCard');
-        console.log(options)
         this.setData({
             cartId:id,
             addrId:addrid,
@@ -117,6 +116,8 @@ Page({
     handleNewOrderInfo(res) {
         try {
             let frt = this.data.freightNum;
+            let userId = this.data.userId;
+
             if (res.data.error == 0) {
                 //处理传值
                 let msg = JSON.stringify(res.data.data),
@@ -125,7 +126,7 @@ Page({
                     url: '/pages/orderpay/order?msg='+msg+'&&count='+frt
                 });
                 const data ={
-                    user_id:3,
+                    user_id:userId,
                     rec_id:id
                 };
                 //点击提交订单清空购物车接口

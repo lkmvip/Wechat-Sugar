@@ -190,17 +190,18 @@ Page({
     open() {
         this.setData({
           condition: !this.data.condition,
-          newAddr:!this.data.newAddr,
-          area:false
+          newAddr:!this.data.newAddr
         })
     },
     // 信息区域的三级联动开关
     openThere(e) {
+        let list = this.data.addrList;
+        list[e.target.dataset.id].area = true;
         this.setData({
             condition: !this.data.condition,
             newAddr:!this.data.newAddr,
-            area:false,
-            id:e.target.dataset.id// 控制点击不同的三级联动
+            id:e.target.dataset.id,// 控制点击不同的三级联动
+            addrList:list
         })
     },
     // 名字校验

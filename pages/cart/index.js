@@ -66,9 +66,8 @@ Page({
         utils.sendRequest(api.CartInfo, data, this.handleCartInfo.bind(this));
     },
     handleCartInfo(res) {// 这里让史伟给我加了一个 select 的字段
-        let list = res.data.result,
-            len = this.data.carts.length;
-        if (len > 0 ) {
+        let list = res.data.result;
+        if (list.length > 0 ) {
             this.setData({
                 hasList: true,
                 carts:list,

@@ -105,6 +105,7 @@ Page({
     },
     handleOrderInfoListSucc(res) {
         wx.showToast("请求完成");
+        console.log(res)
         this.setData({//反转数组 
             allOrder:res.data.data.reverse()
         })
@@ -152,26 +153,25 @@ Page({
     },
     // 操作订单状态 申请退款
     handleCancelMoney(e) {
-        let id = e.target.dataset.msg,
+        let id = e.target.dataset.id,
             userId = this.data.userId;
         const data ={
                     user_id:userId,
-                    order_id:id,
-                    type:1
+                    order_id:id
                 };
         utils.sendRequest(api.CancelMoney, data, this.handleCancelMoneySucc.bind(this));
     },
     handleCancelMoneySucc(res){
             console.log(res)
-        // try {
-        //     res.data ?
-        //     wx.showModal({content: '申请成功，请您耐心等待~',showCancel: false})
-        //     :
-        //     wx.showModal({content: '出错啦，工程师正在抢修~',showCancel: false});
-        // } catch(e) {
-        //     // statements
-        //     console.log(e);
-        // }  
+        try {
+            res.data ?
+            wx.showModal({content: '申请成功，请您耐心等待~',showCancel: false})
+            :
+            wx.showModal({content: '出错啦，工程师正在抢修~',showCancel: false});
+        } catch(e) {
+            // statements
+            console.log(e);
+        }  
     },
     handleWatchMsg(e) {
         //跳转到物流信息页面

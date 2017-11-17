@@ -70,8 +70,9 @@ Page({
         })
     },
     getCartGoodsNum() {
+        let user = this.data.userId;
         const data ={
-            userid:3
+            userid:user
         };
         utils.sendRequest(api.CartGoodsNum, data, this.handleCartNum.bind(this));
     },
@@ -86,6 +87,7 @@ Page({
         let recid = e.target.dataset.recid,
             id = e.target.dataset.id,
             goods = this.data.goodsId;
+        let user = this.data.userId;
         if(recid != 0) {
             wx.showToast({
               title: '取消收藏',
@@ -94,7 +96,7 @@ Page({
               mask:true
             })
             const data ={
-                userid:3,
+                userid:user,
                 id:id
             };
             utils.sendRequest(api.LikeInfoDel, data, this.handleCancelLikeSucc.bind(this));
@@ -107,7 +109,7 @@ Page({
               mask:true
             });
             const data ={
-                userid:3,
+                userid:user,
                 id:id
             };
             utils.sendRequest(api.LikeInfoAdd, data, this.handleAddLikeSucc.bind(this)); 
@@ -160,12 +162,14 @@ Page({
             num = this.data.num,
             _this = this,
             goodsit = e.target.dataset.it;
+        let user = this.data.userId;
+
         if (!this.data.showDialog) {
             if (goodsit == null|| goodsit<=0 ) {//库存判断
                 wx.showModal({content: '库存不足抱歉哟~',showCancel: false})
             }else{
                 const data = {
-                    userid:3,
+                    userid:user,
                     goodsId:goodsId,
                     goods_name:goodsName,
                     goods_price:goodsPrice,
@@ -203,12 +207,14 @@ Page({
             num = this.data.num,
             _this = this,
             goodsit = e.target.dataset.it;
+        let user = this.data.userId;
+            
         if (!this.data.showDialog) {
              if (goodsit == null|| goodsit<=0 ) {//库存判断
                 wx.showModal({content: '库存不足抱歉哟~',showCancel: false})
             }else{
                 const data = {
-                    userid:3,
+                    userid:user,
                     goodsId:goodsId,
                     goods_name:goodsName,
                     goods_price:goodsPrice,

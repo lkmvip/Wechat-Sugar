@@ -43,7 +43,7 @@
 			    <picker-view-column>
 			      <view wx:for="{{citys}}" wx:key="item"  style="line-height: 50rpx;padding-left:10rpx;text-align: center;">{{item.name}}</view>
 			    </picker-view-column>
-			    <picker-view-column>						
+			    <picker-view-column>				
 			      <view wx:for="{{countys}}" wx:key="item"  style="line-height: 50rpx;padding-left:10rpx;text-align: center;">{{item.name}}</view>
 			    </picker-view-column>
 			 </picker-view>

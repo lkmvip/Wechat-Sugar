@@ -77,11 +77,6 @@
                         <view class="order-btn fright mright" bindtap="handleCancelMoney" data-id="{{item.order_id}}">申请退款</view>
                     </view>
                 </block>
-                <block wx:if="{{item.status == 3 ? true : false}}">
-                    <view class="alllist-bottom fright">
-                            查看物流-确认收货
-                    </view>
-                </block>
             </view>
         </view>
         <!--************************************ 未收货内容 **************************************-->
@@ -151,11 +146,6 @@
                 <block wx:if="{{item.status == 2 ? true : false}}">
                     <view class="alllist-bottom">
                         <view class="order-btn fright mright" bindtap="handleCancelMoney" data-id="{{item.order_id}}">申请退款</view>
-                    </view>
-                </block>
-                <block wx:if="{{item.status == 3 ? true : false}}">
-                    <view class="alllist-bottom fright">
-                            查看物流-确认收货
                     </view>
                 </block>
             </view>

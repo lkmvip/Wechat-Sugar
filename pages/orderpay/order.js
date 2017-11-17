@@ -33,12 +33,15 @@ Page({
             openId:card.openId
         });
         const data ={
-            userId:card.user_id
+            userId:card.user_id,
+            status:2
+
         };
         //调用主要信息，获取余额。
         utils.sendRequest(api.UserMainMsg, data, this.handleUserMainSucc.bind(this));
     },
     handleUserMainSucc(res) {
+        console.log(res)
         this.setData({
             rmb:res.data.accountbalance
         })
@@ -68,6 +71,9 @@ Page({
     },
     //支付成功
     handlePaySucc() {
+        let rmb = this.data.rmb;
+            rmb == null ? wx.showModal({content: '余额不足哦',showCancel: false}): 
+        this.setData({rmbNum:0});
         let orderSn = this.data.orderNum,//订单编号
             orderId = this.data.orderId,//订单id
             wxCheck = this.data.check,//微信按钮
@@ -83,7 +89,7 @@ Page({
             wxCheck ? payWay=9: payWay=8;
             rmbCheck&&wxCheck? zuHe=1 : zuHe =0;
             // 确认支付
-            if(allPrice==rmbNum||!wxCheck){
+            if(allPrice==rmbNum){
                 const data ={
                     payment:payWay,
                     order_sn:orderSn,
@@ -113,10 +119,12 @@ Page({
                     openId:openId,
                     order_amount:wxPrice, 
                 };
-                 // wx.showModal({content: '微信支付正在开发哦~',showCancel: false});
                 utils.sendRequest(api.WxPayment, data, this.handleZuHePaySucc.bind(this));
             }
             if (wxCheck==false&&rmbCheck==false) {
+                wx.showModal({content: '请选择支付方式',showCancel: false})
+            }
+            if (wxCheck==false) {
                 wx.showModal({content: '请选择支付方式',showCancel: false})
             }
     },
@@ -133,6 +141,7 @@ Page({
             userId = this.data.userId,
             openId = this.data.openId;
             result = res.data;
+            console.log(result)
             wx.requestPayment({
                 'appId': result.appId,
                'timeStamp': result.timeStamp,
@@ -206,6 +215,9 @@ Page({
     // 选择余额支付的逻辑
     handleRmb(e) {
         let allPrice = this.data.orderPrice;
+        let rmb = this.data.rmb;
+        rmb == null ? wx.showModal({content: '余额不足哦',showCancel: false}): 
+        this.setData({rmbNum:0});
         e.detail.value > allPrice ?
         wx.showModal({content: '您给的太多了哟',showCancel: false}) :
         this.setData({rmbNum:e.detail.value||0,handlePrice:(allPrice-e.detail.value).toFixed(2)})
