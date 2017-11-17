@@ -13,14 +13,19 @@ Page({
             icon: 'loading',
             duration: 3500
         });
+        let card = wx.getStorageSync('UserCard');
+
         this.setData({
-            activeIndex: options.id
+            activeIndex: options.id,
+            userId:card.user_id
         });
         this.handleGetList();
-        let status = this.data.activeIndex;
+        let status = this.data.activeIndex,
+            userId = this.data.userId;
+            console.log(userId)
         if (status == 1) {//未付款
             const data ={
-                    user_id:3,
+                    user_id:userId,
                     status:1,
                     orderBy:'',
                     distribution_id:''
@@ -29,7 +34,7 @@ Page({
         }
         if (status == 2) {//待收货
             const data ={
-                    user_id:3,
+                    user_id:userId,
                     status:3,
                     orderBy:'',
                     distribution_id:''
@@ -38,7 +43,7 @@ Page({
         }
         if (status == 3) {//已收货
             const data ={
-                    user_id:3,
+                    user_id:userId,
                     status:4,
                     orderBy:'',
                     distribution_id:''
@@ -58,10 +63,11 @@ Page({
         this.setData({
             activeIndex: e.currentTarget.id
         });
-        let status = this.data.activeIndex;
+        let status = this.data.activeIndex,
+            userId = this.data.userId;
         if (status == 1) {//未付款
             const data ={
-                    user_id:3,
+                    user_id:userId,
                     status:1,
                     orderBy:'',
                     distribution_id:''
@@ -70,7 +76,7 @@ Page({
         }
         if (status == 2) {//待收货
             const data ={
-                    user_id:3,
+                    user_id:userId,
                     status:3,
                     orderBy:'',
                     distribution_id:''
@@ -79,7 +85,7 @@ Page({
         }
         if (status == 3) {//已收货
             const data ={
-                    user_id:3,
+                    user_id:userId,
                     status:4,
                     orderBy:'',
                     distribution_id:''
@@ -88,8 +94,9 @@ Page({
         }
     },
     handleGetList() {// 获取全部订单列表
+        let userId = this.data.userId;
         const data ={
-                    user_id:3,
+                    user_id:userId,
                     status:'',
                     orderBy:'',
                     distribution_id:''
@@ -98,7 +105,6 @@ Page({
     },
     handleOrderInfoListSucc(res) {
         wx.showToast("请求完成");
-        console.log(res)
         this.setData({//反转数组 
             allOrder:res.data.data.reverse()
         })
@@ -117,17 +123,17 @@ Page({
     },
     handleTakeDownSucc(res) {
         wx.showToast({title: '加载成功',icon: 'success'});   
-        console.log(res)
         this.setData({
             TakeDownOrder:res.data.data.reverse()
         })
     },
     // 操作订单状态 取消订单
     handleCancelOredr(e) {
-        let id = e.target.dataset.id;
+        let id = e.target.dataset.id,
+            userId = this.data.userId;
         console.log(e.target.dataset.id)
         const data ={
-                    admin_userid:3,
+                    admin_userid:userId,
                     order_id:id,
                     type:''
                 };
@@ -146,24 +152,26 @@ Page({
     },
     // 操作订单状态 申请退款
     handleCancelMoney(e) {
-        let id = e.target.dataset.msg;
+        let id = e.target.dataset.msg,
+            userId = this.data.userId;
         const data ={
-                    user_id:3,
+                    user_id:userId,
                     order_id:id,
                     type:1
                 };
         utils.sendRequest(api.CancelMoney, data, this.handleCancelMoneySucc.bind(this));
     },
     handleCancelMoneySucc(res){
-        try {
-            res.data ?
-            wx.showModal({content: '申请成功，请您耐心等待~',showCancel: false})
-            :
-            wx.showModal({content: '出错啦，工程师正在抢修~',showCancel: false});
-        } catch(e) {
-            // statements
-            console.log(e);
-        }  
+            console.log(res)
+        // try {
+        //     res.data ?
+        //     wx.showModal({content: '申请成功，请您耐心等待~',showCancel: false})
+        //     :
+        //     wx.showModal({content: '出错啦，工程师正在抢修~',showCancel: false});
+        // } catch(e) {
+        //     // statements
+        //     console.log(e);
+        // }  
     },
     handleWatchMsg(e) {
         //跳转到物流信息页面
@@ -173,10 +181,10 @@ Page({
         })
     },
     handleTakeGoods(e) {//确认收货操作
-        let id = e.target.dataset.id;
-        console.log(id)
+        let id = e.target.dataset.id,
+            userId = this.data.userId;
         const data ={
-                    user_id:3,
+                    user_id:userId,
                     order_id:id
                 };
         utils.sendRequest(api.TakeGoods, data, this.handleTakeGoodsSucc.bind(this));

@@ -23,11 +23,13 @@ Page({
         wx.setNavigationBarTitle({
           title: options.name
         })
+        let card = wx.getStorageSync('UserCard');
         this.setData({
             moreId:options.id,
             title:options.name,
             brandId:options.brandid,
-            code:options.codeid
+            code:options.codeid,
+            userId:card.user_id
         })
         this.getMoreGoodsInfo();
 
@@ -109,12 +111,13 @@ Page({
         let goodsId = e.target.dataset.id,
             goodsName = e.target.dataset.name,
             goodsPrice = e.target.dataset.price,
-            goodsit = e.target.dataset.it;
+            goodsit = e.target.dataset.it,
+            userId = this.data.userId;
             if (goodsit == null|| goodsit<=0 ) {//库存判断
                 wx.showModal({content: '库存不足抱歉哟~',showCancel: false})
             }else {
                 const data = {
-                    userid:3,
+                    userid:userId,
                     goodsId:goodsId,
                     goods_name:goodsName,
                     goods_price:goodsPrice,

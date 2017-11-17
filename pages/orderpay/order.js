@@ -18,7 +18,8 @@ Page({
     */
     onLoad(options) {
         let order = JSON.parse(options.msg),
-            freight = options.count;
+            freight = options.count,
+            card = wx.getStorageSync('UserCard');
         console.log(options.count)
         //操作页面传值的参数
         this.setData({
@@ -27,10 +28,12 @@ Page({
             orderWay:order.shipping_mode,
             orderId:order.new_order_id,
             orderAmount:order.order_amount,
-            handlePrice:(order.money+Number(freight)).toFixed(2)
+            handlePrice:(order.money+Number(freight)).toFixed(2),
+            userId:card.user_id,
+            openId:card.openId
         });
         const data ={
-            userId:3
+            userId:card.user_id
         };
         //调用主要信息，获取余额。
         utils.sendRequest(api.UserMainMsg, data, this.handleUserMainSucc.bind(this));
@@ -65,15 +68,17 @@ Page({
     },
     //支付成功
     handlePaySucc() {
-        let orderSn = this.data.orderNum,
-            orderId = this.data.orderId,
-            wxCheck = this.data.check,
-            rmbCheck = this.data.checkRmb,
-            payWay = '',
+        let orderSn = this.data.orderNum,//订单编号
+            orderId = this.data.orderId,//订单id
+            wxCheck = this.data.check,//微信按钮
+            rmbCheck = this.data.checkRmb,//余额按钮
+            payWay = '',//支付方式
             zuHe = 0,
-            allPrice = this.data.orderPrice,
-            wxPrice = this.data.handlePrice,
-            rmbNum = this.data.rmbNum;
+            allPrice = this.data.orderPrice,//商品价格
+            wxPrice = this.data.handlePrice,//修改后微信支付的数额
+            rmbNum = this.data.rmbNum,//余额支付的数额
+            userId = this.data.userId,
+            openId = this.data.openId;
             //判断支付状态
             wxCheck ? payWay=9: payWay=8;
             rmbCheck&&wxCheck? zuHe=1 : zuHe =0;
@@ -82,7 +87,7 @@ Page({
                 const data ={
                     payment:payWay,
                     order_sn:orderSn,
-                    userId:3,
+                    userId:userId,
                     zuheflag:zuHe, 
                     order_id:orderId,
                     yue_amount:0,
@@ -96,7 +101,7 @@ Page({
             if (rmbNum==0||rmbNum=='') {
                 const data ={
                     order_sn:orderSn,
-                    openId:"oBs4B0cZEL8NBB4Nqe6qLgUOXaLE",
+                    openId:openId,
                     order_amount:wxPrice, 
                 };
                  // wx.showModal({content: '微信支付正在开发哦~',showCancel: false});
@@ -105,7 +110,7 @@ Page({
             if (rmbNum>0&&rmbNum<allPrice) {
                 const data ={
                     order_sn:orderSn,
-                    openId:"oBs4B0cZEL8NBB4Nqe6qLgUOXaLE",
+                    openId:openId,
                     order_amount:wxPrice, 
                 };
                  // wx.showModal({content: '微信支付正在开发哦~',showCancel: false});
@@ -114,10 +119,6 @@ Page({
             if (wxCheck==false&&rmbCheck==false) {
                 wx.showModal({content: '请选择支付方式',showCancel: false})
             }
- 
-        // wx.navigateTo({
-        //   url: '/pages/succpay/succpay'
-        // })
     },
     handleZuHePaySucc(res) {
             let orderSn = this.data.orderNum,
@@ -129,7 +130,8 @@ Page({
             allPrice = this.data.orderPrice,
             wxPrice = this.data.handlePrice,
             rmbNum = this.data.rmbNum,
-            _this = this,
+            userId = this.data.userId,
+            openId = this.data.openId;
             result = res.data;
             wx.requestPayment({
                 'appId': result.appId,
@@ -138,13 +140,13 @@ Page({
                'package': result.package,
                'signType': 'MD5',
                'paySign': result.paySign,
-               'success':function(res){
+               'success':res => {
                     wxCheck ? payWay=9: payWay=8;
                     rmbCheck&&wxCheck? zuHe=1 : zuHe =0;
                     const data ={
                             payment:payWay,
                             order_sn:orderSn,
-                            userId:3,
+                            userId:userId,
                             zuheflag:zuHe, 
                             order_id:orderId,
                             yue_amount:0,
@@ -153,9 +155,9 @@ Page({
                             wxOrderSn:''
                     };
                         //调用余额支付接口。
-                    utils.sendRequest(api.UserRmbPay, data, _this.handleZuHeRmbPaySucc.bind(_this));
+                    utils.sendRequest(api.UserRmbPay, data, this.handleZuHeRmbPaySucc.bind(this));
                 },
-               'fail':function(res){
+               'fail':res => {
                     wx.showModal({content: '支付失败',showCancel: false})
                 }
             })
@@ -191,12 +193,12 @@ Page({
            'package': result.package,
            'signType': 'MD5',
            'paySign': result.paySign,
-           'success':function(res){
+           'success':res => {
                 wx.redirectTo({
                   url: '/pages/succpay/succpay'
                 })
             },
-           'fail':function(res){
+           'fail':res => {
                 wx.showModal({content: '支付失败',showCancel: false})
             }
         })

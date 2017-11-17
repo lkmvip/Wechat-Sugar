@@ -21,19 +21,22 @@ Page({
    */
     onLoad(options) {
         let id = options.cartid,
-            addrid = options.addrid;
+            addrid = options.addrid,
+            card = wx.getStorageSync('UserCard');
         console.log(options)
         this.setData({
             cartId:id,
-            addrId:addrid
+            addrId:addrid,
+            userId:card.user_id
         });
         this.getOrderInfo(id);
         this.getAddrInfo(addrid);
     },
     // 获取支付页面列表
     getOrderInfo(id) {
+        let userId = this.data.userId;
         const data ={
-            user:3,
+            user:userId,
             cart:id,
             address_id:'',
             val:'',
@@ -43,8 +46,6 @@ Page({
     },
     handleOrderList(res) {
         let result = res.data;
-
-        console.log(result)
         this.setData({
             orderList: result.cartgoods,
             freightNum: Number(result.new_freight),
@@ -53,8 +54,9 @@ Page({
     },
     // 如果有 地址id 请求地址列表
     getAddrInfo(id) {
+        let userId = this.data.userId;
         const data ={
-            user_id:3,
+            user_id:userId,
             status:'1',
             address_id:id
         };
@@ -62,7 +64,6 @@ Page({
     },
     handleAddrList(res) {
         let list = res.data.addressInfo;
-        console.log(res)
         this.setData({
             addr: list[0].address,
             name: list[0].consignee,
@@ -99,8 +100,9 @@ Page({
             carid = this.data.cartId,
             reightrmb = this.data.freightNum,
             allprice = this.data.orderPrice;
+        let userId = this.data.userId;
         const data ={
-            user_id:3,
+            user_id:userId,
             rec_id:carid,
             totalPrice:allprice,
             post:{

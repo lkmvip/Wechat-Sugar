@@ -48,21 +48,27 @@ Page({
     },
     onLoad(options) {
         this.getCartInfo();
+        let card = wx.getStorageSync('UserCard');
+        this.setData({
+            userId:card.user_id
+        })
+
     },
     onShow() {
         this.getCartInfo();
-
     },
     //获取购物车信息
     getCartInfo() {
+        let userId = this.data.userId;
         const data ={
-            userid:3
+            userid:userId
         };
         utils.sendRequest(api.CartInfo, data, this.handleCartInfo.bind(this));
     },
     handleCartInfo(res) {// 这里让史伟给我加了一个 select 的字段
-        let list = res.data.result;
-        if (list.length >=1 ) {
+        let list = res.data.result,
+            len = this.data.carts.length;
+        if (len > 0 ) {
             this.setData({
                 hasList: true,
                 carts:list,
@@ -81,6 +87,7 @@ Page({
         const index = e.currentTarget.dataset.index,
               id = e.currentTarget.dataset.id;
         let carts = this.data.carts;
+        let userId = this.data.userId;
         wx.showModal({
           content: '您真的不要人家了嘛？',
           success: res => {
@@ -98,7 +105,7 @@ Page({
                   this.getTotalPrice();
                 };
                 const data ={
-                    user_id:3,
+                    user_id:userId,
                     rec_id:id
 
                 };
@@ -159,6 +166,8 @@ Page({
         let carts = this.data.carts,
             num = parseInt(carts[index].goods_number),
             id = e.currentTarget.dataset.id;
+        let userId = this.data.userId;
+
         num = num + 1;
         carts[index].goods_number = num;
         this.setData({
@@ -166,7 +175,7 @@ Page({
         });
         this.getTotalPrice();
         const data ={
-            user_id:3,
+            user_id:userId,
             rec_id:id,
             amount:num
 
@@ -184,7 +193,9 @@ Page({
         let carts = this.data.carts,
             num = parseInt(carts[index].goods_number),
             id = e.currentTarget.dataset.id,
-            goods = carts.length;//列表长度                     
+            goods = carts.length;//列表长度 
+        let userId = this.data.userId;
+                                
         if(num <= 1){
           return false;
         }
@@ -197,7 +208,7 @@ Page({
         });
         this.getTotalPrice();
         const data ={
-            user_id:3,
+            user_id:userId,
             rec_id:id,
             amount:num
 

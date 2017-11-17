@@ -14,12 +14,17 @@ Page({
     * 生命周期函数--监听页面加载
     */
     onLoad(options) {
-        let id = options.orderid;
+        let card = wx.getStorageSync('UserCard'),
+            id = options.orderid;
         this.handleGetInfo(id);
+        this.setData({
+            userId:card.user_id
+        })
     },
     handleGetInfo(id) {
+        let userId = this.data.userId;
         const data ={
-            user_id:3,
+            user_id:userId,
             order_id:id
         };
         //调用主要信息，获取余额。

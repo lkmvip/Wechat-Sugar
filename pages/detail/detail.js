@@ -32,7 +32,6 @@ Page({
     onLoad(options) {
         let id = options.id,
             card = wx.getStorageSync('UserCard');
-            console.log(card)
         this.setData({
             goodsId: id,
             userId:card.user_id,

@@ -19,10 +19,12 @@ Page({
     onLoad(options) {
         // 接受商品id和商品状态
         let id = options.id,
-            status = options.status;
+            status = options.status,
+            card = wx.getStorageSync('UserCard');
         this.handleGetInfo(id);
         this.setData({
-            recId:id
+            recId:id,
+            userId:card.user_id
         })
         //判断状态改变tab内容
         if ( status == 0 ) { this.setData({activeIndex:0})}
@@ -170,10 +172,11 @@ Page({
         let id = this.data.recId,
             num = this.data.cancelList.goods_number,
             count = this.data.num,
-            val = this.data.remark;
+            val = this.data.remark,
+            userId = this.data.userId;
 
         const data ={
-            user_id:3,
+            user_id:userId,
             post:{
                 rec_id:id,
                 goods_status:1,
@@ -247,14 +250,15 @@ Page({
     // 用户发货
     handleSendGoods() {
         let id = this.data.recId,
-            val = this.data.odd;
+            val = this.data.odd,
+            userId = this.data.userId;
             console.log(id,val)
         if (val == undefined) {
             wx.showModal({content: '请填写单号哟~',showCancel: false});
 
         }else {
             const data ={
-                user_id:3,
+                user_id:userId,
                 post:{
                     rec_id:id,
                     refund_sn:val

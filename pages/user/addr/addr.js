@@ -27,12 +27,14 @@ Page({
         disabled: true
     },
     onLoad(options) {
-        let id = options.cartid;
+        let id = options.cartid,
+            card = wx.getStorageSync('UserCard');
         this.setData({
-            cartId:id
+            cartId:id,
+            userId:card.user_id
         })
         const data ={
-            user_id:3,
+            user_id:card.user_id,
             status:'',
             address_id:''
         };
@@ -286,7 +288,8 @@ Page({
     handleDelAddr(e) {
         let index = e.target.dataset.id,
             addrid = e.target.dataset.addr,
-            list = this.data.addrList;
+            list = this.data.addrList,
+            userId = this.data.userId;
         wx.showModal({
           content: '您真的不要人家了嘛？',
           success: res => {
@@ -298,7 +301,7 @@ Page({
                     })
                 }
                 const data ={
-                    user_id:3,
+                    user_id:userId,
                     address_id:addrid
                 };
                 utils.sendRequest(api.DelAddInfo, data, this.handleDelAddrSucc.bind(this));
@@ -321,7 +324,8 @@ Page({
             phone = list[index].mobile,
             arrdid = list[index].address_id,
             area = [list[index].province,list[index].city,list[index].district].toString(),
-            detail = list[index].address;
+            detail = list[index].address,
+            userId = this.data.userId;
             list[index].show = true;//改变当前对应按钮的disable属性
             this.setData({
                 addrList: list
@@ -334,7 +338,7 @@ Page({
                     confirmColor:'#3cc51f'//默认值为#3cc51f
                 });
                 const data ={
-                    user_id:3,
+                    user_id:userId,
                     addAddress:{
                         type:'',
                         address_id:arrdid,

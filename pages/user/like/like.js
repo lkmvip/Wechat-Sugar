@@ -14,10 +14,16 @@ Page({
     */
     onLoad(options) {
         this.getLikeList();
+        let card = wx.getStorageSync('UserCard');
+        this.setData({
+            goodsId: id,
+            userId:card.user_id
+        })
     },
     getLikeList() {
+        let userId = this.data.userId;
         const data ={
-            userid:3
+            userid:userId
         };
         //调用收藏商品接口
         utils.sendRequest(api.LikeInfoUrl, data, this.handleLikeInfoSucc.bind(this));
@@ -38,7 +44,8 @@ Page({
     },
     handleDelLike(e) {
         const id = e.currentTarget.dataset.id,
-            index = e.currentTarget.dataset.index;
+            index = e.currentTarget.dataset.index,
+            userId = this.data.userId;
         let list = this.data.itemList,
             _this =this;
         list.splice(index,1);
@@ -53,7 +60,7 @@ Page({
                       num:list.length
                     });
                     const data ={
-                        userid:3,
+                        userid:userId,
                         id:id
                     };
                     utils.sendRequest(api.LikeInfoDel, data, _this.handleCancelLikeSucc.bind(_this));
