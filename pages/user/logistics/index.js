@@ -38,7 +38,6 @@ Page({
         this.setData({
             msgList:list.data.reverse()
         })
-        console.log(this.data.msgList)
     },
     handleListCodeSucc(res) {
         this.setData({

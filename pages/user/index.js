@@ -9,7 +9,8 @@ Page({
       let user = wx.getStorageSync("UserInFo"),
         card = wx.getStorageSync('UserCard');
     	this.setData({
-    		userInfo : user
+    		userInfo : user,
+            userLv : card.distribution_level
     	})
         const data ={
             userId:card.user_id,

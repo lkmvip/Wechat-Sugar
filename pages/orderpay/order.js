@@ -20,7 +20,6 @@ Page({
         let order = JSON.parse(options.msg),
             freight = options.count,
             card = wx.getStorageSync('UserCard');
-        console.log(options.count)
         //操作页面传值的参数
         this.setData({
             orderPrice:order.money+Number(freight),
@@ -41,7 +40,6 @@ Page({
         utils.sendRequest(api.UserMainMsg, data, this.handleUserMainSucc.bind(this));
     },
     handleUserMainSucc(res) {
-        console.log(res)
         this.setData({
             rmb:res.data.accountbalance
         })
@@ -141,7 +139,6 @@ Page({
             userId = this.data.userId,
             openId = this.data.openId;
             result = res.data;
-            console.log(result)
             wx.requestPayment({
                 'appId': result.appId,
                'timeStamp': result.timeStamp,
@@ -183,7 +180,6 @@ Page({
         }
     },
     handleOrderPaySucc(res) {
-        console.log(res)
         if (res.data.error == 0 ) {
             wx.redirectTo({
               url: '/pages/succpay/succpay'
@@ -194,7 +190,6 @@ Page({
     },
     handleWxPaySucc(res) {
         let result = res.data;
-        console.log(result)
         wx.requestPayment({
             'appId': result.appId,
            'timeStamp': result.timeStamp,

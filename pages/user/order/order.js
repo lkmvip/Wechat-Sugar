@@ -22,7 +22,6 @@ Page({
         this.handleGetList();
         let status = this.data.activeIndex,
             userId = this.data.userId;
-            console.log(userId)
         if (status == 1) {//未付款
             const data ={
                     user_id:userId,
@@ -105,7 +104,6 @@ Page({
     },
     handleOrderInfoListSucc(res) {
         wx.showToast("请求完成");
-        console.log(res)
         this.setData({//反转数组 
             allOrder:res.data.data.reverse()
         })
@@ -132,7 +130,6 @@ Page({
     handleCancelOredr(e) {
         let id = e.target.dataset.id,
             userId = this.data.userId;
-        console.log(e.target.dataset.id)
         const data ={
                     admin_userid:userId,
                     order_id:id,
@@ -162,7 +159,6 @@ Page({
         utils.sendRequest(api.CancelMoney, data, this.handleCancelMoneySucc.bind(this));
     },
     handleCancelMoneySucc(res){
-            console.log(res)
         try {
             res.data ?
             wx.showModal({content: '申请成功，请您耐心等待~',showCancel: false})

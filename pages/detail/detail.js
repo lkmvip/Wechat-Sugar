@@ -38,22 +38,16 @@ Page({
             subId:card.subwebId
         })
         this.getDetailInfo();
+        
     },
     onReady() {
         this.getCartGoodsNum();
-    },
-    /**
-    * 用户点击右上角分享
-    */
-    onShareAppMessage: function () {
-      
     },
     //获取详情页数据
     getDetailInfo() {
         let id = this.data.goodsId,
             user = this.data.userId,
             sub = this.data.subId;
-            console.log(user)
         const data ={
             goods_id:id,
             user_id:user,
@@ -63,10 +57,33 @@ Page({
     },
     //处理成功详情页函数
     handleDetailInfo(res) {
-        console.log(res)
         let goodsList = res.data.data;
         this.setData({
             goodsInfo:goodsList
+        })
+        this.getDetailLike();
+    },
+    getDetailLike() {
+        let id = this.data.goodsInfo[0].goodstypecode,
+            sub = this.data.goodsInfo[0].id;
+        const data ={
+            data: {
+                goodstypecode: id,
+                not_eq_id: sub
+            }, 
+            orderBy: {
+                value:"goodsnumber",
+                sc:"desc"
+            }
+        };
+        utils.sendRequest(api.AllGoodsUrl, data, this.handleDetailLike.bind(this));
+    },
+    handleDetailLike(res) {
+        let result = res.data.data,
+            len = result.length;
+        result.splice(5,len-6)  
+        this.setData({
+            guessInfo:result
         })
     },
     getCartGoodsNum() {
@@ -83,7 +100,7 @@ Page({
         })
     },
     // 添加收藏
-    handleAddLike: function(e) {
+    handleAddLike(e) {
         let recid = e.target.dataset.recid,
             id = e.target.dataset.id,
             goods = this.data.goodsId;
@@ -282,5 +299,38 @@ Page({
         wx.redirectTo({
             url: '/pages/detail/detail?id='+isId
         });
+    },
+        //点击添加到购物车
+    handleAddCart(e) {
+        // 传商品信息 
+        let userId = this.data.userId;
+        let goodsId = e.target.dataset.id,
+            goodsName = e.target.dataset.name,
+            goodsPrice = e.target.dataset.price,
+            goodsit = e.target.dataset.it;
+
+            if (goodsit == null|| goodsit<=0 ) {//库存判断
+                wx.showModal({content: '库存不足抱歉哟~',showCancel: false})
+            }else {
+                const data = {
+                    userid:userId,
+                    goodsId:goodsId,
+                    goods_name:goodsName,
+                    goods_price:goodsPrice,
+                    goods_number:1
+                };
+                utils.sendRequest(api.AddGoodtoCart, data, this.handleAddGoodtoCartSucc.bind(this))
+            } 
+           
+    },
+    //调用成功添加购物车函数
+    handleAddGoodtoCartSucc(res) {
+        let code = res.statusCode;
+        if(code == 200) {
+            wx.showModal({
+              content: '在购物车等您哟~',
+              showCancel: false
+            })
+        }
     }
 })

@@ -18,7 +18,6 @@ Page({
 	},
 
 	onLoad(options) {
-		console.log(options)
 		let arr =[];
 		arr.push({
 			cashNum:options.cash,

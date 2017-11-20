@@ -13,7 +13,8 @@ Page({
         title:'',
         brandId: '',
         brandList: [],
-        code:''
+        code:'',
+        error:0
     },
 
     /**
@@ -32,15 +33,7 @@ Page({
             userId:card.user_id
         })
         this.getMoreGoodsInfo();
-
     },
-    /**
-    * 页面上拉触底事件的处理函数
-    */
-    // onReachBottom() {
-
-    // },
-
     /**
     * 用户点击右上角分享
     */
@@ -51,17 +44,8 @@ Page({
         let isId = this.data.moreId,
             listId = this.data.brandId,
             codeId = this.data.code;
-        // 更多商品进入时调用
-        if(isId) {
-            const data = {
-                id:isId,
-                type:1
-            };
-            utils.sendRequest(api.IndexUrl, data, this.handleMoreGoodsSucc.bind(this)); 
-        };
         // 品牌商品进入时调用
         if(listId) {
-            console.log(listId)
             const data = {
                 data: {
                     goodstypecode:listId,
@@ -71,7 +55,6 @@ Page({
         };
         // 分类商品进入时调用
         if(codeId) {
-            console.log(codeId)
             const data = {
                 data: {
                     goodstypecode:codeId,
@@ -79,6 +62,19 @@ Page({
             };
             utils.sendRequest(api.AllGoodsUrl, data, this.handleMoreClassifySucc.bind(this)); 
         }
+                // 更多商品进入时调用
+        if(isId.length<5) {
+            const data = {
+                id:isId,
+                type:1
+            };
+            utils.sendRequest(api.IndexUrl, data, this.handleMoreGoodsSucc.bind(this)); 
+        }else {
+            const data = {
+                zhuti_id:isId
+            };
+            utils.sendRequest(api.IndexUrl, data, this.handleMoreGoodsSucc.bind(this)); 
+        };
     },
     //请求更多商品成功处理函数 
     handleMoreGoodsSucc(res) {
@@ -91,15 +87,15 @@ Page({
     },
     //请求品牌商品成功处理函数 
     handleMoreBrandSucc(res) {
-        console.log(res)
-        let brandInfo = res.data.data;
+        let brandInfo = '';
+        res.data.error == 100 ? brandInfo = true :brandInfo = false;
         this.setData({
-            brandList : brandInfo
+            brandList : res.data.data,
+            error:brandInfo
         });
     },
     // 请求分类商品成功处理函数
     handleMoreClassifySucc(res) {
-        console.log(res)
         let calssList = res.data.data;
         this.setData({
             brandList : calssList

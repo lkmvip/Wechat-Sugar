@@ -48,7 +48,6 @@ Page({
             cancelPrice:info.shopprice,
             max:info.max_refund.toFixed(2)
         })
-        console.log(this.data.cancelList)
     },
       /**
        * 生命周期函数--监听页面初次渲染完成
@@ -112,7 +111,6 @@ Page({
                     // header: {}, // 设置请求的 header
                     formData: {user_id:that.data.myInfo.user_id}, // HTTP 请求中其他额外的 form data
                     success: function(info){
-                        console.log(info);
                         that.setData({
                             'myInfo.wx_avatarurl' : res.tempFilePaths[0]
                         });
@@ -252,7 +250,6 @@ Page({
         let id = this.data.recId,
             val = this.data.odd,
             userId = this.data.userId;
-            console.log(id,val)
         if (val == undefined) {
             wx.showModal({content: '请填写单号哟~',showCancel: false});
 
@@ -269,7 +266,6 @@ Page({
       
     },
     handleSendGoodsSucc(res) {
-        console.log(res)
         try {
              if(res.data){
                 wx.showModal({

@@ -42,6 +42,22 @@
 	    	<image src="/image/empty-cart.png" class="empty-img"/>
 	    	<view class="empty-txt">购物车是空的</view>
 	    </view>
-	<template is="like" data="{{likeList}}" />
+	    <view class="like bg box">
+        <view class="text">
+            猜你喜欢
+        </view>
+        <view class="line"></view>
+        <view class="like-list">
+            <view class="like-goods bg"  wx:for="{{likeList}}" wx:key="index"  data-index="{{index}}">
+                <image src="{{item.goods_img}}" class="like-image"/>
+                <view class="like-price">
+                    <view class="like-title">{{item.name}}</view>
+                    <view class="new-price left" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
+                    <view class="old-price left" style="margin-top:14rpx">￥{{item.market_price}}</view>
+                    <image src="/image/cart.png" class="add-goods right" style="margin:0" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
+                </view>
+            </view>
+        </view>
+    </view>
 	</view>
 </view>

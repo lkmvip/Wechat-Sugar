@@ -2,44 +2,7 @@ const api = require('../../utils/api.js');//封装好的借口路径
 const utils = require('../../utils/util.js');//调用封装的request
 Page({
     data: {
-    	    likeList: [
-            {   id:0,
-                url:'/image/gf.png',
-                title:"白熊化妆品，美肤多效面霜50g,白熊化妆品。",
-                newPrice:"998",
-                oldPrice:"1999",
-            },
-            {   id:1,
-                url:'/image/gf.png',
-                title:"白熊化妆品，美肤多效面霜50g,白熊化妆品。",
-                newPrice:"998",
-                oldPrice:"1999",
-            },
-            {   id:2,
-                url:'/image/gf.png',
-                title:"白熊化妆品，美肤多效面霜50g,白熊化妆品。",
-                newPrice:"998",
-                oldPrice:"1999",
-            },
-            {   id:3,
-                url:'/image/gf.png',
-                title:"白熊化妆品，美肤多效面霜50g,白熊化妆品。",
-                newPrice:"998",
-                oldPrice:"1999",
-            },
-            {   id:4,
-                url:'/image/gf.png',
-                title:"白熊化妆品，美肤多效面霜50g,白熊化妆品。",
-                newPrice:"998",
-                oldPrice:"1999",
-            },
-            {   id:5,
-                url:'/image/gf.png',
-                title:"白熊化妆品，美肤多效面霜50g,白熊化妆品。",
-                newPrice:"998",
-                oldPrice:"1999",
-            },
-        ],
+        likeList: [],
         carts:[],               // 购物车列表
         hasList:false,          // 列表是否有数据
         //totalPrice:0,         // 总价，初始为0
@@ -52,10 +15,24 @@ Page({
         this.setData({
             userId:card.user_id
         })
+        this.getlikeInfo();
 
     },
     onShow() {
         this.getCartInfo();
+    },
+    getlikeInfo() {
+        const data ={
+                limit:4,  
+                limitIndex:0
+            };
+        utils.sendRequest(api.AllGoodsUrl, data, this.handleHotInfo.bind(this));
+    },
+    handleHotInfo(res) {
+        let list = res.data.data;
+        this.setData({
+            likeList: list
+        });
     },
     //获取购物车信息
     getCartInfo() {
@@ -240,12 +217,11 @@ Page({
                             newArr.push(item.rec_id)//跳转页面传值的数组
                         }
             });
-            console.log(carList)
             isNext ?
             wx.redirectTo({url: '../orderdetail/index?cartid='+newArr})
             :
             wx.showModal({content: '请选一个嘛~',showCancel: false});
-    }
+    },
     // // 清空购物车   取消这个功能
     // clearCart() {
     //     let _this = this
@@ -261,4 +237,33 @@ Page({
     //     })
               // <navigator url="../orders/orders">
     // }
+    handleAddCart(e) {
+        // 传商品信息 
+        let userId = this.data.userId;
+        let goodsId = e.target.dataset.id,
+            goodsName = e.target.dataset.name,
+            goodsPrice = e.target.dataset.price,
+            goodsit = e.target.dataset.it;
+
+            if (goodsit == null|| goodsit<=0 ) {//库存判断
+                wx.showModal({content: '库存不足抱歉哟~',showCancel: false})
+            }else {
+                const data = {
+                    userid:userId,
+                    goodsId:goodsId,
+                    goods_name:goodsName,
+                    goods_price:goodsPrice,
+                    goods_number:1
+                };
+                utils.sendRequest(api.AddGoodtoCart, data, this.handleAddGoodtoCartSucc.bind(this))
+            } 
+           
+    },
+    handleAddGoodtoCartSucc(res) {
+        let code = res.statusCode;
+                if(code == 200) {
+                    this.getCartInfo();
+        }
+    }
+        
 })

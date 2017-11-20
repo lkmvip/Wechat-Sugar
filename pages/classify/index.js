@@ -31,7 +31,6 @@ Page({
     },
     //首屏加载渲染出分类里面的所有东西
     handleClassifyInfo(res) {
-        console.log('android')
         let classtab = res.data.data.type,
             tabSon = res.data.data.typeSon;
         this.setData({
@@ -117,7 +116,6 @@ Page({
     },    
     //搜索事件
     handleSearchSucc(res) {
-        console.log(res)
         this.setData({
             searchList: res.data.data,
             isErr: res.data.error

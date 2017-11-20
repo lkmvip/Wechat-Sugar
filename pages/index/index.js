@@ -15,29 +15,8 @@ Page({
         autoplay: false,
         interval: 3000,
         duration: 800,
-        plan: [
-            {text:'每日签到',url:'/image/index/sign.png'},
-            {text:'限时购',url:'/image/index/time.png'},
-            {text:'会员专享',url:'/image/index/vip.png'},
-            {text:'拼团',url:'/image/index/shopteam.png'},
-            {text:'分享领券',url:'/image/index/share.png'}
-        ],
         planIndex: '',
         extendList: [],
-        supplyList: [
-            {id:0,url:'/image/gf1.png'},
-            {id:1,url:'/image/gf1.png'},
-        ],
-        scrollList: [
-            {id:0,url:'/image/gf.png'},
-            {id:1,url:'/image/gf.png'},
-            {id:2,url:'/image/gf.png'},
-            {id:3,url:'/image/gf.png'},
-            {id:4,url:'/image/gf.png'},
-            {id:5,url:'/image/gf.png'},
-            {id:6,url:'/image/gf.png'},
-            {id:7,url:'/image/gf.png'}
-        ],
         goodsList: [],
         addIndex: "",
         index: "",
@@ -135,26 +114,6 @@ Page({
             title: "最超值的正品美妆平台",
             path: "pages/index/index?name="+this.data.code
         }
-    },
-    // tab分类
-    switchTab(e) {
-        this.setData({
-            tabIndex : e.target.dataset.index,
-            index: '',
-        })
-    },
-    //首页tab分类
-    switchPlan(e) {
-        this.setData({
-            planIndex : e.currentTarget.dataset.index
-        })
-    },     
-    //tab内容的显示隐藏
-    switchIndex() {
-        this.setData({
-            index: 1,
-            tabIndex : ''
-        })
     },
     //上拉刷新商品信息
     onReachBottom() {
@@ -299,5 +258,17 @@ Page({
               showCancel: false
             })
         }
+    },
+    handleBanner(e) {
+        let goodsId = e.target.dataset.id,
+            goodsName = e.target.dataset.name;
+
+        JSON.stringify(goodsId).indexOf(",")!=-1&&goodsId!=''?
+
+        wx.navigateTo({
+            url: '/pages/seemore/seemore?id='+goodsId+'&&name='+goodsName
+        }):wx.navigateTo({
+            url: '/pages/seemore/seemore?id='+goodsId+'&&name=店主推荐'
+        });
     }
 })

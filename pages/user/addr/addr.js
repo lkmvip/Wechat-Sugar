@@ -75,7 +75,6 @@ Page({
     },
     // 获取所有地址信息
     handleAddrList(res) { //这里接口让史伟给我返回数据加了两个字段 area true 和 index
-        console.log(res)
         this.setData({
             addrList:res.data.addressInfo.reverse()
         })
@@ -311,7 +310,6 @@ Page({
     },
     // 删除成功
     handleDelAddrSucc(res) {
-        console.log(res)
     },
     // 存新地址信息并且跳转
     handleAddNewAddr(e) {// 修改 对应的数组里面的 地址信息数据

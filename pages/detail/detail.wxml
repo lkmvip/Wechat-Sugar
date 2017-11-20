@@ -36,14 +36,19 @@
 	</view>
 	<!-- 猜你喜欢 -->
 	<view class="guess-box">
-		<text style="margin-left:20rpx;font-size: 24rpx;">猜你喜欢</text>
+		<text style="margin-left:20rpx;font-size: 35rpx;line-height: 90rpx;">猜你喜欢</text>
 		<view class="detail-guess">
-			<view class="like-content">
-				<image bindtap="handleAddLike" data-id="{{item.id}}" data-recid="{{item.rec_id}}" src="/image/gf.png" class="guess-img"/>
+			<view class="like-content" wx:for="{{guessInfo}}" wx:key="{{index}}">
+                <navigator open-type="redirect" url="/pages/detail/detail?id={{item.id}}">
+					<image src="{{item.goods_img}}" class="guess-img"/>
+                </navigator>
 				<view class="guess-content">
-					<view>asdjkhkjh</view>
-					<view>asdjkhkjh</view>
-					<view>asdjkhkjh</view>
+					<view class="guess-tit">{{item.name}}</view>
+					<view class="guess-num">已售{{item.goodsnumber}}</view>
+					<view class="guess-price">
+						<view>￥{{item.shopprice}}</view>
+						<image src="/image/icon_cart.png" class="cart-img" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
+					</view>
 				</view>
 			</view>
 		</view>
@@ -69,12 +74,7 @@
 					<image class="hot-img" src="{{item.goods_img}}" data-id="{{item.id}}" bindtap="handleGoDetail"></image>
 				<view style="font-size: 30rpx;">{{item.name}}</view>
 				<view class="hot-price">
-					<text class="new-price">￥{{item.shopprice}}</text>
-					<text class="through">/</text>
-					<text class="make-money">赚{{item.market_price}}</text>
-					<block wx:if="{{notNeed}}">
-						<image style="float: right;" bindtap="handleAddLike" data-id="1" src="/image/like{{likeIndex == true ? 'on' : ''}}.png" class="like-img"/>	
-					</block>				
+					<text class="new-price">￥{{item.shopprice}}</text>	
 				</view>
 			</view>
         </view>
