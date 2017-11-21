@@ -31,7 +31,7 @@
 			<block wx:for="{{item.ordergoods}}" wx:key="{{index}}">
 			<image class="item-icon" src="{{item.goods_img}}"></image>
 			<view class="item-content">
-				<view style="width:100%;display: flex;justify-content: space-around;">
+				<view style="width:100%;display: flex;justify-content: space-between;">
 					<view class="item-tit">
 						{{item.name}}
 					</view>
@@ -83,5 +83,13 @@
 <view class="oredr-price">
 	<view style="color: #000">订单编号:{{item.order_sn}}</view>
 	<view>创建时间:{{item.add_time}}</view>
+</view>
+<view class="no-pay">
+		<view class="index-icon">
+		<navigator url="/pages/index/index" open-type="switchTab">
+			<image class="go-index" src="/image/tabicon/tabicon-a1.png"></image>
+		</navigator>
+		</view>
+	<view class="go-pay" bindtap="handleOrderPay">立即支付</view>
 </view>
 </block>

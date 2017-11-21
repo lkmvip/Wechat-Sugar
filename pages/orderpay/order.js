@@ -17,17 +17,36 @@ Page({
     * 生命周期函数--监听页面加载
     */
     onLoad(options) {
-        let order = JSON.parse(options.msg),
-            freight = options.count,
-            card = wx.getStorageSync('UserCard');
+
+        if (options.msg) {
+            console.log(1)
+            let order = JSON.parse(options.msg),freight = options.count;
+            this.setData({
+                orderPrice:order.money+Number(freight),
+                orderNum:order.order_sn,
+                orderWay:order.shipping_mode,
+                orderId:order.new_order_id,
+                orderAmount:order.order_amount,
+                handlePrice:(order.money+Number(freight)).toFixed(2),
+            })
+        }else if (options.obj) {
+
+            let order = JSON.parse(options.obj);
+            this.setData({
+                orderPrice:order[0].real_amount+Number(order[0].shipping_fee),
+                orderNum:order[0].order_sn,
+                orderWay:order[0].takegoods_mode,
+                orderId:order[0].order_id,
+                orderAmount:order[0].order_amount,
+                handlePrice:(order[0].real_amount+Number(order[0].shipping_fee)).toFixed(2),
+            })
+            console.log(order)     
+        }
+        
+        let card = wx.getStorageSync('UserCard');
+
         //操作页面传值的参数
         this.setData({
-            orderPrice:order.money+Number(freight),
-            orderNum:order.order_sn,
-            orderWay:order.shipping_mode,
-            orderId:order.new_order_id,
-            orderAmount:order.order_amount,
-            handlePrice:(order.money+Number(freight)).toFixed(2),
             userId:card.user_id,
             openId:card.openId
         });

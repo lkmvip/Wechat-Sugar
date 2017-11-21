@@ -114,6 +114,7 @@ Page({
     },
     //请求提交订单成功
     handleNewOrderInfo(res) {
+        console.log(res)
         try {
             let frt = this.data.freightNum;
             let userId = this.data.userId;

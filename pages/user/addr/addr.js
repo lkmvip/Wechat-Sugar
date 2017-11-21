@@ -324,18 +324,21 @@ Page({
             arrdid = list[index].address_id,
             area = [list[index].province,list[index].city,list[index].district].toString(),
             detail = list[index].address,
-            userId = this.data.userId;
+            userId = this.data.userId,
+            show = this.data.cartId;//判断在哪个页面显示弹窗
             list[index].show = true;//改变当前对应按钮的disable属性
             this.setData({
                 addrList: list
             })
         if (isBack) {
             setTimeout(()=>{
-                wx.showModal({
-                    content:'保存成功~',
-                    showCancel:false,
-                    confirmColor:'#3cc51f'//默认值为#3cc51f
-                });
+                if (!show) {
+                        wx.showModal({
+                        content:'保存成功~',
+                        showCancel:false,
+                        confirmColor:'#3cc51f'//默认值为#3cc51f
+                    });
+                }
                 const data ={
                     user_id:userId,
                     addAddress:{
@@ -359,7 +362,6 @@ Page({
     },
     //存地址成功
     handleNewAddrSucc(res) {
-        console.log(res)
         let isId = res.data.data,
             cartId = this.data.cartId;
         isId&&cartId? wx.redirectTo({

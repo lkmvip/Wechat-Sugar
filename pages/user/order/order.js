@@ -14,20 +14,23 @@ Page({
             duration: 3500
         });
         let card = wx.getStorageSync('UserCard');
-
+        console.log(card.distribution_id)
         this.setData({
             activeIndex: options.id,
-            userId:card.user_id
+            userId:card.user_id,
+            dbId:card.distribution_id
+
         });
         this.handleGetList();
         let status = this.data.activeIndex,
-            userId = this.data.userId;
+            userId = this.data.userId,
+            dbId = this.data.dbId;
         if (status == 1) {//未付款
             const data ={
                     user_id:userId,
                     status:1,
                     orderBy:'',
-                    distribution_id:''
+                    distribution_id:dbId
                 };
             utils.sendRequest(api.OrderInfoList, data, this.handleWillPaySucc.bind(this));
         }
@@ -36,7 +39,7 @@ Page({
                     user_id:userId,
                     status:3,
                     orderBy:'',
-                    distribution_id:''
+                    distribution_id:dbId
                 };
             utils.sendRequest(api.OrderInfoList, data, this.handleWillTakeSucc.bind(this));
         }
@@ -45,7 +48,7 @@ Page({
                     user_id:userId,
                     status:4,
                     orderBy:'',
-                    distribution_id:''
+                    distribution_id:dbId
                 };
             utils.sendRequest(api.OrderInfoList, data, this.handleTakeDownSucc.bind(this));
         }
@@ -63,13 +66,14 @@ Page({
             activeIndex: e.currentTarget.id
         });
         let status = this.data.activeIndex,
-            userId = this.data.userId;
+            userId = this.data.userId,
+            dbId = this.data.dbId;
         if (status == 1) {//未付款
             const data ={
                     user_id:userId,
                     status:1,
                     orderBy:'',
-                    distribution_id:''
+                    distribution_id:dbId
                 };
             utils.sendRequest(api.OrderInfoList, data, this.handleWillPaySucc.bind(this));
         }
@@ -78,7 +82,7 @@ Page({
                     user_id:userId,
                     status:3,
                     orderBy:'',
-                    distribution_id:''
+                    distribution_id:dbId
                 };
             utils.sendRequest(api.OrderInfoList, data, this.handleWillTakeSucc.bind(this));
         }
@@ -87,23 +91,24 @@ Page({
                     user_id:userId,
                     status:4,
                     orderBy:'',
-                    distribution_id:''
+                    distribution_id:dbId
                 };
             utils.sendRequest(api.OrderInfoList, data, this.handleTakeDownSucc.bind(this));
         }
     },
     handleGetList() {// 获取全部订单列表
-        let userId = this.data.userId;
+        let userId = this.data.userId,
+            dbId = this.data.dbId;
         const data ={
                     user_id:userId,
                     status:'',
                     orderBy:'',
-                    distribution_id:''
+                    distribution_id:dbId
                 };
         utils.sendRequest(api.OrderInfoList, data, this.handleOrderInfoListSucc.bind(this));
     },
     handleOrderInfoListSucc(res) {
-        wx.showToast("请求完成");
+        wx.showToast({title: '加载成功',icon: 'success'});      
         this.setData({//反转数组 
             allOrder:res.data.data.reverse()
         })

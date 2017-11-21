@@ -1,52 +1,34 @@
 // pages/user/incomed/incomed.js
+const api = require('../../../utils/api.js');//封装好的接口路径
+const utils = require('../../../utils/util.js');//调用封装的request
 Page({
 
   /**
    * 页面的初始数据
    */
-  data: {
-  
-  },
+    data: {
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-  
-  },
+    },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-  
-  }
+    /**
+    * 生命周期函数--监听页面加载
+    */
+    onLoad(options) {
+        this.getIncomed();
+        let card = wx.getStorageSync('UserCard');
+        this.setData({
+            dbId:card.distribution_id
+        });
+        console.log(this.data.dbId)
+    },
+    getIncomed() {
+        let id = this.data.dbId;
+        const data ={
+                    distribution_id:id
+                };
+        utils.sendRequest(api.IncomeUrlEd, data, this.handleGetSucc.bind(this));
+    },
+    handleGetSucc(res) {
+        console.log(res)
+    }
 })

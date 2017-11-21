@@ -16,7 +16,8 @@ var NoOne = 'https://wstcsd.1haomei.com',
 	OrderDetailInfo = NoOne+'/html/shop/index.php/WstInterFace/OrderInfo/',//订单详情
 	LogisticsInfo = NoOne+'/html/shop/index.php/WstInterFace/Logistics/',//物流详情
 	WxPay = NoOne+'/html/shop/index.php/WstInterFace/WxPayment/',//微信支付接口
-	NewTab = NoOne+'/html/shop/index.php/WstInterFace/CommendCat/'//首页新版分类接口
+	NewTab = NoOne+'/html/shop/index.php/WstInterFace/CommendCat/',//首页新版分类接口
+	IncomeUrl = NoOne+'/html/shop/index.php/WstInterFace/Distribution/';//收益接口
 module.exports = {
 	NoOneJson:NoOne+'/html/shop/Public/Home/js/data.json',//地址json
 	IndexUrl:NewApiRootUrl+ 'getIndexProduct',//首页信息
@@ -55,5 +56,9 @@ module.exports = {
 	GetLogisticsInfo:LogisticsInfo+'getLogisticsInfo',//物流信息
 	GetLogisticsCode:LogisticsInfo+'getCode',//物流信息
 	WxPayment:WxPay+'WxRet',//微信支付接口
-	IndexNewTab:NewTab+'getCommendCat'//新版首页分类接口
+	IndexNewTab:NewTab+'getCommendCat',//新版首页分类接口
+	IncomeUrlWill:IncomeUrl+'getNotInComeDetail',//待收收益
+	IncomeUrlEd:IncomeUrl+'getAccInComeDetail',//累计收益
+	TicketInfoUrl:TicketInfo+'getCouponList',
+	DistributionUrl:NewApiRootUrl+'getDistributionGoodsInfo'
 }

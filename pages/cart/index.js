@@ -222,21 +222,6 @@ Page({
             :
             wx.showModal({content: '请选一个嘛~',showCancel: false});
     },
-    // // 清空购物车   取消这个功能
-    // clearCart() {
-    //     let _this = this
-    //     wx.showModal({
-    //       content: '您要清空购物车嘛？',
-    //       success: function(res) {
-    //         if (res.confirm) {
-    //             _this.setData({ carts: [], totalPrice: 0,hasList:false }); 
-    //         } else if (res.cancel) {
-
-    //         }
-    //       }
-    //     })
-              // <navigator url="../orders/orders">
-    // }
     handleAddCart(e) {
         // 传商品信息 
         let userId = this.data.userId;

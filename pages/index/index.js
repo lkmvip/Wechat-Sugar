@@ -42,9 +42,13 @@ Page({
         this.getAllGoodsInfo();
         this.getTabInfo();
         let card = wx.getStorageSync('UserCard');
+        console.log(card)
         this.setData({
-            userId:card.user_id
+            userId:card.user_id,
+            dbId:card.distribution_id,
+            dbLv:card.distribution_level
         })
+        // this.getDistribution();//获取服务商信息
         // wx.getSystemInfo({
         //   success: this.handleGetHeight.bind(this)
         // });
@@ -55,14 +59,29 @@ Page({
     //         windowHeight:res.windowHeight+'px'
     //     })
     // },
-        //请求TabUrl函数
+    // //服务商信息
+    // getDistribution() {
+    //     let id = this.data.dbId,
+    //         lv = this.data.dbLv;
+    //     const data = {
+    //         shareLevel:'',
+    //         distributionId:-1,
+    //         distributionLevel:3
+    //     };
+    //     utils.sendRequest(api.DistributionUrl, data, this.handleGetDbSucc.bind(this));
+    // },        //请求TabUrl函数
     getTabInfo() {
         const data = {};
         utils.sendRequest(api.IndexNewTab, data, this.handleGetTabSucc.bind(this));
     },
     //请求IndexUrl函数 
     getIndexInfo() {
-        const data = {};
+        let id = this.data.dbId,
+            lv = this.data.dbLv;
+        const data = {
+            distributionId:id,
+            distributionLevel:lv
+        };
         utils.sendRequest(api.IndexUrl, data, this.handleGetIndexSucc.bind(this));
     },
     //请求BannerUrl函数   
@@ -88,6 +107,7 @@ Page({
     //请求IndexUrl成功处理函数 
     handleGetIndexSucc(res) {
         // 返回商品列表和品牌列表的信息
+        console.log(res)
         let goodsInfo = res.data.data;
         this.setData({
             goodsList : goodsInfo
@@ -104,11 +124,15 @@ Page({
     handleGetAllSucc(res) {
         const goods = res.data.data;
         const arr = [];
+        console.log(goods)
         goods.map((item,index)=> arr.push(item));
         this.setData({
             allGoodsList : arr
         })
     },
+    // handleGetDbSucc(res) {
+    //     console.log(res)
+    // },
     onShareAppMessage() {
         return {
             title: "最超值的正品美妆平台",

@@ -119,3 +119,29 @@
 	color: #ff4341; border: 1rpx solid #ff4341;margin-top: 20rpx;border-radius: 5rpx;float: right;
 	margin-right: 20rpx; 
 }
+.no-pay{
+	width: 100%;
+	height: 80rpx;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	display: flex;
+	background: #fff;
+}
+.index-icon{
+	width: 20%;
+	height: 80rpx;
+}
+.go-index{
+	width: 65rpx;
+	height: 65rpx;
+	display: block;
+	margin: 7rpx auto;
+}
+.go-pay{
+	width: 80%;
+	text-align: center;
+	line-height: 80rpx;
+	color: #fff;
+	background: #ff4341;
+}

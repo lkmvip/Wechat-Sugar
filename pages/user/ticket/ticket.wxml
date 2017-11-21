@@ -17,21 +17,21 @@
                 </view>
             </block>
             <view class="not-use">
-                <view class="not-list">
+                <view class="not-list" wx:for="{{ticketList}}" wx:key="{{index}}">
                     <view class="not-left">
                         <view class="not-price">
                             <text>￥</text>
-                            <text style="font-size: 50rpx;">300</text>
+                            <text style="font-size: 50rpx;">{{item.quota}}</text>
                         </view>
                         <view class="not-way">满￥399使用</view>  
                     </view>
                     <view class="not-right">
                         <view class="ticket-way">
                             <view class="ticket-name">满减券</view>  
-                            <view class="name-text">见面礼-满399减100</view>  
+                            <view class="name-text">{{item.couponName}}</view>  
                         </view>
                         <view class="ticket-date">
-                            <view style="height: 50rpx;line-height: 50rpx;">2017.09.28-2017.10.09</view>
+                            <view style="height: 50rpx;line-height: 50rpx;">{{item.startTime}}-{{item.endTime>'2100-01-01'?'无限制':item.endTime}}</view>
                             <view class="use-ticket">立即使用</view>     
                         </view>  
                     </view>
@@ -42,21 +42,21 @@
         <!-- 已使用的内容 -->     
         <view class="ticket-list" hidden="{{activeIndex != 1}}">
             <view class="not-use">
-                <view class="not-list {{activeIndex == 1 ? 'border' : ''}}">
+                <view class="not-list {{activeIndex == 1 ? 'border' : ''}}" wx:for="{{usedList}}" wx:key="{{index}}">
                     <view class="not-left {{activeIndex == 1 ? 'border-left' : ''}}">
                         <view class="not-price ">
                             <text>￥</text>
-                            <text style="font-size: 50rpx;">300</text>
+                            <text style="font-size: 50rpx;">{{item.quota}}</text>
                         </view>
                         <view class="not-way">满￥399使用</view>  
                     </view>
                     <view class="not-right">
                         <view class="ticket-way">
                             <view class="ticket-name {{activeIndex == 1 ? 'ticket-bg' : ''}}">满减券</view>  
-                            <view class="name-text">见面礼-满399减100</view>  
+                            <view class="name-text">{{item.couponName}}</view>  
                         </view>
                         <view class="ticket-date">
-                            <view>2017.09.28-2017.10.09</view>  
+                            <view>{{item.startTime}}-{{item.endTime>'2100-01-01'?'无限制':item.endTime}}</view>  
                         </view>  
                     </view>
                     <image class="use-img" src="/image/ticket/ticket{{activeIndex}}.png"></image> 
@@ -66,21 +66,21 @@
         <!-- 已过期的内容 --> 
         <view class="ticket-list" hidden="{{activeIndex != 2}}">
             <view class="not-use">
-                <view class="not-list  {{activeIndex == 2 ? 'border' : ''}}">
+                <view class="not-list  {{activeIndex == 2 ? 'border' : ''}}" wx:for="{{timeOutList}}" wx:key="{{index}}">
                     <view class="not-left {{activeIndex == 2 ? 'border-left' : ''}}">
                         <view class="not-price ">
                             <text>￥</text>
-                            <text style="font-size: 50rpx;">300</text>
+                            <text style="font-size: 50rpx;">{{item.quota}}</text>
                         </view>
                         <view class="not-way">满￥399使用</view>  
                     </view>
                     <view class="not-right">
                         <view class="ticket-way">
                             <view class="ticket-name {{activeIndex == 2 ? 'ticket-bg' : ''}}">满减券</view>  
-                            <view class="name-text">见面礼-满399减100</view>  
+                            <view class="name-text">{{item.couponName}}</view>  
                         </view>
                         <view class="ticket-date">
-                             2017.09.28-2017.10.09   
+                             {{item.startTime}}-{{item.endTime>'2100-01-01'?'无限制':item.endTime}}
                         </view>  
                     </view>
                     <image class="use-img" src="/image/ticket/ticket{{activeIndex}}.png"></image> 
