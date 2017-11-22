@@ -1,5 +1,5 @@
 // pages/orderdetail/index.js
-const api = require('../../utils/api.js');//封装好的借口路径
+const api = require('../../utils/api.js');//封装好的接口路径
 const utils = require('../../utils/util.js');//调用封装的request
 Page({
 
@@ -88,6 +88,7 @@ Page({
     checkboxChange(e) {
         console.log('checkbox发生change事件，携带value值为：', e.detail.value)
     },
+    //前往优惠券页面
     handleTicket() {
         wx.navigateTo({
             url: '/pages/user/ticket/ticket'
@@ -138,6 +139,5 @@ Page({
             console.log(e);
         }
     },
-    handleCartDelInfo(res) {
-    }
+    handleCartDelInfo(res) {}
 })

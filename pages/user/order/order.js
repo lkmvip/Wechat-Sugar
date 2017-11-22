@@ -142,6 +142,7 @@ Page({
                 };
         utils.sendRequest(api.CancelOredr, data, this.handleCancelOredrSucc.bind(this));
     },
+    //取消订单成功处理逻辑
     handleCancelOredrSucc(res) {
         try {
             res.data ?
@@ -163,6 +164,7 @@ Page({
                 };
         utils.sendRequest(api.CancelMoney, data, this.handleCancelMoneySucc.bind(this));
     },
+    //申请退款成功处理逻辑
     handleCancelMoneySucc(res){
         try {
             res.data ?
@@ -190,6 +192,7 @@ Page({
                 };
         utils.sendRequest(api.TakeGoods, data, this.handleTakeGoodsSucc.bind(this));
     },
+    //确认收货成功处理逻辑 
     handleTakeGoodsSucc(res) {
         try {
             res.data ?

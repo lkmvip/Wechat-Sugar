@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp();
-const api = require('../../utils/api.js');//封装好的借口路径
+const api = require('../../utils/api.js');//封装好的接口路径
 const utils = require('../../utils/util.js');//调用封装的request
 
 Page({
@@ -58,7 +58,7 @@ Page({
     //     this.setData({
     //         windowHeight:res.windowHeight+'px'
     //     })
-    // },
+    // },                                                              这些东西 不确定要不要用
     // //服务商信息
     // getDistribution() {
     //     let id = this.data.dbId,
@@ -107,7 +107,6 @@ Page({
     //请求IndexUrl成功处理函数 
     handleGetIndexSucc(res) {
         // 返回商品列表和品牌列表的信息
-        console.log(res)
         let goodsInfo = res.data.data;
         this.setData({
             goodsList : goodsInfo
@@ -115,6 +114,7 @@ Page({
     }, 
     //请求BannerUrl成功处理函数  
     handleGetBannerSucc(res){
+        console.log(res)
         let bannerImg = res.data.data;
         this.setData({
             imgUrls: bannerImg
@@ -130,9 +130,6 @@ Page({
             allGoodsList : arr
         })
     },
-    // handleGetDbSucc(res) {
-    //     console.log(res)
-    // },
     onShareAppMessage() {
         return {
             title: "最超值的正品美妆平台",
@@ -283,16 +280,16 @@ Page({
             })
         }
     },
+    //点击轮播图跳转逻辑
     handleBanner(e) {
         let goodsId = e.target.dataset.id,
             goodsName = e.target.dataset.name;
-
+        //这里数据不固定，多个数据列表页，一个数据详情页
         JSON.stringify(goodsId).indexOf(",")!=-1&&goodsId!=''?
-
         wx.navigateTo({
             url: '/pages/seemore/seemore?id='+goodsId+'&&name='+goodsName
         }):wx.navigateTo({
-            url: '/pages/seemore/seemore?id='+goodsId+'&&name=店主推荐'
+            url: '/pages/detail/detail?id='+goodsId 
         });
     }
 })

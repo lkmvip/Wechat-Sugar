@@ -1,5 +1,5 @@
 // pages/detail/detail.js
-const api = require('../../utils/api.js');//封装好的借口路径
+const api = require('../../utils/api.js');//封装好的接口路径
 const utils = require('../../utils/util.js');//调用封装的request
 Page({
 
@@ -63,6 +63,7 @@ Page({
         })
         this.getDetailLike();
     },
+    //获取猜你喜欢数据
     getDetailLike() {
         let id = this.data.goodsInfo[0].goodstypecode,
             sub = this.data.goodsInfo[0].id;
@@ -86,6 +87,7 @@ Page({
             guessInfo:result
         })
     },
+    //操作商品数据
     getCartGoodsNum() {
         let user = this.data.userId;
         const data ={
@@ -132,6 +134,7 @@ Page({
             utils.sendRequest(api.LikeInfoAdd, data, this.handleAddLikeSucc.bind(this)); 
         }
     },
+    //收藏成功处理逻辑
     handleAddLikeSucc(res) {
         let list = this.data.goodsInfo;
         list[0].rec_id = res.data.rec_id;
@@ -139,6 +142,7 @@ Page({
             goodsInfo:list
         })
     },
+    //取消收藏处理逻辑
     handleCancelLikeSucc(res) {
         let list = this.data.goodsInfo;
         list[0].rec_id = res.data.error;
@@ -146,7 +150,6 @@ Page({
             goodsInfo:list
         })
     },                                   
-    // ---------------------- 暂时不添加收藏这个功能 -----------------
     // 点击tab选项卡
     tabClick: function (e) {
         let ifget = e.currentTarget.id;
@@ -237,6 +240,7 @@ Page({
                     goods_price:goodsPrice,
                     goods_number:num
                 };
+                //加入购物车接口
                 utils.sendRequest(api.AddGoodtoCart, data, _this.handleGoPaySucc.bind(_this));
             }
         }
@@ -294,13 +298,14 @@ Page({
 
         });
     },
+    //热门商品跳转
     handleGoDetail(e) {
         let isId = e. currentTarget.dataset.id;
         wx.redirectTo({
             url: '/pages/detail/detail?id='+isId
         });
     },
-        //点击添加到购物车
+    //点击添加到购物车
     handleAddCart(e) {
         // 传商品信息 
         let userId = this.data.userId;

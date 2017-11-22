@@ -1,4 +1,4 @@
-const api = require('../../utils/api.js');//封装好的借口路径
+const api = require('../../utils/api.js');//封装好的接口路径
 const utils = require('../../utils/util.js');//调用封装的request
 Page({
     data: {
@@ -21,6 +21,7 @@ Page({
     onShow() {
         this.getCartInfo();
     },
+    //获取猜你喜欢数据
     getlikeInfo() {
         const data ={
                 limit:4,  
@@ -67,7 +68,7 @@ Page({
         wx.showModal({
           content: '您真的不要人家了嘛？',
           success: res => {
-            if (res.confirm) {
+            if (res.confirm) {//当用户点击确定后 操作购物车数据的数组
                 carts.splice(index,1);
                 this.setData({
                   carts: carts,
@@ -91,9 +92,7 @@ Page({
         })
     },
     //删除
-    handleCartDelInfo(res) {
-
-    },
+    handleCartDelInfo(res) {},
   /**
    * 购物车全选事件
    */
@@ -158,9 +157,7 @@ Page({
         };
         utils.sendRequest(api.UpdateGoodsAmount, data, this.handleUpdateGoodsAmount.bind(this));
     },
-    handleUpdateGoodsAmount(res) {
-
-    },
+    handleUpdateGoodsAmount(res) {},
   /**
    * 绑定减数量事件
    */

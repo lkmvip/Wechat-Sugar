@@ -20,13 +20,11 @@ Page({
         });
         this.getTicketInfo();
     },
+    //选项卡
     tabClick(e) {
         this.setData({
             activeIndex: e.currentTarget.id
         });
-    },
-    stopDrag(){
-        return false;
     },
     getTicketInfo() {
         let id = this.data.userId,

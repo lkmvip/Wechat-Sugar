@@ -1,4 +1,4 @@
-const api = require('../../utils/api.js');//封装好的借口路径
+const api = require('../../utils/api.js');//封装好的接口路径
 const utils = require('../../utils/util.js');//调用封装的request
 Page({
     data: {
@@ -93,7 +93,7 @@ Page({
         };
         utils.sendRequest(api.ClassifySon, data, this.handleGoodsSon.bind(this));
     },
-    // //分类里面的内容
+    //分类里面的内容
     handleGoodsSon(res) {
         let list = res.data;
          this.setData({
@@ -129,7 +129,7 @@ Page({
             });
         }
     },
-        //搜索内容的数组拼接
+    //搜索内容的数组拼接
     handleLoadMore(res) {
         const searchs=res.data.data,
             arr = [];

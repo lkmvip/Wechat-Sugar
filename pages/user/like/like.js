@@ -41,6 +41,7 @@ Page({
         }
         
     },
+    //取消收藏处理逻辑
     handleDelLike(e) {
         const id = e.currentTarget.dataset.id,
             index = e.currentTarget.dataset.index,
@@ -67,7 +68,6 @@ Page({
             }
         })
     },
-    handleCancelLikeSucc(res) {
-    }
+    handleCancelLikeSucc(res) {}
    
 })

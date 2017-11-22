@@ -1,10 +1,10 @@
 <!--pages/orderpay/order.wxml-->
 <view class='orderpay-top'>
 	<view class="pay-for">应付金额:</view>
-	<view class="pay-much">￥{{orderPrice}}</view>
+	<view class="pay-much">￥{{orderPrice  }}</view>
 	<view class="pay-num">订单号:{{orderNum}}</view>
 	<view class="pay-way">配送方式:{{orderWay}}</view>
-	<block wx:if="{{showPrice}}">
+	<block wx:if="{{check==false&&checkRmb==false?false:showPrice}}">
 		<view class="pay-way">微信支付:{{handlePrice}}</view>
 		<view class="pay-way">余额支付:{{rmbNum}}</view>
 	</block>
@@ -27,10 +27,10 @@
 	<view class="pay-rmb">
 		<view>可用余额:￥{{rmb==null?0:rmb}}</view>
 	</view>
-	<block wx:if="{{showPrice}}">
+	<block wx:if="{{check==false&&checkRmb==false?false:showPrice}}">
 		<view class="pay-rmb">
 			<view>使用余额:</view>
-			<input class="pay-input" type="digit"  bindblur="handleRmb" />
+			<input class="pay-input" type="digit" value="{{rmbNum}}"  bindblur="handleRmb" />
 		</view>	
 	</block>
 		

@@ -1,5 +1,5 @@
 // pages/seemore/seemore.js
-const api = require('../../utils/api.js');//封装好的借口路径
+const api = require('../../utils/api.js');//封装好的接口路径
 const utils = require('../../utils/util.js');//调用封装的request
 
 Page({
@@ -62,7 +62,7 @@ Page({
             };
             utils.sendRequest(api.AllGoodsUrl, data, this.handleMoreClassifySucc.bind(this)); 
         }
-                // 更多商品进入时调用
+        // 更多商品进入时调用
         if(isId.length<5) {
             const data = {
                 id:isId,

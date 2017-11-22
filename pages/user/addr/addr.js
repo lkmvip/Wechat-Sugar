@@ -1,5 +1,5 @@
 //index.js
-const api = require('../../../utils/api.js');//封装好的借口路径
+const api = require('../../../utils/api.js');//封装好的接口路径
 const utils = require('../../../utils/util.js');//调用封装的request
 
 var app = getApp();
@@ -40,7 +40,7 @@ Page({
         };
         utils.sendRequest(api.GetAddrInfo, data, this.handleAddrList.bind(this));
         try {
-            let localInfo = wx.getStorageSync("AddrJson");
+            let localInfo = wx.getStorageSync("AddrJson");//获取三级联动地址数据
             if(!localInfo){
                 const data ={};
                 utils.sendRequest(api.NoOneJson, data, this.handleJsonAddr.bind(this));//获取三级联动的json数据
