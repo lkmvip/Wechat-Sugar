@@ -8,6 +8,11 @@ Page({
         hasTicket:false
     },
     onLoad(options) {
+        console.log(options);
+        options.way? this.setData({
+            tabs: ["可用","不可用"],
+            way:2
+        }):'';
         this.setData({
             activeIndex: options.id
         });
@@ -16,7 +21,9 @@ Page({
             dbId:card.distribution_id,
             subId:card.subwebId,
             subName:card.subwebName,
-            userId:card.user_id
+            userId:card.user_id,
+            cartId:options.cartid,
+            addrId:options.addrid
         });
         this.getTicketInfo();
     },
@@ -44,6 +51,7 @@ Page({
         utils.sendRequest(api.TicketInfoUrl, data, this.handleGetSucc.bind(this));
     },
     handleGetSucc(res) {
+        console.log(res)
         let has = [],
             used = [],
             timeOut = [];
@@ -65,4 +73,14 @@ Page({
             timeOutList:timeOut
         })
     },
+    handleUseTicket(e) {
+        let id = e.currentTarget.dataset.id,
+            num = e.currentTarget.dataset.num,
+            carId = this.data.cartId,
+            addrId = this.data.addrId;
+            console.log(id,num)
+            wx.redirectTo({
+                url: '/pages/orderdetail/index?ticketid='+id+'&&ticketnum='+num+'&&cartid='+carId+'&&addrid='+addrId
+            });
+    }
 })

@@ -8,7 +8,7 @@
 		<block wx:if="{{error}}">
 		    <view class="goods-nomsg">暂无当前分类产品哟~</view>
 		</block><block wx:else>
-	<view class="goods-list"  wx:for="{{brandId ||code ? brandList : moreGoods[0]}}" wx:key="{{index}}"  data-index="{{index}}">	
+	<view class="goods-list"  wx:for="{{brandId ||code || newbrandId? brandList : moreGoods[0]}}" wx:key="{{index}}"  data-index="{{index}}">	
 	
 		
 		    <navigator open-type="redirect" url="/pages/detail/detail?id={{item.id}}">

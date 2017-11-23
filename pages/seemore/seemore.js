@@ -24,15 +24,20 @@ Page({
         wx.setNavigationBarTitle({
           title: options.name
         })
+        console.log(options)
         let card = wx.getStorageSync('UserCard');
         this.setData({
             moreId:options.id,
             title:options.name,
-            brandId:options.brandid,
+            brandId:options.brandid,//分类页面品牌ID
             code:options.codeid,
-            userId:card.user_id
+            userId:card.user_id,
+            dbId:card.distribution_id,
+            dbLv:card.distribution_level,
+            newbrandId:options.newbrandid//首页品牌ID
         })
         this.getMoreGoodsInfo();
+        console.log(this.data)
     },
     /**
     * 用户点击右上角分享
@@ -43,36 +48,66 @@ Page({
     getMoreGoodsInfo() {
         let isId = this.data.moreId,
             listId = this.data.brandId,
-            codeId = this.data.code;
+            codeId = this.data.code,
+            newbrandId = this.data.newbrandId;
+        let id = this.data.dbId,
+            lv = this.data.dbLv;
+            console.log(newbrandId)    
         // 品牌商品进入时调用
         if(listId) {
             const data = {
+                distribution_id:id,
+                distribution_level:lv,
                 data: {
-                    goodstypecode:listId,
+                    brandid:listId,
                 }
             };
+            console.log(1)
             utils.sendRequest(api.AllGoodsUrl, data, this.handleMoreBrandSucc.bind(this)); 
+        };
+        if(newbrandId) {
+            console.log(2)
+
+            const data = {
+                distribution_id:id,
+                distribution_level:lv,
+                data: {
+                    goodstypecode:newbrandId,
+                }
+            };
+            utils.sendRequest(api.AllGoodsUrl, data, this.handleNewBrandSucc.bind(this)); 
         };
         // 分类商品进入时调用
         if(codeId) {
             const data = {
+                distribution_id:id,
+                distribution_level:lv,
                 data: {
                     goodstypecode:codeId,
                 }
             };
+            console.log(3)
+
             utils.sendRequest(api.AllGoodsUrl, data, this.handleMoreClassifySucc.bind(this)); 
         }
         // 更多商品进入时调用
         if(isId.length<5) {
+            console.log(4)
             const data = {
+                distribution_id:id,
+                distribution_level:lv,
                 id:isId,
                 type:1
             };
+            console.log("轮播1")
             utils.sendRequest(api.IndexUrl, data, this.handleMoreGoodsSucc.bind(this)); 
         }else {
             const data = {
+                distribution_id:id,
+                distribution_level:lv,
                 zhuti_id:isId
             };
+            console.log("轮播2")
             utils.sendRequest(api.IndexUrl, data, this.handleMoreGoodsSucc.bind(this)); 
         };
     },
@@ -87,6 +122,16 @@ Page({
     },
     //请求品牌商品成功处理函数 
     handleMoreBrandSucc(res) {
+        console.log(res)
+        let brandInfo = '';
+        res.data.error == 100 ? brandInfo = true :brandInfo = false;
+        this.setData({
+            brandList : res.data.data,
+            error:brandInfo
+        });
+    },
+    handleNewBrandSucc(res) {
+        console.log(res)
         let brandInfo = '';
         res.data.error == 100 ? brandInfo = true :brandInfo = false;
         this.setData({

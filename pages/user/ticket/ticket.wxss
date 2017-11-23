@@ -6,7 +6,7 @@
 	background: #fff;
 }
 .width {
-	width: 33.33%;
+	flex: 1;
 }
 .ticket-list {
 	border-top: 1rpx solid #f0f0f0;

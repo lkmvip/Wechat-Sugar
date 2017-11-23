@@ -84,12 +84,14 @@
 	<view style="color: #000">订单编号:{{item.order_sn}}</view>
 	<view>创建时间:{{item.add_time}}</view>
 </view>
-<view class="no-pay">
-		<view class="index-icon">
-		<navigator url="/pages/index/index" open-type="switchTab">
-			<image class="go-index" src="/image/tabicon/tabicon-a1.png"></image>
-		</navigator>
-		</view>
-	<view class="go-pay" bindtap="handleOrderPay">立即支付</view>
-</view>
+<block wx:if="{{status==1?true:false}}">
+	<view class="no-pay">
+			<view class="index-icon">
+			<navigator url="/pages/index/index" open-type="switchTab">
+				<image class="go-index" src="/image/tabicon/tabicon-a1.png"></image>
+			</navigator>
+			</view>
+		<view class="go-pay" bindtap="handleOrderPay">立即支付</view>
+	</view>
+</block>
 </block>

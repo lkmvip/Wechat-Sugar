@@ -215,7 +215,7 @@ Page({
                         }
             });
             isNext ?
-            wx.redirectTo({url: '../orderdetail/index?cartid='+newArr})
+            wx.navigateTo({url: '../orderdetail/index?cartid='+newArr})
             :
             wx.showModal({content: '请选一个嘛~',showCancel: false});
     },

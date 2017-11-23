@@ -32,10 +32,12 @@ Page({
         
     },
     handleOrderInfoDetailSucc(res) {
+        console.log(res)
         this.setData({
             orderInfo:res.data.data,
             status:res.data.data[0].status
         })
+        console.log(this.data.status)
     },
     handleOrderPay() {
         let obj = JSON.stringify(this.data.orderInfo);

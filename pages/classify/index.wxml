@@ -66,14 +66,22 @@
                     <navigator url="/pages/detail/detail?id={{item.id}}">
                         <image src="{{item.goods_img}}" class="like-image"/>
                     </navigator>
-                    <view class="like-price">
-                        <view class="like-title">{{item.name}}</view>
-                        <view class="new-price left" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
-                        <view class="old-price left" style="margin-top:14rpx">￥{{item.market_price}}</view>
-                        <image src="/image/cart.png" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
-                        <image src="/image/add.png" class="add-goods right" style="margin:0"/>
-                    
-                    </view>
+                        <view class="like-price">
+                            <view class="like-title">{{item.name}}</view>
+                            <view style="display: flex;justify-content: space-between;">
+                                <view style="width: 50%;">
+                                    <view style="display: flex;">
+                                        <view class="new-price letf" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
+                                        <view class="old-price letf" style="margin-top:14rpx">￥{{item.market_price}}</view>
+                                    </view>
+                                    <view class="new-price" style="color:#ec1358;margin-top:10rpx">赚{{item.makeMoney}}</view>
+                                </view>
+                                <view style="width: 50%;">
+                                <image src="/image/cart.png" data-it="{{item.inventory}}" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
+                                <image src="/image/add.png" class="add-goods right" style="margin:0"/>
+                                </view>   
+                            </view>
+                        </view>
                 </view>
             </view>
                 <button wx:if="{{isErr == 0 ? true : false }}" class="is-more" loading="{{isLoading1}}" disabled="true">{{btnTxt1}}</button>

@@ -22,6 +22,12 @@ Page({
 
     },
     onLoad(options) {
+        let card = wx.getStorageSync('UserCard');
+        this.setData({
+            userId:card.user_id,
+            dbId:card.distribution_id,
+            dbLv:card.distribution_level
+        })
         this.getClassifyInfo();//调用分类接口
     },
     getClassifyInfo() {
@@ -31,6 +37,7 @@ Page({
     },
     //首屏加载渲染出分类里面的所有东西
     handleClassifyInfo(res) {
+        console.log(res)
         let classtab = res.data.data.type,
             tabSon = res.data.data.typeSon;
         this.setData({
@@ -46,12 +53,16 @@ Page({
         });
         if (val != ''&& err == 0) {
             setTimeout(()=>{
+                let id = this.data.dbId,
+                lv = this.data.dbLv;
                 let num = this.data.limitIndex;
                     this.setData({
                         limitIndex: num+1
                     })
                     // 给后端传下拉刷新的次数+1
                     const data = {
+                        distribution_id:id,
+                        distribution_level:lv,
                         limitIndex: this.data.limitIndex,
                          data:{
                             name: this.data.inputVal,
@@ -75,6 +86,7 @@ Page({
     //全部品牌接口成功
     handleBrandInfo(res) {
         let brand = res.data;
+        console.log(res)
         this.setData({
             brandList: brand
         })
@@ -102,10 +114,16 @@ Page({
     },
     //当用户点击键盘搜索按钮之后执行 商品搜索
     handleSearch(e) {
+
+        let id = this.data.dbId,
+            lv = this.data.dbLv;
+
         this.setData({
             inputVal: e.detail.value
         });
         const data = {
+            distribution_id:id,
+            distribution_level:lv,
             limitIndex:this.data.limitIndex,
             data:{
                 name: this.data.inputVal,

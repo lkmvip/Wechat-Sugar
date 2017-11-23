@@ -37,10 +37,6 @@ Page({
     },
 
     onLoad(options) {
-        this.getIndexInfo();
-        this.getBannerInfo();
-        this.getAllGoodsInfo();
-        this.getTabInfo();
         let card = wx.getStorageSync('UserCard');
         console.log(card)
         this.setData({
@@ -48,6 +44,10 @@ Page({
             dbId:card.distribution_id,
             dbLv:card.distribution_level
         })
+        this.getIndexInfo();
+        this.getBannerInfo();
+        this.getAllGoodsInfo();
+        this.getTabInfo();
         // this.getDistribution();//获取服务商信息
         // wx.getSystemInfo({
         //   success: this.handleGetHeight.bind(this)
@@ -78,9 +78,10 @@ Page({
     getIndexInfo() {
         let id = this.data.dbId,
             lv = this.data.dbLv;
+            console.log(id,lv)
         const data = {
-            distributionId:id,
-            distributionLevel:lv
+            distribution_id:id,
+            distribution_level:lv
         };
         utils.sendRequest(api.IndexUrl, data, this.handleGetIndexSucc.bind(this));
     },
@@ -91,7 +92,11 @@ Page({
     },
     //请求AllGoodsUrl函数   
     getAllGoodsInfo() {
+        let id = this.data.dbId,
+            lv = this.data.dbLv;
         const data = {
+            distribution_id:id,
+            distribution_level:lv,
             limitIndex:this.data.limitIndex
         };
         //传值给后端，获取到全部商品的首次信息
@@ -107,6 +112,7 @@ Page({
     //请求IndexUrl成功处理函数 
     handleGetIndexSucc(res) {
         // 返回商品列表和品牌列表的信息
+        console.log(res)
         let goodsInfo = res.data.data;
         this.setData({
             goodsList : goodsInfo
@@ -114,7 +120,6 @@ Page({
     }, 
     //请求BannerUrl成功处理函数  
     handleGetBannerSucc(res){
-        console.log(res)
         let bannerImg = res.data.data;
         this.setData({
             imgUrls: bannerImg
@@ -124,8 +129,8 @@ Page({
     handleGetAllSucc(res) {
         const goods = res.data.data;
         const arr = [];
-        console.log(goods)
         goods.map((item,index)=> arr.push(item));
+        console.log(res)
         this.setData({
             allGoodsList : arr
         })
@@ -133,7 +138,7 @@ Page({
     onShareAppMessage() {
         return {
             title: "最超值的正品美妆平台",
-            path: "pages/index/index?name="+this.data.code
+            path: "pages/index/index?name=111"
         }
     },
     //上拉刷新商品信息
@@ -150,11 +155,15 @@ Page({
         //关于上拉加载的性能优化
             setTimeout(()=>{
                     let num = this.data.limitIndex;
+                    let id = this.data.dbId,
+                        lv = this.data.dbLv;
                     this.setData({
                         limitIndex: num+1
                     })
                     // 给后端传下拉刷新的次数+1
                     const data = {
+                        distribution_id:id,
+                        distribution_level:lv,
                         limitIndex: this.data.limitIndex
                     };
                     utils.sendRequest(api.AllGoodsUrl, data, this.handleReachBottom.bind(this));
@@ -162,16 +171,17 @@ Page({
         };
         if (val != ''&& err == 0 && load1) {
             setTimeout(()=>{
-                let num = this.data.limitIndex;
+                    let num = this.data.limitIndex;
+                    let id = this.data.dbId,
+                        lv = this.data.dbLv;
                     this.setData({
                         limitIndex: num+1
                     })
                     // 给后端传下拉刷新的次数+1
                     const data = {
-                        limitIndex: this.data.limitIndex,
-                         data:{
-                            name: this.data.inputVal,
-                        }
+                        distribution_id:id,
+                        distribution_level:lv,
+                        limitIndex: this.data.limitIndex
                     };
                     utils.sendRequest(api.AllGoodsUrl, data, this.handleLoadMore.bind(this));
             },1500)
@@ -197,10 +207,15 @@ Page({
     },
     //当用户点击键盘搜索按钮之后执行 商品搜索
     handleSearch(e) {
+        let id = this.data.dbId,
+            lv = this.data.dbLv;
         this.setData({
             inputVal: e.detail.value
-        });
+        });                    
+
         const data = {
+            distribution_id:id,
+            distribution_level:lv,
             limitIndex:this.data.limitIndex,
             data:{
                 name: this.data.inputVal,

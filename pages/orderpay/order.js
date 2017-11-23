@@ -25,7 +25,7 @@ Page({
                 orderNum:order.order_sn,//订单编号
                 orderWay:order.shipping_mode,//配送方式
                 orderId:order.new_order_id,//订单ID
-                handlePrice:(order.money+Number(freight)).toFixed(4),// 操作金额的变量
+                handlePrice:(order.money+Number(freight)),// 操作金额的变量
             })
         }else if (options.obj) {
             //这里是从订单列表进入的数据
@@ -36,7 +36,7 @@ Page({
                 orderNum:order[0].order_sn,
                 orderWay:order[0].takegoods_mode,
                 orderId:order[0].order_id,
-                handlePrice:order[0].real_amount,
+                handlePrice:order[0].real_amount.toFixed(2),
             })
         }
         let card = wx.getStorageSync('UserCard');//获取用户身份信息
@@ -67,10 +67,12 @@ Page({
     // 默认选择微信支付
     handleCheckWeChat() {
         let check1 = this.data.check,
-            show = !this.data.showPrice;
+            show = !this.data.showPrice,
+            allPrice = this.data.orderPrice;
         this.setData({
             check:!check1,
-            showPrice:show//更改余额的input显示或隐藏
+            showPrice:show,//更改余额的input显示或隐藏
+            // handlePrice:allPrice
         });
     },
     // 选择余额支付
@@ -97,15 +99,14 @@ Page({
             rmbNum = this.data.rmbNum,//余额支付的数额
             userId = this.data.userId,
             openId = this.data.openId;
-            //判断是否有余额
-            rmb == null ? wx.showModal({content: '余额不足哦',showCancel: false}): 
-            this.setData({rmbNum:0,handlePrice:allPrice});
             //判断支付状态
             wxCheck ? payWay=9: payWay=8;
             rmbCheck&&wxCheck? zuHe=1 : zuHe =0;
             // 调用余额支付
             if(rmbCheck&&rmbNum>=0||zuHe==1){// 余额按钮选中和金额 执行下面逻辑
-                if (rmbNum == allPrice) {//如果金额等于商品价格就不走微信支付
+                console.log(rmbNum,allPrice)
+                if (rmbNum == allPrice || !wxCheck) {//如果金额等于商品价格就不走微信支付
+                    console.log("直接走余额")
                      const data ={
                         payment:payWay,
                         order_sn:orderSn,
@@ -120,6 +121,7 @@ Page({
                     //调用余额支付接口。
                     utils.sendRequest(api.UserRmbPay, data, this.handleOrderPaySucc.bind(this));
                 }else {
+                    console.log("走组合")
                     const data ={
                         order_sn:orderSn,
                         openId:openId,
@@ -136,11 +138,15 @@ Page({
                     openId:openId,
                     order_amount:wxPrice, 
                 };
-                utils.sendRequest(api.WxPayment, data, this.handleWxPaySucc.bind(this));
+                console.log('wx:'+wxPrice)
+                utils.sendRequest(api.WxPayment, data, this.handleWxPaySucc.bind(this)); 
             }
             if (wxCheck==false&&rmbCheck==false) {
                 wx.showModal({content: '请选择支付方式',showCancel: false})
             }
+                        //判断是否有余额
+            rmb == null ? wx.showModal({content: '余额不足哦',showCancel: false}): 
+            this.setData({handlePrice:(allPrice-rmbNum).toFixed(2)});
     },
     //组合支付
     handleZuHePaySucc(res) {
@@ -238,6 +244,6 @@ Page({
         this.setData({rmbNum:0});
         e.detail.value > allPrice ?
         wx.showModal({content: '您给的太多了哟',showCancel: false}) :
-        this.setData({rmbNum:e.detail.value||0,handlePrice:(allPrice-e.detail.value).toFixed(4)})
+        this.setData({rmbNum:e.detail.value||0,handlePrice:(allPrice-e.detail.value).toFixed(2)})
     }
 })

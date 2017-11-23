@@ -22,7 +22,8 @@ Page({
         goodsId:'',
         goodsInfo:[],
         likeNum:'',
-        notNeed:false
+        notNeed:false,
+        abc:123
          
     },
 
@@ -30,15 +31,17 @@ Page({
     * 生命周期函数--监听页面加载
     */
     onLoad(options) {
+        console.log("这里是:");
         let id = options.id,
             card = wx.getStorageSync('UserCard');
         this.setData({
             goodsId: id,
             userId:card.user_id,
-            subId:card.subwebId
+            subId:card.subwebId,
+            abc:options.abc
         })
         this.getDetailInfo();
-        
+        console.log(this.data.abc)
     },
     onReady() {
         this.getCartGoodsNum();
@@ -336,6 +339,13 @@ Page({
               content: '在购物车等您哟~',
               showCancel: false
             })
+        }
+    },
+    onShareAppMessage() {
+        let id = this.data.goodsId;
+        return {
+            title: "最超值的正品美妆平台",
+            path: "pages/detail/detail?abc=456&id="+id
         }
     }
 })

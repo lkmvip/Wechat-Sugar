@@ -27,22 +27,27 @@
 </view>
 <view class="msg-ticket">
 	<!-- <text style="font-size: 30rpx;margin-left:20rpx; ">优惠卷 -->
-		<checkbox-group bindchange="checkboxChange">
+		<checkbox-group >
 		  <label class="checkbox" wx:for="{{items}}" wx:key="{{index}}">
 		    {{item.value}} <checkbox  class="check" value="{{item.name}}" checked="{{item.checked}}"/>
 		  </label>
 		</checkbox-group>
 	<!-- </text> -->
-	<view bindtap="handleTicket" style="font-size: 30rpx;margin-right:20rpx;">优惠:￥12
-			<text style="color: #666;font-size: 30rpx;">></text>	
-	</view>	
+	<block wx:if="{{showTicket}}">
+		<view style="font-size: 30rpx;margin-right:20rpx;">无优惠券可用</view>
+	</block>
+	<block wx:else>
+		<view bindtap="handleTicket" style="font-size: 30rpx;margin-right:20rpx;">优惠:￥{{couponMoney}}
+				<text style="color: #666;font-size: 30rpx;">></text>	
+		</view>
+	</block>	
 </view>
 <!-- 前往支付页面 -->
 <view class="msg-submit">
 	<view class="msg-gopay">
 		<view class="gopay-price">
 			应付金额:￥
-			<text style="color: #ff4242;">{{orderPrice+freightNum}}</text>
+			<text style="color: #ff4242;">{{orderPrice+freightNum-couponMoney}}</text>
 
 		</view>
 		<view class="go-submit" bindtap="handleOrderPay">提交订单</view>

@@ -8,7 +8,7 @@ Page({
    */
   data: {
     items: [
-      {name: 'ticket', value: '优惠卷',checked: 'true'}
+      {name: 'ticket', value: '优惠券',checked: true}
     ],
     orderList:[],
     freightNum:'',
@@ -20,20 +20,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
     onLoad(options) {
+        console.log(options)
         let id = options.cartid,
             addrid = options.addrid,
-            card = wx.getStorageSync('UserCard');
+            card = wx.getStorageSync('UserCard'),
+            couponId = options.ticketid,
+            couponNum =options.ticketnum;
+            console.log(card)
         this.setData({
             cartId:id,
             addrId:addrid,
-            userId:card.user_id
+            userId:card.user_id,
+            couponId: couponId,
+            couponMoney: Number(couponNum),
+            dbId:card.distribution_id,
+            dbLv:card.distribution_level,
+            subId:card.subwebId
         });
         this.getOrderInfo(id);
         this.getAddrInfo(addrid);
     },
     // 获取支付页面列表
     getOrderInfo(id) {
-        let userId = this.data.userId;
+        let userId = this.data.userId,
+            addr = this.data.addrid;
         const data ={
             user:userId,
             cart:id,
@@ -45,11 +55,22 @@ Page({
     },
     handleOrderList(res) {
         let result = res.data;
+        console.log(result)
         this.setData({
             orderList: result.cartgoods,
-            freightNum: Number(result.new_freight),
-            orderPrice: result.goodsmoney.data
-        })
+            freightNum: Number(result.goodsmoney.freight),
+            orderPrice: result.goodsmoney.goodsmoney,
+            couponId: result.couponId,
+            couponMoney: Number(result.coupon_money)
+        });
+
+        this.data.couponId ==''?
+        this.setData({
+            items: [
+                {name: 'ticket', value: '优惠券',checked: false}
+            ],
+            showTicket:true
+        }):'';
     },
     // 如果有 地址id 请求地址列表
     getAddrInfo(id) {
@@ -72,6 +93,7 @@ Page({
             addrId:list[0].address_id,
             phone:list[0].mobile
         })
+        // console.log(this.data)
     },
     /**
     * 生命周期函数--监听页面初次渲染完成
@@ -90,8 +112,11 @@ Page({
     },
     //前往优惠券页面
     handleTicket() {
+        let id = this.data.cartId,
+            addr = this.data.addrId,
+            userId = this.data.userId;
         wx.navigateTo({
-            url: '/pages/user/ticket/ticket'
+            url: '/pages/user/ticket/ticket?way=2&&cartid='+id+'&&addrid='+addr
         })
     },
     //提交订单
@@ -99,17 +124,41 @@ Page({
         let addrid = this.data.addrId,
             carid = this.data.cartId,
             reightrmb = this.data.freightNum,
-            allprice = this.data.orderPrice;
-        let userId = this.data.userId;
+            allprice = this.data.orderPrice,
+            userId = this.data.userId,
+            couponId = this.data.couponId,
+            couponMoney = this.data.couponMoney,
+            dbId = this.data.dbId,
+            dbLv = this.data.dbLv,
+            subId = this.data.subId,
+            list = this.data.orderList,
+            arr = [];
+            list.map(item => arr.push(item.goods_id))
+            console.log(allprice)
         const data ={
             user_id:userId,
-            rec_id:carid,
-            totalPrice:allprice,
+            branchId:subId,
+            distribution:'',
+            share_level:'',
+            distribution_id:dbId,
+            distribution_level:dbLv,
             post:{
                 address_id:addrid,
-                freight:reightrmb
+                freight:reightrmb,
+                couponId:couponId,
+                goods_ids:arr,
+                totalamount:allprice, //总价
+                coupon_money:couponMoney,
+                totalPrice:allprice+reightrmb-couponMoney,//这个是去掉优惠券的钱
+                rec_id:carid,
+                NowBuyNum:'',
+                salespromotion_type:'',
+                activety_id:'',
+                turnnum:'',    
             }
+
         };
+        console.log(data)
         //请求生成订单接口
         utils.sendRequest(api.NewOrderInfo, data, this.handleNewOrderInfo.bind(this));
     },

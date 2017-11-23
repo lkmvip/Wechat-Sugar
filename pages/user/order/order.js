@@ -108,6 +108,7 @@ Page({
         utils.sendRequest(api.OrderInfoList, data, this.handleOrderInfoListSucc.bind(this));
     },
     handleOrderInfoListSucc(res) {
+        console.log(res)
         wx.showToast({title: '加载成功',icon: 'success'});      
         this.setData({//反转数组 
             allOrder:res.data.data.reverse()
