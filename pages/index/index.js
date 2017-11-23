@@ -38,7 +38,6 @@ Page({
 
     onLoad(options) {
         let card = wx.getStorageSync('UserCard');
-        console.log(card)
         this.setData({
             userId:card.user_id,
             dbId:card.distribution_id,
@@ -78,7 +77,6 @@ Page({
     getIndexInfo() {
         let id = this.data.dbId,
             lv = this.data.dbLv;
-            console.log(id,lv)
         const data = {
             distribution_id:id,
             distribution_level:lv
@@ -112,7 +110,6 @@ Page({
     //请求IndexUrl成功处理函数 
     handleGetIndexSucc(res) {
         // 返回商品列表和品牌列表的信息
-        console.log(res)
         let goodsInfo = res.data.data;
         this.setData({
             goodsList : goodsInfo
@@ -130,7 +127,6 @@ Page({
         const goods = res.data.data;
         const arr = [];
         goods.map((item,index)=> arr.push(item));
-        console.log(res)
         this.setData({
             allGoodsList : arr
         })

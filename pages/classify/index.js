@@ -37,7 +37,6 @@ Page({
     },
     //首屏加载渲染出分类里面的所有东西
     handleClassifyInfo(res) {
-        console.log(res)
         let classtab = res.data.data.type,
             tabSon = res.data.data.typeSon;
         this.setData({
@@ -86,7 +85,6 @@ Page({
     //全部品牌接口成功
     handleBrandInfo(res) {
         let brand = res.data;
-        console.log(res)
         this.setData({
             brandList: brand
         })

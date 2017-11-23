@@ -8,7 +8,6 @@ Page({
         hasTicket:false
     },
     onLoad(options) {
-        console.log(options);
         options.way? this.setData({
             tabs: ["可用","不可用"],
             way:2
@@ -51,7 +50,6 @@ Page({
         utils.sendRequest(api.TicketInfoUrl, data, this.handleGetSucc.bind(this));
     },
     handleGetSucc(res) {
-        console.log(res)
         let has = [],
             used = [],
             timeOut = [];

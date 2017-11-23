@@ -20,13 +20,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
     onLoad(options) {
-        console.log(options)
         let id = options.cartid,
             addrid = options.addrid,
             card = wx.getStorageSync('UserCard'),
             couponId = options.ticketid,
             couponNum =options.ticketnum;
-            console.log(card)
         this.setData({
             cartId:id,
             addrId:addrid,
@@ -55,7 +53,6 @@ Page({
     },
     handleOrderList(res) {
         let result = res.data;
-        console.log(result)
         this.setData({
             orderList: result.cartgoods,
             freightNum: Number(result.goodsmoney.freight),
@@ -93,7 +90,6 @@ Page({
             addrId:list[0].address_id,
             phone:list[0].mobile
         })
-        // console.log(this.data)
     },
     /**
     * 生命周期函数--监听页面初次渲染完成
@@ -133,8 +129,7 @@ Page({
             subId = this.data.subId,
             list = this.data.orderList,
             arr = [];
-            list.map(item => arr.push(item.goods_id))
-            console.log(allprice)
+            list.map(item => arr.push(item.goods_id));
         const data ={
             user_id:userId,
             branchId:subId,
@@ -158,13 +153,11 @@ Page({
             }
 
         };
-        console.log(data)
         //请求生成订单接口
         utils.sendRequest(api.NewOrderInfo, data, this.handleNewOrderInfo.bind(this));
     },
     //请求提交订单成功
     handleNewOrderInfo(res) {
-        console.log(res)
         try {
             let frt = this.data.freightNum;
             let userId = this.data.userId;

@@ -19,7 +19,6 @@ Page({
         this.setData({
             dbId:card.distribution_id
         });
-        console.log(this.data.dbId)
     },
     getIncomed() {
         let id = this.data.dbId;

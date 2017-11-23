@@ -30,7 +30,6 @@ Page({
         }else if (options.obj) {
             //这里是从订单列表进入的数据
             let order = JSON.parse(options.obj);
-            console.log(order)
             this.setData({
                 orderPrice:order[0].real_amount,
                 orderNum:order[0].order_sn,
@@ -104,7 +103,6 @@ Page({
             rmbCheck&&wxCheck? zuHe=1 : zuHe =0;
             // 调用余额支付
             if(rmbCheck&&rmbNum>=0||zuHe==1){// 余额按钮选中和金额 执行下面逻辑
-                console.log(rmbNum,allPrice)
                 if (rmbNum == allPrice || !wxCheck) {//如果金额等于商品价格就不走微信支付
                     console.log("直接走余额")
                      const data ={
@@ -121,7 +119,6 @@ Page({
                     //调用余额支付接口。
                     utils.sendRequest(api.UserRmbPay, data, this.handleOrderPaySucc.bind(this));
                 }else {
-                    console.log("走组合")
                     const data ={
                         order_sn:orderSn,
                         openId:openId,
@@ -138,7 +135,6 @@ Page({
                     openId:openId,
                     order_amount:wxPrice, 
                 };
-                console.log('wx:'+wxPrice)
                 utils.sendRequest(api.WxPayment, data, this.handleWxPaySucc.bind(this)); 
             }
             if (wxCheck==false&&rmbCheck==false) {

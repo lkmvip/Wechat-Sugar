@@ -32,8 +32,7 @@ Page({
             this.setData({
                 itemList:res.data.data,
                 num:res.data.data.length
-            })
-            console.log(res.data.data)
+            });
 
         } catch(e) {
             // statements
