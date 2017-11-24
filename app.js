@@ -51,7 +51,6 @@ App({
     },
 
     handleGetOpenIdSuccess(res) {
-        console.log(res)
         try {
             wx.setStorageSync('UserCard', res.data)
         } catch (e) {    

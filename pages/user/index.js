@@ -10,7 +10,8 @@ Page({
         card = wx.getStorageSync('UserCard');
     	this.setData({
     		userInfo : user,
-            userLv : card.distribution_level
+            userLv : card.distribution_level,
+            userDbId: card.distribution_id
     	})
         const data ={
             userId:card.user_id,
@@ -18,11 +19,25 @@ Page({
         };
         //调用主要信息，获取余额。
         utils.sendRequest(api.UserMainMsg, data, this.handleUserMainSucc.bind(this));
+        const data1 ={
+            user_id:card.user_id,
+            distribution_id:card.distribution_id,
+            distribution_level:card.distribution_level
+        };
+        //调用收益。
+        utils.sendRequest(api.UserShowInCome, data1, this.handleInComeSucc.bind(this));
     },
     handleUserMainSucc(res) {
         this.setData({
             rmb:res.data.accountbalance
         });
+    },
+    //累计收益和待收收益
+    handleInComeSucc(res) {
+        this.setData({
+            WillInCome:res.data.notMoney,
+            InComeAdd:res.data.readyMoney
+        })
     },
   // 点击跳转到提现页面
     handleCash() {

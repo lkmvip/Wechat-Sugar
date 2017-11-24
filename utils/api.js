@@ -17,7 +17,8 @@ var NoOne = 'https://wstcsd.1haomei.com',
 	LogisticsInfo = NoOne+'/html/shop/index.php/WstInterFace/Logistics/',//物流详情
 	WxPay = NoOne+'/html/shop/index.php/WstInterFace/WxPayment/',//微信支付接口
 	NewTab = NoOne+'/html/shop/index.php/WstInterFace/CommendCat/',//首页新版分类接口
-	IncomeUrl = NoOne+'/html/shop/index.php/WstInterFace/Distribution/';//收益接口
+	IncomeUrl = NoOne+'/html/shop/index.php/WstInterFace/Distribution/',//收益接口
+	UserInComeUrl = NoOne+'/html/shop/index.php/WstInterFace/Income/'
 module.exports = {
 	NoOneJson:NoOne+'/html/shop/Public/Home/js/data.json',//地址json
 	IndexUrl:NewApiRootUrl+ 'getIndexProduct',//首页信息
@@ -59,6 +60,9 @@ module.exports = {
 	IndexNewTab:NewTab+'getCommendCat',//新版首页分类接口
 	IncomeUrlWill:IncomeUrl+'getNotInComeDetail',//待收收益
 	IncomeUrlEd:IncomeUrl+'getAccInComeDetail',//累计收益
-	TicketInfoUrl:TicketInfo+'getCouponList',
-	DistributionUrl:NewApiRootUrl+'getDistributionGoodsInfo'
+	TicketInfoUrl:TicketInfo+'getCouponList',//youhuiquan jiekou
+	DistributionUrl:NewApiRootUrl+'getDistributionGoodsInfo',//shouyijiekou
+	UserShowInCome:UserInComeUrl+'getInCome',//个人中心页面的累计收益和待收收益
+	UserInComeNotProfit:UserInComeUrl+'notProfit',//待收
+	UserInComeProfit:UserInComeUrl+'Profit'//累计
 }

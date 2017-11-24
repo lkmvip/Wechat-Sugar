@@ -58,6 +58,7 @@ Page({
     },
     //处理成功详情页函数
     handleDetailInfo(res) {
+        console.log(res)
         let goodsList = res.data.data;
         this.setData({
             goodsInfo:goodsList
