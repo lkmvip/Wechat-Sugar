@@ -4,21 +4,19 @@
 	<view class="willincome-list" >
 		
 			<view class="list-top">
-				<text class="mleft">{{item.time}}</text>
-				<text class="color mright">{{item.send}}</text>			
+				<text class="mleft">{{item.pay_time}}</text>
+				<text class="color mright">{{item.status_msg}}</text>			
 			</view>
-			<block wx:for="{{content}}" wx:key="{{index}}">
+			<block wx:for="{{item.order_goods}}" wx:key="{{index}}">
 				<view class="list-mid border-top">
-					<image class="mid-img mleft" src="{{item.url}}" background-size="cover"></image>
+					<image class="mid-img mleft" src="{{item.goods_img}}"></image>
 					<view class="mid-content">
-						<view class="content-top">{{item.tit}}</view>		
+						<view class="content-top">{{item.goods_name}}</view>		
 						<view class="content-mid">
-							<view class="mid-left">{{item.brand}}</view>		
-							<view class="mid-right color">赚/{{item.make}}</view>		
+							<view class="mid-right color fright">利润/{{item.makemoney}}</view>		
 						</view>		
-						<view class="content-bottom">
-							<view class="bottom-left">规格</view>		
-							<view class="bottom-right">X{{item.content.spec}}</view>		
+						<view class="content-bottom">	
+							<view class="bottom-right fright">X{{item.goods_number}}</view>		
 						</view>		
 					</view>		
 				</view>
@@ -26,8 +24,8 @@
 			<view class="list-bottom border-top">
 				<view class="pay fright">
 					<view class="pay-left">实付款:</view>		
-					<view class="pay-mid color">￥{{item.pay}}</view>		
-					<view class="pay-right color1">（运费:￥{{item.sendNum}}）</view>					
+					<view class="pay-mid color">￥{{item.order_amount}}</view>		
+					<view class="pay-right color1">（运费:￥{{item.shipping_fee}}）</view>					
 				</view>		
 			</view>	
 		

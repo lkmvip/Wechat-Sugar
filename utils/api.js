@@ -18,7 +18,8 @@ var NoOne = 'https://wstcsd.1haomei.com',
 	WxPay = NoOne+'/html/shop/index.php/WstInterFace/WxPayment/',//微信支付接口
 	NewTab = NoOne+'/html/shop/index.php/WstInterFace/CommendCat/',//首页新版分类接口
 	IncomeUrl = NoOne+'/html/shop/index.php/WstInterFace/Distribution/',//收益接口
-	UserInComeUrl = NoOne+'/html/shop/index.php/WstInterFace/Income/'
+	UserInComeUrl = NoOne+'/html/shop/index.php/WstInterFace/Income/',//
+	UploadUrl = NoOne+'/html/shop/index.php/WstInterFace/SmallProgramUploadFile/';//上传图片接口
 module.exports = {
 	NoOneJson:NoOne+'/html/shop/Public/Home/js/data.json',//地址json
 	IndexUrl:NewApiRootUrl+ 'getIndexProduct',//首页信息
@@ -64,5 +65,6 @@ module.exports = {
 	DistributionUrl:NewApiRootUrl+'getDistributionGoodsInfo',//shouyijiekou
 	UserShowInCome:UserInComeUrl+'getInCome',//个人中心页面的累计收益和待收收益
 	UserInComeNotProfit:UserInComeUrl+'notProfit',//待收
-	UserInComeProfit:UserInComeUrl+'Profit'//累计
+	UserInComeProfit:UserInComeUrl+'Profit',//累计
+	ShopLogoUrl:UploadUrl+'uploadFile'//
 }

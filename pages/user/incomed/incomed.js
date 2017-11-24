@@ -14,18 +14,12 @@ Page({
     * 生命周期函数--监听页面加载
     */
     onLoad(options) {
-        this.getIncomed();
         let card = wx.getStorageSync('UserCard');
-        this.setData({
-            dbId:card.distribution_id
-        });
-    },
-    getIncomed() {
-        let id = this.data.dbId;
         const data ={
-                    distribution_id:id
+                    distribution_id:card.distribution_id,
+                    distribution_level:card.distribution_level
                 };
-        utils.sendRequest(api.IncomeUrlEd, data, this.handleGetSucc.bind(this));
+        utils.sendRequest(api.UserInComeProfit  , data, this.handleGetSucc.bind(this));
     },
     handleGetSucc(res) {
         console.log(res)

@@ -2,18 +2,19 @@
 <view class="shop-set">
 	<view class="shop-list">
 		<view class="shop-text">店名</view>
-		<input class="shop-input" type="text" placeholder="店名"/>
+		<input class="shop-input" value="{{name}}" type="text" bindblur="handleName" placeholder="店名"/>
 	</view>
 	<view class="shop-list">
 		<view class="shop-text">店铺介绍</view>
-		<textarea class="shop-area"   />
+		<input class="shop-input" value="{{text}}" type="text" bindblur="handleText" placeholder="店铺简介"/>
 	</view>
 	<view class="shop-list">
 		<view class="shop-text">头像</view>
+		<image class="shop-logo" src="{{src?src:'/image/user/logo.png'}}" bindtap="handleUploadPic"></image>
 	</view>
 	<view class="shop-sign">
 		<view class="shop-text">店招</view>
+		<image class="shop-signpic" src="{{sign?sign:'/image/user/shopsign.png'}}" bindtap="handleUploadSign"></image>
 	</view>
-
-
+	<view class="shop-save" bindtap="handleSaveMsg">保存</view>
 </view>

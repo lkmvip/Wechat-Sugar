@@ -66,8 +66,7 @@
 	line-height: 50rpx;
 }
 .content-mid,.content-bottom {
-	display: flex;
-	justify-content: space-between;
+	
 }
 .content-bottom {
 	color: #9a9a9a;

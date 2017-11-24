@@ -58,9 +58,10 @@ Page({
     },
     handleWillComeSucc(res) {
         let inComeList = res.data[1].data;
-
-        inComeList.map(item => item.pay_time = utils.formatTime(new Date(Number(item.pay_time))))
-        console.log(inComeList)
+        inComeList.map(item => item.pay_time = utils.formatTime(new Date(Number(item.pay_time))));
+        this.setData({
+            incomeList:inComeList
+        })
     },
     /**
     * 生命周期函数--监听页面初次渲染完成

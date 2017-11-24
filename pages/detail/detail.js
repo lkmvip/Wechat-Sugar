@@ -37,7 +37,9 @@ Page({
             goodsId: id,
             userId:card.user_id,
             subId:card.subwebId,
-            abc:options.abc
+            abc:options.abc,
+            dbId:card.distribution_id,
+            dbLv:card.distribution_level
         })
         this.getDetailInfo();
     },
@@ -48,21 +50,27 @@ Page({
     getDetailInfo() {
         let id = this.data.goodsId,
             user = this.data.userId,
-            sub = this.data.subId;
+            sub = this.data.subId,
+            dbId = this.data.dbId,
+            dbLv = this.data.dbLv;
         const data ={
             goods_id:id,
             user_id:user,
-            subwebId:sub
+            subwebId:sub,
+            distribution_id:dbId,
+            distribution_level:dbLv 
+
         };
         utils.sendRequest(api.DetailInfoUrl, data, this.handleDetailInfo.bind(this));
     },
     //处理成功详情页函数
     handleDetailInfo(res) {
-        console.log(res)
         let goodsList = res.data.data;
+        goodsList[0].makeMoney = goodsList[0].makeMoney.toFixed(2);
         this.setData({
             goodsInfo:goodsList
         })
+        console.log(this.data.goodsInfo)
         this.getDetailLike();
     },
     //获取猜你喜欢数据

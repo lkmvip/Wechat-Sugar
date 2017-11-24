@@ -11,6 +11,7 @@
 	background: #fff;
 	border-bottom: 1rpx solid #ececec;
 	display: flex;
+	justify-content: space-between;
 }
 .shop-text{
 	width: 120rpx;
@@ -23,7 +24,7 @@
 	font-size: 30rpx;
 	line-height: 60rpx;
 	margin-right: 20rpx;
-	text-indent: left; 
+	text-align: right; 
 }
 .shop-area {
 	width: 560rpx;
@@ -40,4 +41,27 @@
 	border-top: 1rpx solid #ececec;
 	display: flex;
 	margin-top: 20rpx;
+	justify-content: space-between;
+}
+.shop-logo{
+	width: 120rpx;
+	height: 70rpx;
+	margin-right: 20rpx;
+}
+.shop-signpic{
+	width: 200rpx;
+	height: 150rpx;
+	margin-right: 20rpx;
+}
+.shop-save{
+	width: 100%;
+	height: 80rpx;
+	font-size: 30rpx;
+	line-height: 80rpx;
+	text-align: center;
+	background: #f2505d;
+	color:#fff;
+	position: fixed;
+	left: 0;
+	bottom: 0;
 }
