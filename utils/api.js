@@ -19,7 +19,8 @@ var NoOne = 'https://wstcsd.1haomei.com',
 	NewTab = NoOne+'/html/shop/index.php/WstInterFace/CommendCat/',//首页新版分类接口
 	IncomeUrl = NoOne+'/html/shop/index.php/WstInterFace/Distribution/',//收益接口
 	UserInComeUrl = NoOne+'/html/shop/index.php/WstInterFace/Income/',//
-	UploadUrl = NoOne+'/html/shop/index.php/WstInterFace/SmallProgramUploadFile/';//上传图片接口
+	UploadUrl = NoOne+'/html/shop/index.php/WstInterFace/StoreManage/',//上传图片接口
+	IndexSetUrl = NoOne+'/html/shop/index.php/WstInterFace/Decoration/';//首页专题接口
 module.exports = {
 	NoOneJson:NoOne+'/html/shop/Public/Home/js/data.json',//地址json
 	IndexUrl:NewApiRootUrl+ 'getIndexProduct',//首页信息
@@ -66,5 +67,6 @@ module.exports = {
 	UserShowInCome:UserInComeUrl+'getInCome',//个人中心页面的累计收益和待收收益
 	UserInComeNotProfit:UserInComeUrl+'notProfit',//待收
 	UserInComeProfit:UserInComeUrl+'Profit',//累计
-	ShopLogoUrl:UploadUrl+'uploadFile'//
+	ShopLogoUrl:UploadUrl+'uploadImg',//店铺设置
+	GetIndexSet:IndexSetUrl+'getIndexRecommendTwo'//首页专题
 }

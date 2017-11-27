@@ -47,6 +47,7 @@ Page({
         this.getBannerInfo();
         this.getAllGoodsInfo();
         this.getTabInfo();
+        this.getIndexSet();
         // this.getDistribution();//获取服务商信息
         // wx.getSystemInfo({
         //   success: this.handleGetHeight.bind(this)
@@ -100,6 +101,11 @@ Page({
         //传值给后端，获取到全部商品的首次信息
         utils.sendRequest(api.AllGoodsUrl, data, this.handleGetAllSucc.bind(this));
     },
+    //首页专题
+    getIndexSet() {
+        const data = {};
+        utils.sendRequest(api.GetIndexSet, data, this.handleGetIndexSetSucc.bind(this));
+    },
         //请求TabUrl成功处理函数
     handleGetTabSucc(res) {
         let brandList = res.data;
@@ -131,10 +137,16 @@ Page({
             allGoodsList : arr
         })
     },
+    handleGetIndexSetSucc(res) {
+        let list = res.data;
+        this.setData({
+            IndexSetList : list
+        })
+    },
     onShareAppMessage() {
         return {
             title: "最超值的正品美妆平台",
-            path: "pages/index/index?name=111"
+            path: "pages/index/index"
         }
     },
     //上拉刷新商品信息
@@ -297,6 +309,18 @@ Page({
             goodsName = e.target.dataset.name;
         //这里数据不固定，多个数据列表页，一个数据详情页
         JSON.stringify(goodsId).indexOf(",")!=-1&&goodsId!=''?
+        wx.navigateTo({
+            url: '/pages/seemore/seemore?id='+goodsId+'&&name='+goodsName
+        }):wx.navigateTo({
+            url: '/pages/detail/detail?id='+goodsId 
+        });
+    },
+    //专题操作函数
+    handleGoToPic(e) {
+        let goodsId = e.target.dataset.id,
+            goodsName = e.target.dataset.name;
+        //这里数据不固定，多个数据列表页，一个数据详情页
+        goodsId.indexOf(",")!=-1&&goodsId!=''?
         wx.navigateTo({
             url: '/pages/seemore/seemore?id='+goodsId+'&&name='+goodsName
         }):wx.navigateTo({

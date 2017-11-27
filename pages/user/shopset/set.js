@@ -35,7 +35,7 @@ Page({
             this.setData({
                 src: tempFilePaths
             })
-            upload(this,tempFilePaths,1);
+            upload(this,tempFilePaths,"logo");
 
           }
         })
@@ -52,7 +52,7 @@ Page({
             this.setData({
                 sign: tempFilePaths
             })
-            upload(this,tempFilePaths,2);
+            upload(this,tempFilePaths,"sign");
 
           }
         })
@@ -94,7 +94,9 @@ function upload(page, path,way) {
       url: api.ShopLogoUrl,
       filePath: path[0],          
       name: 'file',
-      area:way,
+      formData:{
+        'user': way
+      },
       header: { "Content-Type": "multipart/form-data" },
       success: function (res) {
         console.log(res);
