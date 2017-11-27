@@ -22,13 +22,32 @@ Page({
                 userId:card.user_id,
                 dbId:card.distribution_id,
                 dbLv:card.distribution_level
+        });
+        this.getShopInfo();
+    },
+    getShopInfo() {
+        console.log(1)
+        let id = this.data.dbId,
+            lv = this.data.dbLv;
+        const data = {
+                    distribution_id:id
+            };
+        utils.sendRequest(api.GetHandleShop, data, this.HandleShopInfoSucc.bind(this)); 
+    },
+    HandleShopInfoSucc(res) {
+        console.log(res.data.data)
+        this.setData({
+            name:res.data.data.storename,
+            text:res.data.data.store_contents,
+            src:res.data.data.storelogo,
+            sign:res.data.data.storeimg
         })
     },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
     handleUploadPic() {
+        let id = this.data.dbId;
         wx.chooseImage({
           count: 1, // 默认9
           sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -40,12 +59,13 @@ Page({
             this.setData({
                 src: tempFilePaths
             })
-            upload(this,tempFilePaths,"logo");
+            upload(this,tempFilePaths,"logo",id);
 
           }
         })
     },
     handleUploadSign() {
+        let id = this.data.dbId;
         wx.chooseImage({
           count: 1, // 默认9
           sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -57,7 +77,7 @@ Page({
             this.setData({
                 sign: tempFilePaths
             })
-            upload(this,tempFilePaths,"sign");
+            upload(this,tempFilePaths,"sign",id);
 
           }
         })
@@ -82,6 +102,7 @@ Page({
         if (name&&text&&src&&sign) {
             const data = {
                 distribution_id:id,
+                distribution:'',
                 data:{
                     storename:name,
                     store_contents:text
@@ -100,7 +121,8 @@ Page({
         console.log(res)
     }
 })
-function upload(page, path,way) {
+function upload(page, path,way,id) {
+    console.log(arguments)
   wx.showToast({
     icon: "loading",
     title: "正在上传"
@@ -110,10 +132,12 @@ function upload(page, path,way) {
       filePath: path[0],          
       name: 'file',
       formData:{
-        'user': way
+        'user': way,
+        'distribution_id':id
       },
       header: { "Content-Type": "multipart/form-data" },
       success: function (res) {
+        console.log(res)
         if (res.statusCode != 200) { 
           wx.showModal({
             title: '提示',

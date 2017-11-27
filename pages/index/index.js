@@ -326,5 +326,10 @@ Page({
         }):wx.navigateTo({
             url: '/pages/detail/detail?id='+goodsId 
         });
+    },
+    //分销商商品上下架
+    handleDistribution(e) {
+        let goodsId = e.target.dataset.id;
+        
     }
 })

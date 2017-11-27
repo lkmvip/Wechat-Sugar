@@ -141,7 +141,7 @@
                                 </view>
                                 <view style="width: 50%;">
                                 <image src="/image/cart.png" data-it="{{item.inventory}}" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
-                                <image src="/image/add.png" class="add-goods right" style="margin:0"/>
+                                <image src="/image/add.png" class="add-goods right" style="margin:0" data-id="{{item.id}}" bindtap="handleDistribution"/>
                                 </view>   
                             </view>
                         </view>
