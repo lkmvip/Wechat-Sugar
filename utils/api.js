@@ -20,7 +20,8 @@ var NoOne = 'https://wstcsd.1haomei.com',
 	IncomeUrl = NoOne+'/html/shop/index.php/WstInterFace/Distribution/',//收益接口
 	UserInComeUrl = NoOne+'/html/shop/index.php/WstInterFace/Income/',//
 	UploadUrl = NoOne+'/html/shop/index.php/WstInterFace/StoreManage/',//上传图片接口
-	IndexSetUrl = NoOne+'/html/shop/index.php/WstInterFace/Decoration/';//首页专题接口
+	IndexSetUrl = NoOne+'/html/shop/index.php/WstInterFace/Decoration/',//首页专题接口
+	HandleShop = NoOne+'/html/shop/index.php/WstInterFace/StoreManage/';//店铺管理
 module.exports = {
 	NoOneJson:NoOne+'/html/shop/Public/Home/js/data.json',//地址json
 	IndexUrl:NewApiRootUrl+ 'getIndexProduct',//首页信息
@@ -68,5 +69,8 @@ module.exports = {
 	UserInComeNotProfit:UserInComeUrl+'notProfit',//待收
 	UserInComeProfit:UserInComeUrl+'Profit',//累计
 	ShopLogoUrl:UploadUrl+'uploadImg',//店铺设置
-	GetIndexSet:IndexSetUrl+'getIndexRecommendTwo'//首页专题
+	GetIndexSet:IndexSetUrl+'getIndexRecommendTwo',//首页专题
+	GetHandleShop:HandleShop+'getStoreManage',//店铺管理
+	UpdateStore:HandleShop+'updateStoreManage'//保存店铺设置
+
 }

@@ -17,7 +17,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
     onLoad(options) {
-      
+        let card = wx.getStorageSync('UserCard');
+            this.setData({
+                userId:card.user_id,
+                dbId:card.distribution_id,
+                dbLv:card.distribution_level
+        })
     },
 
   /**
@@ -72,9 +77,17 @@ Page({
         let name = this.data.name,
             text = this.data.text,
             src = this.data.src,
-            sign = this.data.src;
+            sign = this.data.src,
+            id = this.data.dbId;
         if (name&&text&&src&&sign) {
-            // upload(this,[src,sign],name,text);
+            const data = {
+                distribution_id:id,
+                data:{
+                    storename:name,
+                    store_contents:text
+                }
+            };
+            utils.sendRequest(api.UpdateStore, data, this.HandleShopSucc.bind(this)); 
         }else {
             wx.showModal({
                 title: '提示',
@@ -82,10 +95,12 @@ Page({
                 showCancel: false
             }) 
         }
+    },
+    HandleShopSucc(res) {
+        console.log(res)
     }
 })
 function upload(page, path,way) {
-    console.log(arguments)
   wx.showToast({
     icon: "loading",
     title: "正在上传"
@@ -99,7 +114,6 @@ function upload(page, path,way) {
       },
       header: { "Content-Type": "multipart/form-data" },
       success: function (res) {
-        console.log(res);
         if (res.statusCode != 200) { 
           wx.showModal({
             title: '提示',

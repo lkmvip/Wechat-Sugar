@@ -1,3 +1,5 @@
+const api = require('../../../utils/api.js');//封装好的接口路径
+const utils = require('../../../utils/util.js');//调用封装的request
 // pages/user/shophandle/handle.js
 Page({
 
@@ -37,55 +39,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-  
+    let card = wx.getStorageSync('UserCard');
+        this.setData({
+            userId:card.user_id,
+            dbId:card.distribution_id,
+            dbLv:card.distribution_level
+    })
+    this.getShopInfo();
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-  
+  getShopInfo() {
+    let id = this.data.dbId,
+            lv = this.data.dbLv;
+    const data = {
+                distribution_id:id
+        };
+    utils.sendRequest(api.GetHandleShop, data, this.HandleShopSucc.bind(this)); 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-  
+  HandleShopSucc(res){
+    console.log(res)
   }
 })
