@@ -137,12 +137,17 @@
                                         <view class="new-price letf" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
                                         <view class="old-price letf" style="margin-top:14rpx">￥{{item.market_price}}</view>
                                     </view>
-                                    <view class="new-price" style="color:#ec1358;margin-top:10rpx">赚{{item.makeMoney}}</view>
+                                    <block wx:if="{{dbShow}}">
+                                        <view class="new-price" style="color:#ec1358;margin-top:10rpx">赚{{item.makeMoney}}</view>
+                                    </block>
                                 </view>
                                 <view style="width: 50%;">
                                 <image src="/image/cart.png" data-it="{{item.inventory}}" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
-                                <image src="/image/add.png" class="add-goods right" style="margin:0" data-id="{{item.id}}" bindtap="handleDistribution"/>
-                                </view>   
+                                <block wx:if="{{dbShow}}">
+                                    <image src="/image/add{{item.distribution_goods =='0'?0:1}}.png" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-index="{{index}}" data-num="0" data-db="{{item.distribution_goods}}" bindtap="handleDistribution"/>
+                                </block>
+                                </view>
+                             
                             </view>
                         </view>
                     </view>
@@ -173,11 +178,15 @@
                                         <view class="new-price letf" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
                                         <view class="old-price letf" style="margin-top:14rpx">￥{{item.market_price}}</view>
                                     </view>
+                                <block wx:if="{{dbShow}}">
                                     <view class="new-price" style="color:#ec1358;margin-top:10rpx">赚{{item.makeMoney}}</view>
+                                </block>
                                 </view>
                                 <view style="width: 50%;">
                                 <image src="/image/cart.png" data-it="{{item.inventory}}" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
-                                <image src="/image/add.png" class="add-goods right" style="margin:0"/>
+                                <block wx:if="{{dbShow}}">
+                                    <image src="/image/add{{item.distribution_goods =='0'?0:1}}.png" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-index="{{index}}" data-num="1" data-db="{{item.distribution_goods}}" bindtap="handleDistribution"/>
+                                </block>
                                 </view>   
                             </view>
                         </view>
@@ -208,11 +217,15 @@
                                         <view class="new-price letf" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
                                         <view class="old-price letf" style="margin-top:14rpx">￥{{item.market_price}}</view>
                                     </view>
+                                <block wx:if="{{dbShow}}">
                                     <view class="new-price" style="color:#ec1358;margin-top:10rpx">赚{{item.makeMoney}}</view>
+                                </block>
                                 </view>
                                 <view style="width: 50%;">
                                 <image src="/image/cart.png" data-it="{{item.inventory}}" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
-                                <image src="/image/add.png" class="add-goods right" style="margin:0"/>
+                                <block wx:if="{{dbShow}}">
+                                    <image src="/image/add{{item.distribution_goods =='0'?0:1}}.png" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-index="{{index}}" data-db="{{item.distribution_goods}}" bindtap="handleAllGoodsDb"/>
+                                </block>
                                 </view>   
                             </view>
                         </view>
@@ -240,11 +253,15 @@
                                         <view class="new-price letf" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
                                         <view class="old-price letf" style="margin-top:14rpx">￥{{item.market_price}}</view>
                                     </view>
+                                <block wx:if="{{dbShow}}">
                                     <view class="new-price" style="color:#ec1358;margin-top:10rpx">赚{{item.makeMoney}}</view>
+                                </block>
                                 </view>
                                 <view style="width: 50%;">
                                 <image src="/image/cart.png" data-it="{{item.inventory}}" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
-                                <image src="/image/add.png" class="add-goods right" style="margin:0"/>
+                                <block wx:if="{{dbShow}}">
+                                    <image src="/image/add{{item.distribution_goods =='0'?0:1}}.png" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-index="{{index}}" data-db="{{item.distribution_goods}}" bindtap="handleSearchDb"/>
+                                </block>
                                 </view>   
                             </view>
                         </view>

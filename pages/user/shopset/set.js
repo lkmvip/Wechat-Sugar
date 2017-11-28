@@ -18,6 +18,7 @@ Page({
    */
     onLoad(options) {
         let card = wx.getStorageSync('UserCard');
+        console.log(card)
             this.setData({
                 userId:card.user_id,
                 dbId:card.distribution_id,
@@ -26,7 +27,6 @@ Page({
         this.getShopInfo();
     },
     getShopInfo() {
-        console.log(1)
         let id = this.data.dbId,
             lv = this.data.dbLv;
         const data = {
@@ -35,7 +35,6 @@ Page({
         utils.sendRequest(api.GetHandleShop, data, this.HandleShopInfoSucc.bind(this)); 
     },
     HandleShopInfoSucc(res) {
-        console.log(res.data.data)
         this.setData({
             name:res.data.data.storename,
             text:res.data.data.store_contents,
@@ -118,7 +117,13 @@ Page({
         }
     },
     HandleShopSucc(res) {
-        console.log(res)
+        res.data.data?wx.showModal({
+                content: '保存成功~',
+                showCancel: false
+            }):wx.showModal({
+                content: '出错了，工程师正在修复',
+                showCancel: false
+            });
     }
 })
 function upload(page, path,way,id) {

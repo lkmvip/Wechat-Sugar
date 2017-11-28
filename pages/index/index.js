@@ -37,11 +37,13 @@ Page({
     },
 
     onLoad(options) {
-        let card = wx.getStorageSync('UserCard');
+        let card = wx.getStorageSync('UserCard'),
+            show = wx.getStorageSync('seller');
         this.setData({
             userId:card.user_id,
             dbId:card.distribution_id,
-            dbLv:card.distribution_level
+            dbLv:card.distribution_level,
+            dbShow:show
         })
         this.getIndexInfo();
         this.getBannerInfo();
@@ -329,7 +331,100 @@ Page({
     },
     //分销商商品上下架
     handleDistribution(e) {
-        let goodsId = e.target.dataset.id;
-        
+        let goodsId = e.target.dataset.id,
+            dbId =  e.target.dataset.db,
+            id = this.data.dbId,
+            num = e.target.dataset.num,
+            index = e.target.dataset.index,
+            list = this.data.goodsList;
+            if (dbId == 0) {
+                list[num].goods[index].distribution_goods = 1;//改变页面显示效果
+                console.log(list[num].goods[index])
+                this.setData({
+                    goodsList:list
+                });
+                console.log(this.data.goodsList)
+                const data = {
+                    goodsId:goodsId,
+                    distribution_id:id
+                };
+                utils.sendRequest(api.DistributionAdd, data, this.handleAddDbSucc.bind(this))
+            }else {
+                list[num].goods[index].distribution_goods = 0;
+                this.setData({
+                    goodsList:list
+                })
+                const data = {
+                    goodsId:goodsId,
+                    distribution_id:id
+                };
+                utils.sendRequest(api.DistributionDel, data, this.handleDelDbSucc.bind(this))
+            }
+    },
+    handleAddDbSucc(res) {
+        res.data.error == 0 ? wx.showModal({content: '上架成功~',showCancel: false}):'';
+    },
+    handleDelDbSucc(res) {
+        res.data.error == 0 ? wx.showModal({content: '下架成功~',showCancel: false}):'';
+    },
+    //全部商品上下架
+    handleAllGoodsDb(e) {
+        let goodsId = e.target.dataset.id,
+            dbId =  e.target.dataset.db,
+            id = this.data.dbId,
+            index = e.target.dataset.index,
+            list = this.data.allGoodsList;
+        if (dbId == 0) {
+                list[index].distribution_goods = 1;//改变页面显示效果
+                console.log(list[index])
+                this.setData({
+                    allGoodsList:list
+                });
+                const data = {
+                    goodsId:goodsId,
+                    distribution_id:id
+                };
+                utils.sendRequest(api.DistributionAdd, data, this.handleAddDbSucc.bind(this))
+            }else {
+                list[index].distribution_goods = 0;
+                this.setData({
+                    allGoodsList:list
+                })
+                const data = {
+                    goodsId:goodsId,
+                    distribution_id:id
+                };
+                utils.sendRequest(api.DistributionDel, data, this.handleDelDbSucc.bind(this))
+            }
+    },
+    //搜索商品上下架
+    handleSearchDb(e) {
+        let goodsId = e.target.dataset.id,
+            dbId =  e.target.dataset.db,
+            id = this.data.dbId,
+            index = e.target.dataset.index,
+            list = this.data.searchList;
+        if (dbId == 0) {
+                list[index].distribution_goods = 1;//改变页面显示效果
+                console.log(list[index])
+                this.setData({
+                    searchList:list
+                });
+                const data = {
+                    goodsId:goodsId,
+                    distribution_id:id
+                };
+                utils.sendRequest(api.DistributionAdd, data, this.handleAddDbSucc.bind(this))
+            }else {
+                list[index].distribution_goods = 0;
+                this.setData({
+                    searchList:list
+                })
+                const data = {
+                    goodsId:goodsId,
+                    distribution_id:id
+                };
+                utils.sendRequest(api.DistributionDel, data, this.handleDelDbSucc.bind(this))
+            }
     }
 })

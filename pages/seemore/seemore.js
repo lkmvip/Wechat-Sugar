@@ -24,7 +24,8 @@ Page({
         wx.setNavigationBarTitle({
           title: options.name
         });
-        let card = wx.getStorageSync('UserCard');
+        let card = wx.getStorageSync('UserCard'),
+            show = wx.getStorageSync('seller');
         this.setData({
             moreId:options.id,
             title:options.name,
@@ -33,7 +34,8 @@ Page({
             userId:card.user_id,
             dbId:card.distribution_id,
             dbLv:card.distribution_level,
-            newbrandId:options.newbrandid//首页品牌ID
+            newbrandId:options.newbrandid,//首页品牌ID
+            dbShow:show
         })
         this.getMoreGoodsInfo();
     },
@@ -104,9 +106,11 @@ Page({
     handleMoreGoodsSucc(res) {
         let goodsInfo = res.data.data,
             arr = [];
-        goodsInfo.map((item) => arr.push(item.goods))
+             // console.log(goodsInfo)
+        goodsInfo.map((item,index) => arr.push(item.goods))
+        console.log(arr)
         this.setData({
-            moreGoods : arr
+            moreGoods : arr[0]
         })
     },
     //请求品牌商品成功处理函数 
@@ -164,5 +168,71 @@ Page({
               showCancel: false
             })
         }
+    },
+    handleAddGoods(e) {
+        let goodsId = e.target.dataset.id,
+            dbId =  e.target.dataset.db,
+            id = this.data.dbId,
+            index = e.target.dataset.index,
+            list = this.data.brandList;
+         if (dbId == 0) {
+                list[index].distribution_goods = 1;//改变页面显示效果
+                console.log(list[index])
+                this.setData({
+                    brandList:list
+                });
+                const data = {
+                    goodsId:goodsId,
+                    distribution_id:id
+                };
+                utils.sendRequest(api.DistributionAdd, data, this.handleAddDbSucc.bind(this))
+            }else {
+                list[index].distribution_goods = 0;
+                this.setData({
+                    brandList:list
+                })
+                const data = {
+                    goodsId:goodsId,
+                    distribution_id:id
+                };
+                utils.sendRequest(api.DistributionDel, data, this.handleDelDbSucc.bind(this))
+            }
+    },
+    handleDbGoods(e) {
+        let goodsId = e.target.dataset.id,
+            dbId =  e.target.dataset.db,
+            id = this.data.dbId,
+            index = e.target.dataset.index,
+            list = this.data.moreGoods;
+            console.log(list)
+         if (dbId == 0) {
+                list[index].distribution_goods = 1;//改变页面显示效果
+                console.log(list[index])
+                this.setData({
+                    moreGoods:list
+                });
+                const data = {
+                    goodsId:goodsId,
+                    distribution_id:id
+                };
+                utils.sendRequest(api.DistributionAdd, data, this.handleAddDbSucc.bind(this))
+            }else {
+                list[index].distribution_goods = 0;
+                this.setData({
+                    moreGoods:list
+                })
+                const data = {
+                    goodsId:goodsId,
+                    distribution_id:id
+                };
+                utils.sendRequest(api.DistributionDel, data, this.handleDelDbSucc.bind(this))
+            }
+
+    },
+    handleAddDbSucc(res) {
+        res.data.error == 0 ? wx.showModal({content: '上架成功~',showCancel: false}):'';
+    },
+    handleDelDbSucc(res) {
+        res.data.error == 0 ? wx.showModal({content: '下架成功~',showCancel: false}):'';
     }
 })

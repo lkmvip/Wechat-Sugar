@@ -7,11 +7,14 @@ Page({
 
     onLoad() {
       let user = wx.getStorageSync("UserInFo"),
-        card = wx.getStorageSync('UserCard');
+        card = wx.getStorageSync('UserCard'),
+            show = wx.getStorageSync('seller');
+            console.log(card)
     	this.setData({
     		userInfo : user,
             userLv : card.distribution_level,
-            userDbId: card.distribution_id
+            userDbId: card.distribution_id,
+            dbShow:show
     	})
         const data ={
             userId:card.user_id,
@@ -100,5 +103,13 @@ Page({
           url: "/pages/user/shophandle/handle"
         })
     },
+    onShareAppMessage() {
+        let id = this.data.userDbId,
+            lv = this.data.userLv
+        return {
+          title: '自定义转发标题',
+          path: "pages/user/shophandle/handle?db="+id+"&sharelv="+lv
+        }
+    }
 
 })

@@ -74,5 +74,6 @@ module.exports = {
 	GetHandleShop:HandleShop+'getStoreManage',//店铺管理
 	UpdateStore:HandleShop+'updateStoreManage',//保存店铺设置
 	DistributionAdd:DistributionUrl+'recommend',//上架
-	DistributionDel:DistributionUrl+'unRecommend'//下架
+	DistributionDel:DistributionUrl+'unRecommend',//下架
+	DistributionGoods:DistributionUrl+'getDistributionProduct'//店铺商品列表
 }

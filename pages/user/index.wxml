@@ -1,6 +1,6 @@
 <view>
 	<view class="userinfo">
-		<view class="userbg box-img" background-size="aspectFit">
+		<view class="userbg box-img" style= "background-repeat:round;">
 			<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     		<text class="userinfo-nickname">{{userInfo.nickName}}</text>
 			<image class="userinfo-lv" src="/image/Vip{{userLv?userLv:0}}.png" ></image>
@@ -64,14 +64,16 @@
 				<image class="tools-icon" src="/image/user/coupon.png" background-size="cover"></image>
 				<view class="tools-text">我的优惠券</view>
 			</view>
-			<view bindtap="handleShopSet"  class="tools-list">
-				<image class="tools-icon" src="/image/user/shopset.png" background-size="cover"></image>
-				<view class="tools-text">店铺设置</view>
-			</view>
-			<view bindtap="handleShopHandle"  class="tools-list">
-				<image class="tools-icon" src="/image/user/shop.png" background-size="cover"></image>
-				<view class="tools-text">店铺管理</view>
-			</view>
+			<block wx:if="{{dbShow}}">
+				<view bindtap="handleShopSet"  class="tools-list">
+					<image class="tools-icon" src="/image/user/shopset.png" background-size="cover"></image>
+					<view class="tools-text">店铺设置</view>
+				</view>
+				<view bindtap="handleShopHandle"  class="tools-list">
+					<image class="tools-icon" src="/image/user/shop.png" background-size="cover"></image>
+					<view class="tools-text">店铺管理</view>
+				</view>
+			</block>
 		</view>
 
 	</view>
