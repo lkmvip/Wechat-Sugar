@@ -6,7 +6,7 @@ Page({
     },
 
     onLoad() {
-      let user = wx.getStorageSync("UserInFo"),
+        let user = wx.getStorageSync("UserInFo"),
         card = wx.getStorageSync('UserCard'),
             show = wx.getStorageSync('seller');
             console.log(card)
@@ -31,8 +31,21 @@ Page({
         utils.sendRequest(api.UserShowInCome, data1, this.handleInComeSucc.bind(this));
     },
     handleUserMainSucc(res) {
+        let id = this.data.userDbId;
         this.setData({
             rmb:res.data.accountbalance
+        });
+         const data2 ={
+            distribution_id:id,
+            userName:res.data.name
+        };
+        console.log(data2)
+        //调用收益。
+        utils.sendRequest(api.UserMainShare, data2, this.handleShareName.bind(this));
+    },
+    handleShareName(res) {
+        this.setData({
+            shopTit:res.data.title
         });
     },
     //累计收益和待收收益
@@ -100,15 +113,16 @@ Page({
     //跳转到店铺管理页面
     handleShopHandle() {
         wx.navigateTo({
-          url: "/pages/user/shophandle/handle"
+          url: "/pages/user/shophandle/handle?status=0"
         })
     },
     onShareAppMessage() {
         let id = this.data.userDbId,
-            lv = this.data.userLv
+            lv = this.data.userLv,
+            name = this.data.shopTit;
         return {
-          title: '自定义转发标题',
-          path: "pages/user/shophandle/handle?db="+id+"&sharelv="+lv
+          title: name+'的美妆商城~',
+          path: "pages/user/shophandle/handle?db="+id+"&sharelv="+lv+"&status=1"
         }
     }
 

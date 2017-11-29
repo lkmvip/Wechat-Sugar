@@ -292,3 +292,11 @@
 	width: 40rpx;
 	height: 40rpx;
 }
+.shop-msg{
+	width: 100%;
+}
+.shop-msg-img{
+	width: 100rpx;
+	height: 100rpx;
+	margin:20rpx; 
+}

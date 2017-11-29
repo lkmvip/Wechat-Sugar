@@ -1,6 +1,5 @@
 //index.js
 //获取应用实例
-const app = getApp();
 const api = require('../../utils/api.js');//封装好的接口路径
 const utils = require('../../utils/util.js');//调用封装的request
 
@@ -37,8 +36,21 @@ Page({
     },
 
     onLoad(options) {
+         utils.login(this.handleLogin.bind(this),this.handleReset.bind(this));
+     
+    },
+    handleLogin(res) {
+        try {
+            console.log(res.data.distribution_id)
+            wx.setStorageSync('UserCard', res.data)
+            res.data.distribution_id == 0?wx.setStorageSync('seller', false):wx.setStorageSync('seller', true);
+            
+        } catch (e) {    
+            console.log(e)
+        }
         let card = wx.getStorageSync('UserCard'),
             show = wx.getStorageSync('seller');
+            console.log(show)
         this.setData({
             userId:card.user_id,
             dbId:card.distribution_id,
@@ -50,10 +62,30 @@ Page({
         this.getAllGoodsInfo();
         this.getTabInfo();
         this.getIndexSet();
-        // this.getDistribution();//获取服务商信息
-        // wx.getSystemInfo({
-        //   success: this.handleGetHeight.bind(this)
-        // });
+    },
+    handleReset(res) {
+        if (res.confirm) {
+                wx.openSetting({
+                  success: res => {
+                        utils.login(this.handleLogin.bind(this),this.handleReset.bind(this));
+                    }
+                });
+        }
+    },
+    onReady() {
+        let card = wx.getStorageSync('UserCard'),
+            show = wx.getStorageSync('seller');
+        this.setData({
+            userId:card.user_id,
+            dbId:card.distribution_id,
+            dbLv:card.distribution_level,
+            dbShow:show
+        });
+            this.getIndexInfo();
+            this.getBannerInfo();
+            this.getAllGoodsInfo();
+            this.getTabInfo();
+            this.getIndexSet();
     },
     // // 获取屏幕高度
     // handleGetHeight(res) {
@@ -118,6 +150,7 @@ Page({
     //请求IndexUrl成功处理函数 
     handleGetIndexSucc(res) {
         // 返回商品列表和品牌列表的信息
+        console.log(res)
         let goodsInfo = res.data.data;
         this.setData({
             goodsList : goodsInfo

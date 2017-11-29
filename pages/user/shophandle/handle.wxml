@@ -11,7 +11,7 @@
 </view>
 <view class="goods bg box">
         <view class="text">
-            我的推荐
+            {{status == 0?"我的":"店主"}}推荐
         </view>
         <view class="line"></view>
         <view class="goods-list"  wx:for="{{goodsList}}" wx:key="index"  data-index="{{index}}">

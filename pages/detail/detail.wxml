@@ -36,6 +36,15 @@
 	</view>
 	<!-- 猜你喜欢 -->
 	<view class="guess-box">
+		<block wx:if="{{dbstatus?true:false}}">
+			<view class="shop-msg" wx:for="{{goodsInfo}}" wx:key="index">
+				<view style="display: flex;height: 100rpx;">
+					<image class="shop-msg-img" src="{{item.storeInfo.storelogo}}"></image>
+					<text style="margin-left:20rpx;font-size: 35rpx;line-height: 100rpx;">{{item.storeInfo.storename}}</text>
+				</view>
+				<view style="margin: 50rpx;font-size: 35rpx;">{{item.storeInfo.store_contents}}</view>
+			</view>
+		</block>
 		<text style="margin-left:20rpx;font-size: 35rpx;line-height: 90rpx;">猜你喜欢</text>
 		<view class="detail-guess">
 			<view class="like-content" wx:for="{{guessInfo}}" wx:key="{{index}}">

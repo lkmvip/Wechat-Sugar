@@ -31,20 +31,24 @@ Page({
     * 生命周期函数--监听页面加载
     */
     onLoad(options) {
+        console.log(options)
         let id = options.id,
-            card = wx.getStorageSync('UserCard');
+            card = wx.getStorageSync('UserCard'),
+            dbId = wx.getStorageSync('dbid')||options.db;
         this.setData({
             goodsId: id,
             userId:card.user_id,
             subId:card.subwebId,
             abc:options.abc,
             dbId:card.distribution_id,
-            dbLv:card.distribution_level
+            dbLv:card.distribution_level,
+            dbstatus:dbId
         })
         this.getDetailInfo();
     },
     onReady() {
         this.getCartGoodsNum();
+        this.getDetailInfo();
     },
     //获取详情页数据
     getDetailInfo() {
@@ -52,25 +56,27 @@ Page({
             user = this.data.userId,
             sub = this.data.subId,
             dbId = this.data.dbId,
-            dbLv = this.data.dbLv;
+            dbLv = this.data.dbLv,
+            dbstatus = this.data.dbstatus;
         const data ={
             goods_id:id,
             user_id:user,
             subwebId:sub,
             distribution_id:dbId,
-            distribution_level:dbLv 
+            distribution_level:dbLv,
+            distribution:dbstatus
 
         };
         utils.sendRequest(api.DetailInfoUrl, data, this.handleDetailInfo.bind(this));
     },
     //处理成功详情页函数
     handleDetailInfo(res) {
+        console.log(res)
         let goodsList = res.data.data;
         goodsList[0].makeMoney = goodsList[0].makeMoney.toFixed(2);
         this.setData({
             goodsInfo:goodsList
         })
-        console.log(this.data.goodsInfo)
         this.getDetailLike();
     },
     //获取猜你喜欢数据
@@ -349,10 +355,11 @@ Page({
         }
     },
     onShareAppMessage() {
-        let id = this.data.goodsId;
+        let id = this.data.goodsId,
+        dbId = this.data.dbId;
         return {
             title: "最超值的正品美妆平台",
-            path: "pages/detail/detail?abc=456&id="+id
+            path: "pages/detail/detail?id="+id+"&db="+dbId
         }
     }
 })

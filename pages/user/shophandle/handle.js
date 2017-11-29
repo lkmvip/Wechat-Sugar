@@ -14,17 +14,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
     onLoad(options) {
-        console.log(options)
+        wx.setStorageSync('dbid', options.db);
         let card = wx.getStorageSync('UserCard'),
             show = wx.getStorageSync('seller');
-            console.log(card,show)
             this.setData({
                 userId:card.user_id,
                 dbId:card.distribution_id,
                 dbLv:card.distribution_level,
                 dbShow:show,
                 db:options.db,
-                slv:options.sharelv
+                slv:options.sharelv,
+                status:options.status
         })
         this.getShopInfo();
         this.getShopList();
@@ -33,16 +33,16 @@ Page({
         let id = this.data.dbId,
             lv = this.data.dbLv,
             db = this.data.db,
-            slv = this.data.slv;
-            console.log(db)
+            slv = this.data.slv,
+            status = this.data.status;
         const data = {
                     distribution_id:id,
-                    distribution:db
+                    distribution:db,
+                    status:status
             };
         utils.sendRequest(api.GetHandleShop, data, this.HandleShopSucc.bind(this)); 
     },
     HandleShopSucc(res){
-        console.log(res)
         this.setData({
             name:res.data.data.storename,
             text:res.data.data.store_contents,
@@ -54,17 +54,20 @@ Page({
         let id = this.data.dbId,
             lv = this.data.dbLv,
             db = this.data.db,
-            slv = this.data.slv;
+            slv = this.data.slv,
+            status = this.data.status;
         const data = {
                 distribution_id:id, 
                 distribution_level:lv,
                 distribution:db,
                 share_level:slv,
-                limit:''
+                limit:'',
+                status:status
             };
         utils.sendRequest(api.DistributionGoods, data, this.HandleShopListSucc.bind(this)); 
     },
     HandleShopListSucc(res) {
+        console.log(res)
         this.setData({
             goodsList:res.data
         })
