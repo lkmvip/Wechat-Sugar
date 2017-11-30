@@ -41,7 +41,6 @@ Page({
     },
     handleLogin(res) {
         try {
-            console.log(res.data.distribution_id)
             wx.setStorageSync('UserCard', res.data)
             res.data.distribution_id == 0?wx.setStorageSync('seller', false):wx.setStorageSync('seller', true);
             
@@ -49,13 +48,23 @@ Page({
             console.log(e)
         }
         let card = wx.getStorageSync('UserCard'),
-            show = wx.getStorageSync('seller');
-            console.log(show)
+            show = wx.getStorageSync('seller'),
+            db = wx.getStorageSync('dbid'),
+            ifHave = false;
+        if(show&&db=='') {
+            ifHave = true;
+        }else if (card.distribution_id==db) {
+            ifHave = true;
+        }else if (card.distribution_id!=db) {
+            ifHave = false;
+        }else {
+            ifHave = false;
+        };
         this.setData({
             userId:card.user_id,
             dbId:card.distribution_id,
             dbLv:card.distribution_level,
-            dbShow:show
+            dbShow:ifHave
         })
         this.getIndexInfo();
         this.getBannerInfo();
@@ -75,6 +84,7 @@ Page({
     onReady() {
         let card = wx.getStorageSync('UserCard'),
             show = wx.getStorageSync('seller');
+            console.log(card)
         this.setData({
             userId:card.user_id,
             dbId:card.distribution_id,
@@ -153,7 +163,8 @@ Page({
         console.log(res)
         let goodsInfo = res.data.data;
         this.setData({
-            goodsList : goodsInfo
+            goodsList : goodsInfo,
+            dbGoods:res.data.distributionGoodsInfo
         })
     }, 
     //请求BannerUrl成功处理函数  
@@ -327,6 +338,45 @@ Page({
                 utils.sendRequest(api.AddGoodtoCart, data, this.handleAddGoodtoCartSucc.bind(this))
             } 
            
+    },
+    handleAddDbGoods(e) {
+        // 传商品信息 
+        let userId = this.data.userId;
+        let goodsId = e.target.dataset.id,
+            goodsName = e.target.dataset.name,
+            goodsPrice = e.target.dataset.price,
+            lv = e.target.dataset.lv,
+            dbLv= this.data.dbLv;
+            if( lv && dbLv == 2){
+                wx.showModal({content: '您已经是代理商~',showCancel: false})
+                return false;
+            }else if(lv && dbLv == 1){
+                wx.showModal({content: '您已经是服务商~',showCancel: false})
+                return false;
+            }else {
+                if(lv == 3){
+                    wx.showModal({content: '您已经是超级会员~',showCancel: false})
+                    return false;
+                }
+            }
+
+            const data = {
+                    userid:userId,
+                    goodsId:goodsId,
+                    goods_name:goodsName,
+                    goods_price:goodsPrice,
+                    goods_number:1
+                };
+            utils.sendRequest(api.AddGoodtoCart, data, this.handleAddDbGoodsSucc.bind(this))
+    },
+    handleAddDbGoodsSucc(res) {
+        let code = res.statusCode;
+        if(code == 200) {
+            wx.showModal({
+              content: '在购物车等您哟~',
+              showCancel: false
+            })
+        }
     },
     //调用成功添加购物车函数
     handleAddGoodtoCartSucc(res) {

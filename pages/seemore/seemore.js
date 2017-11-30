@@ -25,7 +25,18 @@ Page({
           title: options.name
         });
         let card = wx.getStorageSync('UserCard'),
-            show = wx.getStorageSync('seller');
+            show = wx.getStorageSync('seller'),
+            db = wx.getStorageSync('dbid'),
+            ifHave = false;
+        if(show&&db=='') {
+            ifHave = true;
+        }else if (card.distribution_id==db) {
+            ifHave = true;
+        }else if (card.distribution_id!=db) {
+            ifHave = false;
+        }else {
+            ifHave = false;
+        };
         this.setData({
             moreId:options.id,
             title:options.name,
@@ -35,7 +46,7 @@ Page({
             dbId:card.distribution_id,
             dbLv:card.distribution_level,
             newbrandId:options.newbrandid,//首页品牌ID
-            dbShow:show
+            dbShow:ifHave
         })
         this.getMoreGoodsInfo();
     },

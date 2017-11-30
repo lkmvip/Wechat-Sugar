@@ -10,7 +10,10 @@
 						{{item.name}}
 						<view class="detail-price">
 							<text class="new-price">￥{{item.price}}</text>
-							<text class="make-money" style="display: block;">赚{{item.makeMoney}}</text>
+							<block wx:if="{{dbstatus}}">
+								<text class="make-money" style="display: block;">赚{{item.makeMoney}}</text>
+							</block>
+
 							<view class="old-price">专柜价:￥{{item.market_price}}</view>					
 						</view>
 					</view>
@@ -36,7 +39,7 @@
 	</view>
 	<!-- 猜你喜欢 -->
 	<view class="guess-box">
-		<block wx:if="{{dbstatus?true:false}}">
+		<block wx:if="{{dbstatus}}">
 			<view class="shop-msg" wx:for="{{goodsInfo}}" wx:key="index">
 				<view style="display: flex;height: 100rpx;">
 					<image class="shop-msg-img" src="{{item.storeInfo.storelogo}}"></image>

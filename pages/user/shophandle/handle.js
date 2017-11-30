@@ -16,12 +16,24 @@ Page({
     onLoad(options) {
         wx.setStorageSync('dbid', options.db);
         let card = wx.getStorageSync('UserCard'),
-            show = wx.getStorageSync('seller');
+            show = wx.getStorageSync('seller'),
+            db = wx.getStorageSync('dbid'),
+            ifHave = false;
+            console.log(show,db)
+            if(show&&db=='') {
+                ifHave = true;
+            }else if (card.distribution_id==db) {
+                ifHave = true;
+            }else if (card.distribution_id!=db) {
+                ifHave = false;
+            }else {
+                ifHave = false;
+            }
             this.setData({
                 userId:card.user_id,
                 dbId:card.distribution_id,
                 dbLv:card.distribution_level,
-                dbShow:show,
+                dbShow:ifHave,
                 db:options.db,
                 slv:options.sharelv,
                 status:options.status

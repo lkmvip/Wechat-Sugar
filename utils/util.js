@@ -26,7 +26,6 @@ function sendRequest(path, data, callback) {
 function login(callback,reset) {
     wx.login({
             success: res => {
-                console.log(res)
             // 发送 res.code 到后台换取 openId, sessionKey, unionId
                     if(res.code){
                             wx.getUserInfo({
@@ -71,8 +70,7 @@ function login(callback,reset) {
             })              
 }
 
-const handleGetOpenIdSuccess = res=> {
-        console.log(res)
+const handleGetOpenIdSuccess = res => {
         try {
             console.log(res.data.distribution_id)
             wx.setStorageSync('UserCard', res.data)
@@ -80,6 +78,15 @@ const handleGetOpenIdSuccess = res=> {
             
         } catch (e) {    
             console.log(e)
+        }
+    }
+const handleReset = res => {
+        if (res.confirm) {
+                wx.openSetting({
+                  success: res => {
+                        this.login(this.handleLogin.bind(this),this.handleReset.bind(this));
+                    }
+                });
         }
     }
 

@@ -34,7 +34,18 @@ Page({
         console.log(options)
         let id = options.id,
             card = wx.getStorageSync('UserCard'),
-            dbId = wx.getStorageSync('dbid')||options.db;
+            db = wx.getStorageSync('dbid')||options.db,
+            show = wx.getStorageSync('seller'),
+            ifHave = false;
+            if(show&&db=='') {
+                ifHave = true;
+            }else if (card.distribution_id==db) {
+                ifHave = true;
+            }else if (card.distribution_id!=db) {
+                ifHave = false;
+            }else {
+                ifHave = false;
+            };
         this.setData({
             goodsId: id,
             userId:card.user_id,
@@ -42,7 +53,7 @@ Page({
             abc:options.abc,
             dbId:card.distribution_id,
             dbLv:card.distribution_level,
-            dbstatus:dbId
+            dbstatus:ifHave
         })
         this.getDetailInfo();
     },
@@ -73,7 +84,7 @@ Page({
     handleDetailInfo(res) {
         console.log(res)
         let goodsList = res.data.data;
-        goodsList[0].makeMoney = goodsList[0].makeMoney.toFixed(2);
+        goodsList[0].makeMoney = goodsList[0].makeMoney;
         this.setData({
             goodsInfo:goodsList
         })

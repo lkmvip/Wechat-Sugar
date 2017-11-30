@@ -1,0 +1,47 @@
+/* pages/user/tel/tel.wxss */
+.tel-box{
+	width: 100%;
+	background:#fff;
+}
+.tel-item{
+	width:100%;
+	height: 100rpx;
+	display: flex;
+	font-size: 28rpx;
+	line-height: 100rpx;
+	border-bottom: 1rpx solid #999; 
+}
+.tools-icon{
+	width: 50rpx;
+	height: 50rpx;
+	display:inline;
+	margin:25rpx; 
+}
+.addr-input{
+	width: 60%;
+	height: 100rpx;
+	line-height: 100rpx;
+}
+.yanzhengma{
+	width: 40%;
+	height: 80rpx;
+	line-height: 80rpx;
+	color: #f2505d;
+	border-left: 1rpx solid #666;
+	text-align: center;
+	margin-top: 10rpx;
+	font-size: 24rpx;
+	background: #fff;
+	border-radius: 0;
+}
+.save-tel{
+	width: 500rpx;
+	height: 80rpx;
+	font-size: 28rpx;
+	line-height: 80rpx;
+	border-radius: 20rpx;
+	background: #f2505d;
+	color: #fff;
+	text-align: center; 
+	margin:30rpx auto; 
+}

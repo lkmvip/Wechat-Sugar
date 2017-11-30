@@ -22,7 +22,8 @@ var NoOne = 'https://wstcsd.1haomei.com',
 	UploadUrl = NoOne+'/html/shop/index.php/WstInterFace/StoreManage/',//上传图片接口
 	IndexSetUrl = NoOne+'/html/shop/index.php/WstInterFace/Decoration/',//首页专题接口
 	HandleShop = NoOne+'/html/shop/index.php/WstInterFace/StoreManage/',//店铺管理
-	DistributionUrl = NoOne+'/html/shop/index.php/WstInterFace/DistributionProduct/';//分销商商品上下架
+	DistributionUrl = NoOne+'/html/shop/index.php/WstInterFace/DistributionProduct/',//分销商商品上下架
+	TiXianUrl = NoOne+'/html/shop/index.php/WstInterFace/TiXianBindTel/';//有关提现接口
 module.exports = {
 	NoOneJson:NoOne+'/html/shop/Public/Home/js/data.json',//地址json
 	IndexUrl:NewApiRootUrl+ 'getIndexProduct',//首页信息
@@ -76,5 +77,11 @@ module.exports = {
 	UpdateStore:HandleShop+'updateStoreManage',//保存店铺设置
 	DistributionAdd:DistributionUrl+'recommend',//上架
 	DistributionDel:DistributionUrl+'unRecommend',//下架
-	DistributionGoods:DistributionUrl+'getDistributionProduct'//店铺商品列表
+	DistributionGoods:DistributionUrl+'getDistributionProduct',//店铺商品列表
+	ZhunBeiTiXian:TiXianUrl+'tixian',
+	TiXianXiangQing:TiXianUrl+'tixianlie',
+	KeYiTiXian:TiXianUrl+'tixianform',
+	TiJiaoTiXian:TiXianUrl+'settixian',
+	BindTel:TiXianUrl+'setUserTel',
+	YanZhengMa:TiXianUrl+'sendMsg'
 }

@@ -45,7 +45,25 @@
                         <view style="font-size: 20rpx;text-align: center;margin-top: 5rpx;">更多</view>
                     </view>
                 </view>
-            </view>  
+            </view> 
+            <!--  ***************************特殊商品*********************** -->
+            <view class="goods bg box">
+                <view class="text">
+                    倾情推荐
+                </view>
+                <view class="line"></view>
+                        <view class="goods-list"  wx:for="{{dbGoods}}" wx:key="{{index}}"  data-index="{{index}}">  
+                        <navigator url="/pages/detail/detail?id={{item.id}}">
+                            <image src="{{item.goods_img}}" class="see-image" mode="scaleToFill"/>
+                        </navigator>
+                        <view class="goods-title">{{item.name}}</view>
+                        <view class="goods-price">
+                            <view class="new-price left">￥{{item.shopprice}}</view>
+                            <image src="/image/cart.png" class="add-shopcart right"  data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" data-lv="{{item.special_rank}}" bindtap="handleAddDbGoods"/>
+                        </view> 
+                </view>
+
+            </view>
             <!--  ***************************专题功能*********************** -->
             <view class="set bg" wx:for="{{IndexSetList}}" wx:key="{{index}}">
                 <!--  ***************************专题功能1*********************** -->

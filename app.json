@@ -21,7 +21,8 @@
     "pages/ordermsg/msg",
     "pages/seemore/seemore",
     "pages/user/logistics/index",
-    "pages/user/cancelGoods/index"
+    "pages/user/cancelGoods/index",
+    "pages/user/tel/tel"
   ],
   "window": {
     "navigationBarBackgroundColor": "#f2505d",

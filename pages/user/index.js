@@ -7,14 +7,14 @@ Page({
 
     onLoad() {
         let user = wx.getStorageSync("UserInFo"),
-        card = wx.getStorageSync('UserCard'),
+            card = wx.getStorageSync('UserCard'),
             show = wx.getStorageSync('seller');
-            console.log(card)
     	this.setData({
     		userInfo : user,
             userLv : card.distribution_level,
             userDbId: card.distribution_id,
-            dbShow:show
+            dbShow:show,
+            userId:card.user_id
     	})
         const data ={
             userId:card.user_id,
@@ -29,17 +29,26 @@ Page({
         };
         //调用收益。
         utils.sendRequest(api.UserShowInCome, data1, this.handleInComeSucc.bind(this));
+        const data2 = {
+            user_id:card.user_id
+        };
+        //调用收益。
+        utils.sendRequest(api.ZhunBeiTiXian, data2, this.handleInTixianSucc.bind(this));
+    },
+    handleInTixianSucc(res) {
+        this.setData({
+            tel:res.data.tel
+        })
     },
     handleUserMainSucc(res) {
         let id = this.data.userDbId;
         this.setData({
             rmb:res.data.accountbalance
         });
-         const data2 ={
+        const data2 ={
             distribution_id:id,
             userName:res.data.name
         };
-        console.log(data2)
         //调用收益。
         utils.sendRequest(api.UserMainShare, data2, this.handleShareName.bind(this));
     },
@@ -57,8 +66,20 @@ Page({
     },
   // 点击跳转到提现页面
     handleCash() {
+        let tel = this.data.tel;
+        if (tel!=''&&tel!="13111111111") {
+            wx.navigateTo({
+              url: '/pages/user/cash/cash'
+            })
+        }else {
+            wx.navigateTo({
+              url: '/pages/user/tel/tel?catch=true'
+            })
+        }
+    },
+    handleBindPhone() {
         wx.navigateTo({
-          url: '/pages/user/cash/cash'
+          url: '/pages/user/tel/tel'
         })
     },
   // 点击跳转到订单页面
