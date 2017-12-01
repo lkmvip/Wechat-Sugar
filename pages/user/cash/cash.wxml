@@ -11,11 +11,19 @@
 			<text>提现记录</text>
 			<image class="prompt-img" src="/image/user/prompt.png" background-size="cover"></image>
 		</view>
-		<block wx:if="{{hasCash}}">
+		<block wx:if="{{cashList.length>0}}">
 			<view class="recording-list" wx:for="{{cashList}}" wx:key="{{index}}">
 				<view class="cash-succ">
-					<text>提现成功</text>
-					<text>￥{{item.cashNum}}</text>
+					<block wx:if="{{item.status==0}}">
+						<text>申请提现</text>
+					</block>
+					<block wx:if="{{item.status==1}}">
+						<text>提现成功</text>
+					</block>
+					<block wx:if="{{item.status==2}}">
+						<text>提现失败</text>
+					</block>
+					<text>￥{{item.amount}}</text>
 				</view>
 				<view class="cash-time">
 						{{item.time}}

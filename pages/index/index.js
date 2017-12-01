@@ -296,7 +296,8 @@ Page({
     handleSearchValue(e) {
         if (e.detail.value == '') {
             this.setData({
-                inputVal: e.detail.value
+                inputVal: e.detail.value,
+                searchList: []
             });
         }
     },

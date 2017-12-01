@@ -12,7 +12,7 @@ App({
 
     },
     onHide() {
-    console.log('App Hide')
+        wx.removeStorageSync('dbid')
     },
     onLaunch() {
         // 登录

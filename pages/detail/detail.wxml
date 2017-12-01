@@ -24,7 +24,7 @@
 					</block>				
 				</view>
 				<view class="detail-msg">
-					<text>满包邮</text>
+					<text>满{{item.manmoney == null||item.manmoney==''?'':item.manmoney}}包邮</text>
 					<text style="margin-left: 150rpx;">销量:{{item.goodsnumber}}</text>
 				</view>		
 			</view>
@@ -37,17 +37,16 @@
 			<view>{{item}}</view>
 		</view>
 	</view>
-	<!-- 猜你喜欢 -->
-	<view class="guess-box">
-		<block wx:if="{{dbstatus}}">
+	<block wx:if="{{dbShow}}">
 			<view class="shop-msg" wx:for="{{goodsInfo}}" wx:key="index">
-				<view style="display: flex;height: 100rpx;">
+				<view style="display: flex;height: 100rpx;margin-bottom: 20rpx;width: 100%;background: #fff;">
 					<image class="shop-msg-img" src="{{item.storeInfo.storelogo}}"></image>
 					<text style="margin-left:20rpx;font-size: 35rpx;line-height: 100rpx;">{{item.storeInfo.storename}}</text>
 				</view>
-				<view style="margin: 50rpx;font-size: 35rpx;">{{item.storeInfo.store_contents}}</view>
 			</view>
-		</block>
+	</block>
+	<!-- 猜你喜欢 -->
+	<view class="guess-box">
 		<text style="margin-left:20rpx;font-size: 35rpx;line-height: 90rpx;">猜你喜欢</text>
 		<view class="detail-guess">
 			<view class="like-content" wx:for="{{guessInfo}}" wx:key="{{index}}">

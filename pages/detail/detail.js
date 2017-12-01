@@ -31,21 +31,22 @@ Page({
     * 生命周期函数--监听页面加载
     */
     onLoad(options) {
-        console.log(options)
+        wx.setStorageSync('dbid', options.db);
         let id = options.id,
             card = wx.getStorageSync('UserCard'),
-            db = wx.getStorageSync('dbid')||options.db,
+            db = wx.getStorageSync('dbid'),
             show = wx.getStorageSync('seller'),
             ifHave = false;
             if(show&&db=='') {
-                ifHave = true;
-            }else if (card.distribution_id==db) {
-                ifHave = true;
-            }else if (card.distribution_id!=db) {
                 ifHave = false;
+            }else if (card.distribution_id==db) {
+                ifHave = false;
+            }else if (card.distribution_id!=db) {
+                ifHave = true;
             }else {
                 ifHave = false;
             };
+            console.log(ifHave)
         this.setData({
             goodsId: id,
             userId:card.user_id,
@@ -53,7 +54,8 @@ Page({
             abc:options.abc,
             dbId:card.distribution_id,
             dbLv:card.distribution_level,
-            dbstatus:ifHave
+            dbShow:ifHave,
+            dbCanshu:db
         })
         this.getDetailInfo();
     },
@@ -68,7 +70,7 @@ Page({
             sub = this.data.subId,
             dbId = this.data.dbId,
             dbLv = this.data.dbLv,
-            dbstatus = this.data.dbstatus;
+            dbstatus = this.data.dbCanshu;
         const data ={
             goods_id:id,
             user_id:user,

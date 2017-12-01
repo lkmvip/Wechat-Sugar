@@ -1,4 +1,6 @@
 // pages/user/pay/pay.js
+const api = require('../../../utils/api.js');//封装好的接口路径
+const utils = require('../../../utils/util.js');//调用封装的request
 Page({
 
   /**
@@ -7,53 +9,45 @@ Page({
     data: {
         array: ['请选择开户银行', '工商银行', '农业银行', '建设银行','中国银行','邮政银行'],
         index: 0,
-        maxNum : 9999,
+        maxNum : 0,
         name:'',
         card:'',
         bank:'',
         submit: false,
         cash:'',
-        disabled: true
+        disabled: true,
+        tel:'',
+        bankname:''
     },
   /**
    * 生命周期函数--监听页面加载
    */
     onLoad(options) {
-
+        let card = wx.getStorageSync('UserCard');
+        this.setData({
+            userid:card.user_id
+        })
+        const data ={
+            userId:card.user_id,
+            status:2
+        };
+        //调用主要信息，获取余额。
+        utils.sendRequest(api.UserMainMsg, data, this.handleUserMainSucc.bind(this));
+        const data1 = {
+            user_id:card.user_id
+        };
+        console.log(data)
+        utils.sendRequest(api.ZhunBeiTiXian, data1, this.handleGetInfolSucc.bind(this));
     },
-
-    /**
-    * 生命周期函数--监听页面初次渲染完成
-    */
-    onReady() {
-
+    handleUserMainSucc(res) {
+        this.setData({
+            maxNum:res.data.accountbalance
+        });
     },
-
-    /**
-    * 生命周期函数--监听页面显示
-    */
-    onShow() {
-
-    },
-
-    /**
-    * 生命周期函数--监听页面隐藏
-    */
-    onHide() {
-
-    },
-
-    /**
-    * 生命周期函数--监听页面卸载
-    */
-    onUnload() {
-
-    },
-    /**
-    * 用户点击右上角分享
-    */
-    onShareAppMessage() {
-
+    handleGetInfolSucc(res) {
+        this.setData({
+            tel:res.data.tel
+        });
     },
     // 选择户主
     handleName(e) {
@@ -108,9 +102,12 @@ Page({
     },
     // 选择银行
     bindPickerChange(e) {
+        let arr = this.data.array;
         this.setData({
-          index: e.detail.value
+          index: e.detail.value,
+          bank:arr[e.detail.value]
         })
+        console.log(this.data.bank)
     },
     //选择提现金额验证
     handleCash(e) {
@@ -142,10 +139,84 @@ Page({
             })
         }
     },
-    handleCashSucc() {
-        var cash = this.data.cash;
-        wx.navigateTo({
-          url: '../cash/cash?cash='+cash
+    handleTel(e) {
+        let reg = /^1(3|4|5|7|8)\d{9}$/,
+            val = e.detail.value;
+        if (!reg.test(val)) {
+               wx.showModal({
+                content:'请输入正确的手机号',
+                showCancel:false,
+                confirmColor:'#3cc51f',//默认值为#3cc51f
+                success:res =>{
+                    if(res.confirm){
+                        this.setData({
+                            tel:''
+                        })         
+                    }
+                }
+            })
+        }else{
+            this.setData({
+                tel:e.detail.value
+            })
+        }
+    },
+    handleBankName(e) {
+        this.setData({
+            bankname:e.detail.value
         })
+    },
+    handleCashSucc() {
+        let name = this.data.name,
+            card = this.data.card,
+            bank = this.data.bank,
+            bankName = this.data.bankname,
+            tel = this.data.tel,
+            cash = this.data.cash,
+            id = this.data.userid;
+        if (name!=''&&card!=''&&bank!=''&&bankName!=''&&tel!=''&&cash!='') {
+            const data1 = {
+                user_id:id,
+                post:{
+                    user_name:name,
+                    account_code:card,
+                    account_bank:bank,
+                    amount:cash
+                }
+            };
+            utils.sendRequest(api.TiJiaoTiXian, data1, this.handleTiXianlSucc.bind(this));
+        }else  {
+            wx.showModal({
+                content:'请输入完整的信息',
+                showCancel:false,
+                confirmColor:'#3cc51f',//默认值为#3cc51f
+            })
+        }
+        // wx.navigateTo({
+        //   url: '../cash/cash?cash='+cash
+        // })
+    },
+    handleTiXianlSucc(res) {
+        if(res.data.error == 99){
+            wx.showModal({
+                content:'已有提现记录，请耐心等待系统处理您的提现，成功后才能再次提现，给您带来的不便，恳请您谅解。',
+                showCancel:false,
+                confirmColor:'#3cc51f'//默认值为#3cc51f
+            })
+        }
+        if (res.data.error == 0) {
+            wx.showModal({
+                content:'提交申请成功，请您耐心等待。',
+                showCancel:false,
+                confirmColor:'#3cc51f',//默认值为#3cc51f
+                success:res =>{
+                    if(res.confirm){
+                        wx.redirectTo({
+                          url: '/pages/user/index'
+                        })
+                    }
+                }
+            })
+        }
     }
 })

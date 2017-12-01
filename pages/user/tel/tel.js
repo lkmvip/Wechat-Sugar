@@ -30,7 +30,11 @@ Page({
 
     },
     handleInTixianSucc(res) {
-        console.log(res)
+        if (res.data.tel!='') {
+            this.setData({
+                tel:res.data.tel
+            })
+        }
     },
     /**
     * 生命周期函数--监听页面初次渲染完成

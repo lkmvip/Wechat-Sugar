@@ -73,7 +73,7 @@ Page({
             })
         }else {
             wx.navigateTo({
-              url: '/pages/user/tel/tel?catch=true'
+              url: '/pages/user/tel/tel?catch=true'// 判断是否绑定手机
             })
         }
     },

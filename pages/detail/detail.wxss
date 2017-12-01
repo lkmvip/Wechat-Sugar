@@ -250,16 +250,16 @@
 	display: flex;
 	flex-wrap:wrap;
 	background: #fff;
-	border-top: 1rpx solid #666;
-	border-left: 1rpx solid #666;	
+	border-top: 1rpx solid #ccc;
+	border-left: 1rpx solid #ccc;	
 	margin-bottom:20rpx;
 	box-sizing: border-box;
 }
 .like-content{
 	width: 33.33%; 
 	box-sizing: border-box;
-	border-bottom: 1rpx solid #666;
-	border-right: 1rpx solid #666;
+	border-bottom: 1rpx solid #ccc;
+	border-right: 1rpx solid #ccc;
 	padding: 20rpx 10rpx; 	
 }
 .guess-content{

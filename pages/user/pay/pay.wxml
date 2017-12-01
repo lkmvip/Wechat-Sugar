@@ -2,11 +2,11 @@
  <view class="bank-card">
 	<view class="bank-list">
 		<view class="bank-txt">户名</view>
-		<input class="bank-input" bindconfirm="handleName" value="{{name}}" type="text" placeholder="只能提现到店主本人银行卡"/>
+		<input class="bank-input" bindblur="handleName" value="{{name}}" type="text" placeholder="只能提现到店主本人银行卡"/>
 	</view>
 	<view class="bank-list">
 		<view class="bank-txt">卡号</view>
-		<input class="bank-input" bindconfirm="handleBankCard" value="{{card}}" type="text" placeholder="请输入银行卡号"/>
+		<input class="bank-input" bindblur="handleBankCard" value="{{card}}" type="text" placeholder="请输入银行卡号"/>
 	</view>
 	<view class="bank-list">
 		<view class="bank-txt">开户银行</view>
@@ -16,11 +16,19 @@
 		    </view>
   		</picker>
 	</view>
+	<view class="bank-list">
+		<view class="bank-txt">手机号</view>
+		<input class="bank-input" bindblur="handleTel" value="{{tel}}" type="text" placeholder="请输入手机号"/>
+	</view>
+	<view class="bank-list">
+		<view class="bank-txt">支行</view>
+		<input class="bank-input" bindblur="handleBankName" value="{{bankname}}" type="text" placeholder="请输入支行名称"/>
+	</view>
     <view class="bank-cash">
     	<view class="num-max">当前最大可提现金额:{{maxNum}}</view>
     	<view class="num-now">
     		<view class="num-rmb">￥</view>
-			<input class="num-input" value="{{cash}}" bindconfirm="handleCash" type="text"/>    		
+			<input class="num-input" value="{{cash}}" bindblur="handleCash" type="text"/>    		
     	</view>
     	<view class="num-prompt">暂不收取手续费(提现金额必须是100的倍数，最少100元)</view>
     </view>

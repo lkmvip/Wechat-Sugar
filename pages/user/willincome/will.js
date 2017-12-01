@@ -58,7 +58,7 @@ Page({
     },
     handleWillComeSucc(res) {
         let inComeList = res.data[1].data;
-        inComeList.map(item => item.pay_time = utils.formatTime(new Date(Number(item.pay_time))));
+        inComeList.map(item => item.pay_time = utils.formatTimeSec(new Date(Number(item.pay_time)*1000)));
         this.setData({
             incomeList:inComeList
         })
@@ -66,35 +66,4 @@ Page({
     /**
     * 生命周期函数--监听页面初次渲染完成
     */
-    onReady() {
-
-    },
-
-    /**
-    * 生命周期函数--监听页面显示
-    */
-    onShow() {
-
-    },
-
-    /**
-    * 生命周期函数--监听页面隐藏
-    */
-    onHide() {
-
-    },
-
-    /**
-    * 生命周期函数--监听页面卸载
-    */
-    onUnload() {
-
-    },
-
-    /**
-    * 用户点击右上角分享
-    */
-    onShareAppMessage() {
-
-    }
 })

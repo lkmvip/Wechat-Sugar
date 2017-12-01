@@ -18,8 +18,8 @@
 		    <view class="goods-price">
 		        <view class="new-price left">￥{{item.shopprice}}</view>
 		        <view class="old-price left">￥{{item.market_price}}</view>
-		        <view class="through left">/</view>
                 <block wx:if="{{dbShow}}">
+                	<view class="through left">/</view>
 		        	<view class="make-money left">赚{{item.makeMoney}}</view> 
                 </block>
 		        <image src="/image/cart.png" class="add-shopcart right" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
