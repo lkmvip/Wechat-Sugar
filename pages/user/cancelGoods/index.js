@@ -24,7 +24,9 @@ Page({
         this.handleGetInfo(id);
         this.setData({
             recId:id,
-            userId:card.user_id
+            userId:card.user_id,
+            dbId:card.distribution_id,
+            dbLv:card.distribution_level
         })
         //判断状态改变tab内容
         if ( status == 0 ) { this.setData({activeIndex:0})}
@@ -49,36 +51,6 @@ Page({
             max:info.max_refund.toFixed(2)
         })
     },
-    // 退货照片
-    // handleCancelPic() {
-    //      var that = this;
-    //         wx.chooseImage({
-    //           count: 1, // 最多可以选择的图片张数，默认9
-    //           sizeType: ['compressed'], // original 原图，compressed 压缩图，默认二者都有
-    //           sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
-    //           success: function(res){
-    //               wx.uploadFile({
-    //                 url:that.data.API_URL +'uploadavatarurl',
-    //                 filePath:res.tempFilePaths[0],
-    //                 name:'avatar',
-    //                 // header: {}, // 设置请求的 header
-    //                 formData: {user_id:that.data.myInfo.user_id}, // HTTP 请求中其他额外的 form data
-    //                 success: function(info){
-    //                     that.setData({
-    //                         'myInfo.wx_avatarurl' : res.tempFilePaths[0]
-    //                     });
-    //                     wx.setStorageSync('wx_avatarurl', res.tempFilePaths[0]);
-    //                 }
-    //               })
-    //           },
-    //           fail: function() {
-    //             // fail
-    //           },
-    //           complete: function() {
-    //             // complete
-    //           }
-    //         })
-    // },
     //减少
     minusCount() {
         let count = this.data.num,
@@ -244,5 +216,67 @@ Page({
             wx.switchTab({
               url: '/pages/user/index'
             })
+    },
+    handleCancelPic() {
+        let id = this.data.dbId;
+        wx.chooseImage({
+          count: 3, // 默认9
+          sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
+          sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+          success: res => {
+            // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+            var tempFilePaths = res.tempFilePaths;
+            console.log(tempFilePaths)
+            this.setData({
+                src: tempFilePaths
+            })
+            upload(this,tempFilePaths,"logo",id);
+          }
+        })
     }
 })
+function upload(page, path,way,id) {
+    console.log(arguments)
+  wx.showToast({
+    icon: "loading",
+    title: "正在上传"
+  }),
+    wx.uploadFile({
+      url: api.ShopLogoUrl,
+      filePath: path[0],          
+      name: 'file',
+      formData:{
+        'user': way,
+        'distribution_id':id
+      },
+      header: { "Content-Type": "multipart/form-data" },
+      success: function (res) {
+        console.log(res)
+        if (res.statusCode != 200) { 
+          wx.showModal({
+            title: '提示',
+            content: '上传失败',
+            showCancel: false
+          })
+          return;
+        }else {
+            wx.showModal({
+                title: '提示',
+                content: '上传成功',
+                showCancel: false
+            }) 
+        }
+      },
+      fail: function (e) {
+        console.log(e);
+        wx.showModal({
+          title: '提示',
+          content: '上传失败',
+          showCancel: false
+        })
+      },
+      complete: function () {
+        wx.hideToast();  //隐藏Toast
+      }
+    })
+}

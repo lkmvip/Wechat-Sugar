@@ -22,12 +22,14 @@ Page({
     getLikeList() {
         let userId = this.data.userId;
         const data ={
-            userid:userId
+            userid:userId,
+            limit:''
         };
         //调用收藏商品接口
         utils.sendRequest(api.LikeInfoUrl, data, this.handleLikeInfoSucc.bind(this));
     },
     handleLikeInfoSucc(res) {
+        console.log(res)
         try {
             this.setData({
                 itemList:res.data.data,

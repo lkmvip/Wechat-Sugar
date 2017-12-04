@@ -21,7 +21,7 @@
         					<view class="mid-content mright">
         						<view class="mleft">{{item.name}}</view>
         						<view class="mleft">
-        							<view class="">￥{{item.goodsamount}}</view>
+        							<view class="">￥{{item.shopprice}}</view>
         							<view class="fright" style='color: #ececec;'>X{{item.goods_number}}</view>
         						</view>
         					</view>
@@ -61,7 +61,7 @@
                             <view class="mid-content mright">
                                 <view class="mleft">{{item.name}}</view>
                                 <view class="mleft">
-                                    <view class="">￥{{item.goodsamount}}</view>
+                                    <view class="">￥{{item.shopprice}}</view>
                                     <view class="fright" style='color: #ececec;'>X{{item.goods_number}}</view>
                                 </view>
                             </view>
@@ -92,7 +92,7 @@
                             <view class="mid-content mright">
                                 <view class="mleft">{{item.name}}</view>
                                 <view class="mleft">
-                                    <view class="">￥{{item.goodsamount}}</view>
+                                    <view class="">￥{{item.shopprice}}</view>
                                     <view class="fright" style='color: #ececec;'>X{{item.goods_number}}</view>
                                 </view>
                             </view>
@@ -128,7 +128,7 @@
                             <view class="mid-content mright">
                                 <view class="mleft">{{item.name}}</view>
                                 <view class="mleft">
-                                    <view class="">￥{{item.goodsamount}}</view>
+                                    <view class="">￥{{item.shopprice}}</view>
                                     <view class="fright" style='color: #ececec;'>X{{item.goods_number}}</view>
                                 </view>
                             </view>

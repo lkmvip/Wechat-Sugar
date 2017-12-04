@@ -36,7 +36,7 @@
 						{{item.name}}
 					</view>
 					<view class="item-num">
-						<text style="color: #ff4341;">￥{{item.goodsamount}}</text>
+						<text style="color: #ff4341;">￥{{item.shopprice}}</text>
 						<text style="color: #999;">X{{item.goods_number}}</text>
 					</view>
 				</view>
@@ -68,15 +68,15 @@
 			</view>
 		</view>
 		<view class="list-item">
-			<view class="list-text">
-				<view>余额支付:</view>
-				<view>￥{{item.order_amount+item.shipping_fee}}</view>
+			<view class="list-text" wx:for="{{item.payDetail}}" wx:key="{{index}}">
+				<view>{{item.remark}}:</view>
+				<view>￥{{item.amount}}</view>
 			</view>
 		</view>
 		<view class="list-item">
 			<view class="list-text">
 				<view>实付金额:</view>
-				<view>￥{{item.order_amount+item.shipping_fee}}</view>
+				<view>￥{{item.order_amount}}</view>
 			</view>
 		</view>
 </view>

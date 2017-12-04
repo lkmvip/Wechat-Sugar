@@ -3,49 +3,63 @@
 	<view class="incomed-total"><text class="rmb">￥</text>223123</view>
 	<view class="incomed-today mtop">
 		<view class="today-text mleft">今日收益:</view>
-		<view class="today-num mright">￥123</view>		
+		<view class="today-num mright">￥{{day_money}}</view>		
 	</view>
 	<!-- 收益列表布局 -->
 	<view class="incomed-week mtop">
 		<view class="week-list">
 			<view class="today-text mleft">本周收益:</view>
-			<view class="today-num mright">￥123</view>		
+			<view class="today-num mright">￥{{week_money}}</view>		
 		</view>
 		<view class="week-list">
 			<view class="week-text mleft">商品:</view>
-			<view class="today-num mright">￥123</view>		
+			<view class="today-num mright">￥{{week_money}}</view>		
 		</view>
 		<view class="week-list">
 			<view class="week-text mleft">软件:</view>
-			<view class="today-num mright">￥123</view>		
+			<view class="today-num mright">￥{{week_money_special}}</view>		
 		</view>
 	</view>
 	<view class="incomed-week mtop">
 		<view class="week-list">
 			<view class="today-text mleft">本月收益:</view>
-			<view class="today-num mright">￥123</view>		
+			<view class="today-num mright">￥{{month_money}}</view>		
 		</view>
 		<view class="week-list">
 			<view class="week-text mleft">商品:</view>
-			<view class="today-num mright">￥123</view>		
+			<view class="today-num mright">￥{{month_money}}</view>		
 		</view>
 		<view class="week-list">
 			<view class="week-text mleft">软件:</view>
-			<view class="today-num mright">￥123</view>		
+			<view class="today-num mright">￥{{month_money_special}}</view>		
 		</view>
 	</view>
 	<view class="incomed-week mtop">
 		<view class="week-list">
 			<view class="today-text mleft">上月收益:</view>
-			<view class="today-num mright">￥123</view>		
+			<view class="today-num mright">￥{{last_month_money}}</view>		
 		</view>
 		<view class="week-list">
 			<view class="week-text mleft">商品:</view>
-			<view class="today-num mright">￥123</view>		
+			<view class="today-num mright">￥{{last_month_money}}</view>		
 		</view>
 		<view class="week-list">
 			<view class="week-text mleft">软件:</view>
-			<view class="today-num mright">￥123</view>		
+			<view class="today-num mright">￥{{last_month_money_special}}</view>		
+		</view>
+	</view>
+	<view class="incomed-week mtop">
+		<view class="week-list">
+			<view class="today-text mleft">上周收益:</view>
+			<view class="today-num mright">￥{{last_week_money}}</view>		
+		</view>
+		<view class="week-list">
+			<view class="week-text mleft">商品:</view>
+			<view class="today-num mright">￥{{last_week_money}}</view>		
+		</view>
+		<view class="week-list">
+			<view class="week-text mleft">软件:</view>
+			<view class="today-num mright">￥{{last_week_money_special}}</view>		
 		</view>
 	</view>
 </view>

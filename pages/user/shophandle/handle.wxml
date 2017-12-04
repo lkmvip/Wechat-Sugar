@@ -1,7 +1,7 @@
 <!--pages/user/shophandle/handle.wxml-->
-<view class='shop-msg' style="background:url({{sign}});background-repeat: round;">
+<view class='shop-msg' style="background:url({{sign}});background-repeat: round;background-color: red;">
     <view class='msg-content'>
-        <image src="{{src}}" class="msg-img"/>
+        <image src="{{src?src:'/image/user/wlogo.png'}}" class="msg-img"/>
         <view class='msg-name' >
             {{name}}
              <view class='msg-explain'>{{text}}</view> 

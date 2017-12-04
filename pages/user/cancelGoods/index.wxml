@@ -39,8 +39,8 @@
 				<textarea class="cancel-textarea mleft" value="{{remark}}" bindinput="handleAddrDetail"  type="text" placeholder="在此处填写退货说明..."/>
 			</view>
 			<view class="cancel-requset" style="display: block;">
-				<view class="mleft pic-box" bindtap="  ">
-        			<image class="requset-pic" src="/image/user/requset.png"></image>
+				<view class="mleft pic-box" bindtap="handleCancelPic">
+        			<image class="requset-pic" src="{{src?src:'/image/user/requset.png'}}"></image>
 					<text class="pic-text">上传照片</text>
 				</view>
 			</view>

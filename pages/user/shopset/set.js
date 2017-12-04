@@ -18,7 +18,6 @@ Page({
    */
     onLoad(options) {
         let card = wx.getStorageSync('UserCard');
-        console.log(card)
             this.setData({
                 userId:card.user_id,
                 dbId:card.distribution_id,
@@ -59,7 +58,6 @@ Page({
                 src: tempFilePaths
             })
             upload(this,tempFilePaths,"logo",id);
-
           }
         })
     },

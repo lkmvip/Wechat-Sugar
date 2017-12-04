@@ -32,6 +32,7 @@ Page({
         
     },
     handleOrderInfoDetailSucc(res) {
+        console.log(res)
         this.setData({
             orderInfo:res.data.data,
             status:res.data.data[0].status

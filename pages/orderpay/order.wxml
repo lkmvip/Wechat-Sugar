@@ -1,7 +1,7 @@
 <!--pages/orderpay/order.wxml-->
 <view class='orderpay-top'>
 	<view class="pay-for">应付金额:</view>
-	<view class="pay-much">￥{{orderPrice  }}</view>
+	<view class="pay-much">￥{{orderPrice}}</view>
 	<view class="pay-num">订单号:{{orderNum}}</view>
 	<view class="pay-way">配送方式:{{orderWay}}</view>
 	<block wx:if="{{check==false&&checkRmb==false?false:showPrice}}">

@@ -44,7 +44,7 @@
 			</view>
 			<view class="odres-list" catchtap="handleWillPay" data-id="3">
 				<image class="oders-icon" src="/image/user/staygoods.png" background-size="cover"></image>
-				<view class="oders-text">待收货</view>
+				<view class="oders-text">已收货</view>
 			</view>
 		</view>
 	</view>

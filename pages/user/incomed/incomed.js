@@ -22,6 +22,18 @@ Page({
         utils.sendRequest(api.UserInComeProfit  , data, this.handleGetSucc.bind(this));
     },
     handleGetSucc(res) {
-        console.log(res)
+        let arr = res.data[0];
+        this.setData({
+            day_money:arr.day_money,
+            day_money_special:arr.day_money_special,
+            last_month_money:arr.last_month_money,
+            last_month_money_special:arr.last_month_money_special,
+            last_week_money:arr.last_week_money,
+            last_week_money_special:arr.last_week_money_special,
+            month_money:arr.month_money,
+            month_money_special:arr.month_money_special,
+            week_money:arr.week_money,
+            week_money_special:arr.week_money_special
+        })
     }
 })

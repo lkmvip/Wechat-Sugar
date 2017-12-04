@@ -106,12 +106,22 @@
 	</view>
 	<view class="detail-right">
 		<block wx:for="{{goodsInfo}}" wx:key="{{index}}">
-			<view class="add-cart" bindtap="handleAddCart" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}">
-				加入购物车
-			</view>
-			<view class="go-pay" bindtap="handleGoPay" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}">
-				立即购买
-			</view>
+			<block wx:if="{{special}}">
+				<view class="add-cart" bindtap="handleAddCartSpecial" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}" data-lv="{{item.special_rank}}">
+					加入购物车
+				</view>
+				<view class="go-pay" bindtap="handleGoPaySpecial" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}" data-lv="{{item.special_rank}}">
+					立即购买
+				</view>
+			</block>
+			<block wx:else>
+				<view class="add-cart" bindtap="handleAddCart" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}">
+					加入购物车
+				</view>
+				<view class="go-pay" bindtap="handleGoPay" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}">
+					立即购买
+				</view>
+			</block>
 		</block>
 	</view>
 	

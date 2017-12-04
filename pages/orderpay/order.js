@@ -18,24 +18,28 @@ Page({
     */
     onLoad(options) {
         //判断是从购物车流程进入，还是从订单列表进入
+        console.log(options)
         if (options.msg) {
             let order = JSON.parse(options.msg),freight = options.count;
+            console.log(order)
             this.setData({
-                orderPrice:order.money+Number(freight),//订单金额
+                orderPrice:order.money,//订单金额
                 orderNum:order.order_sn,//订单编号
                 orderWay:order.shipping_mode,//配送方式
                 orderId:order.new_order_id,//订单ID
-                handlePrice:(order.money+Number(freight)),// 操作金额的变量
+                handlePrice:order.money// 操作金额的变量
             })
         }else if (options.obj) {
             //这里是从订单列表进入的数据
-            let order = JSON.parse(options.obj);
+            let order = JSON.parse(options.obj),
+                amount = order[0].order_amount;
+            console.log()
             this.setData({
-                orderPrice:order[0].real_amount,
+                orderPrice:Number(amount),
                 orderNum:order[0].order_sn,
                 orderWay:order[0].takegoods_mode,
                 orderId:order[0].order_id,
-                handlePrice:order[0].real_amount.toFixed(2),
+                handlePrice:Number(amount).toFixed(2),
             })
         }
         let card = wx.getStorageSync('UserCard');//获取用户身份信息

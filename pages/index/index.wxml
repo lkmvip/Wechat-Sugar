@@ -53,7 +53,7 @@
                 </view>
                 <view class="line"></view>
                         <view class="goods-list"  wx:for="{{dbGoods}}" wx:key="{{index}}"  data-index="{{index}}">  
-                        <navigator url="/pages/detail/detail?id={{item.id}}">
+                        <navigator url="/pages/detail/detail?id={{item.id}}&special=true">
                             <image src="{{item.goods_img}}" class="see-image" mode="scaleToFill"/>
                         </navigator>
                         <view class="goods-title">{{item.name}}</view>

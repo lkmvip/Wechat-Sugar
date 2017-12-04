@@ -108,6 +108,7 @@ Page({
         utils.sendRequest(api.OrderInfoList, data, this.handleOrderInfoListSucc.bind(this));
     },
     handleOrderInfoListSucc(res) {
+        console.log(res)
         wx.showToast({title: '加载成功',icon: 'success'});      
         this.setData({//反转数组 
             allOrder:res.data.data.reverse()
@@ -149,6 +150,7 @@ Page({
             wx.showModal({content: '取消成功，期待您下次宠幸~',showCancel: false})
             :
             wx.showModal({content: '出错啦，工程师正在抢修~',showCancel: false});
+            this.handleGetList();
         } catch(e) {
             // statements
             console.log(e);
@@ -171,6 +173,7 @@ Page({
             wx.showModal({content: '申请成功，请您耐心等待~',showCancel: false})
             :
             wx.showModal({content: '出错啦，工程师正在抢修~',showCancel: false});
+            this.handleGetList();
         } catch(e) {
             // statements
             console.log(e);
@@ -199,6 +202,7 @@ Page({
             wx.showModal({content: '收货成功，期待您下次光临~',showCancel: false})
             :
             wx.showModal({content: '出错啦，工程师正在抢修~',showCancel: false});
+            this.handleGetList();
         } catch(e) {
             // statements
             console.log(e);
