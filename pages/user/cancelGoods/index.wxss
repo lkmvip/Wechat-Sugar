@@ -51,6 +51,7 @@
 	flex-wrap: wrap;
 	text-align: center;
 	border: 1rpx dashed #a5a5a5;
+	margin-left: 20rpx; 
 }
 .requset-pic{
 	width: 80rpx;
@@ -88,4 +89,18 @@
 .examine-input{
 	width: 300rpx;
 	border-bottom: 1rpx solid #e5e5e5;
+}
+.pic-list{
+	width:160rpx;
+	height:160rpx;
+}
+.pic-close{
+	width:45rpx;
+	height: 45rpx;
+	font-size: 35rpx;
+	line-height: 35rpx;
+	text-align: center;
+	background: #ececec;
+	float: right;
+	opacity: 0.7;
 }

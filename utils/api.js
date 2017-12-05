@@ -59,6 +59,7 @@ module.exports = {
 	CancelTakeGoods:OrderDetailInfo+'OrderRefund',//获取退货商品信息
 	CancelGoods:OrderDetailInfo+'cancelGoods',//申请退货
 	CancelRequest:OrderDetailInfo+'disagreeCancelGoods',//取消退货
+	CancelImg:OrderDetailInfo+'cancelGoodsImg',
 	CustomerDelivery:OrderDetailInfo+'customerDelivery',//用户发货
 	GetLogisticsInfo:LogisticsInfo+'getLogisticsInfo',//物流信息
 	GetLogisticsCode:LogisticsInfo+'getCode',//物流信息

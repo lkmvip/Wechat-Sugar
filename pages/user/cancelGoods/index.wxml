@@ -38,11 +38,16 @@
 				<view class="mleft cancel-choice">退货说明</view>
 				<textarea class="cancel-textarea mleft" value="{{remark}}" bindinput="handleAddrDetail"  type="text" placeholder="在此处填写退货说明..."/>
 			</view>
-			<view class="cancel-requset" style="display: block;">
-				<view class="mleft pic-box" bindtap="handleCancelPic">
-        			<image class="requset-pic" src="{{src?src:'/image/user/requset.png'}}"></image>
+			<view class="cancel-requset" style="display:block;height: 200rpx;">
+				<view class="pic-box" bindtap="handleCancelPic" style="float: left;">
+        			<image class="requset-pic" src='/image/user/requset.png'></image>
 					<text class="pic-text">上传照片</text>
 				</view>
+				<block wx:for="{{src}}" wx:key="{{index}}">
+					<view class="pic-list" style="background:url({{item}});background-repeat: round;float: left;margin-left: 20rpx;">
+						<text class="pic-close" bindtap="handleDelPic" data-index="{{index}}">x</text>
+					</view>
+				</block>
 			</view>
 			<!-- </block> -->
 			<view class="request-btn" bindtap="handleRequest">申请退货</view>

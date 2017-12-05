@@ -96,8 +96,10 @@ Page({
             num = this.data.cancelList.goods_number,
             count = this.data.num,
             val = this.data.remark,
-            userId = this.data.userId;
-
+            userId = this.data.userId,
+            imgArr = wx.getStorageSync('cancelImg'),
+            arr = [];
+            imgArr.map( item => arr.push(item.data))
         const data ={
             user_id:userId,
             post:{
@@ -106,13 +108,14 @@ Page({
                 goods_number:num,
                 refund_remark:val,
                 refund_amount:count,
-                refund_img:''
+                refund_img:arr
             }
         };
         // 给后端传值取消订单的信息。
         utils.sendRequest(api.CancelGoods, data, this.handleRequestSucc.bind(this));
     },
     handleRequestSucc(res) {
+        console.log(res)
         try {
              if(res.data.error == 0){
                 wx.showModal({
@@ -226,57 +229,70 @@ Page({
           success: res => {
             // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
             var tempFilePaths = res.tempFilePaths;
-            console.log(tempFilePaths)
+
             this.setData({
                 src: tempFilePaths
             })
-            upload(this,tempFilePaths,"logo",id);
+            upload(this,tempFilePaths,'','');
           }
         })
+    },
+    handleDelPic(e) {
+        const index = e.currentTarget.dataset.index;
+        let list = this.data.src;
+        list.splice(index,1);
+        this.setData({
+            src: list
+        });
+    },
+    onUnload() {
+        wx.removeStorageSync('cancelImg')
     }
 })
 function upload(page, path,way,id) {
-    console.log(arguments)
+    console.log(path)
   wx.showToast({
     icon: "loading",
     title: "正在上传"
-  }),
-    wx.uploadFile({
-      url: api.ShopLogoUrl,
-      filePath: path[0],          
-      name: 'file',
-      formData:{
-        'user': way,
-        'distribution_id':id
-      },
-      header: { "Content-Type": "multipart/form-data" },
-      success: function (res) {
-        console.log(res)
-        if (res.statusCode != 200) { 
-          wx.showModal({
-            title: '提示',
-            content: '上传失败',
-            showCancel: false
-          })
-          return;
-        }else {
-            wx.showModal({
+  });
+  var test = [],
+    that = this;
+  for (var i = 0; i<path.length; i++) {
+        wx.uploadFile({
+          url: api.CancelImg,
+          filePath: path[i],          
+          name: 'file',
+          header: { "Content-Type": "multipart/form-data" },
+          success: res => {
+            test.push(res);
+            wx.setStorageSync('cancelImg',test)
+            console.log(test)
+            if (res.statusCode != 200) { 
+              wx.showModal({
                 title: '提示',
-                content: '上传成功',
+                content: '上传失败',
                 showCancel: false
-            }) 
-        }
-      },
-      fail: function (e) {
-        console.log(e);
-        wx.showModal({
-          title: '提示',
-          content: '上传失败',
-          showCancel: false
+              })
+              return;
+            }else {
+                wx.showModal({
+                    title: '提示',
+                    content: '上传成功',
+                    showCancel: false
+                }) 
+            }
+          },
+          fail: function (e) {
+            console.log(e);
+            wx.showModal({
+              title: '提示',
+              content: '上传失败',
+              showCancel: false
+            })
+          },
+          complete: function () {
+            wx.hideToast();  //隐藏Toast
+          }
         })
-      },
-      complete: function () {
-        wx.hideToast();  //隐藏Toast
-      }
-    })
+    }
 }
