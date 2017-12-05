@@ -99,7 +99,9 @@ Page({
             userId = this.data.userId,
             imgArr = wx.getStorageSync('cancelImg'),
             arr = [];
-            imgArr.map( item => arr.push(item.data))
+                 console.log(typeof imgArr)
+            imgArr.map( item => arr.push(JSON.parse(item.data)))
+            console.log(arr)
         const data ={
             user_id:userId,
             post:{
