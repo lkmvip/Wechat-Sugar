@@ -1,6 +1,6 @@
 <!--pages/user/incomed/incomed.wxml-->
 <view class="incomed">
-	<view class="incomed-total"><text class="rmb">￥</text>223123</view>
+	<view class="incomed-total"><text class="rmb">￥</text>{{all}}</view>
 	<view class="incomed-today mtop">
 		<view class="today-text mleft">今日收益:</view>
 		<view class="today-num mright">￥{{day_money}}</view>		

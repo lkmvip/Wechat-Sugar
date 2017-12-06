@@ -16,13 +16,16 @@ Page({
     onLoad(options) {
         let card = wx.getStorageSync('UserCard');
         const data ={
+                    user_id:card.user_id,
                     distribution_id:card.distribution_id,
                     distribution_level:card.distribution_level
                 };
         utils.sendRequest(api.UserInComeProfit  , data, this.handleGetSucc.bind(this));
     },
     handleGetSucc(res) {
-        let arr = res.data[0];
+        console.log(res)
+        let arr = res.data[0],
+            ready = res.data[1].readyMoney;
         this.setData({
             day_money:arr.day_money,
             day_money_special:arr.day_money_special,
@@ -33,7 +36,8 @@ Page({
             month_money:arr.month_money,
             month_money_special:arr.month_money_special,
             week_money:arr.week_money,
-            week_money_special:arr.week_money_special
+            week_money_special:arr.week_money_special,
+            all:ready
         })
     }
 })

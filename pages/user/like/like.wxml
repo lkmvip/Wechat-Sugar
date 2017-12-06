@@ -2,7 +2,7 @@
 <view class="like-num">
 		<view class="like-box">
 			<image class="like-icon" src="/image/like/left.png" background-size="cover"></image>
-			<view>我已收藏<text style="color: #ed145b">{{num}}</text>件商品</view>
+			<view>我已收藏<text style="color: #ed145b">{{num?num:0}}</text>件商品</view>
 			<image class="like-icon" src="/image/like/right.png" background-size="cover"></image>
 		</view>
 </view>

@@ -13,14 +13,17 @@ Page({
     * 生命周期函数--监听页面加载
     */
     onLoad(options) {
-        this.getLikeList();
         let card = wx.getStorageSync('UserCard');
+        console.log(card)
         this.setData({
             userId:card.user_id
         })
+        this.getLikeList();
+        console.log(this.data.userId)
     },
     getLikeList() {
         let userId = this.data.userId;
+        console.log(userId)
         const data ={
             userid:userId,
             limit:''

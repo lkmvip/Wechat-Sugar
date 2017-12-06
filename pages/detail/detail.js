@@ -38,11 +38,11 @@ Page({
             show = wx.getStorageSync('seller'),
             ifHave = false;
             if(show&&db=='') {
-                ifHave = false;
-            }else if (card.distribution_id==db) {
-                ifHave = false;
-            }else if (card.distribution_id!=db) {
                 ifHave = true;
+            }else if (card.distribution_id==db) {
+                ifHave = true;
+            }else if (card.distribution_id!=db) {
+                ifHave = false;
             }else {
                 ifHave = false;
             };

@@ -246,6 +246,10 @@ Page({
                 if(code == 200) {
                     this.getCartInfo();
         }
+    },
+    onHide() {
+        this.setData({
+            selectAllStatus:false
+        })
     }
-        
 })

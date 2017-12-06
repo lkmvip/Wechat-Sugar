@@ -8,6 +8,7 @@ Page({
         hasTicket:false
     },
     onLoad(options) {
+        console.log(options)
         options.way? this.setData({
             tabs: ["可用","不可用"],
             way:2
@@ -50,6 +51,7 @@ Page({
         utils.sendRequest(api.TicketInfoUrl, data, this.handleGetSucc.bind(this));
     },
     handleGetSucc(res) {
+        console.log(res.data.data)
         let has = [],
             used = [],
             timeOut = [];
@@ -58,10 +60,13 @@ Page({
             item.startTime = utils.formatTime(new Date(item.startTime));
             item.endTime =  utils.formatTime(new Date(item.endTime));
             if(item.couponStatus==0){
+                console.log(1)
                 has.push(item)
             }else if(item.couponStatus==1) {
+                console.log(2)
                 used.push(item)
             }else if(item.couponStatus==2) {
+                console.log(3)
                 timeOut.push(item)
             }
         })
@@ -70,6 +75,7 @@ Page({
             usedList:used,
             timeOutList:timeOut
         })
+        console.log(this.data.ticketList)
     },
     handleUseTicket(e) {
         let id = e.currentTarget.dataset.id,

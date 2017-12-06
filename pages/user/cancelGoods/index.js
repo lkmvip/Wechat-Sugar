@@ -278,7 +278,7 @@ function upload(page, path,way,id) {
               return;
             }else {
                 wx.showModal({
-                    title: '提示',
+                    title: '提示',  
                     content: '上传成功',
                     showCancel: false
                 }) 

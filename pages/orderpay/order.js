@@ -108,7 +108,6 @@ Page({
             // 调用余额支付
             if(rmbCheck&&rmbNum>=0||zuHe==1){// 余额按钮选中和金额 执行下面逻辑
                 if (rmbNum == allPrice || !wxCheck) {//如果金额等于商品价格就不走微信支付
-                    console.log("直接走余额")
                      const data ={
                         payment:payWay,
                         order_sn:orderSn,
@@ -206,14 +205,11 @@ Page({
     //余额支付的处理逻辑
     handleOrderPaySucc(res) {
         if (res.data.error == 0 ) {
-
                 wx.redirectTo({
                   url: '/pages/succpay/succpay'
                 })
-            
-            
         }else {
-            wx.showModal({content: '服务器出现问题，我们会尽快处理~',showCancel: false})
+            wx.showModal({content: '余额不足哦',showCancel: false})
         }
     },
     //微信支付处理逻辑

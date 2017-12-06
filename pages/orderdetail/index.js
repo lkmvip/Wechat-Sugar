@@ -24,7 +24,8 @@ Page({
             addrid = options.addrid,
             card = wx.getStorageSync('UserCard'),
             couponId = options.ticketid,
-            couponNum =options.ticketnum;
+            couponNum =options.ticketnum,
+            db = wx.getStorageSync('dbid');
         this.setData({
             cartId:id,
             addrId:addrid,
@@ -33,7 +34,8 @@ Page({
             couponMoney: Number(couponNum),
             dbId:card.distribution_id,
             dbLv:card.distribution_level,
-            subId:card.subwebId
+            subId:card.subwebId,
+            dbstatus:db
         });
         this.getOrderInfo(id);
         this.getAddrInfo(addrid);
@@ -53,12 +55,15 @@ Page({
     },
     handleOrderList(res) {
         let result = res.data;
+        console.log(result.cartgoods[0].goods_id)
         this.setData({
             orderList: result.cartgoods,
             freightNum: Number(result.goodsmoney.freight),
             orderPrice: result.goodsmoney.goodsmoney,
             couponId: result.couponId,
-            couponMoney: Number(result.coupon_money)
+            couponMoney: Number(result.coupon_money),
+            goodsIds:result.cartgoods[0].goods_id,
+            totalamount:result.cartgoods[0].subtotal
         });
 
         this.data.couponId ==''?
@@ -103,16 +108,16 @@ Page({
             url: '/pages/user/addr/addr?cartid='+this.data.cartId
         })
     },
-    checkboxChange(e) {
-        console.log('checkbox发生change事件，携带value值为：', e.detail.value)
-    },
     //前往优惠券页面
     handleTicket() {
         let id = this.data.cartId,
             addr = this.data.addrId,
-            userId = this.data.userId;
+            userId = this.data.userId,
+            goodsid = this.data.goodsIds,
+            amount = this.data.totalamount;
+            console.log(goodsid,amount)
         wx.navigateTo({
-            url: '/pages/user/ticket/ticket?way=2&&cartid='+id+'&&addrid='+addr
+            url: '/pages/user/ticket/ticket?way=2&&cartid='+id+'&&addrid='+addr+'&&goodsid='+goodsid+'&&amount='+amount
         })
     },
     //提交订单
@@ -128,31 +133,34 @@ Page({
             dbLv = this.data.dbLv,
             subId = this.data.subId,
             list = this.data.orderList,
-            arr = [];
+            arr = [],
+            useTicket = this.data.isUse,
+            db = this.data.dbstatus;
+            console.log(useTicket)
             list.map(item => arr.push(item.goods_id));
         const data ={
             user_id:userId,
             branchId:subId,
-            distribution:'',
+            distribution:db,
             share_level:'',
             distribution_id:dbId,
             distribution_level:dbLv,
             post:{
                 address_id:addrid,
                 freight:reightrmb,
-                couponId:couponId,
+                couponId:useTicket?'':couponId,
                 goods_ids:arr,
                 totalamount:allprice, //总价
-                coupon_money:couponMoney,
-                totalPrice:allprice+reightrmb-couponMoney,//这个是去掉优惠券的钱
+                coupon_money:useTicket?'':couponMoney,
+                totalPrice:allprice+reightrmb-(useTicket?0:couponMoney),//这个是去掉优惠券的钱orderPrice+freightNum-
                 rec_id:carid,
                 NowBuyNum:'',
                 salespromotion_type:'',
                 activety_id:'',
                 turnnum:'',    
             }
-
         };
+        console.log(data)
         //请求生成订单接口
         utils.sendRequest(api.NewOrderInfo, data, this.handleNewOrderInfo.bind(this));
     },
@@ -181,5 +189,14 @@ Page({
             console.log(e);
         }
     },
-    handleCartDelInfo(res) {}
+    handleCartDelInfo(res) {},
+    checkboxChange(e) {
+        e.detail.value == ''?
+        this.setData({
+            isUse:true
+        })
+        :this.setData({
+            isUse:false
+        });
+    }
 })
