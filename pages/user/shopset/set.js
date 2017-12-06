@@ -140,7 +140,6 @@ function upload(page, path,way,id) {
       },
       header: { "Content-Type": "multipart/form-data" },
       success: function (res) {
-        console.log(res)
         if (res.statusCode != 200) { 
           wx.showModal({
             title: '提示',
@@ -157,7 +156,6 @@ function upload(page, path,way,id) {
         }
       },
       fail: function (e) {
-        console.log(e);
         wx.showModal({
           title: '提示',
           content: '上传失败',

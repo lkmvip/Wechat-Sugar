@@ -23,12 +23,16 @@
                             <text>￥</text>
                             <text style="font-size: 50rpx;">{{item.quota}}</text>
                         </view>
-                        <view class="not-way">满￥{{item.minConsumption}}使用</view>  
+                        <block wx:if="{{item.minConsumption==-1?false:true}}">
+                            <view class="not-way">满￥{{item.minConsumption}}使用</view> 
+                        </block> 
                     </view>
                     <view class="not-right">
                         <view class="ticket-way">
-                            <view class="ticket-name">{{item.couponName}}</view>  
+                            <view class="ticket-name">{{item.couponName}}</view>
+                        <block wx:if="{{item.minConsumption==-1?false:true}}">  
                             <view class="name-text">满￥{{item.minConsumption}}减{{item.quota}}</view>  
+                        </block> 
                         </view>
                         <view class="ticket-date">
                             <view style="height: 50rpx;line-height: 50rpx;">{{item.startTime}}-{{item.endTime>'2100-01-01'?'无限制':item.endTime}}</view>

@@ -20,6 +20,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
     onLoad(options) {
+        wx.showToast({
+            icon: "loading",
+            title: "正在加载"
+        })
         let id = options.cartid,
             addrid = options.addrid,
             card = wx.getStorageSync('UserCard'),
@@ -31,7 +35,6 @@ Page({
             addrId:addrid,
             userId:card.user_id,
             couponId: couponId,
-            couponMoney: Number(couponNum),
             dbId:card.distribution_id,
             dbLv:card.distribution_level,
             subId:card.subwebId,
@@ -54,8 +57,8 @@ Page({
         utils.sendRequest(api.OrderList, data, this.handleOrderList.bind(this));
     },
     handleOrderList(res) {
+        wx.hideToast()
         let result = res.data;
-        console.log(result.cartgoods[0].goods_id)
         this.setData({
             orderList: result.cartgoods,
             freightNum: Number(result.goodsmoney.freight),
@@ -166,6 +169,7 @@ Page({
     },
     //请求提交订单成功
     handleNewOrderInfo(res) {
+        console.log(res)
         try {
             let frt = this.data.freightNum;
             let userId = this.data.userId;

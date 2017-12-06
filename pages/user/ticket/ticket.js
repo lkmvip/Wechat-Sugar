@@ -11,7 +11,11 @@ Page({
         console.log(options)
         options.way? this.setData({
             tabs: ["可用","不可用"],
-            way:2
+            way:2,
+            addrid:options.addrid,
+            goodsid:options.goodsid,
+            amount:options.amount,
+            cartId:options.cartid
         }):'';
         this.setData({
             activeIndex: options.id
@@ -36,37 +40,38 @@ Page({
     getTicketInfo() {
         let id = this.data.userId,
             name = this.data.subName,
-            subId = this.data.subId;
+            subId = this.data.subId,
+            addrid = this.data.addrid,
+            goodsid = this.data.goodsid,
+            amount = this.data.amount,
+            cartId = this.data.cartId;
+            console.log(addrid,goodsid,amount)
         const data ={
                     branchId:subId,
-                    param:{
-                        "userId":id,
-                        "status":'-1',
-                        "pageSize":'200',
-                        "pageIndex":'1',
-                        'orderby':'addTime',
-                        'sortby':'desc'
-                    }
+                    user_id:id,
+                    cart_ids:cartId?cartId:'',
+                    address_id:addrid?addrid:'',
+                    val:'',
+                    goods_ids:goodsid?goodsid:'',
+                    totalamount:amount?amount:''
                 };
+            console.log(data)
         utils.sendRequest(api.TicketInfoUrl, data, this.handleGetSucc.bind(this));
     },
     handleGetSucc(res) {
-        console.log(res.data.data)
+        console.log(res.data[0])
         let has = [],
             used = [],
             timeOut = [];
         // 判断优惠券的状态分别存入三个数组
-        res.data.data.map(item => {
+        res.data[0].map(item => {
             item.startTime = utils.formatTime(new Date(item.startTime));
             item.endTime =  utils.formatTime(new Date(item.endTime));
             if(item.couponStatus==0){
-                console.log(1)
                 has.push(item)
             }else if(item.couponStatus==1) {
-                console.log(2)
                 used.push(item)
             }else if(item.couponStatus==2) {
-                console.log(3)
                 timeOut.push(item)
             }
         })

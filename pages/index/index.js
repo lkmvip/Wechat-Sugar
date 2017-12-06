@@ -37,6 +37,10 @@ Page({
 
     onLoad(options) {
          utils.login(this.handleLogin.bind(this),this.handleReset.bind(this));
+         wx.showToast({
+            icon: "loading",
+            title: "正在加载"
+          })
      
     },
     handleLogin(res) {
@@ -159,6 +163,7 @@ Page({
     },
     //请求IndexUrl成功处理函数 
     handleGetIndexSucc(res) {
+         wx.hideToast();
         // 返回商品列表和品牌列表的信息
         console.log(res)
         let goodsInfo = res.data.data;
