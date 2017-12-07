@@ -36,7 +36,7 @@ Page({
         const data1 = {
             user_id:card.user_id
         };
-        console.log(data)
+        //准备提现
         utils.sendRequest(api.ZhunBeiTiXian, data1, this.handleGetInfolSucc.bind(this));
     },
     handleUserMainSucc(res) {
@@ -139,6 +139,7 @@ Page({
             })
         }
     },
+    //操作手机号
     handleTel(e) {
         let reg = /^1(3|4|5|7|8)\d{9}$/,
             val = e.detail.value;
@@ -161,6 +162,7 @@ Page({
             })
         }
     },
+    //操作银行名字
     handleBankName(e) {
         this.setData({
             bankname:e.detail.value
@@ -192,9 +194,6 @@ Page({
                 confirmColor:'#3cc51f',//默认值为#3cc51f
             })
         }
-        // wx.navigateTo({
-        //   url: '../cash/cash?cash='+cash
-        // })
     },
     handleTiXianlSucc(res) {
         if(res.data.error == 99){

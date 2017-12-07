@@ -14,12 +14,6 @@ Page({
     onLoad(options) {
 
     },
-    /**
-    * 用户点击右上角分享
-    */
-    onShareAppMessage() {
-
-    },
     handleGoIndex() {
         wx.switchTab({
           url: '/pages/index/index'

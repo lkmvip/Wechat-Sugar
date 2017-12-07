@@ -16,21 +16,44 @@ Page({
             dbShow:show,
             userId:card.user_id
     	})
+        this.getYuEInfo();
+        this.getShouEInfo();
+        this.getDaiShouInfo();
+    },
+    onShow() {
+        this.getYuEInfo();
+        this.getShouEInfo();
+        this.getDaiShouInfo();
+    },
+    //余额接口
+    getYuEInfo() {
+        let id = this.data.userId;
         const data ={
-            userId:card.user_id,
+            userId:id,
             status:2
         };
         //调用主要信息，获取余额。
         utils.sendRequest(api.UserMainMsg, data, this.handleUserMainSucc.bind(this));
+
+    },
+    //收益接口
+    getShouEInfo() {
+        let id = this.data.userId,
+            dbid = this.data.userDbId,
+            dblv = this.data.userLv;
         const data1 ={
-            user_id:card.user_id,
-            distribution_id:card.distribution_id,
-            distribution_level:card.distribution_level
+            user_id:id,
+            distribution_id:dbid,
+            distribution_level:dblv
         };
         //调用收益。
         utils.sendRequest(api.UserShowInCome, data1, this.handleInComeSucc.bind(this));
+    },
+    //待收收益
+    getDaiShouInfo() {
+        let id = this.data.userId;
         const data2 = {
-            user_id:card.user_id
+            user_id:id
         };
         //调用收益。
         utils.sendRequest(api.ZhunBeiTiXian, data2, this.handleInTixianSucc.bind(this));
@@ -77,31 +100,32 @@ Page({
             })
         }
     },
+    //绑定手机页面
     handleBindPhone() {
         wx.navigateTo({
           url: '/pages/user/tel/tel'
         })
     },
-  // 点击跳转到订单页面
+    // 点击跳转到订单页面
     handleAllOrder() {
         wx.navigateTo({
           url: '/pages/user/order/order'
         })
     },
-  //待付款
+    //待付款
     handleWillPay(e) {
         let indexNum = e.currentTarget.dataset.id; 
         wx.navigateTo({
             url: '/pages/user/order/order?id='+indexNum
         })
     },
-  // 跳转到待收收益
+    // 跳转到待收收益
     handleWillIncome(e) {
         wx.navigateTo({
           url: "/pages/user/willincome/will"
         })
     },
-  //跳转到累计收益
+    //跳转到累计收益
     handleIncomed(e) {
         wx.navigateTo({
           url: "/pages/user/incomed/incomed"

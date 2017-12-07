@@ -8,7 +8,6 @@ Page({
         hasTicket:false
     },
     onLoad(options) {
-        console.log(options)
         options.way? this.setData({
             tabs: ["可用","不可用"],
             way:2,
@@ -37,6 +36,7 @@ Page({
             activeIndex: e.currentTarget.id
         });
     },
+    //优惠券信息
     getTicketInfo() {
         let id = this.data.userId,
             name = this.data.subName,
@@ -45,7 +45,6 @@ Page({
             goodsid = this.data.goodsid,
             amount = this.data.amount,
             cartId = this.data.cartId;
-            console.log(addrid,goodsid,amount)
         const data ={
                     branchId:subId,
                     user_id:id,
@@ -59,7 +58,6 @@ Page({
         utils.sendRequest(api.TicketInfoUrl, data, this.handleGetSucc.bind(this));
     },
     handleGetSucc(res) {
-        console.log(res.data[0])
         let has = [],
             used = [],
             timeOut = [];
@@ -80,14 +78,12 @@ Page({
             usedList:used,
             timeOutList:timeOut
         })
-        console.log(this.data.ticketList)
     },
     handleUseTicket(e) {
         let id = e.currentTarget.dataset.id,
             num = e.currentTarget.dataset.num,
             carId = this.data.cartId,
             addrId = this.data.addrId;
-            console.log(id,num)
             wx.redirectTo({
                 url: '/pages/orderdetail/index?ticketid='+id+'&&ticketnum='+num+'&&cartid='+carId+'&&addrid='+addrId
             });

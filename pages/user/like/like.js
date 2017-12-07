@@ -14,16 +14,14 @@ Page({
     */
     onLoad(options) {
         let card = wx.getStorageSync('UserCard');
-        console.log(card)
         this.setData({
             userId:card.user_id
         })
         this.getLikeList();
-        console.log(this.data.userId)
     },
+    //收藏商品数据列表
     getLikeList() {
         let userId = this.data.userId;
-        console.log(userId)
         const data ={
             userid:userId,
             limit:''

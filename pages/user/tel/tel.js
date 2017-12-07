@@ -36,12 +36,6 @@ Page({
             })
         }
     },
-    /**
-    * 生命周期函数--监听页面初次渲染完成
-    */
-    onReady() {
-
-    },
     handleName(e) {
         this.setData({
             name:e.detail.value

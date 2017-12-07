@@ -84,7 +84,6 @@ Page({
     },
     //处理成功详情页函数
     handleDetailInfo(res) {
-        console.log(res)
         let goodsList = res.data.data;
         goodsList[0].makeMoney = goodsList[0].makeMoney;
         this.setData({
@@ -120,7 +119,8 @@ Page({
     getCartGoodsNum() {
         let user = this.data.userId;
         const data ={
-            userid:user
+            userid:user,
+            token:token
         };
         utils.sendRequest(api.CartGoodsNum, data, this.handleCartNum.bind(this));
     },
@@ -200,7 +200,7 @@ Page({
             hotList: list
         });
     },
-    // 显示商品规格弹窗
+    // 加入购物车
     handleAddCart(e) {
         this.setData({
           showDialog: !this.data.showDialog
@@ -233,8 +233,11 @@ Page({
         let code = res.statusCode;
         if(code == 200) {
             wx.showModal({
-              content: '加入购物车成功',
-              showCancel: false
+                content: '加入购物车成功',
+                showCancel: false,
+            })
+            this.setData({
+                num:1
             })
         }
         this.getCartGoodsNum()
@@ -242,7 +245,8 @@ Page({
     // 弹窗上的关闭
     handleClosedModel() {
         this.setData({
-          showDialog: false
+            showDialog: false,
+            num:1
         });
     },
     // 前往订单页面
@@ -312,7 +316,13 @@ Page({
           num: num
         });
     },
-
+    inputCount(e) {
+        let num = e.detail.value;
+        num == 0? num = 1:num;
+        this.setData({
+            num:num
+        })
+    },
   /**
    * 绑定减数量事件
    */
@@ -333,39 +343,6 @@ Page({
         wx.redirectTo({
             url: '/pages/detail/detail?id='+isId
         });
-    },
-    //点击添加到购物车
-    handleAddCart(e) {
-        // 传商品信息 
-        let userId = this.data.userId;
-        let goodsId = e.target.dataset.id,
-            goodsName = e.target.dataset.name,
-            goodsPrice = e.target.dataset.price,
-            goodsit = e.target.dataset.it;
-
-            if (goodsit == null|| goodsit<=0 ) {//库存判断
-                wx.showModal({content: '库存不足抱歉哟~',showCancel: false})
-            }else {
-                const data = {
-                    userid:userId,
-                    goodsId:goodsId,
-                    goods_name:goodsName,
-                    goods_price:goodsPrice,
-                    goods_number:1
-                };
-                utils.sendRequest(api.AddGoodtoCart, data, this.handleAddGoodtoCartSucc.bind(this))
-            } 
-           
-    },
-    //调用成功添加购物车函数
-    handleAddGoodtoCartSucc(res) {
-        let code = res.statusCode;
-        if(code == 200) {
-            wx.showModal({
-              content: '在购物车等您哟~',
-              showCancel: false
-            })
-        }
     },
     onShareAppMessage() {
         let id = this.data.goodsId,

@@ -19,7 +19,6 @@ Page({
             show = wx.getStorageSync('seller'),
             db = wx.getStorageSync('dbid'),
             ifHave = false;
-            console.log(show,db)
             if(show&&db=='') {
                 ifHave = true;
             }else if (card.distribution_id==db) {
@@ -41,6 +40,7 @@ Page({
         this.getShopInfo();
         this.getShopList();
     },
+    //店铺信息
     getShopInfo() {
         let id = this.data.dbId,
             lv = this.data.dbLv,
@@ -62,6 +62,7 @@ Page({
             sign:res.data.data.storeimg
         })
     },
+    //店铺商品列表
     getShopList() {
         let id = this.data.dbId,
             lv = this.data.dbLv,
@@ -79,11 +80,11 @@ Page({
         utils.sendRequest(api.DistributionGoods, data, this.HandleShopListSucc.bind(this)); 
     },
     HandleShopListSucc(res) {
-        console.log(res)
         this.setData({
             goodsList:res.data
         })
     },
+    //操作特殊商品
     handleDbGoods(e) {
         let goodsId = e.target.dataset.id,
             dbId =  e.target.dataset.db,
@@ -92,7 +93,6 @@ Page({
             list = this.data.goodsList;
         if (dbId == 0) {
                 list[index].distribution_goods = 1;//改变页面显示效果
-                console.log(list[index])
                 this.setData({
                     goodsList:list
                 });

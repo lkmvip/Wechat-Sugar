@@ -20,20 +20,6 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
-function sendRequest(path, data, callback) {
-    wx.request({
-        url: path, 
-        data: data,
-        header: {
-            'content-type': 'application/json'
-        },
-        method: "POST",
-        success: callback,
-        fail:(res)=>{
-          console.log(res)
-        } 
-    })  
-}
 function login(callback,reset) {
     wx.login({
             success: res => {
@@ -83,7 +69,6 @@ function login(callback,reset) {
 
 const handleGetOpenIdSuccess = res => {
         try {
-            console.log(res.data.distribution_id)
             wx.setStorageSync('UserCard', res.data)
             res.data.distribution_id == 0?wx.setStorageSync('seller', false):wx.setStorageSync('seller', true);
             
@@ -100,6 +85,25 @@ const handleReset = res => {
                 });
         }
     }
+
+function sendRequest(path, data, callback) {
+    var card = wx.getStorageSync('UserCard');
+    var obj = data;
+        obj["token"] = card.user_id;
+        console.log(obj)
+    wx.request({
+        url: path, 
+        data: data,
+        header: {
+            'content-type': 'application/json'
+        },
+        method: "POST",
+        success: callback,
+        fail:(res)=>{
+          console.log(res)
+        } 
+    })  
+}
 
 module.exports = {
   formatTime: formatTime,

@@ -50,7 +50,7 @@ Page({
         this.setData({
             isBtnShow: true 
         });
-        if (val != ''&& err == 0) {
+        if (val != ''&& err == 0) {//分类页面搜索上拉加载
             setTimeout(()=>{
                 let id = this.data.dbId,
                 lv = this.data.dbLv;
@@ -112,10 +112,8 @@ Page({
     },
     //当用户点击键盘搜索按钮之后执行 商品搜索
     handleSearch(e) {
-
         let id = this.data.dbId,
             lv = this.data.dbLv;
-
         this.setData({
             inputVal: e.detail.value
         });

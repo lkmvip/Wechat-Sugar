@@ -28,7 +28,7 @@ Page({
             show = wx.getStorageSync('seller'),
             db = wx.getStorageSync('dbid'),
             ifHave = false;
-        if(show&&db=='') {
+        if(show&&db=='') {//分享状态操作
             ifHave = true;
         }else if (card.distribution_id==db) {
             ifHave = true;
@@ -38,10 +38,10 @@ Page({
             ifHave = false;
         };
         this.setData({
-            moreId:options.id,
-            title:options.name,
+            moreId:options.id,//从查看更多的id
+            title:options.name,//传过来的标题名字
             brandId:options.brandid,//分类页面品牌ID
-            code:options.codeid,
+            code:options.codeid,//
             userId:card.user_id,
             dbId:card.distribution_id,
             dbLv:card.distribution_level,
@@ -50,12 +50,7 @@ Page({
         })
         this.getMoreGoodsInfo();
     },
-    /**
-    * 用户点击右上角分享
-    */
-    onShareAppMessage() {
-
-    },
+    //查看更多的信息
     getMoreGoodsInfo() {
         let isId = this.data.moreId,
             listId = this.data.brandId,
@@ -74,6 +69,7 @@ Page({
             };
             utils.sendRequest(api.AllGoodsUrl, data, this.handleMoreBrandSucc.bind(this)); 
         };
+        //新分类商品进入
         if(newbrandId) {
             const data = {
                 distribution_id:id,
@@ -117,16 +113,13 @@ Page({
     handleMoreGoodsSucc(res) {
         let goodsInfo = res.data.data,
             arr = [];
-             // console.log(goodsInfo)
         goodsInfo.map((item,index) => arr.push(item.goods))
-        console.log(arr)
         this.setData({
             moreGoods : arr[0]
         })
     },
     //请求品牌商品成功处理函数 
     handleMoreBrandSucc(res) {
-        console.log(res)
         let brandInfo = '';
         res.data.error == 100 ? brandInfo = true :brandInfo = false;
         this.setData({
@@ -180,6 +173,7 @@ Page({
             })
         }
     },
+    //添加购物车
     handleAddGoods(e) {
         let goodsId = e.target.dataset.id,
             dbId =  e.target.dataset.db,
@@ -188,7 +182,6 @@ Page({
             list = this.data.brandList;
          if (dbId == 0) {
                 list[index].distribution_goods = 1;//改变页面显示效果
-                console.log(list[index])
                 this.setData({
                     brandList:list
                 });
@@ -209,13 +202,13 @@ Page({
                 utils.sendRequest(api.DistributionDel, data, this.handleDelDbSucc.bind(this))
             }
     },
+    //上下架特殊商品
     handleDbGoods(e) {
         let goodsId = e.target.dataset.id,
             dbId =  e.target.dataset.db,
             id = this.data.dbId,
             index = e.target.dataset.index,
             list = this.data.moreGoods;
-            console.log(list)
          if (dbId == 0) {
                 list[index].distribution_goods = 1;//改变页面显示效果
                 console.log(list[index])

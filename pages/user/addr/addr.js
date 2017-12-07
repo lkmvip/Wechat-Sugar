@@ -33,6 +33,7 @@ Page({
             cartId:id,
             userId:card.user_id
         })
+        //调用地址接口
         const data ={
             user_id:card.user_id,
             status:'',
@@ -106,7 +107,7 @@ Page({
             province = this.data.province,
             city = this.data.city,
             county = this.data.county;
-        list.unshift({
+        list.unshift({//默认添加第一条数据 北京东城区
             address:"",
             address_id:"",
             address_name:"",
@@ -210,21 +211,21 @@ Page({
             user = e.detail.value,
             reg = /^[a-zA-Z0-9\u4e00-\u9fa5]{2,20}$/;
         if (!reg.test(user)) {
-            var _this = this;
                wx.showModal({
                 content:'请输入正确的名字',
                 showCancel:false,
                 confirmColor:'#3cc51f',//默认值为#3cc51f
-                success:function(res){
+                success:res => {
                     if(res.confirm){
                         list[index].consignee = '';
-                        _this.setData({
+                        this.setData({
                             addrList: list
                         });
                     }
                 }
             })
         }else{
+            //联系人
             list[index].consignee = user;
             list[index].show = false;
             this.setData({
@@ -240,15 +241,14 @@ Page({
             val = e.detail.value,
             reg = /^1(3|4|5|7|8)\d{9}$/;
         if (!reg.test(val)) {
-            var _this = this;
                wx.showModal({
                 content:'请输入正确的手机号',
                 showCancel:false,
                 confirmColor:'#3cc51f',//默认值为#3cc51f
-                success:function(res){
+                success:res => {
                     if(res.confirm){
                         list[index].mobile = '';
-                        _this.setData({
+                        this.setData({
                             addrList: list
                         });
                     }
@@ -269,7 +269,6 @@ Page({
             list = this.data.addrList,
             val = e.detail.value;
         if(val == " ") {
-             var _this = this;
                wx.showModal({
                 content:'请输入详细地址信息',
                 showCancel:false,
@@ -316,14 +315,14 @@ Page({
         wx.pageScrollTo({
           scrollTop: 0
         });
-        let index = e.target.dataset.id,
-            list = this.data.addrList,
-            isBack = list[index].area,
+        let index = e.target.dataset.id,//添加数据下标
+            list = this.data.addrList,//地址数据列表
+            isBack = list[index].area,//三级联动按钮
             name = list[index].consignee,
             phone = list[index].mobile,
             arrdid = list[index].address_id,
-            area = [list[index].province,list[index].city,list[index].district].toString(),
-            detail = list[index].address,
+            area = [list[index].province,list[index].city,list[index].district].toString(),//地区
+            detail = list[index].address,//详细地址
             userId = this.data.userId,
             show = this.data.cartId;//判断在哪个页面显示弹窗
             list[index].show = true;//改变当前对应按钮的disable属性

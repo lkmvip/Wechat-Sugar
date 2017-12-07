@@ -1,4 +1,5 @@
 <!--pages/ordermsg/msg.wxml-->
+<view style="width: 100%;padding-bottom: 100rpx; ">
 <block wx:for="{{orderInfo}}" wx:key="index">
 <view class="will-send">
 	<view class="will-box">
@@ -95,3 +96,4 @@
 	</view>
 </block>
 </block>
+</view>

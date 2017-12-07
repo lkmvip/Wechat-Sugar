@@ -25,6 +25,7 @@ Page({
         });
         this.getShopInfo();
     },
+    //店铺信息
     getShopInfo() {
         let id = this.data.dbId,
             lv = this.data.dbLv;
@@ -41,9 +42,7 @@ Page({
             sign:res.data.data.storeimg
         })
     },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
+   //上传logo图片
     handleUploadPic() {
         let id = this.data.dbId;
         wx.chooseImage({
@@ -61,6 +60,7 @@ Page({
           }
         })
     },
+    //上传背景图片
     handleUploadSign() {
         let id = this.data.dbId;
         wx.chooseImage({
@@ -70,7 +70,6 @@ Page({
           success: res => {
             // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
             var tempFilePaths = res.tempFilePaths;
-            console.log(tempFilePaths)
             this.setData({
                 sign: tempFilePaths
             })
@@ -83,13 +82,13 @@ Page({
         this.setData({
             name:e.detail.value
         })
-        console.log(e)
     },
     handleText(e) {
         this.setData({
             text:e.detail.value
         }) 
     },
+    //保存店铺操作信息
     handleSaveMsg() {
         let name = this.data.name,
             text = this.data.text,
@@ -125,7 +124,6 @@ Page({
     }
 })
 function upload(page, path,way,id) {
-    console.log(arguments)
   wx.showToast({
     icon: "loading",
     title: "正在上传"

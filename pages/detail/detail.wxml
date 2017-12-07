@@ -139,7 +139,7 @@
 				<view class="dialog-text" >数量:</view>
 				<view class="cart-count">
                     <text class="cart-count-down" bindtap="minusCount">－</text>
-                    <text class="cart-count-num" >{{num}}</text>
+                    <input class="cart-count-num" type="digit" bindblur="inputCount" value="{{num}}" />
                     <text class="cart-count-add" bindtap="addCount">＋</text>
                 </view>
 			</view>

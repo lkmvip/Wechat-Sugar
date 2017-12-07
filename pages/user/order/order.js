@@ -14,7 +14,6 @@ Page({
             duration: 3500
         });
         let card = wx.getStorageSync('UserCard');
-        console.log(card.distribution_id)
         this.setData({
             activeIndex: options.id,
             userId:card.user_id,
@@ -26,15 +25,35 @@ Page({
             userId = this.data.userId,
             dbId = this.data.dbId;
         if (status == 1) {//未付款
-            const data ={
-                    user_id:userId,
-                    status:1,
-                    orderBy:'',
-                    distribution_id:dbId
-                };
-            utils.sendRequest(api.OrderInfoList, data, this.handleWillPaySucc.bind(this));
+            this.getWeiFuKuan();
         }
         if (status == 2) {//待收货
+            this.getDaiShouHuo();
+        }
+        if (status == 3) {//已收货
+            this.getYiShouHuo();
+        }
+    },
+    onShow() {
+        this.handleGetList();
+    },
+    getWeiFuKuan () {
+    let status = this.data.activeIndex,
+        userId = this.data.userId,
+        dbId = this.data.dbId;
+        const data ={
+                user_id:userId,
+                status:1,
+                orderBy:'',
+                distribution_id:dbId
+            };
+        utils.sendRequest(api.OrderInfoList, data, this.handleWillPaySucc.bind(this));
+
+    },
+    getDaiShouHuo() {
+        let status = this.data.activeIndex,
+            userId = this.data.userId,
+            dbId = this.data.dbId;
             const data ={
                     user_id:userId,
                     status:3,
@@ -42,8 +61,11 @@ Page({
                     distribution_id:dbId
                 };
             utils.sendRequest(api.OrderInfoList, data, this.handleWillTakeSucc.bind(this));
-        }
-        if (status == 3) {//已收货
+    },
+    getYiShouHuo() {
+        let status = this.data.activeIndex,
+            userId = this.data.userId,
+            dbId = this.data.dbId;
             const data ={
                     user_id:userId,
                     status:4,
@@ -51,11 +73,8 @@ Page({
                     distribution_id:dbId
                 };
             utils.sendRequest(api.OrderInfoList, data, this.handleTakeDownSucc.bind(this));
-        }
     },
-    onShow() {
-        this.handleGetList();
-    },
+    //tab选项操作
     tabClick(e) {
         wx.showToast({
             title: '加载中',
@@ -69,31 +88,13 @@ Page({
             userId = this.data.userId,
             dbId = this.data.dbId;
         if (status == 1) {//未付款
-            const data ={
-                    user_id:userId,
-                    status:1,
-                    orderBy:'',
-                    distribution_id:dbId
-                };
-            utils.sendRequest(api.OrderInfoList, data, this.handleWillPaySucc.bind(this));
+            this.getWeiFuKuan();
         }
         if (status == 2) {//待收货
-            const data ={
-                    user_id:userId,
-                    status:3,
-                    orderBy:'',
-                    distribution_id:dbId
-                };
-            utils.sendRequest(api.OrderInfoList, data, this.handleWillTakeSucc.bind(this));
+            this.getDaiShouHuo();
         }
         if (status == 3) {//已收货
-            const data ={
-                    user_id:userId,
-                    status:4,
-                    orderBy:'',
-                    distribution_id:dbId
-                };
-            utils.sendRequest(api.OrderInfoList, data, this.handleTakeDownSucc.bind(this));
+            this.getYiShouHuo();
         }
     },
     handleGetList() {// 获取全部订单列表
@@ -108,7 +109,6 @@ Page({
         utils.sendRequest(api.OrderInfoList, data, this.handleOrderInfoListSucc.bind(this));
     },
     handleOrderInfoListSucc(res) {
-        console.log(res)
         wx.showToast({title: '加载成功',icon: 'success'});      
         this.setData({//反转数组 
             allOrder:res.data.data.reverse()
@@ -151,6 +151,7 @@ Page({
             :
             wx.showModal({content: '出错啦，工程师正在抢修~',showCancel: false});
             this.handleGetList();
+            this.getWeiFuKuan();//调取新数据
         } catch(e) {
             // statements
             console.log(e);
@@ -203,6 +204,7 @@ Page({
             :
             wx.showModal({content: '出错啦，工程师正在抢修~',showCancel: false});
             this.handleGetList();
+            this.getDaiShouHuo();
         } catch(e) {
             // statements
             console.log(e);

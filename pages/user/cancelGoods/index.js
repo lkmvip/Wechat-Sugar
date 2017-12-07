@@ -48,7 +48,8 @@ Page({
         this.setData({
             cancelList:info,
             cancelPrice:info.shopprice,
-            max:info.max_refund.toFixed(2)
+            max:info.max_refund.toFixed(2),
+            recid:info.rec_id
         })
     },
     //减少
@@ -98,10 +99,10 @@ Page({
             val = this.data.remark,
             userId = this.data.userId,
             imgArr = wx.getStorageSync('cancelImg'),
-            arr = [];
-                 console.log(typeof imgArr)
+            arr = [],
+            src = this.data.src;
+            upload(this,src,id,'');
             imgArr.map( item => arr.push(JSON.parse(item.data)))
-            console.log(arr)
         const data ={
             user_id:userId,
             post:{
@@ -117,7 +118,6 @@ Page({
         utils.sendRequest(api.CancelGoods, data, this.handleRequestSucc.bind(this));
     },
     handleRequestSucc(res) {
-        console.log(res)
         try {
              if(res.data.error == 0){
                 wx.showModal({
@@ -223,7 +223,8 @@ Page({
             })
     },
     handleCancelPic() {
-        let id = this.data.dbId;
+        let id = this.data.userId,
+            rec = this.data.recid;
         wx.chooseImage({
           count: 3, // 默认9
           sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -235,7 +236,6 @@ Page({
             this.setData({
                 src: tempFilePaths
             })
-            upload(this,tempFilePaths,'','');
           }
         })
     },
@@ -252,7 +252,6 @@ Page({
     }
 })
 function upload(page, path,way,id) {
-    console.log(path)
   wx.showToast({
     icon: "loading",
     title: "正在上传"
@@ -264,11 +263,12 @@ function upload(page, path,way,id) {
           url: api.CancelImg,
           filePath: path[i],          
           name: 'file',
+          formData:{
+            'rec_id': way,
+          },
           header: { "Content-Type": "multipart/form-data" },
           success: res => {
-            test.push(res);
             wx.setStorageSync('cancelImg',test)
-            console.log(test)
             if (res.statusCode != 200) { 
               wx.showModal({
                 title: '提示',

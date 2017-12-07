@@ -25,10 +25,10 @@ Page({
             title: "正在加载"
         })
         let id = options.cartid,
-            addrid = options.addrid,
+            addrid = options.addrid,//地址id
             card = wx.getStorageSync('UserCard'),
-            couponId = options.ticketid,
-            couponNum =options.ticketnum,
+            couponId = options.ticketid,//优惠券id
+            couponNum =options.ticketnum,//优惠券个数
             db = wx.getStorageSync('dbid');
         this.setData({
             cartId:id,
@@ -56,6 +56,7 @@ Page({
         };
         utils.sendRequest(api.OrderList, data, this.handleOrderList.bind(this));
     },
+    //支付页面成功列表
     handleOrderList(res) {
         wx.hideToast()
         let result = res.data;
@@ -68,7 +69,7 @@ Page({
             goodsIds:result.cartgoods[0].goods_id,
             totalamount:result.cartgoods[0].subtotal
         });
-
+        //判断是否使用优惠券
         this.data.couponId ==''?
         this.setData({
             items: [
@@ -99,12 +100,6 @@ Page({
             phone:list[0].mobile
         })
     },
-    /**
-    * 生命周期函数--监听页面初次渲染完成
-    */
-    onReady () {
-  
-    },
     // 地址页面
     handleAddr() {
         wx.redirectTo({
@@ -118,7 +113,6 @@ Page({
             userId = this.data.userId,
             goodsid = this.data.goodsIds,
             amount = this.data.totalamount;
-            console.log(goodsid,amount)
         wx.navigateTo({
             url: '/pages/user/ticket/ticket?way=2&&cartid='+id+'&&addrid='+addr+'&&goodsid='+goodsid+'&&amount='+amount
         })
@@ -127,19 +121,18 @@ Page({
     handleOrderPay() {
         let addrid = this.data.addrId,
             carid = this.data.cartId,
-            reightrmb = this.data.freightNum,
-            allprice = this.data.orderPrice,
-            userId = this.data.userId,
-            couponId = this.data.couponId,
-            couponMoney = this.data.couponMoney,
+            reightrmb = this.data.freightNum,//运费
+            allprice = this.data.orderPrice,//全部价钱
+            userId = this.data.userId,//用户id
+            couponId = this.data.couponId,//优惠券id
+            couponMoney = this.data.couponMoney,//优惠券价格
             dbId = this.data.dbId,
             dbLv = this.data.dbLv,
             subId = this.data.subId,
-            list = this.data.orderList,
+            list = this.data.orderList,//订单列表数组
             arr = [],
-            useTicket = this.data.isUse,
+            useTicket = this.data.isUse,//使用优惠券状态
             db = this.data.dbstatus;
-            console.log(useTicket)
             list.map(item => arr.push(item.goods_id));
         const data ={
             user_id:userId,
@@ -163,13 +156,11 @@ Page({
                 turnnum:'',    
             }
         };
-        console.log(data)
         //请求生成订单接口
         utils.sendRequest(api.NewOrderInfo, data, this.handleNewOrderInfo.bind(this));
     },
     //请求提交订单成功
     handleNewOrderInfo(res) {
-        console.log(res)
         try {
             let frt = this.data.freightNum;
             let userId = this.data.userId;
@@ -194,6 +185,7 @@ Page({
         }
     },
     handleCartDelInfo(res) {},
+    //选择使用优惠券
     checkboxChange(e) {
         e.detail.value == ''?
         this.setData({

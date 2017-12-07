@@ -36,6 +36,7 @@ Page({
     },
 
     onLoad(options) {
+        //用户授权操作
          utils.login(this.handleLogin.bind(this),this.handleReset.bind(this));
          wx.showToast({
             icon: "loading",
@@ -45,7 +46,7 @@ Page({
     },
     handleLogin(res) {
         try {
-            wx.setStorageSync('UserCard', res.data)
+            wx.setStorageSync('UserCard', res.data)//验证用户身份
             res.data.distribution_id == 0?wx.setStorageSync('seller', false):wx.setStorageSync('seller', true);
             
         } catch (e) {    
@@ -76,6 +77,7 @@ Page({
         this.getTabInfo();
         this.getIndexSet();
     },
+    //当用户点击拒绝授权的操作
     handleReset(res) {
         if (res.confirm) {
                 wx.openSetting({
@@ -88,7 +90,6 @@ Page({
     onReady() {
         let card = wx.getStorageSync('UserCard'),
             show = wx.getStorageSync('seller');
-            console.log(card)
         this.setData({
             userId:card.user_id,
             dbId:card.distribution_id,
@@ -101,23 +102,7 @@ Page({
             this.getTabInfo();
             this.getIndexSet();
     },
-    // // 获取屏幕高度
-    // handleGetHeight(res) {
-    //     this.setData({
-    //         windowHeight:res.windowHeight+'px'
-    //     })
-    // },                                                              这些东西 不确定要不要用
-    // //服务商信息
-    // getDistribution() {
-    //     let id = this.data.dbId,
-    //         lv = this.data.dbLv;
-    //     const data = {
-    //         shareLevel:'',
-    //         distributionId:-1,
-    //         distributionLevel:3
-    //     };
-    //     utils.sendRequest(api.DistributionUrl, data, this.handleGetDbSucc.bind(this));
-    // },        //请求TabUrl函数
+    //分类选项卡操作
     getTabInfo() {
         const data = {};
         utils.sendRequest(api.IndexNewTab, data, this.handleGetTabSucc.bind(this));
@@ -144,7 +129,7 @@ Page({
         const data = {
             distribution_id:id,
             distribution_level:lv,
-            limitIndex:this.data.limitIndex
+            limitIndex:this.data.limitIndex//查询条件
         };
         //传值给后端，获取到全部商品的首次信息
         utils.sendRequest(api.AllGoodsUrl, data, this.handleGetAllSucc.bind(this));
@@ -165,11 +150,10 @@ Page({
     handleGetIndexSucc(res) {
          wx.hideToast();
         // 返回商品列表和品牌列表的信息
-        console.log(res)
         let goodsInfo = res.data.data;
         this.setData({
             goodsList : goodsInfo,
-            dbGoods:res.data.distributionGoodsInfo
+            dbGoods:res.data.distributionGoodsInfo//特殊商品
         })
     }, 
     //请求BannerUrl成功处理函数  
@@ -188,6 +172,7 @@ Page({
             allGoodsList : arr
         })
     },
+    //首页专题成功操作
     handleGetIndexSetSucc(res) {
         let list = res.data;
         this.setData({
@@ -204,7 +189,7 @@ Page({
     onReachBottom() {
         let val = this.data.inputVal,
             err = this.data.isErr,
-            load = this.data.isLoading,
+            load = this.data.isLoading,//loading 状态
             load1 = this.data.isLoading1;
         this.setData({
             isBtnShow: true 
@@ -228,7 +213,7 @@ Page({
                     utils.sendRequest(api.AllGoodsUrl, data, this.handleReachBottom.bind(this));
             },1500)
         };
-        if (val != ''&& err == 0 && load1) {
+        if (val != ''&& err == 0 && load1) {//这里是 搜索里面的下拉加载
             setTimeout(()=>{
                     let num = this.data.limitIndex;
                     let id = this.data.dbId,
@@ -428,11 +413,10 @@ Page({
             list = this.data.goodsList;
             if (dbId == 0) {
                 list[num].goods[index].distribution_goods = 1;//改变页面显示效果
-                console.log(list[num].goods[index])
+
                 this.setData({
                     goodsList:list
                 });
-                console.log(this.data.goodsList)
                 const data = {
                     goodsId:goodsId,
                     distribution_id:id
@@ -465,7 +449,6 @@ Page({
             list = this.data.allGoodsList;
         if (dbId == 0) {
                 list[index].distribution_goods = 1;//改变页面显示效果
-                console.log(list[index])
                 this.setData({
                     allGoodsList:list
                 });
@@ -495,7 +478,6 @@ Page({
             list = this.data.searchList;
         if (dbId == 0) {
                 list[index].distribution_goods = 1;//改变页面显示效果
-                console.log(list[index])
                 this.setData({
                     searchList:list
                 });

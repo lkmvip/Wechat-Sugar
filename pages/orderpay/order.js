@@ -18,10 +18,8 @@ Page({
     */
     onLoad(options) {
         //判断是从购物车流程进入，还是从订单列表进入
-        console.log(options)
         if (options.msg) {
             let order = JSON.parse(options.msg),freight = options.count;
-            console.log(order)
             this.setData({
                 orderPrice:order.money,//订单金额
                 orderNum:order.order_sn,//订单编号
@@ -33,7 +31,6 @@ Page({
             //这里是从订单列表进入的数据
             let order = JSON.parse(options.obj),
                 amount = order[0].order_amount;
-            console.log()
             this.setData({
                 orderPrice:Number(amount),
                 orderNum:order[0].order_sn,
@@ -60,12 +57,6 @@ Page({
         this.setData({
             rmb:res.data.accountbalance
         })
-    },
-    /**
-    * 用户点击右上角分享
-    */
-    onShareAppMessage() {
-
     },
     // 默认选择微信支付
     handleCheckWeChat() {
@@ -149,18 +140,19 @@ Page({
     },
     //组合支付
     handleZuHePaySucc(res) {
-            let orderSn = this.data.orderNum,
-            orderId = this.data.orderId,
-            wxCheck = this.data.check,
-            rmbCheck = this.data.checkRmb,
-            payWay = '',
+            let orderSn = this.data.orderNum,//订单编号
+            orderId = this.data.orderId,//订单id
+            wxCheck = this.data.check,//微信支付按钮
+            rmbCheck = this.data.checkRmb,//余额支付按钮
+            payWay = '',//支付方式
             zuHe = 0,
-            allPrice = this.data.orderPrice,
-            wxPrice = this.data.handlePrice,
-            rmbNum = this.data.rmbNum,
-            userId = this.data.userId,
-            openId = this.data.openId,
-            result = res.data;
+            allPrice = this.data.orderPrice,//全部价格
+            wxPrice = this.data.handlePrice,//微信支付价格
+            rmbNum = this.data.rmbNum,//余额
+            userId = this.data.userId,//用户id
+            openId = this.data.openId,//
+            result = res.data;//返回值结果
+            //微信支付
             wx.requestPayment({
                 'appId': result.appId,
                 'timeStamp': result.timeStamp,

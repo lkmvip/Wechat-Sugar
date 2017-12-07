@@ -15,7 +15,7 @@ Page({
     */
     onLoad(options) {
         let card = wx.getStorageSync('UserCard');
-        const data ={
+        const data ={//收益接口
                     user_id:card.user_id,
                     distribution_id:card.distribution_id,
                     distribution_level:card.distribution_level
@@ -23,7 +23,6 @@ Page({
         utils.sendRequest(api.UserInComeProfit  , data, this.handleGetSucc.bind(this));
     },
     handleGetSucc(res) {
-        console.log(res)
         let arr = res.data[0],
             ready = res.data[1].readyMoney;
         this.setData({

@@ -3,7 +3,6 @@ const utils = require('utils/util.js');//调用封装的request
 App({
     onReady() {
     // 页面渲染完成
-        console.log(2)
     },
     onUnload() {
     // 页面关闭

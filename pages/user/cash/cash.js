@@ -31,14 +31,12 @@ Page({
 		const data = {
 			user_id:card.user_id
 		};
-		console.log(data)
         utils.sendRequest(api.ZhunBeiTiXian, data, this.handleGetInfolSucc.bind(this));
        
 
 	},
+	//提现接口成功操作
 	handleGetInfolSucc(res) {
-		console.log(res)
-
 		res.data.data.map(item => {
             item.time = utils.formatTimeSec(new Date(Number(item.time)*1000));
         })

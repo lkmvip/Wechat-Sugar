@@ -21,6 +21,7 @@ Page({
             userId:card.user_id
         })
     },
+    //获取订单数据
     handleGetInfo(id) {
         let userId = this.data.userId;
         const data ={
@@ -32,12 +33,12 @@ Page({
         
     },
     handleOrderInfoDetailSucc(res) {
-        console.log(res)
         this.setData({
             orderInfo:res.data.data,
             status:res.data.data[0].status
         });
     },
+    //如果为待付款状态，去支付页面操作
     handleOrderPay() {
         let obj = JSON.stringify(this.data.orderInfo);
         wx.redirectTo({
