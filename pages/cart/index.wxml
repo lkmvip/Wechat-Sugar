@@ -17,7 +17,8 @@
                             <text class="cart-pro-price" style="color:#ff4242;">￥{{item.goods_price}}</text>
                             <view class="cart-count">
                                 <text class="cart-count-down" bindtap="minusCount" data-id="{{item.rec_id}}" data-index="{{index}}">－</text>
-                                <text class="cart-count-num">{{item.goods_number}}</text>
+                                <input class="cart-count-num" type="digit" data-id="{{item.rec_id}}" data-index="{{index}}"  bindblur="inputCount" value="{{item.goods_number}}" />
+                                <!-- <text class="cart-count-num">{{item.goods_number}}</text> -->
                                 <text class="cart-count-add" bindtap="addCount" data-id="{{item.rec_id}}" data-index="{{index}}">＋</text>
                             </view>
                         </view>
@@ -26,7 +27,6 @@
                 </view>
             </block>
         </view>
-
         <view class="cart-footer">
             <icon wx:if="{{selectAllStatus}}" type="success" color="#000" class="total-select left" bindtap="selectAll"/>
             <icon wx:else type="circle" color="#000" class="total-select left" bindtap="selectAll"/>
@@ -48,7 +48,9 @@
         <view class="line"></view>
         <view class="like-list">
             <view class="like-goods bg"  wx:for="{{likeList}}" wx:key="index"  data-index="{{index}}">
-                <image src="{{item.goods_img}}" class="like-image"/>
+                <navigator url="/pages/detail/detail?id={{item.id}}">
+                    <image src="{{item.goods_img}}" class="like-image"/>
+                </navigator>
                 <view class="like-price">
                     <view class="like-title">{{item.name}}</view>
                     <view class="new-price left" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   

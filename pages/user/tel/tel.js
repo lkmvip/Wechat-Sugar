@@ -30,9 +30,11 @@ Page({
 
     },
     handleInTixianSucc(res) {
+        console.log(res)
         if (res.data.tel!='') {
             this.setData({
-                tel:res.data.tel
+                tel:res.data.tel,
+                name:res.data.name
             })
         }
     },
@@ -156,6 +158,10 @@ Page({
                     if(res.confirm){
                         if (go) {
                             wx.redirectTo({
+                              url: '/pages/user/cash/cash'
+                            })
+                        }else {
+                            wx.switchTo({
                               url: '/pages/user/cash/cash'
                             })
                         }         

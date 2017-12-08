@@ -20,6 +20,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
     onLoad(options) {
+        console.log(options)
         wx.showToast({
             icon: "loading",
             title: "正在加载"
@@ -38,7 +39,9 @@ Page({
             dbId:card.distribution_id,
             dbLv:card.distribution_level,
             subId:card.subwebId,
-            dbstatus:db
+            dbstatus:db,
+            val:options.val,
+            pid:options.pid
         });
         this.getOrderInfo(id);
         this.getAddrInfo(addrid);
@@ -46,13 +49,15 @@ Page({
     // 获取支付页面列表
     getOrderInfo(id) {
         let userId = this.data.userId,
-            addr = this.data.addrid;
+            addr = this.data.addrid,
+            val = this.data.val,
+            pid = this.data.pid;
         const data ={
             user:userId,
             cart:id,
             address_id:'',
-            val:'',
-            product_id:''
+            val:val,
+            product_id:pid
         };
         utils.sendRequest(api.OrderList, data, this.handleOrderList.bind(this));
     },

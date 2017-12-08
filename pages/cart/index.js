@@ -188,6 +188,29 @@ Page({
         };
         utils.sendRequest(api.UpdateGoodsAmount, data, this.handleUpdateGoodsAmount.bind(this));
     },
+    inputCount(e) {
+        const index = e.currentTarget.dataset.index;
+        let carts = this.data.carts,
+            num = e.detail.value,
+            id = e.currentTarget.dataset.id,
+            goods = carts.length;//列表长度 
+        let userId = this.data.userId;;
+        num == 0? num = 1:num;
+        carts[index].goods_number = num;
+        this.setData({
+          carts: carts,
+          goodsNums: goods
+
+        });
+        this.getTotalPrice();
+        const data ={
+            user_id:userId,
+            rec_id:id,
+            amount:num
+
+        };
+        utils.sendRequest(api.UpdateGoodsAmount, data, this.handleUpdateGoodsAmount.bind(this));
+    },
 
     /**
     * 计算总价

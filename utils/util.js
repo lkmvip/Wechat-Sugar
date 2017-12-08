@@ -21,10 +21,13 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 function sendRequest(path, data, callback) {
-    var card = wx.getStorageSync('UserCard');
+    var card = wx.getStorageSync('UserCard'),
+        share = wx.getStorageSync('dbid');
     var obj = data;
         obj["token"] = card.token;
-        // console.log(obj)
+        obj["distribution_id"] = card.distribution_id;
+        obj["distribution_level"] = card.distribution_level;
+        obj["distribution"] = share;
     wx.request({
         url: path, 
         data: data,

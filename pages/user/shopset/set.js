@@ -18,10 +18,12 @@ Page({
    */
     onLoad(options) {
         let card = wx.getStorageSync('UserCard');
+        console.log(card)
             this.setData({
                 userId:card.user_id,
                 dbId:card.distribution_id,
-                dbLv:card.distribution_level
+                dbLv:card.distribution_level,
+                token:card.token
         });
         this.getShopInfo();
     },
@@ -44,7 +46,8 @@ Page({
     },
    //上传logo图片
     handleUploadPic() {
-        let id = this.data.dbId;
+        let id = this.data.dbId,
+            token = this.data.token;
         wx.chooseImage({
           count: 1, // 默认9
           sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -52,11 +55,10 @@ Page({
           success: res => {
             // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
             var tempFilePaths = res.tempFilePaths;
-            console.log(tempFilePaths)
             this.setData({
                 src: tempFilePaths
             })
-            upload(this,tempFilePaths,"logo",id);
+            upload(this,tempFilePaths,"logo",id,token);
           }
         })
     },
@@ -123,7 +125,7 @@ Page({
             });
     }
 })
-function upload(page, path,way,id) {
+function upload(page, path,way,id,token) {
   wx.showToast({
     icon: "loading",
     title: "正在上传"
@@ -134,7 +136,8 @@ function upload(page, path,way,id) {
       name: 'file',
       formData:{
         'user': way,
-        'distribution_id':id
+        'distribution_id':id,
+        'token':token
       },
       header: { "Content-Type": "multipart/form-data" },
       success: function (res) {

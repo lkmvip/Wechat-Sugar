@@ -88,6 +88,7 @@ Page({
     },
     //处理成功详情页函数
     handleDetailInfo(res) {
+        console.log(res)
         let goodsList = res.data.data;
         goodsList[0].makeMoney = goodsList[0].makeMoney;
         this.setData({
@@ -264,7 +265,6 @@ Page({
             _this = this,
             goodsit = e.target.dataset.it;
         let user = this.data.userId;
-            
         if (!this.data.showDialog) {
              if (goodsit == null|| goodsit<=0 ) {//库存判断
                 wx.showModal({content: '库存不足抱歉哟~',showCancel: false})
@@ -283,11 +283,15 @@ Page({
     },
     //请求成功后跳转
     handleGoPaySucc(res) {
+        console.log(res)
         let code = res.statusCode,
-            goodsid = res.data.rec_id;
+            goodsid = res.data.rec_id,
+            num = this.data.num,
+            sub = this.data.goodsInfo[0].id;
+            // console.log(id)
         if (code == 200) {
             wx.redirectTo({
-              url: '/pages/orderdetail/index?cartid='+goodsid
+              url: '/pages/orderdetail/index?cartid='+goodsid+'&val='+num+'&pid='+sub
             })
         }
     },
