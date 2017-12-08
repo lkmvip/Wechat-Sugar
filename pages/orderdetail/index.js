@@ -31,6 +31,7 @@ Page({
             couponId = options.ticketid,//优惠券id
             couponNum =options.ticketnum,//优惠券个数
             db = wx.getStorageSync('dbid');
+        console.log(db)
         this.setData({
             cartId:id,
             addrId:addrid,
@@ -138,6 +139,7 @@ Page({
             arr = [],
             useTicket = this.data.isUse,//使用优惠券状态
             db = this.data.dbstatus;
+            console.log(db)
             list.map(item => arr.push(item.goods_id));
         const data ={
             user_id:userId,
