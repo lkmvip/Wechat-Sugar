@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
     data: {
-
+        
     },
 
     /**
@@ -23,6 +23,7 @@ Page({
         utils.sendRequest(api.UserInComeProfit  , data, this.handleGetSucc.bind(this));
     },
     handleGetSucc(res) {
+        console.log(res)
         let arr = res.data[0],
             ready = res.data[1].readyMoney;
         this.setData({

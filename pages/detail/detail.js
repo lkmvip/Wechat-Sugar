@@ -31,6 +31,10 @@ Page({
     * 生命周期函数--监听页面加载
     */
     onLoad(options) {
+        wx.showToast({
+            icon: "loading",
+            title: "正在加载"
+        })
         wx.setStorageSync('dbid', options.db);
         let id = options.id,
             card = wx.getStorageSync('UserCard'),
@@ -119,8 +123,7 @@ Page({
     getCartGoodsNum() {
         let user = this.data.userId;
         const data ={
-            userid:user,
-            token:token
+            userid:user
         };
         utils.sendRequest(api.CartGoodsNum, data, this.handleCartNum.bind(this));
     },

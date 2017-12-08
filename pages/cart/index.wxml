@@ -1,4 +1,3 @@
-<import src="../component/like.wxml"/>
 <view>
 <!-- 如果购物车有商品的页面 -->
 	<view wx:if="{{hasList}}" style="height:100%;width:100%;">

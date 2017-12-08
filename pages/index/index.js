@@ -38,13 +38,14 @@ Page({
     onLoad(options) {
         //用户授权操作
          utils.login(this.handleLogin.bind(this),this.handleReset.bind(this));
-         wx.showToast({
-            icon: "loading",
-            title: "正在加载"
-          })
-     
     },
     handleLogin(res) {
+        console.log(1)
+        wx.showToast({
+            icon: "loading",
+            title: "正在加载"
+        })
+        console.log(res)
         try {
             wx.setStorageSync('UserCard', res.data)//验证用户身份
             res.data.distribution_id == 0?wx.setStorageSync('seller', false):wx.setStorageSync('seller', true);
@@ -87,21 +88,21 @@ Page({
                 });
         }
     },
-    onReady() {
-        let card = wx.getStorageSync('UserCard'),
-            show = wx.getStorageSync('seller');
-        this.setData({
-            userId:card.user_id,
-            dbId:card.distribution_id,
-            dbLv:card.distribution_level,
-            dbShow:show
-        });
-            this.getIndexInfo();
-            this.getBannerInfo();
-            this.getAllGoodsInfo();
-            this.getTabInfo();
-            this.getIndexSet();
-    },
+    // onShow() {
+    //     let card = wx.getStorageSync('UserCard'),
+    //         show = wx.getStorageSync('seller');
+    //     this.setData({
+    //         userId:card.user_id,
+    //         dbId:card.distribution_id,
+    //         dbLv:card.distribution_level,
+    //         dbShow:show
+    //     });
+    //         this.getIndexInfo();
+    //         this.getBannerInfo();
+    //         this.getAllGoodsInfo();
+    //         this.getTabInfo();
+    //         this.getIndexSet();
+    // },
     //分类选项卡操作
     getTabInfo() {
         const data = {};
@@ -141,6 +142,7 @@ Page({
     },
         //请求TabUrl成功处理函数
     handleGetTabSucc(res) {
+        console.log(res)
         let brandList = res.data;
         this.setData({
             extendList : brandList
@@ -148,6 +150,7 @@ Page({
     },
     //请求IndexUrl成功处理函数 
     handleGetIndexSucc(res) {
+        console.log(res)
          wx.hideToast();
         // 返回商品列表和品牌列表的信息
         let goodsInfo = res.data.data;
