@@ -1,18 +1,23 @@
 <!--index.wxml-->
 <view style="position:fixed;left:0;top:0;width: 100%;z-index: 10;">
     <view class="header bg">
-        <view class="header-wechat">
-            <image class="header-wechat" src="/image/index/code.png"></image>
-        </view>
+        <block wx:if="{{false}}">
+            <view class="header-wechat">
+                <image class="header-wechat" src="/image/index/code.png"></image>
+            </view>
+        </block>
         <view class="search">
             <view class="search-icon">
                 <icon type="search" size="16"/>
             </view>
-            <input class="search-input" confirm-type="search" value="{{inputVal}}" placeholder="达芙荻丽面膜" bindconfirm="handleSearch" bindinput="handleSearchValue"/>
+            <input class="search-input" confirm-type="search" value="{{inputVal}}" placeholder="搜索" bindblur="handleSearch" bindinput="handleSearchValue"/>
         </view>
-        <view class="header-wechat">
-            <image class="header-wechat" src="/image/index/message.png"></image>
-        </view>
+        <block wx:if="{{false}}">
+            <view class="header-wechat">
+                <image class="header-wechat" src="/image/index/message.png"></image>
+            </view>
+        </block>
+
     </view>
 </view>
 	
@@ -52,7 +57,7 @@
                 </view>
                 <view class="line"></view>
                         <view class="goods-list"  wx:for="{{dbGoods}}" wx:key="{{index}}"  data-index="{{index}}">  
-                        <navigator url="/pages/detail/detail?id={{item.id}}&special=true">
+                        <navigator url="/pages/detail/detail?id={{item.id}}&special=true&num={{item.id}}">
                             <image src="{{item.goods_img}}" class="special-image" />
                         </navigator>
                         <view style="display: flex;justify-content: space-between;">

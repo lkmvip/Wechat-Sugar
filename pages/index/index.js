@@ -40,6 +40,7 @@ Page({
          utils.login(this.handleLogin.bind(this),this.handleReset.bind(this));
     },
     handleLogin(res) {
+         console.log(res)
         wx.showToast({
             icon: "loading",
             title: "正在加载"
@@ -55,10 +56,15 @@ Page({
             show = wx.getStorageSync('seller'),
             db = wx.getStorageSync('dbid'),
             ifHave = false;
-            if(card.distribution_id!=''&&db== ''||card.distribution_id==db) {
-                console.log(1)
-                ifHave = true;
-            };
+            if(card.distribution_id!=''){
+                if((card.distribution_id!=''&&db== '')||card.distribution_id==db) {
+                    ifHave = true;
+                }else{
+                    ifHave = false;
+                }
+            }else{
+                ifHave = false;
+            }
         this.setData({
             userId:card.user_id,
             dbShow:ifHave
@@ -151,6 +157,7 @@ Page({
     },
     //请求AllUrl成功处理函数  
     handleGetAllSucc(res) {
+        console.log(res)
         const goods = res.data.data;
         const arr = [];
         goods.map((item,index)=> arr.push(item));

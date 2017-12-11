@@ -22,11 +22,24 @@ Page({
 
     },
     onLoad(options) {
-        let card = wx.getStorageSync('UserCard');
+        let card = wx.getStorageSync('UserCard'),
+            show = wx.getStorageSync('seller'),
+            db = wx.getStorageSync('dbid'),
+            ifHave = false;
+            if(card.distribution_id!=''){
+                if((card.distribution_id!=''&&db== '')||card.distribution_id==db) {
+                    ifHave = true;
+                }else{
+                    ifHave = false;
+                }
+            }else{
+                ifHave = false;
+        }
         this.setData({
             userId:card.user_id,
             dbId:card.distribution_id,
-            dbLv:card.distribution_level
+            dbLv:card.distribution_level,
+            show:ifHave
         })
         this.getClassifyInfo();//调用分类接口
     },
@@ -135,7 +148,8 @@ Page({
     handleSearchValue(e) {
         if (e.detail.value == '') {
             this.setData({
-                inputVal: e.detail.value
+                inputVal: e.detail.value,
+                searchList:[]
             });
         }
     },

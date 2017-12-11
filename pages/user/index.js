@@ -61,6 +61,7 @@ Page({
         utils.sendRequest(api.ZhunBeiTiXian, data2, this.handleInTixianSucc.bind(this));
     },
     handleInTixianSucc(res) {
+        console.log(res)
         this.setData({
             tel:res.data.tel
         })

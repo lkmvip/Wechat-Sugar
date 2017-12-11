@@ -17,7 +17,7 @@
                 </view>
             </block>
             <view class="not-use">
-                <view class="not-list" wx:for="{{ticketList}}" wx:key="{{index}}">
+                <view class="not-list" wx:for="{{way==2?kyList:ticketList}}" wx:key="{{index}}">
                     <view class="not-left">
                         <view class="not-price">
                             <text>￥</text>
@@ -46,7 +46,7 @@
         <!-- 已使用的内容 -->     
         <view class="ticket-list" hidden="{{activeIndex != 1}}">
             <view class="not-use">
-                <view class="not-list {{activeIndex == 1 ? 'border' : ''}}" wx:for="{{usedList}}" wx:key="{{index}}">
+                <view class="not-list {{activeIndex == 1 ? 'border' : ''}}" wx:for="{{way==2?bkyList:usedList}}" wx:key="{{index}}">
                     <view class="not-left {{activeIndex == 1 ? 'border-left' : ''}}">
                         <view class="not-price ">
                             <text>￥</text>
@@ -67,7 +67,7 @@
                             <view>{{item.startTime}}-{{item.endTime>'2100-01-01'?'无限制':item.endTime}}</view>  
                         </view>  
                     </view>
-                    <image class="use-img" src="/image/ticket/ticket{{activeIndex}}.png"></image> 
+                    <!-- <image class="use-img" src="/image/ticket/ticket{{activeIndex}}.png"></image>  -->
                 </view>
             </view>
         </view>
@@ -95,7 +95,7 @@
                              {{item.startTime}}-{{item.endTime>'2100-01-01'?'无限制':item.endTime}}
                         </view>  
                     </view>
-                    <image class="use-img" src="/image/ticket/ticket{{activeIndex}}.png"></image> 
+                    <!-- <image class="use-img" src="/image/ticket/ticket{{activeIndex}}.png"></image>  -->
                 </view>
             </view>
         </view>

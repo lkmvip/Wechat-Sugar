@@ -67,6 +67,7 @@ Page({
     },
     //支付页面成功列表
     handleOrderList(res) {
+        console.log(res)
         wx.hideToast()
         let result = res.data;
         this.setData({
@@ -145,8 +146,8 @@ Page({
             list = this.data.orderList,//订单列表数组
             arr = [],
             useTicket = this.data.isUse,//使用优惠券状态
-            db = this.data.dbstatus;
-            console.log(db)
+            db = this.data.dbstatus,
+            val = this.data.val;
             list.map(item => arr.push(item.goods_id));
         const data ={
             user_id:userId,
@@ -164,7 +165,7 @@ Page({
                 coupon_money:useTicket?'':couponMoney,
                 totalPrice:allprice+reightrmb-(useTicket?0:couponMoney),//这个是去掉优惠券的钱orderPrice+freightNum-
                 rec_id:carid,
-                NowBuyNum:'',
+                NowBuyNum:val,
                 salespromotion_type:'',
                 activety_id:'',
                 turnnum:'',    
@@ -175,11 +176,13 @@ Page({
     },
     //请求提交订单成功
     handleNewOrderInfo(res) {
+        console.log(res)
         try {
             let frt = this.data.freightNum;
             let userId = this.data.userId;
 
             if (res.data.error == 0) {
+
                 //处理传值
                 let msg = JSON.stringify(res.data.data),
                 id = this.data.cartId;
@@ -198,7 +201,9 @@ Page({
             console.log(e);
         }
     },
-    handleCartDelInfo(res) {},
+    handleCartDelInfo(res) {
+        console.log(res)
+    },
     //选择使用优惠券
     checkboxChange(e) {
         e.detail.value == ''?

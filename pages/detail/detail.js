@@ -31,7 +31,7 @@ Page({
     * 生命周期函数--监听页面加载
     */
     onLoad(options) {
-        console.log(options.special)
+        console.log(options)
         options.db? wx.setStorageSync('dbid', options.db) :'';
         wx.showToast({
             icon: "loading",
@@ -43,9 +43,15 @@ Page({
             show = wx.getStorageSync('seller'),
             ifHave = false; 
             console.log(card)
-            if(card.distribution_id!=''&&db== ''||card.distribution_id==db) {
-                ifHave = true;
-            };
+            if(card.distribution_id!=''){
+                if((card.distribution_id!=''&&db== '')||card.distribution_id==db) {
+                    ifHave = true;
+                }else{
+                    ifHave = false;
+                }
+            }else{
+                ifHave = false;
+            }
         this.setData({
             goodsId: id,
             userId:card.user_id,
@@ -123,6 +129,7 @@ Page({
         utils.sendRequest(api.CartGoodsNum, data, this.handleCartNum.bind(this));
     },
     handleCartNum(res) {
+        console.log(res)
         let num = res.data.result;
         this.setData({
             cartNums:num
@@ -253,8 +260,9 @@ Page({
     },
     // 前往订单页面
     handleGoPay(e) { 
+        console.log(this.data.goodsId)
         let teshu = this.data.special;      
-        if (!teshu) {
+        if (this.data.goodsId>0) {
             this.setData({
               showDialog: !this.data.showDialog
             });
@@ -266,7 +274,7 @@ Page({
             _this = this,
             goodsit = e.target.dataset.it,
             user = this.data.userId;
-        if (!teshu) {
+        if (this.data.goodsId>0) {
             if (!this.data.showDialog) {
                  if (goodsit == null|| goodsit<=0 ) {//库存判断
                     wx.showModal({content: '库存不足抱歉哟~',showCancel: false})

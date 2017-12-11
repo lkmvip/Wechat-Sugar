@@ -19,10 +19,15 @@ Page({
             show = wx.getStorageSync('seller'),
             db = wx.getStorageSync('dbid'),
             ifHave = false;
-            if(card.distribution_id!=''&&db== ''||card.distribution_id==db) {
-                console.log(1)
-                ifHave = true;
-            };
+            if(card.distribution_id!=''){
+                if((card.distribution_id!=''&&db== '')||card.distribution_id==db) {
+                    ifHave = true;
+                }else{
+                    ifHave = false;
+                }
+            }else{
+                ifHave = false;
+            }
             this.setData({
                 userId:card.user_id,
                 dbId:card.distribution_id,

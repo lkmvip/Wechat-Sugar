@@ -28,15 +28,15 @@ Page({
             show = wx.getStorageSync('seller'),
             db = wx.getStorageSync('dbid'),
             ifHave = false;
-        if(show&&db=='') {//分享状态操作
-            ifHave = true;
-        }else if (card.distribution_id==db) {
-            ifHave = true;
-        }else if (card.distribution_id!=db) {
-            ifHave = false;
-        }else {
-            ifHave = false;
-        };
+            if(card.distribution_id!=''){
+                if((card.distribution_id!=''&&db== '')||card.distribution_id==db) {
+                    ifHave = true;
+                }else{
+                    ifHave = false;
+                }
+            }else{
+                ifHave = false;
+            }
         this.setData({
             moreId:options.id,//从查看更多的id
             title:options.name,//传过来的标题名字
@@ -74,7 +74,8 @@ Page({
                 distribution_level:lv,
                 data: {
                     goodstypecode:newbrandId,
-                }
+                },
+                type:1
             };
             utils.sendRequest(api.AllGoodsUrl, data, this.handleNewBrandSucc.bind(this)); 
         };
@@ -85,7 +86,8 @@ Page({
                 distribution_level:lv,
                 data: {
                     goodstypecode:codeId,
-                }
+                },
+                type:1
             };
             utils.sendRequest(api.AllGoodsUrl, data, this.handleMoreClassifySucc.bind(this)); 
         }
@@ -102,7 +104,8 @@ Page({
             const data = {
                 distribution_id:id,
                 distribution_level:lv,
-                zhuti_id:isId
+                zhuti_id:isId,
+                type:1
             };
             utils.sendRequest(api.IndexUrl, data, this.handleMoreGoodsSucc.bind(this)); 
         };

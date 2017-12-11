@@ -22,7 +22,7 @@
         						<view class="mleft">{{item.name}}</view>
         						<view class="mleft">
         							<view class="">￥{{item.shopprice}}</view>
-        							<view class="fright" style='color: #ececec;'>X{{item.goods_number}}</view>
+        							<view class="fright" style='color: #9a9a9a;'>X{{item.goods_number}}</view>
         						</view>
         					</view>
                             <view wx:if="{{item.goods_status==1?true:false}}" class="cancel-btn">退货审核中</view>
@@ -62,7 +62,7 @@
                                 <view class="mleft">{{item.name}}</view>
                                 <view class="mleft">
                                     <view class="">￥{{item.shopprice}}</view>
-                                    <view class="fright" style='color: #ececec;'>X{{item.goods_number}}</view>
+                                    <view class="fright" style='color: #9a9a9a;'>X{{item.goods_number}}</view>
                                 </view>
                             </view>
                     </view>
@@ -93,7 +93,7 @@
                                 <view class="mleft">{{item.name}}</view>
                                 <view class="mleft">
                                     <view class="">￥{{item.shopprice}}</view>
-                                    <view class="fright" style='color: #ececec;'>X{{item.goods_number}}</view>
+                                    <view class="fright" style='color: #9a9a9a;'>X{{item.goods_number}}</view>
                                 </view>
                             </view>
                     </view>
@@ -129,7 +129,7 @@
                                 <view class="mleft">{{item.name}}</view>
                                 <view class="mleft">
                                     <view class="">￥{{item.shopprice}}</view>
-                                    <view class="fright" style='color: #ececec;'>X{{item.goods_number}}</view>
+                                    <view class="fright" style='color: #9a9a9a;'>X{{item.goods_number}}</view>
                                 </view>
                             </view>
                             <view wx:if="{{item.goods_status==1?true:false}}" class="cancel-btn">退款审核中</view>

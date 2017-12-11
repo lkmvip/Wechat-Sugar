@@ -48,7 +48,8 @@ Page({
             addrid = this.data.addrid,
             goodsid = this.data.goodsid,
             amount = this.data.amount,
-            cartId = this.data.cartId;
+            cartId = this.data.cartId,
+            way = this.data.way;
         const data ={
                     branchId:subId,
                     user_id:id,
@@ -56,7 +57,8 @@ Page({
                     address_id:addrid?addrid:'',
                     val:'',
                     goods_ids:goodsid?goodsid:'',
-                    totalamount:amount?amount:''
+                    totalamount:amount?amount:'',
+                    type:way== 2? 2:1
                 };
         utils.sendRequest(api.TicketInfoUrl, data, this.handleGetSucc.bind(this));
     },
@@ -64,24 +66,36 @@ Page({
         console.log(res)
         let has = [],
             used = [],
-            timeOut = [];
+            timeOut = [],
+            keyong = [],
+            bukeyong = [];
         // 判断优惠券的状态分别存入三个数组
         res.data[0].map(item => {
             item.startTime = utils.formatTime(new Date(item.startTime));
             item.endTime =  utils.formatTime(new Date(item.endTime));
-            console.log(item)
-            if(item.couponStatus==0){
-                has.push(item)
-            }else if(item.couponStatus==1) {
-                used.push(item)
-            }else if(item.couponStatus==2) {
-                timeOut.push(item)
+            if (this.data.way == 2) {
+                if(item.couponStatus==0){
+                    keyong.push(item)
+                }else if(item.couponStatus!=0) {
+                    bukeyong.push(item)
+                }
+            }else  {
+                if(item.couponStatus==0){
+                    has.push(item)
+                }else if(item.couponStatus==1) {
+                    used.push(item)
+                }else if(item.couponStatus==2) {
+                    timeOut.push(item)
+                }
             }
+            
         })
         this.setData({
             ticketList:has,
             usedList:used,
-            timeOutList:timeOut
+            timeOutList:timeOut,
+            kyList:keyong,
+            bkyList:bukeyong
         })
     },
     handleUseTicket(e) {

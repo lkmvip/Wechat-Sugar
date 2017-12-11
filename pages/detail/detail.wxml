@@ -37,7 +37,7 @@
 			<view>{{item}}</view>
 		</view>
 	</view>
-	<block wx:if="{{!dbShow}}">
+	<block wx:if="{{dbShow}}">
 			<view class="shop-msg" wx:for="{{goodsInfo}}" wx:key="index">
 				<view style="display: flex;height: 170rpx;margin:20rpx 0;width: 100%;background: #fff;">
 					<image class="shop-msg-img" src="{{item.storeInfo.storelogo}}"></image>
@@ -106,12 +106,12 @@
 	</view>
 	<view class="detail-right">
 		<block wx:for="{{goodsInfo}}" wx:key="{{index}}">
-			<block wx:if="{{!special}}">
+			<block wx:if="{{goodsId<'0'?false:true}}">
 				<view class="add-cart" bindtap="handleAddCart" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}" data-lv="{{item.special_rank}}">
 					加入购物车
 				</view>
 			</block>
-				<view class="go-pay {{special?'special-width':''}}"  bindtap="handleGoPay" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}" data-lv="{{item.special_rank}}">
+				<view class="go-pay {{goodsId<'0'?'special-width':''}}"  bindtap="handleGoPay" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.price}}" data-lv="{{item.special_rank}}">
 					立即购买
 				</view>
 		</block>

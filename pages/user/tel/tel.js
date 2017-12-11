@@ -68,6 +68,13 @@ Page({
         this.setData({
             Yzm:e.detail.value
         })
+        let psd = this.data.psd,
+            yzm = this.data.Yzm;
+        yzm != psd ? wx.showModal({
+                content:'验证码输入错误',
+                showCancel:false,
+                confirmColor:'#3cc51f'
+            }):'';
     },
     handleGetYzm() {
         let tel = this.data.tel;
@@ -104,10 +111,14 @@ Page({
             },1000)
     },
     handleGetYzmSucc(res) {
+        console.log(res.data.password.slice(0,6))
         wx.showModal({
             content:'正在努力发送，耐心等待哟',
             showCancel:false,
             confirmColor:'#3cc51f',//默认值为#3cc51f
+        })
+        this.setData({
+            psd:res.data.password.slice(0,6)
         })
     },
     handleSave() {
@@ -129,6 +140,7 @@ Page({
                 password:yzm+timestamp
 
             };
+            console.log(data)
             utils.sendRequest(api.BindTel, data, this.handleSaveTel.bind(this));
         }else {
              wx.showModal({
@@ -140,6 +152,7 @@ Page({
 
     },
     handleSaveTel(res) {
+        console.log(res)
         let go = this.data.go;
         if (res.data.error == 0) {
             wx.showModal({
@@ -174,7 +187,13 @@ Page({
                 content:'验证码输入错误',
                 showCancel:false,
                 confirmColor:'#3cc51f'
-            })
+            }) 
+        }else if(res.data.error =99) {
+            wx.showModal({
+                content:'该手机号已被用户绑定',
+                showCancel:false,
+                confirmColor:'#3cc51f'
+            }) 
         }
     }
 })

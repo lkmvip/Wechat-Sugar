@@ -36,12 +36,12 @@
 	<view class="model-bg"></view>
 	<view class="model-tit">
 		<view class="model-txt">提示</view>
-		<scroll-view class="model-y" scroll-y style="height: 380rpx;">
+		<view class="model-y" >
 			<block wx:for="{{promptList}}" wx:key="{{index}}">
 				<view class="prompt-tit">{{item.q}}</view>
 				<view class="prompt-content">{{item.a}}</view>	
 			</block>
-		</scroll-view>
+		</view>
 		<view class="model-btn" bindtap="handleModelHide">知道了</view>
 	</view>	
 </view>

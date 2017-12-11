@@ -102,15 +102,16 @@
 	padding-top: 30rpx; 
 }
 .prompt-tit {
-	width: 100%;
+	width: 550rpx;
 	font-size: 30rpx;
 	line-height: 50rpx;
 }
 .prompt-content {
-	width: 100%;
-	font-size: 26rpx;
+	width: 550rpx;
+	font-size: 20rpx;
 	color: #676767;
 	padding-left: 26rpx;
+	word-wrap:break-word;
 }
 .model-btn {
 	width: 550rpx;

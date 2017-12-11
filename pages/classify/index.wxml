@@ -3,7 +3,7 @@
 		<view class="search-icon">
 			<icon type="search" size="16"/>
 		</view>
-		<input class="search-input"  confirm-type="search" value="{{inputVal}}" placeholder="达芙荻丽面膜" bindconfirm="handleSearch" bindinput="handleSearchValue"/>
+		<input class="search-input"  confirm-type="search" value="{{inputVal}}" placeholder="搜索" bindblur="handleSearch" bindinput="handleSearchValue"/>
 	</view>
 </view>
 <view class="container-box">
@@ -74,7 +74,9 @@
                                         <view class="new-price letf" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
                                         <view class="old-price letf" style="margin-top:14rpx">￥{{item.market_price}}</view>
                                     </view>
-                                    <view class="new-price" style="color:#ec1358;margin-top:10rpx">赚{{item.makeMoney}}</view>
+                                    <block wx:if="{{show}}">
+                                        <view class="new-price" style="color:#ec1358;margin-top:10rpx">赚{{item.makeMoney}}</view>
+                                    </block>
                                 </view>
                                 <view style="width: 50%;">
                                 <image src="/image/cart.png" data-it="{{item.inventory}}" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>

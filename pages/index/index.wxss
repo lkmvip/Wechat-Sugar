@@ -60,13 +60,14 @@
 }
 
 .search{
-    width: 540rpx;
+    width: 95%;
     height: 50rpx;
     font-size: 28rpx;
     border-radius: 10rpx;
     background: #ececec;
     display: flex;
     line-height: 60rpx;
+    margin: 0 auto;
 }
 .search-input {
     width: 500rpx;
