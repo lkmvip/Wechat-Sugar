@@ -2,11 +2,12 @@
 <view class='shop-msg' style="background:url({{sign}});background-repeat: round;background-color: red;">
     <view class='msg-content'>
         <image src="{{src?src:'/image/user/wlogo.png'}}" class="msg-img"/>
-        <view class='msg-name' >
-            {{name}}
-             <view class='msg-explain'>{{text}}</view> 
-
-        </view>
+        <block wx:if="{{name == null||text == null ? false :true}}">
+            <view class='msg-name' >
+                {{name}}
+                 <view class='msg-explain'>{{text}}</view> 
+            </view>
+        </block>
     </view>
 </view>
 <view class="goods bg box">

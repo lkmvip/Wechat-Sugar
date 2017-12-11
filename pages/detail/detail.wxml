@@ -143,17 +143,6 @@
                     <text class="cart-count-add" bindtap="addCount">＋</text>
                 </view>
 			</view>
-<!-- 			<block wx:if="{{notNeed}}">                           不知道需要不需要
-				<view class="dialog-more">
-					<view class="dialog-text" >规格:</view>
-					<view class="dialog-num">
-	                    <text class="now-num {{on==0?'ondata':''}}" data-index="0" bindtap="handleSpec">10ml</text>
-	                    <text class="now-num {{on==1?'ondata':''}}" data-index="1" bindtap="handleSpec">10ml</text>
-	                    <text class="now-num {{on==2?'ondata':''}}" data-index="2" bindtap="handleSpec">10ml</text>
-	                    <text class="now-num {{on==3?'ondata':''}}" data-index="3" bindtap="handleSpec">10ml</text>
-	                </view>
-				</view>
-			</block> -->
 	      </view>
 	    </view>
 </view>

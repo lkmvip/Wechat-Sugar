@@ -5,7 +5,9 @@ Page({
     data: {
         tabs: ["全部订单","待付款","待收货","已收货"],
         activeIndex: "0",
-        allOrder:[]
+        allOrder:[],
+        show:false,
+        text:"导航"
     },
     onLoad(options) {
         wx.showToast({
@@ -109,6 +111,7 @@ Page({
         utils.sendRequest(api.OrderInfoList, data, this.handleOrderInfoListSucc.bind(this));
     },
     handleOrderInfoListSucc(res) {
+        console.log(res)
         wx.showToast({title: '加载成功',icon: 'success'});      
         this.setData({//反转数组 
             allOrder:res.data.data.reverse()
@@ -209,5 +212,14 @@ Page({
             // statements
             console.log(e);
         }  
+    },
+    handleNavigation() {
+        let flag = !this.data.show,
+            txt = this.data.text;
+        flag == true ? txt = "X" : txt="导航";
+        this.setData({
+            show:flag,
+            text:txt
+        })
     }
 });

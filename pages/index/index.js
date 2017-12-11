@@ -55,7 +55,7 @@ Page({
             show = wx.getStorageSync('seller'),
             db = wx.getStorageSync('dbid'),
             ifHave = false;
-        if(show&&db=='') {
+        if(show&&db== '') {
             console.log(1)
             ifHave = true;
         }else if (card.distribution_id==db) {
@@ -102,11 +102,11 @@ Page({
             dbLv:card.distribution_level,
             dbShow:show
         });
-            this.getIndexInfo();
-            this.getBannerInfo();
-            this.getAllGoodsInfo();
-            this.getTabInfo();
-            this.getIndexSet();
+            // this.getIndexInfo();
+            // this.getBannerInfo();
+            // this.getAllGoodsInfo();
+            // this.getTabInfo();
+            // this.getIndexSet();
     },
     //分类选项卡操作
     getTabInfo() {

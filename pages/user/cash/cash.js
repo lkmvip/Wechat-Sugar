@@ -37,11 +37,13 @@ Page({
 	},
 	//提现接口成功操作
 	handleGetInfolSucc(res) {
+		console.log(res)
 		res.data.data.map(item => {
             item.time = utils.formatTimeSec(new Date(Number(item.time)*1000));
         })
 		this.setData({
-			cashList:res.data.data
+			cashList:res.data.data,
+			canI:res.data.can_tixian
 		})
 	},
 	// 操作模态框显示和隐藏
@@ -57,6 +59,15 @@ Page({
 	},
 	// 用户跳转支付页面
 	handleUserPay() {
+		let ok = this.data.canI;
+		if (ok == 1) {
+			wx.showModal({
+                content:'已有提现记录，提现成功或失败后才能再次提现。',
+                showCancel:false,
+                confirmColor:'#3cc51f'//默认值为#3cc51f
+            })
+            return false
+		}
 	  	wx.navigateTo({
 		  url: '../pay/pay'
 		})

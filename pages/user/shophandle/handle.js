@@ -56,6 +56,7 @@ Page({
         utils.sendRequest(api.GetHandleShop, data, this.HandleShopSucc.bind(this)); 
     },
     HandleShopSucc(res){
+        console.log(res)
         this.setData({
             name:res.data.data.storename,
             text:res.data.data.store_contents,

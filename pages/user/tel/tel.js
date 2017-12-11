@@ -161,7 +161,7 @@ Page({
                             })
                         }else {
                             wx.switchTo({
-                              url: '/pages/user/cash/cash'
+                              url: '/pages/user/index'
                             })
                         }         
                     }

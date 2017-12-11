@@ -31,17 +31,18 @@ Page({
     * 生命周期函数--监听页面加载
     */
     onLoad(options) {
+        wx.setStorageSync('dbid', options.db)
         wx.showToast({
             icon: "loading",
             title: "正在加载"
         })
         let id = options.id,
             card = wx.getStorageSync('UserCard'),
-            db = wx.getStorageSync('dbid') == undefined ?wx.setStorageSync('dbid', options.db):wx.getStorageSync('dbid'),
+            db = wx.getStorageSync('dbid'),
             show = wx.getStorageSync('seller'),
             ifHave = false;
             console.log(db,show)
-            if(show&&db== undefined) {
+            if(show&&db== '') {
                 console.log(1)
                 ifHave = true;
             }else if (card.distribution_id==db) {
@@ -289,7 +290,9 @@ Page({
         let code = res.statusCode,
             goodsid = res.data.rec_id,
             num = this.data.num,
-            sub = this.data.goodsInfo[0].id;
+            sub = this.data.goodsInfo[0].id,
+            dbCanshu = this.data.dbCanshu;
+
         if (code == 200) {
             wx.redirectTo({
               url: '/pages/orderdetail/index?cartid='+goodsid+'&val='+num+'&pid='+sub
@@ -354,10 +357,11 @@ Page({
     },
     onShareAppMessage() {
         let id = this.data.goodsId,
-        dbId = this.data.dbId;
+            dbId = this.data.dbId,
+            dbCanshu = this.data.dbCanshu;
         return {
             title: "最超值的正品美妆平台",
-            path: "pages/detail/detail?id="+id+"&db="+dbId
+            path: "pages/detail/detail?id="+id+"&db="+dbCanshu?dbCanshu:dbId
         }
     },
     handleAddCartSpecial(e) {

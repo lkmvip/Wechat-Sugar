@@ -105,3 +105,24 @@
 	top: 80rpx;
 	right: 20rpx;
 }
+.navigation {
+	width: 100rpx;
+	height: 100rpx;
+	background: gray;
+	position: fixed;
+	right: 20rpx;
+	top: 30%;
+	font-size:35rpx;
+	opacity: 0.6;
+	border-radius: 50%;
+	color: #fff;
+	text-align: center;
+	line-height: 100rpx;
+}
+.ngcolor {
+	background: #f2505d;
+	font-size: 50rpx; 
+}
+.ng-content{
+	margin:0 auto; 
+}

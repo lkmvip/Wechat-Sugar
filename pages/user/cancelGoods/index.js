@@ -44,7 +44,8 @@ Page({
     },
     //取消成功接口
     handleCancelDetailSucc(res) {
-        let info = res.data;
+        console.log(res)
+        let info = res.data.data;
         //修改请求数据显示价格和最多退多少
         this.setData({
             cancelList:info,
@@ -227,19 +228,25 @@ Page({
     handleCancelPic() {
         let id = this.data.userId,
             rec = this.data.recid;
-        wx.chooseImage({
-          count: 3, // 默认9
-          sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
-          sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-          success: res => {
-            // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-            var tempFilePaths = res.tempFilePaths;
+        wx.showModal({
+            content: '最多上传三张图片哟~',
+            showCancel: false,
+            success:res => {
+                wx.chooseImage({
+                  count: 3, // 默认9
+                  sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
+                  sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+                  success: res => {
+                    // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+                    var tempFilePaths = res.tempFilePaths;
 
-            this.setData({
-                src: tempFilePaths
-            })
-          }
-        })
+                    this.setData({
+                        src: tempFilePaths
+                    })
+                  }
+                })
+            }
+          })
     },
     handleDelPic(e) {
         const index = e.currentTarget.dataset.index;

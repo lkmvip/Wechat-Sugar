@@ -196,13 +196,6 @@ Page({
         }
     },
     handleTiXianlSucc(res) {
-        if(res.data.error == 99){
-            wx.showModal({
-                content:'已有提现记录，请耐心等待系统处理您的提现，成功后才能再次提现，给您带来的不便，恳请您谅解。',
-                showCancel:false,
-                confirmColor:'#3cc51f'//默认值为#3cc51f
-            })
-        }
         if (res.data.error == 0) {
             wx.showModal({
                 content:'提交申请成功，请您耐心等待。',
