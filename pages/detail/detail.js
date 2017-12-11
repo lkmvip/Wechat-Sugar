@@ -41,19 +41,10 @@ Page({
             db = wx.getStorageSync('dbid'),
             show = wx.getStorageSync('seller'),
             ifHave = false; 
-            console.log(db,show,card)
-            if(show&&db== '') {
+            console.log(db)
+            if(card.distribution_id!=''&&db== ''||card.distribution_id==db) {
                 console.log(1)
                 ifHave = true;
-            }else if (!show) {
-                console.log(2)
-                ifHave = true;
-            }else if (card.distribution_id!=db) {
-                console.log(3)
-                ifHave = false;
-            }else {
-                console.log(4)
-                ifHave = false;
             };
         this.setData({
             goodsId: id,
@@ -358,10 +349,12 @@ Page({
     onShareAppMessage() {
         let id = this.data.goodsId,
             dbId = this.data.dbId,
-            dbCanshu = this.data.dbCanshu;
+            dbCanshu = this.data.dbCanshu,
+            shareid = '';
+            dbCanshu ==''? shareid = dbId:shareid = dbCanshu;
         return {
             title: "最超值的正品美妆平台",
-            path: "pages/detail/detail?id="+id+"&db="+dbCanshu?dbCanshu:dbId
+            path: "pages/detail/detail?id="+id+"&db="+shareid
         }
     },
     handleAddCartSpecial(e) {

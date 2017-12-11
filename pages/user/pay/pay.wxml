@@ -18,7 +18,7 @@
 	</view>
 	<view class="bank-list">
 		<view class="bank-txt">手机号</view>
-		<input class="bank-input" bindblur="handleTel" value="{{tel}}" type="text" placeholder="请输入手机号"/>
+		<input class="bank-input" bindblur="handleTel" value="{{tel}}" disabled="{{tel!=''?true:false}}" type="text" placeholder="请输入手机号"/>
 	</view>
 	<view class="bank-list">
 		<view class="bank-txt">支行</view>

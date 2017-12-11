@@ -17,14 +17,14 @@
 			<image class="will-icon" src="/image/user/income.png" background-size="cover"></image>
 			<view class="will-content" bindtap="handleWillIncome">
 				<view>待收收益</view>
-				<view style="color:#000;font-size: 28rpx;margin-top: 15rpx;">{{WillInCome}}</view>
+				<view style="color:#000;font-size: 28rpx;margin-top: 15rpx;">{{WillInCome==null?0:WillInCome}}</view>
 			</view>
 		</view>
 		<view class="income-total">
 			<image class="total-icon" src="/image/user/total.png" background-size="cover"></image>
 			<view class="total-content" bindtap="handleIncomed">
 				<view>累计收益</view>
-				<view style="color:#000;font-size: 28rpx;margin-top: 15rpx;">{{InComeAdd}}</view>
+				<view style="color:#000;font-size: 28rpx;margin-top: 15rpx;">{{InComeAdd==null?0:InComeAdd}}</view>
 			</view>
 		</view>
 	</view>  

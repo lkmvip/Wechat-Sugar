@@ -41,9 +41,10 @@ Page({
         }
         let card = wx.getStorageSync('UserCard');//获取用户身份信息
         //操作页面传值的参数
+        console.log(card)
         this.setData({
             userId:card.user_id,
-            openId:card.openId
+            openId:card.openid
         });
         const data ={
             userId:card.user_id,

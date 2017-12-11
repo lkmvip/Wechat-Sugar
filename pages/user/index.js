@@ -82,6 +82,7 @@ Page({
     },
     //累计收益和待收收益
     handleInComeSucc(res) {
+        console.log(res)
         this.setData({
             WillInCome:res.data.notMoney,
             InComeAdd:res.data.readyMoney

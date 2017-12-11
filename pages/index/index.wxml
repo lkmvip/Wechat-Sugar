@@ -140,7 +140,7 @@
                 </view>     
             </view>
             <!--  ***************************性价比商品彩妆*********************** -->
-            <view class="like bg box">
+           <!--  <view class="like bg box">
                 <view class="text">
                     {{goodsList[0].title}}
                 </view>
@@ -180,7 +180,7 @@
                 </navigator>
 
             </view>
-            <!--  ***************************性价比商品*********************** -->
+             ***************************性价比商品***********************
             <view class="like bg box">
                 <view class="text">
                     {{goodsList[1].title}}
@@ -218,7 +218,7 @@
                         查看更多 >
                     </view>
                 </navigator>
-            </view>
+            </view> -->
             <!-- ***************************全部商品************************** -->   
             <view class="like bg box">
                 <view class="text">

@@ -65,11 +65,12 @@ Page({
         res.data[0].map(item => {
             item.startTime = utils.formatTime(new Date(item.startTime));
             item.endTime =  utils.formatTime(new Date(item.endTime));
+            console.log(item)
             if(item.couponStatus==0){
                 has.push(item)
             }else if(item.couponStatus==1) {
                 used.push(item)
-            }else if(item.couponStatus==2) {
+            }else if(item.couponStatus==3) {
                 timeOut.push(item)
             }
         })
