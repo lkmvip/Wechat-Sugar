@@ -164,6 +164,9 @@
 .go-pay{
 	background: #ff4242;
 }
+.special-width{
+	width: 100%;
+}
 /* 加入购物车的弹窗 */
 .zan-dialog__mask {
 	position: fixed;

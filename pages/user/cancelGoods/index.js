@@ -238,7 +238,7 @@ Page({
                   success: res => {
                     // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
                     var tempFilePaths = res.tempFilePaths;
-                    upload(this,tempFilePaths,id,'',token);
+                    upload(this,tempFilePaths,rec,'',token);
                     this.setData({
                         src: tempFilePaths
                     })

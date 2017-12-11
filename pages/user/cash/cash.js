@@ -31,7 +31,7 @@ Page({
 		const data = {
 			user_id:card.user_id
 		};
-        utils.sendRequest(api.ZhunBeiTiXian, data, this.handleGetInfolSucc.bind(this));
+        utils.sendRequest(api.tixianList, data, this.handleGetInfolSucc.bind(this));
        
 
 	},

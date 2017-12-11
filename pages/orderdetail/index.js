@@ -52,14 +52,17 @@ Page({
         let userId = this.data.userId,
             addr = this.data.addrid,
             val = this.data.val,
-            pid = this.data.pid;
+            pid = this.data.pid,
+            sub = this.data.subId;
         const data ={
             user:userId,
             cart:id,
             address_id:'',
             val:val,
-            product_id:pid
+            product_id:pid,
+            subwebId:sub
         };
+
         utils.sendRequest(api.OrderList, data, this.handleOrderList.bind(this));
     },
     //支付页面成功列表
@@ -118,9 +121,13 @@ Page({
             addr = this.data.addrId,
             userId = this.data.userId,
             goodsid = this.data.goodsIds,
-            amount = this.data.totalamount;
+            amount = this.data.totalamount,
+            val = this.data.val,
+            cId = this.data.couponId,
+            cM = this.data.coupon_money,
+            pid = this.data.pid;
         wx.navigateTo({
-            url: '/pages/user/ticket/ticket?way=2&&cartid='+id+'&&addrid='+addr+'&&goodsid='+goodsid+'&&amount='+amount
+            url: '/pages/user/ticket/ticket?way=2&&cartid='+id+'&&addrid='+addr+'&&goodsid='+goodsid+'&&amount='+amount+'&val='+val+'&cId='+cId+'&cm='+cM+'&pid='+pid
         })
     },
     //提交订单

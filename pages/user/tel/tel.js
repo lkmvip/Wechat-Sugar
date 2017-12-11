@@ -134,14 +134,7 @@ Page({
              wx.showModal({
                 content:'请填写完整信息哟',
                 showCancel:false,
-                confirmColor:'#3cc51f',//默认值为#3cc51f
-                success:res =>{
-                    if(res.confirm){
-                        this.setData({
-                            tel:''
-                        })         
-                    }
-                }
+                confirmColor:'#3cc51f'
             }) 
         }
 
@@ -160,7 +153,7 @@ Page({
                               url: '/pages/user/cash/cash'
                             })
                         }else {
-                            wx.switchTo({
+                            wx.switchTab({
                               url: '/pages/user/index'
                             })
                         }         

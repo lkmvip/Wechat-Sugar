@@ -16,10 +16,9 @@
                         <view class="cart-count-box">
                             <text class="cart-pro-price" style="color:#ff4242;">￥{{item.goods_price}}</text>
                             <view class="cart-count">
-                                <text class="cart-count-down" bindtap="minusCount" data-id="{{item.rec_id}}" data-index="{{index}}">－</text>
-                                <input class="cart-count-num" type="digit" data-id="{{item.rec_id}}" data-index="{{index}}"  bindblur="inputCount" value="{{item.goods_number}}" />
-                                <!-- <text class="cart-count-num">{{item.goods_number}}</text> -->
-                                <text class="cart-count-add" bindtap="addCount" data-id="{{item.rec_id}}" data-index="{{index}}">＋</text>
+                                <text class="cart-count-down" bindtap="minusCount" data-id="{{item.rec_id}}" data-goods="{{item.goods_id}}" data-index="{{index}}">－</text>
+                                <input class="cart-count-num" type="digit" data-id="{{item.rec_id}}" data-goods="{{item.goods_id}}" data-index="{{index}}"  bindblur="inputCount" value="{{item.goods_number}}" />
+                                <text class="cart-count-add" bindtap="addCount" data-id="{{item.rec_id}}" data-goods="{{item.goods_id}}" data-index="{{index}}">＋</text>
                             </view>
                         </view>
                         <text class="cart-del" bindtap="deleteList" data-id="{{item.rec_id}}" data-index="{{index}}">×</text>

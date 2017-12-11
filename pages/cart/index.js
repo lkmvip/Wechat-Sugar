@@ -32,7 +32,6 @@ Page({
         utils.sendRequest(api.AllGoodsUrl, data, this.handleHotInfo.bind(this));
     },
     handleHotInfo(res) {
-        console.log(res)
         let list = res.data.data;
         this.setData({
             likeList: list
@@ -47,6 +46,7 @@ Page({
         utils.sendRequest(api.CartInfo, data, this.handleCartInfo.bind(this));
     },
     handleCartInfo(res) {// 这里让后端给我加了一个 select 的字段
+        console.log(res)
         let list = res.data.data;
         if (list.length > 0 ) {
             this.setData({
@@ -142,8 +142,13 @@ Page({
         const index = e.currentTarget.dataset.index;
         let carts = this.data.carts,
             num = parseInt(carts[index].goods_number),//商品个数
-            id = e.currentTarget.dataset.id;
+            id = Number(e.currentTarget.dataset.id),
+            goods = Number(e.currentTarget.dataset.goods);
         let userId = this.data.userId;
+        if (goods < 0 ) {
+             wx.showModal({content: '特殊商品只能购买一个~',showCancel: false})
+             return false
+        }
         num = num + 1;
         carts[index].goods_number = num;
         this.setData({
@@ -167,9 +172,14 @@ Page({
         let carts = this.data.carts,
             num = parseInt(carts[index].goods_number),
             id = e.currentTarget.dataset.id,
-            goods = carts.length;//列表长度 
+            goods = carts.length,
+            goodsId = Number(e.currentTarget.dataset.goods);//列表长度 
         let userId = this.data.userId;
-                                
+        if (goodsId < 0 ) {
+             wx.showModal({content: '特殊商品只能购买一个~',showCancel: false})
+             return false
+
+        }                       
         if(num <= 1){
           return false;
         }
@@ -194,8 +204,13 @@ Page({
         let carts = this.data.carts,
             num = e.detail.value,
             id = e.currentTarget.dataset.id,
-            goods = carts.length;//列表长度 
-        let userId = this.data.userId;;
+            goods = carts.length,
+            goodsId = Number(e.currentTarget.dataset.goods);//列表长度 
+        let userId = this.data.userId;
+        if (goodsId < 0 ) {
+             wx.showModal({content: '特殊商品只能购买一个~',showCancel: false})
+             return false
+        }       
         num == 0? num = 1:num;
         carts[index].goods_number = num;
         this.setData({

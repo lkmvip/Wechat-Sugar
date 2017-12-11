@@ -37,7 +37,6 @@ Page({
     },
     //首屏加载渲染出分类里面的所有东西
     handleClassifyInfo(res) {
-        console.log(res)
         let classtab = res.data.data.type,
             tabSon = res.data.data.typeSon;
         this.setData({
@@ -61,8 +60,6 @@ Page({
                     })
                     // 给后端传下拉刷新的次数+1
                     const data = {
-                        distribution_id:id,
-                        distribution_level:lv,
                         limitIndex: this.data.limitIndex,
                          data:{
                             name: this.data.inputVal,
@@ -119,8 +116,6 @@ Page({
             inputVal: e.detail.value
         });
         const data = {
-            distribution_id:id,
-            distribution_level:lv,
             limitIndex:this.data.limitIndex,
             data:{
                 name: this.data.inputVal,

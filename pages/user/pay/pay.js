@@ -196,6 +196,7 @@ Page({
         }
     },
     handleTiXianlSucc(res) {
+        console.log(res)
         if (res.data.error == 0) {
             wx.showModal({
                 content:'提交申请成功，请您耐心等待。',
@@ -203,7 +204,21 @@ Page({
                 confirmColor:'#3cc51f',//默认值为#3cc51f
                 success:res =>{
                     if(res.confirm){
-                        wx.redirectTo({
+                        wx.switchTab({
+                          url: '/pages/user/index'
+                        })
+                    }
+                }
+            })
+        }
+        if (res.data.error == 99) {
+            wx.showModal({
+                content:'已经有提现记录，成功或失败后才可以再次提现。',
+                showCancel:false,
+                confirmColor:'#3cc51f',//默认值为#3cc51f
+                success:res =>{
+                    if(res.confirm){
+                        wx.switchTab({
                           url: '/pages/user/index'
                         })
                     }

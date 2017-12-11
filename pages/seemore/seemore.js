@@ -61,8 +61,6 @@ Page({
         // 品牌商品进入时调用
         if(listId) {
             const data = {
-                distribution_id:id,
-                distribution_level:lv,
                 data: {
                     brandid:listId,
                 }

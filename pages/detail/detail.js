@@ -31,6 +31,7 @@ Page({
     * 生命周期函数--监听页面加载
     */
     onLoad(options) {
+        console.log(options.special)
         options.db? wx.setStorageSync('dbid', options.db) :'';
         wx.showToast({
             icon: "loading",
@@ -41,9 +42,8 @@ Page({
             db = wx.getStorageSync('dbid'),
             show = wx.getStorageSync('seller'),
             ifHave = false; 
-            console.log(db)
+            console.log(card)
             if(card.distribution_id!=''&&db== ''||card.distribution_id==db) {
-                console.log(1)
                 ifHave = true;
             };
         this.setData({
@@ -75,8 +75,6 @@ Page({
             goods_id:id,
             user_id:user,
             subwebId:sub,
-            distribution_id:dbId,
-            distribution_level:dbLv,
             distribution:dbstatus
 
         };
@@ -84,6 +82,7 @@ Page({
     },
     //处理成功详情页函数
     handleDetailInfo(res) {
+        console.log(res)
         let goodsList = res.data.data;
         goodsList[0].makeMoney = goodsList[0].makeMoney;
         this.setData({
@@ -179,7 +178,7 @@ Page({
         })
     },                                   
     // 点击tab选项卡
-    tabClick: function (e) {
+    tabClick(e) {
         let ifget = e.currentTarget.id;
         if (ifget == 1) {
             const data ={
@@ -201,9 +200,12 @@ Page({
     },
     // 加入购物车
     handleAddCart(e) {
-        this.setData({
-          showDialog: !this.data.showDialog
-        });
+        let teshu = this.data.special;
+
+            this.setData({
+              showDialog: !this.data.showDialog
+            });
+        
         let goodsId = e.target.dataset.id,
             goodsName = e.target.dataset.name,
             goodsPrice = e.target.dataset.price,
@@ -212,21 +214,22 @@ Page({
             goodsit = e.target.dataset.it;
         let user = this.data.userId;
 
-        if (!this.data.showDialog) {
-            if (goodsit == null|| goodsit<=0 ) {//库存判断
-                wx.showModal({content: '库存不足抱歉哟~',showCancel: false})
-            }else{
-                const data = {
-                    userid:user,
-                    goodsId:goodsId,
-                    goods_name:goodsName,
-                    goods_price:goodsPrice,
-                    goods_number:num
-                };
-                utils.sendRequest(api.AddGoodtoCart, data, _this.handleAddGoodtoCartSucc.bind(_this));
+            if (!this.data.showDialog) {
+                if (goodsit == null|| goodsit<=0 ) {//库存判断
+                    wx.showModal({content: '库存不足抱歉哟~',showCancel: false})
+                }else{
+                    const data = {
+                        userid:user,
+                        goodsId:goodsId,
+                        goods_name:goodsName,
+                        goods_price:goodsPrice,
+                        goods_number:num
+                    };
+                    utils.sendRequest(api.AddGoodtoCart, data, _this.handleAddGoodtoCartSucc.bind(_this));
+                }
+                
             }
-            
-        }
+       
     },
     handleAddGoodtoCartSucc(res) {
         let code = res.statusCode;
@@ -249,31 +252,59 @@ Page({
         });
     },
     // 前往订单页面
-    handleGoPay(e) {
-        this.setData({
-          showDialog: !this.data.showDialog
-        });
+    handleGoPay(e) { 
+        let teshu = this.data.special;      
+        if (!teshu) {
+            this.setData({
+              showDialog: !this.data.showDialog
+            });
+        }
         let goodsId = e.target.dataset.id,
             goodsName = e.target.dataset.name,
             goodsPrice = e.target.dataset.price,
             num = this.data.num,
             _this = this,
-            goodsit = e.target.dataset.it;
-        let user = this.data.userId;
-        if (!this.data.showDialog) {
-             if (goodsit == null|| goodsit<=0 ) {//库存判断
-                wx.showModal({content: '库存不足抱歉哟~',showCancel: false})
-            }else{
-                const data = {
-                    userid:user,
-                    goodsId:goodsId,
-                    goods_name:goodsName,
-                    goods_price:goodsPrice,
-                    goods_number:num
-                };
-                //加入购物车接口
-                utils.sendRequest(api.AddGoodtoCart, data, _this.handleGoPaySucc.bind(_this));
+            goodsit = e.target.dataset.it,
+            user = this.data.userId;
+        if (!teshu) {
+            if (!this.data.showDialog) {
+                 if (goodsit == null|| goodsit<=0 ) {//库存判断
+                    wx.showModal({content: '库存不足抱歉哟~',showCancel: false})
+                }else{
+                    const data = {
+                        userid:user,
+                        goodsId:goodsId,
+                        goods_name:goodsName,
+                        goods_price:goodsPrice,
+                        goods_number:num
+                    };
+                    //加入购物车接口
+                    utils.sendRequest(api.AddGoodtoCart, data, _this.handleGoPaySucc.bind(_this));
+                }
             }
+        }else {
+            let lv = this.data.goodsInfo[0].special_rank,
+                dbLv= this.data.dbLv;
+                if( lv && dbLv == 2){
+                    wx.showModal({content: '您已经是代理商~',showCancel: false})
+                    return false;
+                }else if(lv && dbLv == 1){
+                    wx.showModal({content: '您已经是服务商~',showCancel: false})
+                    return false;
+                }else {
+                    if(lv == 3){
+                        wx.showModal({content: '您已经是超级会员~',showCancel: false})
+                        return false;
+                    }
+                }
+                const data = {
+                        userid:user,
+                        goodsId:goodsId,
+                        goods_name:goodsName,
+                        goods_price:goodsPrice,
+                        goods_number:1
+                    };
+                utils.sendRequest(api.AddGoodtoCart, data, this.handleDbGoPaySucc.bind(this))
         }
     },
     //请求成功后跳转
@@ -354,74 +385,8 @@ Page({
             dbCanshu ==''? shareid = dbId:shareid = dbCanshu;
         return {
             title: "最超值的正品美妆平台",
-            path: "pages/detail/detail?id="+id+"&db="+shareid
+            path: "pages/detail/detail?id="+id+"&db="+shareid+"&special=true"
         }
-    },
-    handleAddCartSpecial(e) {
-        let userId = this.data.userId;
-        let goodsId = e.target.dataset.id,
-            goodsName = e.target.dataset.name,
-            goodsPrice = e.target.dataset.price,
-            lv = e.target.dataset.lv,
-            dbLv= this.data.dbLv;
-            if( lv && dbLv == 2){
-                wx.showModal({content: '您已经是代理商~',showCancel: false})
-                return false;
-            }else if(lv && dbLv == 1){
-                wx.showModal({content: '您已经是服务商~',showCancel: false})
-                return false;
-            }else {
-                if(lv == 3){
-                    wx.showModal({content: '您已经是超级会员~',showCancel: false})
-                    return false;
-                }
-            }
-            const data = {
-                    userid:userId,
-                    goodsId:goodsId,
-                    goods_name:goodsName,
-                    goods_price:goodsPrice,
-                    goods_number:1
-                };
-            utils.sendRequest(api.AddGoodtoCart, data, this.handleAddDbGoodsSucc.bind(this))
-    },
-    handleAddDbGoodsSucc(res) {
-        let code = res.statusCode;
-        if(code == 200) {
-            wx.showModal({
-              content: '在购物车等您哟~',
-              showCancel: false
-            })
-        }
-    },
-    handleGoPaySpecial(e) {
-        let userId = this.data.userId;
-        let goodsId = e.target.dataset.id,
-            goodsName = e.target.dataset.name,
-            goodsPrice = e.target.dataset.price,
-            lv = e.target.dataset.lv,
-            dbLv= this.data.dbLv;
-            if( lv && dbLv == 2){
-                wx.showModal({content: '您已经是代理商~',showCancel: false})
-                return false;
-            }else if(lv && dbLv == 1){
-                wx.showModal({content: '您已经是服务商~',showCancel: false})
-                return false;
-            }else {
-                if(lv == 3){
-                    wx.showModal({content: '您已经是超级会员~',showCancel: false})
-                    return false;
-                }
-            }
-            const data = {
-                    userid:user,
-                    goodsId:goodsId,
-                    goods_name:goodsName,
-                    goods_price:goodsPrice,
-                    goods_number:1
-                };
-            //加入购物车接口
-            utils.sendRequest(api.AddGoodtoCart, data, this.handleDbGoPaySucc.bind(this));
     },
     handleDbGoPaySucc(res) {
         let code = res.statusCode,

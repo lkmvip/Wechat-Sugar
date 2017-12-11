@@ -55,11 +55,10 @@
                         <navigator url="/pages/detail/detail?id={{item.id}}&special=true">
                             <image src="{{item.goods_img}}" class="special-image" />
                         </navigator>
-                        <view class="goods-title">{{item.name}}</view>
-                        <view class="goods-price">
-                            <view class="new-price left" style="color:#ec1358;">￥{{item.shopprice}}</view>
-                            <image src="/image/cart.png" class="add-shopcart right"  data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" data-lv="{{item.special_rank}}" bindtap="handleAddDbGoods"/>
-                        </view> 
+                        <view style="display: flex;justify-content: space-between;">
+                            <view class="goods-title">{{item.name}}</view>
+                            <view class="new-price" style="color:#ec1358;">￥{{item.shopprice}}</view>
+                        </view>   
                 </view>
 
             </view>

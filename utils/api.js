@@ -84,5 +84,6 @@ module.exports = {
 	KeYiTiXian:TiXianUrl+'tixianform',
 	TiJiaoTiXian:TiXianUrl+'settixian',
 	BindTel:TiXianUrl+'setUserTel',
-	YanZhengMa:TiXianUrl+'sendMsg'
+	YanZhengMa:TiXianUrl+'sendMsg',
+	tixianList:	TiXianUrl+'tixianlie'
 }

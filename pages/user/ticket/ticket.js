@@ -8,13 +8,17 @@ Page({
         hasTicket:false
     },
     onLoad(options) {
+        console.log(options)
         options.way? this.setData({
             tabs: ["可用","不可用"],
             way:2,
             addrid:options.addrid,
             goodsid:options.goodsid,
             amount:options.amount,
-            cartId:options.cartid
+            cartId:options.cartid,
+            cpId:options.cId,
+            val:options.val,
+            pid:options.pid
         }):'';
         this.setData({
             activeIndex: options.id
@@ -70,7 +74,7 @@ Page({
                 has.push(item)
             }else if(item.couponStatus==1) {
                 used.push(item)
-            }else if(item.couponStatus==3) {
+            }else if(item.couponStatus==2) {
                 timeOut.push(item)
             }
         })
@@ -84,9 +88,12 @@ Page({
         let id = e.currentTarget.dataset.id,
             num = e.currentTarget.dataset.num,
             carId = this.data.cartId,
-            addrId = this.data.addrId;
+            addrId = this.data.addrId,
+            val = this.data.val,
+            cId = this.data.cpId,
+            pid = this.data.pid;
             wx.redirectTo({
-                url: '/pages/orderdetail/index?ticketid='+id+'&&ticketnum='+num+'&&cartid='+carId+'&&addrid='+addrId
+                url: '/pages/orderdetail/index?ticketid='+id+'&&ticketnum='+num+'&&cartid='+carId+'&&addrid='+addrId+'&val='+val+'&pid='+pid
             });
     }
 })

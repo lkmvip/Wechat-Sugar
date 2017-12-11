@@ -55,15 +55,12 @@ Page({
             show = wx.getStorageSync('seller'),
             db = wx.getStorageSync('dbid'),
             ifHave = false;
-        console.log(db)
             if(card.distribution_id!=''&&db== ''||card.distribution_id==db) {
                 console.log(1)
                 ifHave = true;
             };
         this.setData({
             userId:card.user_id,
-            dbId:card.distribution_id,
-            dbLv:card.distribution_level,
             dbShow:ifHave
         })
         this.getIndexInfo();
@@ -87,8 +84,6 @@ Page({
             show = wx.getStorageSync('seller');
         this.setData({
             userId:card.user_id,
-            dbId:card.distribution_id,
-            dbLv:card.distribution_level,
             dbShow:show
         });
             // this.getIndexInfo();
@@ -107,8 +102,6 @@ Page({
         let id = this.data.dbId,
             lv = this.data.dbLv;
         const data = {
-            distribution_id:id,
-            distribution_level:lv
         };
         utils.sendRequest(api.IndexUrl, data, this.handleGetIndexSucc.bind(this));
     },
@@ -122,8 +115,6 @@ Page({
         let id = this.data.dbId,
             lv = this.data.dbLv;
         const data = {
-            distribution_id:id,
-            distribution_level:lv,
             limitIndex:this.data.limitIndex//查询条件
         };
         //传值给后端，获取到全部商品的首次信息
@@ -201,8 +192,6 @@ Page({
                     })
                     // 给后端传下拉刷新的次数+1
                     const data = {
-                        distribution_id:id,
-                        distribution_level:lv,
                         limitIndex: this.data.limitIndex
                     };
                     utils.sendRequest(api.AllGoodsUrl, data, this.handleReachBottom.bind(this));
@@ -218,8 +207,6 @@ Page({
                     })
                     // 给后端传下拉刷新的次数+1
                     const data = {
-                        distribution_id:id,
-                        distribution_level:lv,
                         limitIndex: this.data.limitIndex
                     };
                     utils.sendRequest(api.AllGoodsUrl, data, this.handleLoadMore.bind(this));
@@ -253,8 +240,6 @@ Page({
         });                    
 
         const data = {
-            distribution_id:id,
-            distribution_level:lv,
             limitIndex:this.data.limitIndex,
             data:{
                 name: this.data.inputVal,
@@ -324,45 +309,6 @@ Page({
                 utils.sendRequest(api.AddGoodtoCart, data, this.handleAddGoodtoCartSucc.bind(this))
             } 
            
-    },
-    handleAddDbGoods(e) {
-        // 传商品信息 
-        let userId = this.data.userId;
-        let goodsId = e.target.dataset.id,
-            goodsName = e.target.dataset.name,
-            goodsPrice = e.target.dataset.price,
-            lv = e.target.dataset.lv,
-            dbLv= this.data.dbLv;
-            if( lv && dbLv == 2){
-                wx.showModal({content: '您已经是代理商~',showCancel: false})
-                return false;
-            }else if(lv && dbLv == 1){
-                wx.showModal({content: '您已经是服务商~',showCancel: false})
-                return false;
-            }else {
-                if(lv == 3){
-                    wx.showModal({content: '您已经是超级会员~',showCancel: false})
-                    return false;
-                }
-            }
-
-            const data = {
-                    userid:userId,
-                    goodsId:goodsId,
-                    goods_name:goodsName,
-                    goods_price:goodsPrice,
-                    goods_number:1
-                };
-            utils.sendRequest(api.AddGoodtoCart, data, this.handleAddDbGoodsSucc.bind(this))
-    },
-    handleAddDbGoodsSucc(res) {
-        let code = res.statusCode;
-        if(code == 200) {
-            wx.showModal({
-              content: '在购物车等您哟~',
-              showCancel: false
-            })
-        }
     },
     //调用成功添加购物车函数
     handleAddGoodtoCartSucc(res) {
@@ -445,8 +391,7 @@ Page({
                     allGoodsList:list
                 });
                 const data = {
-                    goodsId:goodsId,
-                    distribution_id:id
+                    goodsId:goodsId
                 };
                 utils.sendRequest(api.DistributionAdd, data, this.handleAddDbSucc.bind(this))
             }else {
@@ -474,8 +419,7 @@ Page({
                     searchList:list
                 });
                 const data = {
-                    goodsId:goodsId,
-                    distribution_id:id
+                    goodsId:goodsId
                 };
                 utils.sendRequest(api.DistributionAdd, data, this.handleAddDbSucc.bind(this))
             }else {
@@ -484,8 +428,7 @@ Page({
                     searchList:list
                 })
                 const data = {
-                    goodsId:goodsId,
-                    distribution_id:id
+                    goodsId:goodsId
                 };
                 utils.sendRequest(api.DistributionDel, data, this.handleDelDbSucc.bind(this))
             }
