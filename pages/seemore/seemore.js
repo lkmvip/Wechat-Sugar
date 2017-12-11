@@ -93,13 +93,13 @@ Page({
         }
         // 更多商品进入时调用
         if(isId.length<5) {
-            const data = {
-                distribution_id:id,
-                distribution_level:lv,
-                id:isId,
-                type:1
-            };
-            utils.sendRequest(api.IndexUrl, data, this.handleMoreGoodsSucc.bind(this)); 
+            // const data = {
+            //     distribution_id:id,
+            //     distribution_level:lv,
+            //     id:isId,
+            //     type:1
+            // };
+            // utils.sendRequest(api.IndexUrl, data, this.handleMoreGoodsSucc.bind(this)); 
         }else {
             const data = {
                 distribution_id:id,

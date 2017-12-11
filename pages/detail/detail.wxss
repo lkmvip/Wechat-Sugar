@@ -8,7 +8,7 @@
 
 .detail-img {
 	width: 100%;
-	height: 100%;
+	height: 750rpx;
 	display: block;
 }
 /*详情页中部*/

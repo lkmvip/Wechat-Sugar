@@ -53,11 +53,11 @@
                 <view class="line"></view>
                         <view class="goods-list"  wx:for="{{dbGoods}}" wx:key="{{index}}"  data-index="{{index}}">  
                         <navigator url="/pages/detail/detail?id={{item.id}}&special=true">
-                            <image src="{{item.goods_img}}" class="see-image" mode="scaleToFill"/>
+                            <image src="{{item.goods_img}}" class="special-image" />
                         </navigator>
                         <view class="goods-title">{{item.name}}</view>
                         <view class="goods-price">
-                            <view class="new-price left">￥{{item.shopprice}}</view>
+                            <view class="new-price left" style="color:#ec1358;">￥{{item.shopprice}}</view>
                             <image src="/image/cart.png" class="add-shopcart right"  data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" data-lv="{{item.special_rank}}" bindtap="handleAddDbGoods"/>
                         </view> 
                 </view>
@@ -259,10 +259,10 @@
 </block>
 <block wx:else>
         <view class="search-box">
-            <view class="search-nomsg" wx:if="{{isErr == 100}}">奴家找不到呀~</view>
+            <view class="search-nomsg" wx:if="{{isErr == 100}}">当前搜索无商品~</view>
             <!-- 搜索内容 -->
-            <view wx:else class="like-list">
-                <view class="like-goods bg"  wx:for="{{searchList}}" wx:key="index"  data-index="{{index}}">
+            <view wx:else class="search-list">
+                <view class="like-goods bg" style="margin-left: 10rpx;"  wx:for="{{searchList}}" wx:key="index"  data-index="{{index}}">
                     <navigator url="/pages/detail/detail?id={{item.id}}">
                         <image src="{{item.goods_img}}" class="like-image"/>
                     </navigator>

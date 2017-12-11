@@ -45,13 +45,14 @@ Page({
     //取消成功接口
     handleCancelDetailSucc(res) {
         console.log(res)
-        let info = res.data.data;
+        let info = res.data;
         //修改请求数据显示价格和最多退多少
         this.setData({
             cancelList:info,
             cancelPrice:info.shopprice,
             max:info.max_refund.toFixed(2),
-            recid:info.rec_id
+            recid:info.rec_id,
+            odd:info.refund_sn
         })
     },
     //减少
@@ -100,12 +101,9 @@ Page({
             count = this.data.num,
             val = this.data.remark,
             userId = this.data.userId,
-            imgArr = wx.getStorageSync('cancelImg'),
-            arr = [],
             src = this.data.src,
             token = this.data.token;
             upload(this,src,id,'',token);
-            imgArr.map( item => arr.push(JSON.parse(item.data)))
         const data ={
             user_id:userId,
             post:{
@@ -114,13 +112,14 @@ Page({
                 goods_number:num,
                 refund_remark:val,
                 refund_amount:count,
-                refund_img:arr
+                type:1
             }
         };
         // 给后端传值取消订单的信息。
         utils.sendRequest(api.CancelGoods, data, this.handleRequestSucc.bind(this));
     },
     handleRequestSucc(res) {
+        console.log(res)
         try {
              if(res.data.error == 0){
                 wx.showModal({
@@ -255,9 +254,6 @@ Page({
         this.setData({
             src: list
         });
-    },
-    onUnload() {
-        wx.removeStorageSync('cancelImg')
     }
 })
 function upload(page, path,way,id,token) {
@@ -265,8 +261,7 @@ function upload(page, path,way,id,token) {
     icon: "loading",
     title: "正在上传"
   });
-  var test = [],
-    that = this;
+  console.log(path)
   for (var i = 0; i<path.length; i++) {
         wx.uploadFile({
           url: api.CancelImg,
@@ -278,7 +273,7 @@ function upload(page, path,way,id,token) {
           },
           header: { "Content-Type": "multipart/form-data" },
           success: res => {
-            wx.setStorageSync('cancelImg',test)
+            console.log(res)
             if (res.statusCode != 200) { 
               wx.showModal({
                 title: '提示',
@@ -287,11 +282,7 @@ function upload(page, path,way,id,token) {
               })
               return;
             }else {
-                wx.showModal({
-                    title: '提示',  
-                    content: '上传成功',
-                    showCancel: false
-                }) 
+            
             }
           },
           fail: function (e) {

@@ -37,6 +37,7 @@ Page({
     },
     //首屏加载渲染出分类里面的所有东西
     handleClassifyInfo(res) {
+        console.log(res)
         let classtab = res.data.data.type,
             tabSon = res.data.data.typeSon;
         this.setData({

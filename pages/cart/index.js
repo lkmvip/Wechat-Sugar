@@ -32,6 +32,7 @@ Page({
         utils.sendRequest(api.AllGoodsUrl, data, this.handleHotInfo.bind(this));
     },
     handleHotInfo(res) {
+        console.log(res)
         let list = res.data.data;
         this.setData({
             likeList: list
@@ -46,7 +47,7 @@ Page({
         utils.sendRequest(api.CartInfo, data, this.handleCartInfo.bind(this));
     },
     handleCartInfo(res) {// 这里让后端给我加了一个 select 的字段
-        let list = res.data.result;
+        let list = res.data.data;
         if (list.length > 0 ) {
             this.setData({
                 hasList: true,
@@ -267,8 +268,8 @@ Page({
     },
     handleAddGoodtoCartSucc(res) {
         let code = res.statusCode;
-                if(code == 200) {
-                    this.getCartInfo();
+        if(code == 200) {
+            this.getCartInfo();
         }
     },
     //清除全选状态

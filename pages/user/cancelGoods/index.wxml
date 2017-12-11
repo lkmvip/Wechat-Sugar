@@ -96,7 +96,8 @@
         		<view class="requset-text">
         			<view >￥{{cancelList.shopprice}}</view>
         			<view >X{{cancelList.goods_number}}</view>	
-        		</view>				
+        		</view>
+        		 <view wx:if="{{cancelList.goods_status==3?true:false}}" class="cancel-btn" style="top: 260rpx;">退货中(用户已发货)</view>				
 			</view>
 			<view class="cancel-examine">
 				<view class="mleft mright examine-pirce">
@@ -126,11 +127,16 @@
 				<view class="mleft mright examine-pirce">
 					<view>退货单号</view>
 					<view>
-						<input class="examine-input" value="{{odd}}" bindblur="handleGoodsNum"  type="text" placeholder="请输入快递单号"/>
+						<input class="examine-input" value="{{odd}}" disabled="{{cancelList.goods_status == 3 ? true:false}}" bindblur="handleGoodsNum"  type="text" placeholder="请输入快递单号"/>
 					</view>
 				</view>
 			</view>
-			<view class="request-btn" bindtap="handleSendGoods">提交发货</view>
+			<block wx:if="{{cancelList.goods_status == 3 ? true:false}}">	
+				<view class="request-btn" bindtap="handleCancelRequest">取消退货</view>
+			</block>
+			<block wx:else>
+				<view class="request-btn" bindtap="handleSendGoods">提交发货</view>
+			</block>
 
         </view>
         <!--************************************ 收货退款 **************************************-->

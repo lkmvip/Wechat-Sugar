@@ -92,7 +92,6 @@ const handleGetOpenIdSuccess = res => {
         try {
             wx.setStorageSync('UserCard', res.data)
             res.data.distribution_id == 0?wx.setStorageSync('seller', false):wx.setStorageSync('seller', true);
-            
         } catch (e) {    
             console.log(e)
         }

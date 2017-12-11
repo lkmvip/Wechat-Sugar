@@ -57,6 +57,7 @@ Page({
         utils.sendRequest(api.TicketInfoUrl, data, this.handleGetSucc.bind(this));
     },
     handleGetSucc(res) {
+        console.log(res)
         let has = [],
             used = [],
             timeOut = [];

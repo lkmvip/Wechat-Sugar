@@ -31,7 +31,7 @@ Page({
     * 生命周期函数--监听页面加载
     */
     onLoad(options) {
-        wx.setStorageSync('dbid', options.db)
+        options.db? wx.setStorageSync('dbid', options.db) :'';
         wx.showToast({
             icon: "loading",
             title: "正在加载"
@@ -40,13 +40,13 @@ Page({
             card = wx.getStorageSync('UserCard'),
             db = wx.getStorageSync('dbid'),
             show = wx.getStorageSync('seller'),
-            ifHave = false;
-            console.log(db,show)
+            ifHave = false; 
+            console.log(db,show,card)
             if(show&&db== '') {
                 console.log(1)
                 ifHave = true;
-            }else if (card.distribution_id==db) {
-                console.log(2  )
+            }else if (!show) {
+                console.log(2)
                 ifHave = true;
             }else if (card.distribution_id!=db) {
                 console.log(3)
