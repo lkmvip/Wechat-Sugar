@@ -21,7 +21,6 @@ Page({
     * 生命周期函数--监听页面加载
     */
     onLoad(options) {
-        console.log(options)
         wx.setNavigationBarTitle({
           title: options.name
         });
@@ -212,7 +211,6 @@ Page({
             list = this.data.moreGoods;
          if (dbId == 0) {
                 list[index].distribution_goods = 1;//改变页面显示效果
-                console.log(list[index])
                 this.setData({
                     moreGoods:list
                 });

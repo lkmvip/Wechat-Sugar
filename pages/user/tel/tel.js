@@ -30,7 +30,6 @@ Page({
 
     },
     handleInTixianSucc(res) {
-        console.log(res)
         if (res.data.tel!='') {
             this.setData({
                 tel:res.data.tel,

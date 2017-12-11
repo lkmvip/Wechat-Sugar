@@ -54,7 +54,6 @@ Page({
                     goods_ids:goodsid?goodsid:'',
                     totalamount:amount?amount:''
                 };
-            console.log(data)
         utils.sendRequest(api.TicketInfoUrl, data, this.handleGetSucc.bind(this));
     },
     handleGetSucc(res) {

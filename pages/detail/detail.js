@@ -35,19 +35,23 @@ Page({
             icon: "loading",
             title: "正在加载"
         })
-        wx.setStorageSync('dbid', options.db);
         let id = options.id,
             card = wx.getStorageSync('UserCard'),
-            db = wx.getStorageSync('dbid'),
+            db = wx.getStorageSync('dbid') == undefined ?wx.setStorageSync('dbid', options.db):wx.getStorageSync('dbid'),
             show = wx.getStorageSync('seller'),
             ifHave = false;
-            if(show&&db=='') {
+            console.log(db,show)
+            if(show&&db== undefined) {
+                console.log(1)
                 ifHave = true;
             }else if (card.distribution_id==db) {
+                console.log(2  )
                 ifHave = true;
             }else if (card.distribution_id!=db) {
+                console.log(3)
                 ifHave = false;
             }else {
+                console.log(4)
                 ifHave = false;
             };
         this.setData({
@@ -88,7 +92,6 @@ Page({
     },
     //处理成功详情页函数
     handleDetailInfo(res) {
-        console.log(res)
         let goodsList = res.data.data;
         goodsList[0].makeMoney = goodsList[0].makeMoney;
         this.setData({
@@ -283,12 +286,10 @@ Page({
     },
     //请求成功后跳转
     handleGoPaySucc(res) {
-        console.log(res)
         let code = res.statusCode,
             goodsid = res.data.rec_id,
             num = this.data.num,
             sub = this.data.goodsInfo[0].id;
-            // console.log(id)
         if (code == 200) {
             wx.redirectTo({
               url: '/pages/orderdetail/index?cartid='+goodsid+'&val='+num+'&pid='+sub
@@ -433,5 +434,25 @@ Page({
               url: '/pages/orderdetail/index?cartid='+goodsid
             })
         }
+    },
+    handleAddCartLike(e) {
+        let userId = this.data.userId;
+        let goodsId = e.target.dataset.id,
+            goodsName = e.target.dataset.name,
+            goodsPrice = e.target.dataset.price,
+            goodsit = e.target.dataset.it;
+
+            if (goodsit == null|| goodsit<=0 ) {//库存判断
+                wx.showModal({content: '库存不足抱歉哟~',showCancel: false})
+            }else {
+                const data = {
+                    userid:userId,
+                    goodsId:goodsId,
+                    goods_name:goodsName,
+                    goods_price:goodsPrice,
+                    goods_number:1
+                };
+                utils.sendRequest(api.AddGoodtoCart, data, this.handleAddGoodtoCartSucc.bind(this))
+            } 
     }
 })

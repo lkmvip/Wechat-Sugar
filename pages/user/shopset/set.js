@@ -18,7 +18,6 @@ Page({
    */
     onLoad(options) {
         let card = wx.getStorageSync('UserCard');
-        console.log(card)
             this.setData({
                 userId:card.user_id,
                 dbId:card.distribution_id,
@@ -64,7 +63,8 @@ Page({
     },
     //上传背景图片
     handleUploadSign() {
-        let id = this.data.dbId;
+        let id = this.data.dbId,
+            token = this.data.token;
         wx.chooseImage({
           count: 1, // 默认9
           sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -75,7 +75,7 @@ Page({
             this.setData({
                 sign: tempFilePaths
             })
-            upload(this,tempFilePaths,"sign",id);
+            upload(this,tempFilePaths,"sign",id,token);
 
           }
         })

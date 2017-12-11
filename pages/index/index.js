@@ -40,12 +40,10 @@ Page({
          utils.login(this.handleLogin.bind(this),this.handleReset.bind(this));
     },
     handleLogin(res) {
-        console.log(1)
         wx.showToast({
             icon: "loading",
             title: "正在加载"
         })
-        console.log(res)
         try {
             wx.setStorageSync('UserCard', res.data)//验证用户身份
             res.data.distribution_id == 0?wx.setStorageSync('seller', false):wx.setStorageSync('seller', true);
@@ -58,12 +56,19 @@ Page({
             db = wx.getStorageSync('dbid'),
             ifHave = false;
         if(show&&db=='') {
+            console.log(1)
             ifHave = true;
         }else if (card.distribution_id==db) {
+            console.log(2)
+
             ifHave = true;
         }else if (card.distribution_id!=db) {
+            console.log(3)
+
             ifHave = false;
         }else {
+            console.log(4)
+
             ifHave = false;
         };
         this.setData({
@@ -149,7 +154,6 @@ Page({
     },
     //请求IndexUrl成功处理函数 
     handleGetIndexSucc(res) {
-        console.log(res)
          wx.hideToast();
         // 返回商品列表和品牌列表的信息
         let goodsInfo = res.data.data;
@@ -398,11 +402,8 @@ Page({
         let goodsId = e.target.dataset.id,
             goodsName = e.target.dataset.name;
         //这里数据不固定，多个数据列表页，一个数据详情页
-        goodsId.indexOf(",")!=-1&&goodsId!=''?
         wx.navigateTo({
             url: '/pages/seemore/seemore?id='+goodsId+'&&name='+goodsName
-        }):wx.navigateTo({
-            url: '/pages/detail/detail?id='+goodsId 
         });
     },
     //分销商商品上下架

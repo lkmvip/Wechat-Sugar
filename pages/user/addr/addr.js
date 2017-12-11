@@ -329,7 +329,7 @@ Page({
             this.setData({
                 addrList: list
             })
-        if (isBack) {
+        if (isBack&&phone!='') {
             setTimeout(()=>{
                 if (!show) {
                         wx.showModal({
@@ -356,7 +356,12 @@ Page({
                 content:'请输入完整地址信息',
                 showCancel:false,
                 confirmColor:'#3cc51f'//默认值为#3cc51f
+            });
+            list[index].show = false;//改变当前对应按钮的disable属性
+            this.setData({
+                addrList:list
             })
+
         }
     },
     //存地址成功

@@ -39,6 +39,7 @@ Page({
         })
         this.getShopInfo();
         this.getShopList();
+        console.log(db)
     },
     //店铺信息
     getShopInfo() {

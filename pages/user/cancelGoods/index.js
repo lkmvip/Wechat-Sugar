@@ -26,7 +26,8 @@ Page({
             recId:id,
             userId:card.user_id,
             dbId:card.distribution_id,
-            dbLv:card.distribution_level
+            dbLv:card.distribution_level,
+            token:card.token
         })
         //判断状态改变tab内容
         if ( status == 0 ) { this.setData({activeIndex:0})}
@@ -100,8 +101,9 @@ Page({
             userId = this.data.userId,
             imgArr = wx.getStorageSync('cancelImg'),
             arr = [],
-            src = this.data.src;
-            upload(this,src,id,'');
+            src = this.data.src,
+            token = this.data.token;
+            upload(this,src,id,'',token);
             imgArr.map( item => arr.push(JSON.parse(item.data)))
         const data ={
             user_id:userId,
@@ -251,7 +253,7 @@ Page({
         wx.removeStorageSync('cancelImg')
     }
 })
-function upload(page, path,way,id) {
+function upload(page, path,way,id,token) {
   wx.showToast({
     icon: "loading",
     title: "正在上传"
@@ -265,6 +267,7 @@ function upload(page, path,way,id) {
           name: 'file',
           formData:{
             'rec_id': way,
+            'token':token
           },
           header: { "Content-Type": "multipart/form-data" },
           success: res => {

@@ -22,8 +22,6 @@ Page({
             userDbId: card.distribution_id
         });
         const data ={
-            distribution_id:card.distribution_id,
-            distribution_level:card.distribution_level
         };
         //调用主要信息，获取余额。
         utils.sendRequest(api.UserInComeNotProfit, data, this.handleWillComeSucc.bind(this));

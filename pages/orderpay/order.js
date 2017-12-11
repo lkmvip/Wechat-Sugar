@@ -228,7 +228,7 @@ Page({
     handleRmb(e) {
         let allPrice = this.data.orderPrice;
         let rmb = this.data.rmb;
-        rmb == null ? wx.showModal({content: '余额不足哦',showCancel: false}): 
+        rmb == null || rmb<e.detail.value? wx.showModal({content: '余额不足哦',showCancel: false}): 
         this.setData({rmbNum:0});
         e.detail.value > allPrice ?
         wx.showModal({content: '您给的太多了哟',showCancel: false}) :
