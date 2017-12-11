@@ -103,7 +103,6 @@ Page({
             userId = this.data.userId,
             src = this.data.src,
             token = this.data.token;
-            upload(this,src,id,'',token);
         const data ={
             user_id:userId,
             post:{
@@ -226,7 +225,8 @@ Page({
     },
     handleCancelPic() {
         let id = this.data.userId,
-            rec = this.data.recid;
+            rec = this.data.recid,
+            token = this.data.token;
         wx.showModal({
             content: '最多上传三张图片哟~',
             showCancel: false,
@@ -238,7 +238,7 @@ Page({
                   success: res => {
                     // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
                     var tempFilePaths = res.tempFilePaths;
-
+                    upload(this,tempFilePaths,id,'',token);
                     this.setData({
                         src: tempFilePaths
                     })

@@ -55,22 +55,11 @@ Page({
             show = wx.getStorageSync('seller'),
             db = wx.getStorageSync('dbid'),
             ifHave = false;
-        if(show&&db== '') {
-            console.log(1)
-            ifHave = true;
-        }else if (card.distribution_id==db) {
-            console.log(2)
-
-            ifHave = true;
-        }else if (card.distribution_id!=db) {
-            console.log(3)
-
-            ifHave = false;
-        }else {
-            console.log(4)
-
-            ifHave = false;
-        };
+        console.log(db)
+            if(card.distribution_id!=''&&db== ''||card.distribution_id==db) {
+                console.log(1)
+                ifHave = true;
+            };
         this.setData({
             userId:card.user_id,
             dbId:card.distribution_id,

@@ -8,13 +8,15 @@ Page({
     onLoad() {
         let user = wx.getStorageSync("UserInFo"),
             card = wx.getStorageSync('UserCard'),
-            show = wx.getStorageSync('seller');
+            show = wx.getStorageSync('seller'),
+            db = wx.getStorageSync('dbid');
     	this.setData({
     		userInfo : user,
             userLv : card.distribution_level,
             userDbId: card.distribution_id,
             dbShow:show,
-            userId:card.user_id
+            userId:card.user_id,
+            dbCanshu:db
     	})
         this.getYuEInfo();
         this.getShouEInfo();
@@ -165,10 +167,13 @@ Page({
     onShareAppMessage() {
         let id = this.data.userDbId,
             lv = this.data.userLv,
-            name = this.data.shopTit;
+            name = this.data.shopTit,
+            dbCanshu = this.data.dbCanshu,
+            shareid = '';
+            dbCanshu ==''? shareid = dbId:shareid = dbCanshu;
         return {
           title: name+'的美妆商城~',
-          path: "pages/user/shophandle/handle?db="+id+"&sharelv="+lv+"&status=1"
+          path: "pages/user/shophandle/handle?db="+shareid+"&sharelv="+lv+"&status=1"
         }
     }
 

@@ -39,9 +39,9 @@
 	</view>
 	<block wx:if="{{!dbShow}}">
 			<view class="shop-msg" wx:for="{{goodsInfo}}" wx:key="index">
-				<view style="display: flex;height: 100rpx;margin-bottom: 20rpx;width: 100%;background: #fff;">
+				<view style="display: flex;height: 170rpx;margin:20rpx 0;width: 100%;background: #fff;">
 					<image class="shop-msg-img" src="{{item.storeInfo.storelogo}}"></image>
-					<text style="margin-left:20rpx;font-size: 35rpx;line-height: 100rpx;">{{item.storeInfo.storename}}</text>
+					<text style="margin-left:20rpx;font-size: 35rpx;line-height: 170rpx;">{{item.storeInfo.storename}}</text>
 				</view>
 			</view>
 	</block>
