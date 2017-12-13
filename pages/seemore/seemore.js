@@ -3,7 +3,6 @@ const api = require('../../utils/api.js');//封装好的接口路径
 const utils = require('../../utils/util.js');//调用封装的request
 
 Page({
-
     /**
     * 页面的初始数据
     */
