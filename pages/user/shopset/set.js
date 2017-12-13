@@ -141,7 +141,6 @@ function upload(page, path,way,id,token) {
       },
       header: { "Content-Type": "multipart/form-data" },
       success: function (res) {
-        console.log(res)
         if (res.statusCode != 200) { 
           wx.showModal({
             title: '提示',

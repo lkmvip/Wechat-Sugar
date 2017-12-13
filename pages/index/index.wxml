@@ -51,22 +51,24 @@
                 </view>
             </view> 
             <!--  ***************************特殊商品*********************** -->
-            <view class="goods bg box">
-                <view class="text">
-                    倾情推荐
-                </view>
-                <view class="line"></view>
-                        <view class="goods-list"  wx:for="{{dbGoods}}" wx:key="{{index}}"  data-index="{{index}}">  
-                        <navigator url="/pages/detail/detail?id={{item.id}}&special=true&num={{item.id}}">
-                            <image src="{{item.goods_img}}" class="special-image" />
-                        </navigator>
-                        <view style="display: flex;justify-content: space-between;">
-                            <view class="goods-title">{{item.name}}</view>
-                            <view class="new-price" style="color:#ec1358;">￥{{item.shopprice}}</view>
-                        </view>   
-                </view>
+            <block wx:if="{{dbShow}}">
+                <view class="goods bg box">
+                    <view class="text">
+                        倾情推荐
+                    </view>
+                    <view class="line"></view>
+                            <view class="goods-list" style="padding-bottom:20rpx;"  wx:for="{{dbGoods}}" wx:key="{{index}}"  data-index="{{index}}">  
+                            <navigator url="/pages/detail/detail?id={{item.id}}&num={{item.id}}">
+                                <image src="{{item.goods_img}}" class="special-image" />
+                            </navigator>
+                            <view style="display: flex;justify-content: space-between;">
+                                <view class="goods-title">{{item.name}}</view>
+                                <view class="new-price" style="color:#ec1358;">￥{{item.shopprice}}</view>
+                            </view>   
+                    </view>
 
-            </view>
+                </view>
+            </block>
             <!--  ***************************专题功能*********************** -->
             <view class="set bg" wx:for="{{IndexSetList}}" wx:key="{{index}}">
                 <!--  ***************************专题功能1*********************** -->
@@ -77,7 +79,7 @@
                 <view wx:if="{{item.class_name == 'box2'}}" class="set-two">
                     <view class="two-img">
                         <image src="{{item.img_url[0]}}" class="set-img" data-id="{{item.goods_str[0].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
-                    </view>
+                    </view> 
                     <view class="two-img">
                         <image src="{{item.img_url[1]}}" class="set-img" data-id="{{item.goods_str[1].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                     </view>

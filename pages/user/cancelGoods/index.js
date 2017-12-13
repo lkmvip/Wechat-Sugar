@@ -44,7 +44,6 @@ Page({
     },
     //取消成功接口
     handleCancelDetailSucc(res) {
-        console.log(res)
         let info = res.data;
         //修改请求数据显示价格和最多退多少
         this.setData({
@@ -118,7 +117,6 @@ Page({
         utils.sendRequest(api.CancelGoods, data, this.handleRequestSucc.bind(this));
     },
     handleRequestSucc(res) {
-        console.log(res)
         try {
              if(res.data.error == 0){
                 wx.showModal({
@@ -261,7 +259,6 @@ function upload(page, path,way,id,token) {
     icon: "loading",
     title: "正在上传"
   });
-  console.log(path)
   for (var i = 0; i<path.length; i++) {
         wx.uploadFile({
           url: api.CancelImg,
@@ -273,7 +270,6 @@ function upload(page, path,way,id,token) {
           },
           header: { "Content-Type": "multipart/form-data" },
           success: res => {
-            console.log(res)
             if (res.statusCode != 200) { 
               wx.showModal({
                 title: '提示',

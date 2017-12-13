@@ -28,7 +28,6 @@ Page({
 			})
 		}
 		let card = card = wx.getStorageSync('UserCard');
-		console.log(card)
 		const data = {
 			user_id:card.user_id
 		};
@@ -38,7 +37,6 @@ Page({
 	},
 	//提现接口成功操作
 	handleGetInfolSucc(res) {
-		console.log(res)
 		res.data.data.map(item => {
             item.time = utils.formatTimeSec(new Date(Number(item.time)*1000));
         })

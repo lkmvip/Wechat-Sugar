@@ -132,6 +132,7 @@ swiper{
     width: 125rpx;
     height: 125rpx;
     display: block;
+    border-radius: 35rpx;
 }
 
 .supply-list {
@@ -348,15 +349,19 @@ swiper{
 }
 .two-img{
     width: 50%;
+    height: 300rpx;
 }
 .three-img{
     width: 33.33%;
+    height: 300rpx;
 }
 .four-img{
     width: 25%;
+    height: 300rpx;
 }
 .five-img{
     width: 50%;
+    height: 300rpx;
 }
 .five-right{
     width: 100%;
@@ -364,6 +369,7 @@ swiper{
 }
 .six-img{
     width: 50%;
+    height: 300rpx;
 }
 .set-img{
     width:100%;

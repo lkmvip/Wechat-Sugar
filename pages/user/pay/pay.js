@@ -107,7 +107,6 @@ Page({
           index: e.detail.value,
           bank:arr[e.detail.value]
         })
-        console.log(this.data.bank)
     },
     //选择提现金额验证
     handleCash(e) {
@@ -196,7 +195,6 @@ Page({
         }
     },
     handleTiXianlSucc(res) {
-        console.log(res)
         if (res.data.error == 0) {
             wx.showModal({
                 content:'提交申请成功，请您耐心等待。',

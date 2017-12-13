@@ -27,7 +27,6 @@ Page({
         utils.sendRequest(api.UserInComeNotProfit, data, this.handleWillComeSucc.bind(this));
     },
     handleWillComeSucc(res) {
-        console.log(res)
         let inComeList = res.data[1].data;
         inComeList.map(item => item.pay_time = utils.formatTimeSec(new Date(Number(item.pay_time)*1000)));
         this.setData({

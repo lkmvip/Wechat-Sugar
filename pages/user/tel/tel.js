@@ -111,7 +111,6 @@ Page({
             },1000)
     },
     handleGetYzmSucc(res) {
-        console.log(res.data.password.slice(0,6))
         wx.showModal({
             content:'正在努力发送，耐心等待哟',
             showCancel:false,
@@ -140,7 +139,6 @@ Page({
                 password:yzm+timestamp
 
             };
-            console.log(data)
             utils.sendRequest(api.BindTel, data, this.handleSaveTel.bind(this));
         }else {
              wx.showModal({

@@ -20,7 +20,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
     onLoad(options) {
-        console.log(options)
         wx.showToast({
             icon: "loading",
             title: "正在加载"
@@ -31,7 +30,6 @@ Page({
             couponId = options.ticketid,//优惠券id
             couponNum =options.ticketnum,//优惠券个数
             db = wx.getStorageSync('dbid');
-        console.log(db)
         this.setData({
             cartId:id,
             addrId:addrid,
@@ -176,7 +174,6 @@ Page({
     },
     //请求提交订单成功
     handleNewOrderInfo(res) {
-        console.log(res)
         try {
             let frt = this.data.freightNum;
             let userId = this.data.userId;
@@ -202,7 +199,6 @@ Page({
         }
     },
     handleCartDelInfo(res) {
-        console.log(res)
     },
     //选择使用优惠券
     checkboxChange(e) {

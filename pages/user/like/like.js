@@ -30,7 +30,6 @@ Page({
         utils.sendRequest(api.LikeInfoUrl, data, this.handleLikeInfoSucc.bind(this));
     },
     handleLikeInfoSucc(res) {
-        console.log(res)
         try {
             this.setData({
                 itemList:res.data.data,

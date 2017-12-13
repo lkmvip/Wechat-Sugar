@@ -11,7 +11,7 @@
 						<view class="detail-price">
 							<text class="new-price">￥{{item.price}}</text>
 							<block wx:if="{{dbShow}}">
-								<text class="make-money" style="display: block;">赚{{item.makeMoney}}</text>
+								<text class="make-money" style="display: block;">赚{{item.makeMoney==undefined?0:item.makeMoney}}</text>
 							</block>
 
 							<view class="old-price">专柜价:￥{{item.market_price}}</view>					    
@@ -37,7 +37,7 @@
 			<view>{{item}}</view>
 		</view>
 	</view>
-	<block wx:if="{{dbShow}}">
+	<block wx:if="{{!dbShow}}">
 			<view class="shop-msg" wx:for="{{goodsInfo}}" wx:key="index">
 				<view style="display: flex;height: 170rpx;margin:20rpx 0;width: 100%;background: #fff;">
 					<image class="shop-msg-img" src="{{item.storeInfo.storelogo}}"></image>
@@ -55,7 +55,7 @@
                 </navigator>
 				<view class="guess-content">
 					<view class="guess-tit">{{item.name}}</view>
-					<view class="guess-num">已售{{item.goodsnumber}}</view>
+					<view class="guess-num">已售{{item.goodsnumber== null ? 0 :item.goodsnumber}}</view>
 					<view class="guess-price">
 						<view>￥{{item.shopprice}}</view>
 						<image src="/image/icon_cart.png" class="cart-img" data-it="{{item.inventory}}" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCartLike"/>

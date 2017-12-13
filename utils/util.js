@@ -37,7 +37,6 @@ function sendRequest(path, data, callback) {
         method: "POST",
         success: callback,
         fail:(res)=>{
-          console.log(res)
         } 
     })  
 }
@@ -82,7 +81,6 @@ function login(callback,reset) {
                                 }
                             })
                     }else{
-                        console.log("登录失败")
                     }
                 }
             })              

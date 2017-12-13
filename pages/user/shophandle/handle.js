@@ -14,7 +14,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
     onLoad(options) {
+        console.log(options)
         wx.setStorageSync('dbid', options.db);
+        utils.login(this.handleLogin.bind(this),this.handleReset.bind(this));
+            this.setData({
+                db:options.db,
+                slv:options.sharelv,
+                status:options.status
+            })
+        wx.showToast({
+            icon: "loading",
+            title: "正在加载"
+        })
         let card = wx.getStorageSync('UserCard'),
             show = wx.getStorageSync('seller'),
             db = wx.getStorageSync('dbid'),
@@ -33,13 +44,53 @@ Page({
                 dbId:card.distribution_id,
                 dbLv:card.distribution_level,
                 dbShow:ifHave,
-                db:options.db,
-                slv:options.sharelv,
-                status:options.status
-        })
+            })
         this.getShopInfo();
         this.getShopList();
-        console.log(db)
+        
+    },
+    handleLogin(res) {
+        wx.showToast({
+            icon: "loading",
+            title: "正在加载"
+        })
+        try {
+            wx.setStorageSync('UserCard', res.data)//验证用户身份
+            res.data.distribution_id == 0?wx.setStorageSync('seller', false):wx.setStorageSync('seller', true);
+            
+        } catch (e) {    
+            console.log(e)
+        }
+        let card = wx.getStorageSync('UserCard'),
+            show = wx.getStorageSync('seller'),
+            db = wx.getStorageSync('dbid'),
+            ifHave = false;
+            if(card.distribution_id!=''){
+                if((card.distribution_id!=''&&db== '')||card.distribution_id==db) {
+                    ifHave = true;
+                }else{
+                    ifHave = false;
+                }
+            }else{
+                ifHave = false;
+            }
+            this.setData({
+                userId:card.user_id,
+                dbId:card.distribution_id,
+                dbLv:card.distribution_level,
+                dbShow:ifHave,
+            })
+        this.getShopInfo();
+        this.getShopList();
+    },
+    handleReset (res) {
+        if (res.confirm) {
+                wx.openSetting({
+                  success: res => {
+                        utils.login(this.handleLogin.bind(this),this.handleReset.bind(this));
+                    }
+                });
+        }
     },
     //店铺信息
     getShopInfo() {
@@ -56,7 +107,6 @@ Page({
         utils.sendRequest(api.GetHandleShop, data, this.HandleShopSucc.bind(this)); 
     },
     HandleShopSucc(res){
-        console.log(res)
         this.setData({
             name:res.data.data.storename,
             text:res.data.data.store_contents,

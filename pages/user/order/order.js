@@ -3,7 +3,7 @@ const utils = require('../../../utils/util.js');//调用封装的request
 
 Page({
     data: {
-        tabs: ["全部订单","待付款","待收货","已收货"],
+        tabs: ["全部","待付款","待收货","已收货"],
         activeIndex: "0",
         allOrder:[],
         show:false,
@@ -111,7 +111,6 @@ Page({
         utils.sendRequest(api.OrderInfoList, data, this.handleOrderInfoListSucc.bind(this));
     },
     handleOrderInfoListSucc(res) {
-        console.log(res)
         wx.showToast({title: '加载成功',icon: 'success'});      
         this.setData({//反转数组 
             allOrder:res.data.data.reverse()

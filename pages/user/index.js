@@ -61,7 +61,6 @@ Page({
         utils.sendRequest(api.ZhunBeiTiXian, data2, this.handleInTixianSucc.bind(this));
     },
     handleInTixianSucc(res) {
-        console.log(res)
         this.setData({
             tel:res.data.tel
         })
@@ -85,7 +84,6 @@ Page({
     },
     //累计收益和待收收益
     handleInComeSucc(res) {
-        console.log(res)
         this.setData({
             WillInCome:res.data.notMoney,
             InComeAdd:res.data.readyMoney
@@ -166,16 +164,24 @@ Page({
         })
     },
     onShareAppMessage() {
-        let id = this.data.userDbId,
+        if (this.data.dbShow) {
+            let id = this.data.userDbId,
             lv = this.data.userLv,
             name = this.data.shopTit,
             dbCanshu = this.data.dbCanshu,
             shareid = '';
-            dbCanshu ==''? shareid = dbId:shareid = dbCanshu;
-        return {
-          title: name+'的美妆商城~',
-          path: "pages/user/shophandle/handle?db="+shareid+"&sharelv="+lv+"&status=1"
+            dbCanshu ==''? shareid = id:shareid = dbCanshu;
+            return {
+              title: name+'的美妆商城~',
+              path: "pages/user/shophandle/handle?db="+shareid+"&sharelv="+lv+"&status=1"
+            }
+        }else {
+           return {
+                title: "最超值的正品美妆平台",
+                path: "/pages/user/index"
+           } 
         }
+        
     }
 
 })

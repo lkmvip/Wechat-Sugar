@@ -37,10 +37,27 @@ Page({
 
     onLoad(options) {
         //用户授权操作
-         utils.login(this.handleLogin.bind(this),this.handleReset.bind(this));
+        utils.login(this.handleLogin.bind(this),this.handleReset.bind(this));
+        let card = wx.getStorageSync('UserCard'),
+            show = wx.getStorageSync('seller'),
+            db = wx.getStorageSync('dbid'),
+            ifHave = false;
+            if(card.distribution_id!=''){
+                if((card.distribution_id!=''&&db== '')||card.distribution_id==db) {
+                    ifHave = true;
+                }else{
+                    ifHave = false;
+                }
+            }else{
+                ifHave = false;
+            }
+        this.setData({
+            userId:card.user_id,
+            dbShow:ifHave
+        })
+
     },
     handleLogin(res) {
-         console.log(res)
         wx.showToast({
             icon: "loading",
             title: "正在加载"
@@ -89,14 +106,8 @@ Page({
         let card = wx.getStorageSync('UserCard'),
             show = wx.getStorageSync('seller');
         this.setData({
-            userId:card.user_id,
-            dbShow:show
+            userId:card.user_id
         });
-            // this.getIndexInfo();
-            // this.getBannerInfo();
-            // this.getAllGoodsInfo();
-            // this.getTabInfo();
-            // this.getIndexSet();
     },
     //分类选项卡操作
     getTabInfo() {
@@ -157,7 +168,6 @@ Page({
     },
     //请求AllUrl成功处理函数  
     handleGetAllSucc(res) {
-        console.log(res)
         const goods = res.data.data;
         const arr = [];
         goods.map((item,index)=> arr.push(item));

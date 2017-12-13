@@ -5,11 +5,11 @@
     		<text class="userinfo-nickname">{{userInfo.nickName}}</text>
 			<image class="userinfo-lv" src="/image/Vip{{userLv?userLv:0}}.png" ></image>
 			<text  style= "color:#fff;font-size:34rpx;margin-top:30rpx;position: absolute; left: 210rpx;top:80rpx;">{{tel}}</text>  
-    	</view>		
+    	</view>
 	</view>
 	<!-- 个人中心工具开始 -->
 	<view class="user-wallet">
-		<view class="balance">可用余额:<text style="color:#ff4041">{{rmb}}</text></view>
+		<view class="balance">可用余额：<text style="color:#ff4041">{{rmb}}</text></view>
 		<block wx:if="{{dbShow}}">
 			<view bindtap="handleCash" class="withdraw">提现 <text class="arrow-icon">></text></view>
 		</block>

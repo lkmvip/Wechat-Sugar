@@ -31,18 +31,21 @@ Page({
     * 生命周期函数--监听页面加载
     */
     onLoad(options) {
-        console.log(options)
         options.db? wx.setStorageSync('dbid', options.db) :'';
+        utils.login(this.handleLogin.bind(this),this.handleReset.bind(this));
         wx.showToast({
             icon: "loading",
             title: "正在加载"
         })
-        let id = options.id,
-            card = wx.getStorageSync('UserCard'),
-            db = wx.getStorageSync('dbid'),
+        let id = options.id;
+        this.setData({
+            goodsId: id,
+            abc:options.abc,
+        })
+        let card = wx.getStorageSync('UserCard'),
             show = wx.getStorageSync('seller'),
-            ifHave = false; 
-            console.log(card)
+            db = wx.getStorageSync('dbid'),
+            ifHave = false;
             if(card.distribution_id!=''){
                 if((card.distribution_id!=''&&db== '')||card.distribution_id==db) {
                     ifHave = true;
@@ -53,19 +56,56 @@ Page({
                 ifHave = false;
             }
         this.setData({
-            goodsId: id,
             userId:card.user_id,
             subId:card.subwebId,
-            abc:options.abc,
             dbId:card.distribution_id,
             dbLv:card.distribution_level,
             dbShow:ifHave,
-            dbCanshu:db,
-            special:options.special
+            dbCanshu:db
         })
         this.getDetailInfo();
     },
-    onReady() {
+    handleLogin(res) {
+        try {
+            wx.setStorageSync('UserCard', res.data)//验证用户身份
+            res.data.distribution_id == 0?wx.setStorageSync('seller', false):wx.setStorageSync('seller', true);
+            
+        } catch (e) {    
+            console.log(e)
+        }
+        let card = wx.getStorageSync('UserCard'),
+            show = wx.getStorageSync('seller'),
+            db = wx.getStorageSync('dbid'),
+            ifHave = false;
+            if(card.distribution_id!=''){
+                if((card.distribution_id!=''&&db== '')||card.distribution_id==db) {
+                    ifHave = true;
+                }else{
+                    ifHave = false;
+                }
+            }else{
+                ifHave = false;
+            }
+        this.setData({
+            userId:card.user_id,
+            subId:card.subwebId,
+            dbId:card.distribution_id,
+            dbLv:card.distribution_level,
+            dbShow:ifHave,
+            dbCanshu:db
+        })
+        this.getDetailInfo();
+    },
+    handleReset() {
+        if (res.confirm) {
+                wx.openSetting({
+                  success: res => {
+                        utils.login(this.handleLogin.bind(this),this.handleReset.bind(this));
+                    }
+                });
+        }
+    },
+    onShow() {
         this.getCartGoodsNum();
         this.getDetailInfo();
     },
@@ -88,7 +128,6 @@ Page({
     },
     //处理成功详情页函数
     handleDetailInfo(res) {
-        console.log(res)
         let goodsList = res.data.data;
         goodsList[0].makeMoney = goodsList[0].makeMoney;
         this.setData({
@@ -129,7 +168,6 @@ Page({
         utils.sendRequest(api.CartGoodsNum, data, this.handleCartNum.bind(this));
     },
     handleCartNum(res) {
-        console.log(res)
         let num = res.data.result;
         this.setData({
             cartNums:num
@@ -260,7 +298,6 @@ Page({
     },
     // 前往订单页面
     handleGoPay(e) { 
-        console.log(this.data.goodsId)
         let teshu = this.data.special;      
         if (this.data.goodsId>0) {
             this.setData({
@@ -393,7 +430,7 @@ Page({
             dbCanshu ==''? shareid = dbId:shareid = dbCanshu;
         return {
             title: "最超值的正品美妆平台",
-            path: "pages/detail/detail?id="+id+"&db="+shareid+"&special=true"
+            path: "pages/detail/detail?id="+id+"&db="+shareid
         }
     },
     handleDbGoPaySucc(res) {
