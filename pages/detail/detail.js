@@ -428,8 +428,9 @@ Page({
             dbCanshu = this.data.dbCanshu,
             shareid = '';
             dbCanshu ==''? shareid = dbId:shareid = dbCanshu;
+        let text = this.data.goodsInfo;
         return {
-            title: "最超值的正品美妆平台",
+            title: text[0].name+'。惊爆价：'+text[0].price+'元',
             path: "pages/detail/detail?id="+id+"&db="+shareid
         }
     },

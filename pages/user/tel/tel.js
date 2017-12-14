@@ -150,8 +150,9 @@ Page({
 
     },
     handleSaveTel(res) {
-        console.log(res)
-        let go = this.data.go;
+        let go = this.data.go,
+            id = res.data.data.id,
+            lv = res.data.data.level;
         if (res.data.error == 0) {
             wx.showModal({
                 content:'绑定成功~',
@@ -164,6 +165,11 @@ Page({
                               url: '/pages/user/cash/cash'
                             })
                         }else {
+                            let card = wx.getStorageSync('UserCard');
+                            card.distribution_id = id;
+                            card.distribution_level = lv;
+                            wx.setStorageSync('UserCard',card);
+                            id == 0?wx.setStorageSync('seller', false):wx.setStorageSync('seller', true);
                             wx.switchTab({
                               url: '/pages/user/index'
                             })
@@ -180,12 +186,6 @@ Page({
             })
             return false
 
-        }else if (res.data.error == 1001 ) {
-            wx.showModal({
-                content:'验证码输入错误',
-                showCancel:false,
-                confirmColor:'#3cc51f'
-            }) 
         }else if(res.data.error =99) {
             wx.showModal({
                 content:'该手机号已被用户绑定',

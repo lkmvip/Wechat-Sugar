@@ -55,8 +55,6 @@ Page({
             listId = this.data.brandId,
             codeId = this.data.code,
             newbrandId = this.data.newbrandId;
-        let id = this.data.dbId,
-            lv = this.data.dbLv;
         // 品牌商品进入时调用
         if(listId) {
             const data = {
@@ -69,8 +67,6 @@ Page({
         //新分类商品进入
         if(newbrandId) {
             const data = {
-                distribution_id:id,
-                distribution_level:lv,
                 data: {
                     goodstypecode:newbrandId,
                 },
@@ -81,8 +77,6 @@ Page({
         // 分类商品进入时调用
         if(codeId) {
             const data = {
-                distribution_id:id,
-                distribution_level:lv,
                 data: {
                     goodstypecode:codeId,
                 },
@@ -93,8 +87,6 @@ Page({
         // 更多商品进入时调用
         if(isId) {
             const data = {
-                distribution_id:id,
-                distribution_level:lv,
                 zhuti_id:isId,
                 type:1
             };
@@ -178,8 +170,7 @@ Page({
                     brandList:list
                 });
                 const data = {
-                    goodsId:goodsId,
-                    distribution_id:id
+                    goodsId:goodsId
                 };
                 utils.sendRequest(api.DistributionAdd, data, this.handleAddDbSucc.bind(this))
             }else {
@@ -188,8 +179,7 @@ Page({
                     brandList:list
                 })
                 const data = {
-                    goodsId:goodsId,
-                    distribution_id:id
+                    goodsId:goodsId
                 };
                 utils.sendRequest(api.DistributionDel, data, this.handleDelDbSucc.bind(this))
             }
@@ -207,8 +197,7 @@ Page({
                     moreGoods:list
                 });
                 const data = {
-                    goodsId:goodsId,
-                    distribution_id:id
+                    goodsId:goodsId
                 };
                 utils.sendRequest(api.DistributionAdd, data, this.handleAddDbSucc.bind(this))
             }else {
@@ -217,8 +206,7 @@ Page({
                     moreGoods:list
                 })
                 const data = {
-                    goodsId:goodsId,
-                    distribution_id:id
+                    goodsId:goodsId
                 };
                 utils.sendRequest(api.DistributionDel, data, this.handleDelDbSucc.bind(this))
             }

@@ -108,7 +108,6 @@ Page({
         this.setData({
             leftTab : id
         });
-
         const data = {
             goodsTypeCode: code
         };

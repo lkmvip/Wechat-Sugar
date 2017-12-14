@@ -65,7 +65,6 @@ Page({
     },
     //支付页面成功列表
     handleOrderList(res) {
-        console.log(res)
         wx.hideToast()
         let result = res.data;
         this.setData({

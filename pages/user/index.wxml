@@ -4,8 +4,13 @@
 			<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     		<text class="userinfo-nickname">{{userInfo.nickName}}</text>
 			<image class="userinfo-lv" src="/image/Vip{{userLv?userLv:0}}.png" ></image>
-			<text  style= "color:#fff;font-size:34rpx;margin-top:30rpx;position: absolute; left: 210rpx;top:80rpx;">{{tel}}</text>  
+			<text  style= "color:#fff;font-size:34rpx;margin-top:30rpx;position: absolute; left: 210rpx;top:80rpx;">{{tel}}</text>
+<!-- 			<block wx:if="{{dbShow}}">
+				<image class="userinfo-code" src="/image/user/code.png" ></image> 
+			</block> -->
     	</view>
+
+
 	</view>
 	<!-- 个人中心工具开始 -->
 	<view class="user-wallet">

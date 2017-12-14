@@ -28,18 +28,18 @@
 	background: #fff;
 }
 .detail-text {
-	width: 600rpx;
+	width: 90%;
 	font-size: 30rpx;
-	line-height: 60rpx;
 }
 .detail-price {
 	width: 300rpx;
 	font-size: 30rpx;
 }
 .detail-like {
-	width: 110rpx;
+	width: 10%;
 	text-align: center;
-	padding-top: 35rpx; 
+	padding-top: 5rpx;
+	margin-left: 60rpx;
 }
 .like-img {
 	width: 50rpx;

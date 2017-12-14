@@ -270,19 +270,15 @@ function upload(page, path,way,id,token) {
           },
           header: { "Content-Type": "multipart/form-data" },
           success: res => {
-            if (res.statusCode != 200) { 
-              wx.showModal({
-                title: '提示',
-                content: '上传失败',
-                showCancel: false
-              })
-              return;
-            }else {
-            
+            if (res.statusCode != 200) {
+                wx.showModal({
+                  title: '提示',
+                  content: '出错了，工程师正在抢修',
+                  showCancel: false
+                })
             }
           },
           fail: function (e) {
-            console.log(e);
             wx.showModal({
               title: '提示',
               content: '上传失败',

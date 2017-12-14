@@ -23,6 +23,18 @@ Page({
         this.getDaiShouInfo();
     },
     onShow() {
+        let user = wx.getStorageSync("UserInFo"),
+            card = wx.getStorageSync('UserCard'),
+            show = wx.getStorageSync('seller'),
+            db = wx.getStorageSync('dbid');
+        this.setData({
+            userInfo : user,
+            userLv : card.distribution_level,
+            userDbId: card.distribution_id,
+            dbShow:show,
+            userId:card.user_id,
+            dbCanshu:db
+        })
         this.getYuEInfo();
         this.getShouEInfo();
         this.getDaiShouInfo();

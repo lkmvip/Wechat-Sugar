@@ -116,8 +116,6 @@ Page({
     },
     //请求IndexUrl函数 
     getIndexInfo() {
-        let id = this.data.dbId,
-            lv = this.data.dbLv;
         const data = {
         };
         utils.sendRequest(api.IndexUrl, data, this.handleGetIndexSucc.bind(this));
@@ -129,8 +127,6 @@ Page({
     },
     //请求AllGoodsUrl函数   
     getAllGoodsInfo() {
-        let id = this.data.dbId,
-            lv = this.data.dbLv;
         const data = {
             limitIndex:this.data.limitIndex//查询条件
         };
@@ -202,8 +198,6 @@ Page({
         //关于上拉加载的性能优化
             setTimeout(()=>{
                     let num = this.data.limitIndex;
-                    let id = this.data.dbId,
-                        lv = this.data.dbLv;
                     this.setData({
                         limitIndex: num+1
                     })
@@ -217,8 +211,6 @@ Page({
         if (val != ''&& err == 0 && load1) {//这里是 搜索里面的下拉加载
             setTimeout(()=>{
                     let num = this.data.limitIndex;
-                    let id = this.data.dbId,
-                        lv = this.data.dbLv;
                     this.setData({
                         limitIndex: num+1
                     })
@@ -250,12 +242,9 @@ Page({
     },
     //当用户点击键盘搜索按钮之后执行 商品搜索
     handleSearch(e) {
-        let id = this.data.dbId,
-            lv = this.data.dbLv;
         this.setData({
             inputVal: e.detail.value
         });                    
-
         const data = {
             limitIndex:this.data.limitIndex,
             data:{
@@ -368,7 +357,6 @@ Page({
             list = this.data.goodsList;
             if (dbId == 0) {
                 list[num].goods[index].distribution_goods = 1;//改变页面显示效果
-
                 this.setData({
                     goodsList:list
                 });

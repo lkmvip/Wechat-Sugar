@@ -28,6 +28,13 @@
 	margin-top: 35rpx;
 	margin-left: 20rpx; 
 }
+.userinfo-code {
+	width: 100rpx;
+	height: 100rpx;
+	position: absolute;
+	right: 50rpx;
+	top: 50rpx;
+}
 /* 个人中心工具开始*/
 .user-wallet {
 	width: 100%;
