@@ -1,7 +1,5 @@
 <!--pages/seemore/seemore.wxml-->
 <view class="goods bg box">
-	<view class="line"></view>
-
 		<block wx:if="{{error}}">
 		    <view class="goods-nomsg">暂无当前分类产品哟~</view>
 		</block>

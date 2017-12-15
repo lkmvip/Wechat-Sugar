@@ -60,7 +60,8 @@ Page({
             const data = {
                 data: {
                     brandid:listId,
-                }
+                },
+                type:1
             };
             utils.sendRequest(api.AllGoodsUrl, data, this.handleMoreBrandSucc.bind(this)); 
         };
@@ -84,7 +85,7 @@ Page({
             };
             utils.sendRequest(api.AllGoodsUrl, data, this.handleMoreClassifySucc.bind(this)); 
         }
-        // 更多商品进入时调用
+        // 更多商品进入时调用和banner进入
         if(isId) {
             const data = {
                 zhuti_id:isId,
@@ -104,7 +105,6 @@ Page({
     },
     //请求品牌商品成功处理函数 
     handleMoreBrandSucc(res) {
-        console.log(res)
         let brandInfo = '';
         res.data.error == 100 ? brandInfo = true :brandInfo = false;
         this.setData({

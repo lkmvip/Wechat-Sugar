@@ -304,5 +304,5 @@
 .shop-msg-img{
 	width: 100rpx;
 	height: 100rpx;
-	margin:20rpx; 
+	margin:35rpx; 
 }

@@ -258,7 +258,6 @@ Page({
     //搜索事件
     handleSearchSucc(res) {
         let searchs=res.data.data;
-        // console.log(searchs)
         this.setData({
             searchList: res.data.data,
             isErr: res.data.error
@@ -272,7 +271,6 @@ Page({
     },
     //当value为空的时候 搜索内容隐藏
     handleSearchValue(e) {
-        console.log(e)
         if (e.detail.cursor == 0) {
             this.setData({
                 inputVal: '',

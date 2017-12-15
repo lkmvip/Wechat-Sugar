@@ -53,13 +53,9 @@ Page({
     },
     //收益接口
     getShouEInfo() {
-        let id = this.data.userId,
-            dbid = this.data.userDbId,
-            dblv = this.data.userLv;
+        let id = this.data.userId;
         const data1 ={
             user_id:id,
-            distribution_id:dbid,
-            distribution_level:dblv
         };
         //调用收益。
         utils.sendRequest(api.UserShowInCome, data1, this.handleInComeSucc.bind(this));
@@ -79,12 +75,10 @@ Page({
         })
     },
     handleUserMainSucc(res) {
-        let id = this.data.userDbId;
         this.setData({
             rmb:res.data.accountbalance
         });
         const data2 ={
-            distribution_id:id,
             userName:res.data.name
         };
         //调用收益。
@@ -191,7 +185,7 @@ Page({
         }else {
            return {
                 title: "最超值的正品美妆平台",
-                path: "/pages/user/index"
+                path: "/pages/index/index"
            } 
         }
         
@@ -205,10 +199,10 @@ Page({
         utils.sendRequest(api.CodeImgUrlInfo, data1, this.handlePosImgSucc.bind(this));
     },
     handlePosImgSucc(res) {
+        console.log(res)
         this.setData({
             posCode:res.data
         })
-        console.log(res.data)
     },
     handleClosePos() {
         this.setData({

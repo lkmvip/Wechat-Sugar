@@ -142,17 +142,22 @@ Page({
         let carts = this.data.carts,
             num = parseInt(carts[index].goods_number),//商品个数
             id = Number(e.currentTarget.dataset.id),
-            goods = Number(e.currentTarget.dataset.goods);
+            goods = Number(e.currentTarget.dataset.goods),
+            it =  Number(e.currentTarget.dataset.it);
         let userId = this.data.userId;
         if (goods < 0 ) {
              wx.showModal({content: '特殊商品只能购买一个~',showCancel: false})
              return false
         }
-        num = num + 1;
-        carts[index].goods_number = num;
-        this.setData({
-          carts: carts
-        });
+        if (num>it) {
+            wx.showModal({content: '库存不足抱歉哟~',showCancel: false})     
+        }else {
+            num = num + 1;
+            carts[index].goods_number = num;
+            this.setData({
+              carts: carts
+            });
+        }
         this.getTotalPrice();
         const data ={
             user_id:userId,
@@ -185,8 +190,7 @@ Page({
         num = num - 1;
         carts[index].goods_number = num;
         this.setData({
-          carts: carts,
-          goodsNums: goods
+          carts: carts
 
         });
         this.getTotalPrice();
@@ -204,17 +208,19 @@ Page({
             num = e.detail.value,
             id = e.currentTarget.dataset.id,
             goods = carts.length,
-            goodsId = Number(e.currentTarget.dataset.goods);//列表长度 
+            goodsId = Number(e.currentTarget.dataset.goods),
+            it =  Number(e.currentTarget.dataset.it);;//列表长度 
         let userId = this.data.userId;
         if (goodsId < 0 ) {
              wx.showModal({content: '特殊商品只能购买一个~',showCancel: false})
              return false
-        }       
-        num == 0? num = 1:num;
-        carts[index].goods_number = num;
+        }
+        if (num>it) {
+            wx.showModal({content: '库存不足抱歉哟~',showCancel: false})
+        }    
+        num == 0||num>it? carts[index].goods_number = carts[index].goods_number :carts[index].goods_number = num;
         this.setData({
-          carts: carts,
-          goodsNums: goods
+          carts: carts
 
         });
         this.getTotalPrice();

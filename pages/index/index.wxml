@@ -73,71 +73,71 @@
             <view class="set bg" wx:for="{{IndexSetList}}" wx:key="{{index}}">
                 <!--  ***************************专题功能1*********************** -->
                 <view wx:if="{{item.class_name == 'box1'}}" class="set-one">
-                    <image src="{{item.img_url[0]}}" class="set-img" mode="widthFix" data-id="{{item.goods_str[0].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
+                    <image src="{{item.img_url[0]}}" class="set-img" data-id="{{item.goods_str[0].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                 </view>
                 <!--  ***************************专题功能2*********************** -->
                 <view wx:if="{{item.class_name == 'box2'}}" class="set-two">
                     <view class="two-img">
-                        <image src="{{item.img_url[0]}}" class="set-img" mode="widthFix" data-id="{{item.goods_str[0].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
+                        <image src="{{item.img_url[0]}}" class="set-img" data-id="{{item.goods_str[0].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                     </view> 
                     <view class="two-img">
-                        <image src="{{item.img_url[1]}}" class="set-img" mode="widthFix" data-id="{{item.goods_str[1].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
+                        <image src="{{item.img_url[1]}}" class="set-img" data-id="{{item.goods_str[1].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                     </view>
                 </view>
                 <!--  ***************************专题功能3*********************** -->
                 <view wx:if="{{item.class_name == 'box3'}}" class="set-three">
                     <view class="three-img">
-                        <image src="{{item.img_url[0]}}" class="set-img" mode="widthFix" data-id="{{item.goods_str[0].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
+                        <image src="{{item.img_url[0]}}" class="set-img" data-id="{{item.goods_str[0].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                     </view>
                     <view class="three-img">
-                        <image src="{{item.img_url[1]}}" class="set-img" mode="widthFix" data-id="{{item.goods_str[1].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
+                        <image src="{{item.img_url[1]}}" class="set-img" data-id="{{item.goods_str[1].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                     </view>
                     <view class="three-img">
-                        <image src="{{item.img_url[2]}}" class="set-img" mode="widthFix" data-id="{{item.goods_str[2].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
+                        <image src="{{item.img_url[2]}}" class="set-img"  data-id="{{item.goods_str[2].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                     </view>
                 </view>
                 <!--  ***************************专题功能4*********************** -->   
                 <view wx:if="{{item.class_name == 'box4'}}" class="set-four">
                     <view class="four-img">
-                        <image src="{{item.img_url[0]}}" class="set-img" mode="widthFix" data-id="{{item.goods_str[0].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
+                        <image src="{{item.img_url[0]}}" class="set-img"  data-id="{{item.goods_str[0].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                     </view>
                     <view class="four-img">
-                        <image src="{{item.img_url[1]}}" class="set-img" mode="widthFix" data-id="{{item.goods_str[1].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
+                        <image src="{{item.img_url[1]}}" class="set-img"  data-id="{{item.goods_str[1].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                     </view>
                     <view class="four-img">
-                        <image src="{{item.img_url[2]}}" class="set-img" mode="widthFix" data-id="{{item.goods_str[2].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
+                        <image src="{{item.img_url[2]}}" class="set-img" data-id="{{item.goods_str[2].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                     </view>
                     <view class="four-img">
-                        <image src="{{item.img_url[3]}}" class="set-img" mode="widthFix" data-id="{{item.goods_str[3].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
+                        <image src="{{item.img_url[3]}}" class="set-img" data-id="{{item.goods_str[3].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                     </view>
                 </view>
                 <!--  ***************************专题功能5*********************** -->
                 <view wx:if="{{item.class_name == 'box5'}}" class="set-five">
                     <view class="five-img">
-                        <image src="{{item.img_url[0]}}" class="set-img" mode="widthFix" data-id="{{item.goods_str[0].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
+                        <image src="{{item.img_url[0]}}" class="set-img" data-id="{{item.goods_str[0].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                     </view>
                     <view class="five-img">
                         <view class="five-right">
-                            <image src="{{item.img_url[1]}}" class="set-img" mode="widthFix" data-id="{{item.goods_str[1].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
+                            <image src="{{item.img_url[1]}}" class="set-img"  data-id="{{item.goods_str[1].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                         </view>
                         <view class="five-right">
-                            <image src="{{item.img_url[2]}}" class="set-img" mode="widthFix" data-id="{{item.goods_str[1].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
+                            <image src="{{item.img_url[2]}}" class="set-img" data-id="{{item.goods_str[1].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                         </view>     
                     </view>
                 </view>
                 <!--  ***************************专题功能6*********************** -->
                 <view wx:if="{{item.class_name == 'box6'}}" class="set-six" >
                     <view class="six-img">
-                        <image src="{{item.img_url[0]}}" class="set-img" mode="widthFix" data-id="{{item.goods_str[0].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
+                        <image src="{{item.img_url[0]}}" class="set-img" data-id="{{item.goods_str[0].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                     </view>
                     <view class="six-img">
-                        <image src="{{item.img_url[1]}}" class="set-img" mode="widthFix" data-id="{{item.goods_str[1].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
+                        <image src="{{item.img_url[1]}}" class="set-img" data-id="{{item.goods_str[1].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                     </view>
                     <view class="six-img">
-                        <image src="{{item.img_url[2]}}" class="set-img" mode="widthFix" data-id="{{item.goods_str[2].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
+                        <image src="{{item.img_url[2]}}" class="set-img" data-id="{{item.goods_str[2].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                     </view>
                     <view class="six-img">
-                        <image src="{{item.img_url[3]}}" class="set-img" mode="widthFix" data-id="{{item.goods_str[3].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
+                        <image src="{{item.img_url[3]}}" class="set-img" data-id="{{item.goods_str[3].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                     </view>
                 </view>
                 <!--  ***************************专题功能7*********************** -->

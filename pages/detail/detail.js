@@ -390,15 +390,24 @@ Page({
    * 绑定加数量事件
    */
     addCount(e) {
-        let num = this.data.num;
-        num = num + 1;
-        this.setData({
-          num: num
-        });
+        let num = this.data.num,
+            list = Number(this.data.goodsInfo[0].inventory);
+        if (num>list) {
+            wx.showModal({content: '库存不足抱歉哟~',showCancel: false})     
+        }else {    
+            num = num + 1;
+            this.setData({
+              num: num
+            });  
+        } 
     },
     inputCount(e) {
-        let num = e.detail.value;
-        num == 0? num = 1:num;
+        let num = e.detail.value,
+            list = Number(this.data.goodsInfo[0].inventory);
+        if (num>list) {
+            wx.showModal({content: '库存不足抱歉哟~',showCancel: false})
+        }
+        num == 0||num>list? num = 1:num;
         this.setData({
             num:num
         })
