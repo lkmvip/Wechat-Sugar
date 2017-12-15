@@ -1,4 +1,4 @@
-var NoOne = 'https://tjwstcsd.1haomei.com',
+var NoOne = 'https://wstcsd.1haomei.com',
 	NewApiRootUrl = NoOne+'/html/shop/index.php/WstInterFace/GetProduct/',//全部商品接口
 	BannerImg = NoOne+'/html/shop/index.php/WstInterFace/ShopDecoration/',//轮播图接口
 	ShopCart = NoOne +'/html/shop/index.php/WstInterFace/ShoppingCart/',//购物车接口

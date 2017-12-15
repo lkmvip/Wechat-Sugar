@@ -56,7 +56,7 @@ function login(callback,reset) {
                                     }
                                     let userInfoStr = JSON.stringify(userinfoRes);
                                     wx.request({
-                                        url: 'https://tjwstcsd.1haomei.com/html/shop/index.php/WstInterFace/WxServiceCallBack/getSmallProgramUnionid',
+                                        url: 'https://wstcsd.1haomei.com/html/shop/index.php/WstInterFace/WxServiceCallBack/getSmallProgramUnionid',
                                         data: {
                                             appid: 'wx14f22768572e9ce4',
                                             secret: 'a2916c49cadd7d5f89e1ce113fe00b6e',

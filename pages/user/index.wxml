@@ -93,7 +93,7 @@
 	<view class="pos-box" bindtap="handleClosePos">
 	</view>
 	<view class="pos-img" style="background:#f2505d">
-		<image class="pos-imgcode" mode="widthFix"  src="https://tjwstcsd.1haomei.com/html/shop/index.php/home/user/getBarcode/code/{{posCode}}" background-size="cover"></image>
+		<image class="pos-imgcode" mode="widthFix"  src="https://wstcsd.1haomei.com/html/shop/index.php/home/user/getBarcode/code/{{posCode}}" background-size="cover"></image>
 		<image bindtap="handleClosePos" class="pos-closed" mode="widthFix"  src="/image/closed.png" background-size="cover"></image>
 	</view>
 </block>
