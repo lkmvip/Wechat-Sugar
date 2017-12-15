@@ -1,8 +1,5 @@
 <!--pages/seemore/seemore.wxml-->
 <view class="goods bg box">
-	<view class="text">
-	    {{title}}
-	</view>
 	<view class="line"></view>
 
 		<block wx:if="{{error}}">

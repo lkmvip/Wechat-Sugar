@@ -5,9 +5,9 @@
     		<text class="userinfo-nickname">{{userInfo.nickName}}</text>
 			<image class="userinfo-lv" src="/image/Vip{{userLv?userLv:0}}.png" ></image>
 			<text  style= "color:#fff;font-size:34rpx;margin-top:30rpx;position: absolute; left: 210rpx;top:80rpx;">{{tel}}</text>
-<!-- 			<block wx:if="{{dbShow}}">
-				<image class="userinfo-code" src="/image/user/code.png" ></image> 
-			</block> -->
+			<block wx:if="{{dbShow}}">
+				<image class="userinfo-code" src="/image/user/code.png" bindtap="handlePosImg"></image> 
+			</block>
     	</view>
 
 
@@ -89,3 +89,11 @@
 
 	</view>
 </view>
+<block wx:if="{{posShow}}">
+	<view class="pos-box" bindtap="handleClosePos">
+	</view>
+	<view class="pos-img" style="background:#f2505d">
+		<image class="pos-imgcode" mode="widthFix"  src="https://wstcsd.1haomei.com/html/shop/index.php/home/user/getBarcode/code/{{posCode}}" background-size="cover"></image>
+		<image bindtap="handleClosePos" class="pos-closed" mode="widthFix"  src="/image/closed.png" background-size="cover"></image>
+	</view>
+</block>

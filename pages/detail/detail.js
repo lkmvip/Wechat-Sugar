@@ -128,10 +128,12 @@ Page({
     },
     //处理成功详情页函数
     handleDetailInfo(res) {
-        let goodsList = res.data.data;
-        goodsList[0].makeMoney = goodsList[0].makeMoney;
+        let goodsList = res.data.data,
+            shopinfo;
+            goodsList[0].storeInfo == undefined ? shopinfo = false : shopinfo = true;
         this.setData({
-            goodsInfo:goodsList
+            goodsInfo:goodsList,
+            shopMsg :shopinfo
         })
         this.getDetailLike();
     },

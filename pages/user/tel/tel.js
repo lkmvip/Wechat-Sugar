@@ -165,11 +165,15 @@ Page({
                               url: '/pages/user/cash/cash'
                             })
                         }else {
-                            let card = wx.getStorageSync('UserCard');
-                            card.distribution_id = id;
-                            card.distribution_level = lv;
-                            wx.setStorageSync('UserCard',card);
-                            id == 0?wx.setStorageSync('seller', false):wx.setStorageSync('seller', true);
+                            if (id == 0) {
+                                let card = wx.getStorageSync('UserCard');
+                                card.distribution_id = id;
+                                card.distribution_level = lv;
+                                wx.setStorageSync('UserCard',card);
+                                wx.setStorageSync('seller', false)
+                            }else {
+                                wx.setStorageSync('seller', true)
+                            }
                             wx.switchTab({
                               url: '/pages/user/index'
                             })

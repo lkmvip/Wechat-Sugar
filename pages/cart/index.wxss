@@ -107,6 +107,7 @@
     box-sizing: border-box;
 	border-top: 1rpx solid #eeeeee;
 	background: #fff;
+    z-index: 999;
 }
 .total-select{
     width: 45rpx;

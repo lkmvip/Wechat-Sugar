@@ -128,7 +128,7 @@ Page({
             inputVal: e.detail.value
         });
         const data = {
-            limitIndex:this.data.limitIndex,
+            limitIndex:1,
             data:{
                 name: this.data.inputVal,
             }
@@ -145,9 +145,9 @@ Page({
     },
     //当value为空的时候 搜索内容隐藏
     handleSearchValue(e) {
-        if (e.detail.value == '') {
+        if (e.detail.cursor == 0) {
             this.setData({
-                inputVal: e.detail.value,
+                inputVal: '',
                 searchList:[]
             });
         }

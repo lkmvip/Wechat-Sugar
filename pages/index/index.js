@@ -206,7 +206,7 @@ Page({
                         limitIndex: this.data.limitIndex
                     };
                     utils.sendRequest(api.AllGoodsUrl, data, this.handleReachBottom.bind(this));
-            },1500)
+            },500)
         };
         if (val != ''&& err == 0 && load1) {//这里是 搜索里面的下拉加载
             setTimeout(()=>{
@@ -219,7 +219,7 @@ Page({
                         limitIndex: this.data.limitIndex
                     };
                     utils.sendRequest(api.AllGoodsUrl, data, this.handleLoadMore.bind(this));
-            },1500)
+            },500)
         };
     },
     // 获取每次上拉数据的函数
@@ -244,9 +244,10 @@ Page({
     handleSearch(e) {
         this.setData({
             inputVal: e.detail.value
-        });                    
+        }); 
+        console.log(this.data.limitIndex)                   
         const data = {
-            limitIndex:this.data.limitIndex,
+            limitIndex:1,
             data:{
                 name: this.data.inputVal,
             }
@@ -257,6 +258,7 @@ Page({
     //搜索事件
     handleSearchSucc(res) {
         let searchs=res.data.data;
+        // console.log(searchs)
         this.setData({
             searchList: res.data.data,
             isErr: res.data.error
@@ -270,9 +272,10 @@ Page({
     },
     //当value为空的时候 搜索内容隐藏
     handleSearchValue(e) {
-        if (e.detail.value == '') {
+        console.log(e)
+        if (e.detail.cursor == 0) {
             this.setData({
-                inputVal: e.detail.value,
+                inputVal: '',
                 searchList: []
             });
         }

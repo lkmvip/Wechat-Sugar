@@ -28,7 +28,8 @@ function sendRequest(path, data, callback) {
         obj["token"] = card.token;
         obj["distribution_id"] = card.distribution_id;
         obj["distribution_level"] = card.distribution_level;
-        obj["distribution"] = share;
+        obj["distribution"] = share,
+        obj["user_id"]=card.user_id;;
     wx.request({
         url: path, 
         data: data,

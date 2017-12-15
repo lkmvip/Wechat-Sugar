@@ -23,7 +23,8 @@ var NoOne = 'https://wstcsd.1haomei.com',
 	IndexSetUrl = NoOne+'/html/shop/index.php/WstInterFace/Decoration/',//首页专题接口
 	HandleShop = NoOne+'/html/shop/index.php/WstInterFace/StoreManage/',//店铺管理
 	DistributionUrl = NoOne+'/html/shop/index.php/WstInterFace/DistributionProduct/',//分销商商品上下架
-	TiXianUrl = NoOne+'/html/shop/index.php/WstInterFace/TiXianBindTel/';//有关提现接口
+	TiXianUrl = NoOne+'/html/shop/index.php/WstInterFace/TiXianBindTel/',//有关提现接口
+	CodeImgUrl = NoOne+'/html/shop/index.php/WstInterFace/Barcode/';//条形码
 module.exports = {
 	NoOneJson:NoOne+'/html/shop/Public/Home/js/data.json',//地址json
 	IndexUrl:NewApiRootUrl+ 'getIndexProduct',//首页信息
@@ -86,5 +87,6 @@ module.exports = {
 	BindTel:TiXianUrl+'setUserTel',
 	YanZhengMa:TiXianUrl+'sendMsg',
 	tixianList:	TiXianUrl+'tixianlie',
-	tixianInfo:TiXianUrl+'getUserAccountDetail'
+	tixianInfo:TiXianUrl+'getUserAccountDetail',
+	CodeImgUrlInfo:CodeImgUrl+'getPosHyCode'//pos图片
 }

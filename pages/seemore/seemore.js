@@ -64,7 +64,7 @@ Page({
             };
             utils.sendRequest(api.AllGoodsUrl, data, this.handleMoreBrandSucc.bind(this)); 
         };
-        //新分类商品进入
+        //分类商品进入
         if(newbrandId) {
             const data = {
                 data: {
@@ -104,6 +104,7 @@ Page({
     },
     //请求品牌商品成功处理函数 
     handleMoreBrandSucc(res) {
+        console.log(res)
         let brandInfo = '';
         res.data.error == 100 ? brandInfo = true :brandInfo = false;
         this.setData({
@@ -121,6 +122,7 @@ Page({
     },
     // 请求分类商品成功处理函数
     handleMoreClassifySucc(res) {
+        console.log(res)
         let calssList = res.data.data;
         this.setData({
             brandList : calssList

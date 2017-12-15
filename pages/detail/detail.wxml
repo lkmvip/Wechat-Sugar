@@ -3,7 +3,7 @@
 <view class="detail">
 	<view class="detail-bg">
 		<block wx:for="{{goodsInfo}}" wx:key="index">
-			<image class="detail-img" src="{{item.goods_img}}"></image>
+			<image class="detail-img" src="{{item.goods_img}}" mode="widthFix"></image>
 			<view class="detail-mid">
 				<view class="detail-tit">
 					<view class="detail-text">
@@ -37,8 +37,8 @@
 			<view>{{item}}</view>
 		</view>
 	</view>
-	<block wx:if="{{!dbShow}}">
-			<view class="shop-msg" wx:for="{{goodsInfo}}" wx:key="index">
+	<block>
+			<view wx:if="{{!dbShow||!shopMsg?false:true}}" class="shop-msg" wx:for="{{goodsInfo}}" wx:key="index">
 				<view style="display: flex;height: 170rpx;margin:20rpx 0;width: 100%;background: #fff;">
 					<image class="shop-msg-img" src="{{item.storeInfo.storelogo}}"></image>
 					<text style="margin-left:20rpx;font-size: 35rpx;line-height: 170rpx;">{{item.storeInfo.storename}}</text>
@@ -76,7 +76,7 @@
     	<!-- 详情内容 -->
     	<view class="navbar-content" hidden="{{activeIndex != 0}}">
     		<block wx:for="{{goodsInfo}}" wx:key="{{index}}">
-				<image class="detail-img" wx:for="{{item.goods_desc}}"  wx:key="index" src="{{item}}"></image>
+				<image class="detail-img" wx:for="{{item.goods_desc}}" mode="widthFix" wx:key="index" src="{{item}}"></image>
 			</block>
     	</view>
     	<!-- 热门内容 -->

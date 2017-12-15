@@ -2,7 +2,8 @@ const api = require('../../utils/api.js');//封装好的接口路径
 const utils = require('../../utils/util.js');//调用封装的request
 Page({
     data: {
-    	userInfo: {}
+    	userInfo: {},
+        posShow:false
     },
 
     onLoad() {
@@ -194,6 +195,25 @@ Page({
            } 
         }
         
+    },
+    handlePosImg() {
+        this.setData({
+            posShow:true
+        })
+        const data1 ={};
+        //调用收益。
+        utils.sendRequest(api.CodeImgUrlInfo, data1, this.handlePosImgSucc.bind(this));
+    },
+    handlePosImgSucc(res) {
+        this.setData({
+            posCode:res.data
+        })
+        console.log(res.data)
+    },
+    handleClosePos() {
+        this.setData({
+            posShow:false
+        })
     }
 
 })
