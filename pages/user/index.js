@@ -199,7 +199,6 @@ Page({
         utils.sendRequest(api.CodeImgUrlInfo, data1, this.handlePosImgSucc.bind(this));
     },
     handlePosImgSucc(res) {
-        console.log(res)
         this.setData({
             posCode:res.data
         })
