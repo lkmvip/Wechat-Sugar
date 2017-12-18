@@ -78,7 +78,7 @@
     		<block wx:for="{{goodsInfo}}" wx:key="{{index}}">
 				<image class="detail-img" wx:for="{{item.goods_desc}}" mode="widthFix" wx:key="index" src="{{item}}"></image>
 			</block>
-            <view class="like bg box">
+            <view class="like bg box" wx:if="{{goodsId<'0'?false:true}}">
                 <view class="text">
                     推荐商品
                 </view>

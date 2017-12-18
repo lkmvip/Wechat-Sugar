@@ -15,21 +15,23 @@
             {{status == 0?"我的":"店主"}}推荐
         </view>
         <view class="line"></view>
-        <view class="goods-list"  wx:for="{{goodsList}}" wx:key="index"  data-index="{{index}}">
+        <view class="goods-list"  wx:for="{{special?specialList:goodsList}}" wx:key="index"  data-index="{{index}}">
             <navigator open-type="redirect" url="/pages/detail/detail?id={{item.id}}">
                 <image src="{{item.goods_img}}" class="db-image"/>
             </navigator>
             <view class="goods-title">{{item.name}}</view>
             <view class="goods-price">
                 <view class="new-price left">￥{{item.shopprice}}</view>
-                <view class="old-price left">￥{{item.market_price}}</view>
-                <block wx:if="{{dbShow||db==dbId}}">
-                    <view class="through left">/</view>
-                    <view class="make-money left">赚{{item.makeMoney}}</view> 
-                </block>
-                <image src="/image/cart.png" class="add-shopcart right" data-it="{{item.inventory}}" data-id="{{item.id}}" data-price="{{item.shopprice}}" data-name="{{item.name}}" bindtap="handleAddCart"/>
-                <block wx:if="{{dbShow||db==dbId}}">
-                    <image bindtap="handleDbGoods" data-id="{{index}}" data-id="{{item.id}}" data-index="{{index}}" data-db="{{item.distribution_goods}}" src="/image/add{{item.distribution_goods =='0'?0:1}}.png" class="add-goods right"/> 
+                <block wx:if="{{special?false:true}}">
+                    <view class="old-price left">￥{{item.market_price}}</view>
+                    <block wx:if="{{dbShow||db==dbId}}">
+                        <view class="through left">/</view>
+                        <view class="make-money left">赚{{item.makeMoney}}</view> 
+                    </block>
+                    <image src="/image/cart.png" class="add-shopcart right" data-it="{{item.inventory}}" data-id="{{item.id}}" data-price="{{item.shopprice}}" data-name="{{item.name}}" bindtap="handleAddCart"/>
+                    <block wx:if="{{dbShow||db==dbId}}">
+                        <image bindtap="handleDbGoods" data-id="{{index}}" data-id="{{item.id}}" data-index="{{index}}" data-db="{{item.distribution_goods}}" src="/image/add{{item.distribution_goods =='0'?0:1}}.png" class="add-goods right"/> 
+                    </block>
                 </block>
             </view>
         </view>

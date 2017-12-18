@@ -493,6 +493,7 @@ Page({
 
     },
     handleGoodsListSucc(res) {
+        console.log(res)
         this.setData({
             specialList:res.data.data
         })

@@ -150,7 +150,8 @@ Page({
              return false
         }
         if (num>it) {
-            wx.showModal({content: '库存不足抱歉哟~',showCancel: false})     
+            wx.showModal({content: '库存不足抱歉哟~',showCancel: false}) 
+            num = carts[index].goods_number;
         }else {
             num = num + 1;
             carts[index].goods_number = num;
@@ -163,7 +164,6 @@ Page({
             user_id:userId,
             rec_id:id,
             amount:num
-
         };
         utils.sendRequest(api.UpdateGoodsAmount, data, this.handleUpdateGoodsAmount.bind(this));
     },
@@ -182,7 +182,6 @@ Page({
         if (goodsId < 0 ) {
              wx.showModal({content: '特殊商品只能购买一个~',showCancel: false})
              return false
-
         }                       
         if(num <= 1){
           return false;
@@ -217,6 +216,7 @@ Page({
         }
         if (num>it) {
             wx.showModal({content: '库存不足抱歉哟~',showCancel: false})
+            num =  carts[index].goods_number;
         }    
         num == 0||num>it? carts[index].goods_number = carts[index].goods_number :carts[index].goods_number = num;
         this.setData({

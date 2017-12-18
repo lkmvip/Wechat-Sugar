@@ -49,7 +49,6 @@ Page({
                 dbShow:ifHave,
             })
         if (options.name) {
-            console.log(1)
             this.getSpecialList();
         }else {
             this.getShopList();
@@ -89,7 +88,6 @@ Page({
                 dbShow:ifHave,
             })
         if (this.data.special) {
-            console.log(1)
             this.getSpecialList();
         }else {
             this.getShopList();
@@ -152,7 +150,9 @@ Page({
         utils.sendRequest(api.UserMsgGoods, data, this.HandleSpecialListSucc.bind(this)); 
     },
     HandleSpecialListSucc(res) {
-        console.log(res)
+        this.setData({
+            specialList:res.data.data
+        })
     },
     //操作特殊商品
     handleDbGoods(e) {
