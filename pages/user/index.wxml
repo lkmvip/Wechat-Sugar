@@ -85,6 +85,12 @@
 					<view class="tools-text">店铺管理</view>
 				</view>
 			</block>
+			<block wx:if="{{specialStatus==0?false:true}}">
+				<view bindtap="handleSpecial"  class="tools-list">
+					<image class="tools-icon" src="/image/user/shop.png" background-size="cover"></image>
+					<view class="tools-text">特殊商品</view>
+				</view>
+			</block>
 		</view>
 
 	</view>

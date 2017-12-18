@@ -78,6 +78,40 @@
     		<block wx:for="{{goodsInfo}}" wx:key="{{index}}">
 				<image class="detail-img" wx:for="{{item.goods_desc}}" mode="widthFix" wx:key="index" src="{{item}}"></image>
 			</block>
+            <view class="like bg box">
+                <view class="text">
+                    推荐商品
+                </view>
+                <view class="line"></view>
+                <view class="like-list">
+                    <view class="like-goods bg"  wx:for="{{specialList}}" wx:key="index"  data-index="{{index}}">
+                        <navigator open-type="redirect" url="/pages/detail/detail?id={{item.id}}">
+                            <image src="{{item.goods_img}}" class="like-image"/>
+                        </navigator>
+                        <view class="like-price">
+                            <view class="like-title">{{item.name}}</view>
+                            <view style="display: flex;justify-content: space-between;">
+                                <view style="width: 50%;">
+                                    <view style="display: flex;">
+                                        <view class="new-price letf" style="color:#ec1358;margin-top:10rpx">￥{{item.shopprice}}</view>   
+                                        <view class="old-price letf" style="margin-top:14rpx">￥{{item.market_price}}</view>
+                                    </view>
+                                <block wx:if="{{dbShow}}">
+                                    <view class="new-price" style="color:#ec1358;margin-top:10rpx">赚{{item.makeMoney}}</view>
+                                </block>
+                                </view>
+                                <view style="width: 50%;">
+                                <image src="/image/cart.png" data-it="{{item.inventory}}" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.shopprice}}" bindtap="handleAddCart"/>
+                                <block wx:if="{{dbShow}}">
+                                    <image src="/image/add{{item.distribution_goods =='0'?0:1}}.png" class="add-goods right" style="margin:0" data-id="{{item.id}}" data-index="{{index}}" data-db="{{item.distribution_goods}}" bindtap="handleAllGoodsDb"/>
+                                </block>
+                                </view>   
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
     	</view>
     	<!-- 热门内容 -->
         <view class="navbar-hot" hidden="{{activeIndex != 1}}">

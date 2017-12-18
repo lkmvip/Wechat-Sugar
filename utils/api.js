@@ -88,5 +88,6 @@ module.exports = {
 	YanZhengMa:TiXianUrl+'sendMsg',
 	tixianList:	TiXianUrl+'tixianlie',
 	tixianInfo:TiXianUrl+'getUserAccountDetail',
-	CodeImgUrlInfo:CodeImgUrl+'getPosHyCode'//pos图片
+	CodeImgUrlInfo:CodeImgUrl+'getPosHyCode',//pos图片
+	UserMsgGoods:UserMsg+'getSepecialGoods'//特殊商品列表
 }

@@ -11,6 +11,7 @@ Page({
             card = wx.getStorageSync('UserCard'),
             show = wx.getStorageSync('seller'),
             db = wx.getStorageSync('dbid');
+            console.log(card)
     	this.setData({
     		userInfo : user,
             userLv : card.distribution_level,
@@ -53,18 +54,14 @@ Page({
     },
     //收益接口
     getShouEInfo() {
-        let id = this.data.userId;
         const data1 ={
-            user_id:id,
         };
         //调用收益。
         utils.sendRequest(api.UserShowInCome, data1, this.handleInComeSucc.bind(this));
     },
     //待收收益
     getDaiShouInfo() {
-        let id = this.data.userId;
         const data2 = {
-            user_id:id
         };
         //调用收益。
         utils.sendRequest(api.ZhunBeiTiXian, data2, this.handleInTixianSucc.bind(this));
@@ -76,7 +73,8 @@ Page({
     },
     handleUserMainSucc(res) {
         this.setData({
-            rmb:res.data.accountbalance
+            rmb:res.data.accountbalance,
+            specialStatus:res.data.specialStatus
         });
         const data2 ={
             userName:res.data.name
@@ -168,6 +166,11 @@ Page({
     handleShopHandle() {
         wx.navigateTo({
           url: "/pages/user/shophandle/handle?status=0"
+        })
+    },
+    handleSpecial() {
+        wx.navigateTo({
+          url: "/pages/user/shophandle/handle?name=特殊商品"
         })
     },
     onShareAppMessage() {

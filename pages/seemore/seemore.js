@@ -96,11 +96,9 @@ Page({
     },
     //请求更多商品成功处理函数 
     handleMoreGoodsSucc(res) {
-        let goodsInfo = res.data.data,
-            arr = [];
-        goodsInfo.map((item,index) => arr.push(item.goods))
+        let goodsInfo = res.data.data;
         this.setData({
-            moreGoods : arr[0]
+            moreGoods : goodsInfo
         })
     },
     //请求品牌商品成功处理函数 
@@ -113,6 +111,7 @@ Page({
         });
     },
     handleNewBrandSucc(res) {
+        console.log(res)
         let brandInfo = '';
         res.data.error == 100 ? brandInfo = true :brandInfo = false;
         this.setData({

@@ -14,13 +14,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
     onLoad(options) {
+        wx.setNavigationBarTitle({
+          title: options.name||'店铺管理'
+        });
         wx.setStorageSync('dbid', options.db);
         utils.login(this.handleLogin.bind(this),this.handleReset.bind(this));
-            this.setData({
-                db:options.db,
-                slv:options.sharelv,
-                status:options.status
-            })
+        this.setData({
+            db:options.db,
+            slv:options.sharelv,
+            status:options.status,
+            special:options.name
+        })
         wx.showToast({
             icon: "loading",
             title: "正在加载"
@@ -44,8 +48,13 @@ Page({
                 dbLv:card.distribution_level,
                 dbShow:ifHave,
             })
-        this.getShopInfo();
-        this.getShopList();
+        if (options.name) {
+            console.log(1)
+            this.getSpecialList();
+        }else {
+            this.getShopList();
+        }
+        this.getShopInfo();   
         
     },
     handleLogin(res) {
@@ -79,8 +88,13 @@ Page({
                 dbLv:card.distribution_level,
                 dbShow:ifHave,
             })
+        if (this.data.special) {
+            console.log(1)
+            this.getSpecialList();
+        }else {
+            this.getShopList();
+        }
         this.getShopInfo();
-        this.getShopList();
     },
     handleReset (res) {
         if (res.confirm) {
@@ -115,14 +129,10 @@ Page({
     },
     //店铺商品列表
     getShopList() {
-        let id = this.data.dbId,
-            lv = this.data.dbLv,
-            db = this.data.db,
+        let db = this.data.db,
             slv = this.data.slv,
             status = this.data.status;
         const data = {
-                distribution_id:id, 
-                distribution_level:lv,
                 distribution:db,
                 share_level:slv,
                 limit:'',
@@ -134,6 +144,15 @@ Page({
         this.setData({
             goodsList:res.data
         })
+    },
+    getSpecialList() {
+        const data = {
+               
+            };
+        utils.sendRequest(api.UserMsgGoods, data, this.HandleSpecialListSucc.bind(this)); 
+    },
+    HandleSpecialListSucc(res) {
+        console.log(res)
     },
     //操作特殊商品
     handleDbGoods(e) {

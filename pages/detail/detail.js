@@ -136,6 +136,7 @@ Page({
             shopMsg :shopinfo
         })
         this.getDetailLike();
+        this.getGoodsList();
     },
     //获取猜你喜欢数据
     getDetailLike() {
@@ -473,5 +474,27 @@ Page({
                 };
                 utils.sendRequest(api.AddGoodtoCart, data, this.handleAddGoodtoCartSucc.bind(this))
             } 
+    },
+    getGoodsList() {
+        let id = this.data.goodsInfo[0].goodstypecode;
+        const data = {
+            data:{
+                not_goodstypecode:id,
+                goodstypecode:id.substring(0,4)
+            },
+            orderBy:{
+                value:"goodsnumber",
+                sc:"desc"
+            },
+            limit:30,
+            limitIndex:0
+        };
+        utils.sendRequest(api.AllGoodsUrl, data, this.handleGoodsListSucc.bind(this))
+
+    },
+    handleGoodsListSucc(res) {
+        this.setData({
+            specialList:res.data.data
+        })
     }
 })
