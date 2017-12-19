@@ -5,6 +5,8 @@
 	width: 100%;
 	border: 1rpx solid #ececec;
 	display: flex;
+}
+.s-bg{
 	background: #fff;
 }
 .special-img{
@@ -15,4 +17,25 @@
 .special-text{
 	font-size: 30rpx;
 	line-height: 120rpx;
+}
+.special-point{
+	font-size: 30rpx;
+	line-height: 120rpx;
+	text-align: center;
+	display: flex;
+}
+.special-txt{
+	width: 70%;
+	height:90rpx;
+	text-align: center;
+}
+.special-btn{
+	width: 20%;
+	height: 90rpx;
+	line-height: 90rpx;
+	display: block;
+	background: rgba(0, 128, 0, 1);
+	border-radius: 10rpx;
+	color: #fff;
+	margin: 20rpx;
 }

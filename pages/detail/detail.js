@@ -136,7 +136,10 @@ Page({
             shopMsg :shopinfo
         })
         this.getDetailLike();
-        this.getGoodsList();
+        if (goodsList[0].id>=0) {
+            this.getGoodsList();
+        }
+        
     },
     //获取猜你喜欢数据
     getDetailLike() {
@@ -493,7 +496,6 @@ Page({
 
     },
     handleGoodsListSucc(res) {
-        console.log(res)
         this.setData({
             specialList:res.data.data
         })

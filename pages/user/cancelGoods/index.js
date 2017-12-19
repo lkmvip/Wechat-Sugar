@@ -96,8 +96,8 @@ Page({
     // 操作申请退货按钮
     handleRequest() {
         let id = this.data.recId,
-            num = this.data.cancelList.goods_number,
-            count = this.data.num,
+            num = this.data.num,
+            count = this.data.cancelPrice,
             val = this.data.remark,
             userId = this.data.userId,
             src = this.data.src,

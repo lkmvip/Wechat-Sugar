@@ -89,5 +89,6 @@ module.exports = {
 	tixianList:	TiXianUrl+'tixianlie',
 	tixianInfo:TiXianUrl+'getUserAccountDetail',
 	CodeImgUrlInfo:CodeImgUrl+'getPosHyCode',//pos图片
-	UserMsgGoods:UserMsg+'getSepecialGoods'//特殊商品列表
+	UserMsgGoods:UserMsg+'getSepecialGoods',//特殊商品列表
+	UserMsgSepecial:UserMsg+'applySpecial'
 }

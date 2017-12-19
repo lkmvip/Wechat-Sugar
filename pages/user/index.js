@@ -11,7 +11,6 @@ Page({
             card = wx.getStorageSync('UserCard'),
             show = wx.getStorageSync('seller'),
             db = wx.getStorageSync('dbid');
-            console.log(card)
     	this.setData({
     		userInfo : user,
             userLv : card.distribution_level,

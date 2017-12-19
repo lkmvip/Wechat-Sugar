@@ -59,8 +59,44 @@ Page({
     },
     HandleSpecialListSucc(res) {
         console.log(res)
+        let sOne = [],sTwo = [];
+        res.data.data.map( item => {item.id >= -2? sOne.push(item):sTwo.push(item)})
         this.setData({
-            specialList:res.data.data
+            specialList:sTwo,
+            commonList:sOne,
+            status:res.data.is_special,
+            change:res.data.is_apply
         })
     },
+    handleSubmit() {
+        const data = {
+               
+            };
+        utils.sendRequest(api.UserMsgSepecial, data, this.HandleSubmitSucc.bind(this));  
+    },
+    HandleSubmitSucc(res) {
+        res.data.error == 0 ?  wx.showModal({
+                content:'申请成功，正在飞速处理~',
+                showCancel:false,
+                confirmColor:'#3cc51f',//默认值为#3cc51f
+                success:function(res){
+                        if(res.confirm){
+                            wx.switchTab({
+                              url: '/pages/user/index'
+                            })
+                        }
+                    }
+                }): wx.showModal({
+                content:res.data.err_msg,
+                showCancel:false,
+                confirmColor:'#3cc51f',//默认值为#3cc51f
+                success:function(res){
+                        if(res.confirm){
+                            wx.switchTab({
+                              url: '/pages/user/index'
+                            })
+                        }
+                    }
+                });
+    }
 })

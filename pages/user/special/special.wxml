@@ -19,24 +19,39 @@
 </view>
 <view class="order-content">
     <!-- 未使用的内容 -->
-    <view class="ticket-list" hidden="{{activeIndex != 0}}">
-		<view class="special-box">
-    		<image src="/image/user/wlogo.png" class="special-img"/>
+    <view class="ticket-list s-bg" hidden="{{activeIndex != 0}}">
+		<view class="special-box"  wx:for="{{commonList}}" wx:key="index">
+            <navigator open-type="redirect" url="/pages/detail/detail?id={{item.id}}">
+    			<image src="{{item.goods_img}}" class="special-img"/>
+            </navigator>
 			<view>
-                 <view class="special-text">超级会员</view> 
-                 <view class="special-text make-money">￥299</view> 
+                 <view class="special-text">{{item.name}}</view> 
+                 <view class="special-text make-money">￥{{item.shopprice}}</view> 
 			</view>
 		</view>
     </view>
     <!-- 已使用的内容 -->     
-    <view class="ticket-list" hidden="{{activeIndex != 1}}">
-		<view class="special-box">
-    		<image src="/image/user/wlogo.png" class="special-img"/>
-			<view>
-                 <view class="special-text">超级会员</view> 
-                 <view class="special-text make-money">￥299</view> 
+    <view class="ticket-list s-bg" hidden="{{activeIndex != 1}}">
+   		<block wx:if = "{{status == 1?true:false}}">
+			<view class="special-box" wx:for="{{specialList}}" wx:key="index">
+	            <navigator open-type="redirect" url="/pages/detail/detail?id={{item.id}}">
+	    			<image src="{{item.goods_img}}" class="special-img"/>
+	            </navigator>
+				<view>
+	                 <view class="special-text">{{item.name}}</view> 
+	                 <view class="special-text make-money">￥{{item.shopprice}}</view> 
+				</view>
 			</view>
-		</view>
-        <view >{{text}}</view> 
+	   	</block>
+   		<block wx:else>
+	        <view class="special-point">
+	        	<view class="special-txt">
+	        		{{change == 0 ?'如果您需要特殊商品,请点击':'您已经提交申请，请耐心等待'}}
+	        	</view>
+   				<block wx:if = "{{change == 0?true:false}}">
+					<view class="special-btn" bindtap="handleSubmit">申请</view>
+	   			</block>					
+	        </view> 
+   		</block>
     </view>
 </view>
