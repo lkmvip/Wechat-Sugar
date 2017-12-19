@@ -170,7 +170,7 @@ Page({
     },
     handleSpecial() {
         wx.navigateTo({
-          url: "/pages/user/shophandle/handle?name=特殊商品"
+          url: "/pages/user/special/special"
         })
     },
     onShareAppMessage() {

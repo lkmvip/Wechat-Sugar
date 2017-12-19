@@ -141,7 +141,7 @@
                     </view>
                 </view>
                 <!--  ***************************专题功能7*********************** -->
-                <view wx:if="{{item.class_name == 'box7'}}" class="set-one" style="height: 30rpx">
+                <view wx:if="{{item.class_name == 'box7'}}" class="set-one" style="height: 60rpx">
                     <image src="{{item.img_url[0]}}" class="set-img" data-id="{{item.goods_str[0].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                 </view>
                 <!--  ***************************专题功能8*********************** -->  

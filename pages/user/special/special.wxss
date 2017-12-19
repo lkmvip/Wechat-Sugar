@@ -1,0 +1,18 @@
+/* pages/user/special/special.wxss */
+@import '../shophandle/handle.wxss';
+@import '../ticket/ticket.wxss';
+.special-box{
+	width: 100%;
+	border: 1rpx solid #ececec;
+	display: flex;
+	background: #fff;
+}
+.special-img{
+	width: 160rpx;
+	height: 160rpx;
+	margin: 50rpx;
+}
+.special-text{
+	font-size: 30rpx;
+	line-height: 120rpx;
+}

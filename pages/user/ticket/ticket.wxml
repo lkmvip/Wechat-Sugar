@@ -1,6 +1,6 @@
 <!--pages/user/ticket/ticket.wxml-->
-<view class='ticket'  bindtouchmove="stopDrag">
-  <view class="navbar">
+<view class='ticket' >
+    <view class="navbar">
         <block wx:for-items="{{tabs}}" wx:key="{{index}}">
             <view id="{{index}}" class="order-item width {{activeIndex == index ? 'item-on' : ''}}" bindtap="tabClick">
                 <view class="weui-navbar__title">{{item}}</view>

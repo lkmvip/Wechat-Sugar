@@ -149,7 +149,7 @@ Page({
              wx.showModal({content: '特殊商品只能购买一个~',showCancel: false})
              return false
         }
-        if (num>it) {
+        if (num>=it) {
             wx.showModal({content: '库存不足抱歉哟~',showCancel: false}) 
             num = carts[index].goods_number;
         }else {
@@ -202,6 +202,7 @@ Page({
         utils.sendRequest(api.UpdateGoodsAmount, data, this.handleUpdateGoodsAmount.bind(this));
     },
     inputCount(e) {
+        console.log(e)
         const index = e.currentTarget.dataset.index;
         let carts = this.data.carts,
             num = e.detail.value,

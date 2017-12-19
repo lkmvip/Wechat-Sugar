@@ -14,16 +14,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
     onLoad(options) {
-        wx.setNavigationBarTitle({
-          title: options.name||'店铺管理'
-        });
         wx.setStorageSync('dbid', options.db);
         utils.login(this.handleLogin.bind(this),this.handleReset.bind(this));
         this.setData({
             db:options.db,
             slv:options.sharelv,
-            status:options.status,
-            special:options.name
+            status:options.status
         })
         wx.showToast({
             icon: "loading",
@@ -48,11 +44,8 @@ Page({
                 dbLv:card.distribution_level,
                 dbShow:ifHave,
             })
-        if (options.name) {
-            this.getSpecialList();
-        }else {
-            this.getShopList();
-        }
+      
+        this.getShopList();
         this.getShopInfo();   
         
     },
@@ -87,12 +80,9 @@ Page({
                 dbLv:card.distribution_level,
                 dbShow:ifHave,
             })
-        if (this.data.special) {
-            this.getSpecialList();
-        }else {
-            this.getShopList();
-        }
-        this.getShopInfo();
+      
+        this.getShopList();
+        this.getShopInfo();   
     },
     handleReset (res) {
         if (res.confirm) {
@@ -105,15 +95,8 @@ Page({
     },
     //店铺信息
     getShopInfo() {
-        let id = this.data.dbId,
-            lv = this.data.dbLv,
-            db = this.data.db,
-            slv = this.data.slv,
-            status = this.data.status;
         const data = {
-                    distribution_id:id,
-                    distribution:db,
-                    status:status
+                    status:0
             };
         utils.sendRequest(api.GetHandleShop, data, this.HandleShopSucc.bind(this)); 
     },
@@ -141,17 +124,6 @@ Page({
     HandleShopListSucc(res) {
         this.setData({
             goodsList:res.data
-        })
-    },
-    getSpecialList() {
-        const data = {
-               
-            };
-        utils.sendRequest(api.UserMsgGoods, data, this.HandleSpecialListSucc.bind(this)); 
-    },
-    HandleSpecialListSucc(res) {
-        this.setData({
-            specialList:res.data.data
         })
     },
     //操作特殊商品

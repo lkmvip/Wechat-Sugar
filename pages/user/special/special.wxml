@@ -1,0 +1,42 @@
+<!--pages/user/special/special.wxml-->
+<view class='shop-msg' style="background:url({{sign}});background-repeat: round;background-color: red;">
+    <view class='msg-content'>
+        <image src="{{src?src:'/image/user/wlogo.png'}}" class="msg-img"/>
+        <block wx:if="{{name == null||text == null ? false :true}}">
+            <view class='msg-name' >
+                {{name}}
+                 <view class='msg-explain'>{{text}}</view> 
+            </view>
+        </block>
+    </view>
+</view>
+<view class="navbar">
+    <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+        <view id="{{index}}" class="order-item width {{activeIndex == index ? 'item-on' : ''}}" bindtap="tabClick">
+            <view class="weui-navbar__title">{{item}}</view>
+        </view>
+    </block>
+</view>
+<view class="order-content">
+    <!-- 未使用的内容 -->
+    <view class="ticket-list" hidden="{{activeIndex != 0}}">
+		<view class="special-box">
+    		<image src="/image/user/wlogo.png" class="special-img"/>
+			<view>
+                 <view class="special-text">超级会员</view> 
+                 <view class="special-text make-money">￥299</view> 
+			</view>
+		</view>
+    </view>
+    <!-- 已使用的内容 -->     
+    <view class="ticket-list" hidden="{{activeIndex != 1}}">
+		<view class="special-box">
+    		<image src="/image/user/wlogo.png" class="special-img"/>
+			<view>
+                 <view class="special-text">超级会员</view> 
+                 <view class="special-text make-money">￥299</view> 
+			</view>
+		</view>
+        <view >{{text}}</view> 
+    </view>
+</view>
