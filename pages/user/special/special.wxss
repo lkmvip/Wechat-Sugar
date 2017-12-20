@@ -28,6 +28,7 @@
 	width: 70%;
 	height:90rpx;
 	text-align: center;
+	line-height: 90rpx;
 }
 .special-btn{
 	width: 20%;

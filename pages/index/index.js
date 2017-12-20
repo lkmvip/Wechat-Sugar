@@ -104,10 +104,27 @@ Page({
     },
     onShow() {
         let card = wx.getStorageSync('UserCard'),
-            show = wx.getStorageSync('seller');
+            show = wx.getStorageSync('seller'),
+            db = wx.getStorageSync('dbid'),
+            ifHave = false;
+            if(card.distribution_id!=''){
+                if((card.distribution_id!=''&&db== '')||card.distribution_id==db) {
+                    ifHave = true;
+                }else{
+                    ifHave = false;
+                }
+            }else{
+                ifHave = false;
+            }
         this.setData({
-            userId:card.user_id
-        });
+            userId:card.user_id,
+            dbShow:ifHave
+        })
+        this.getIndexInfo();
+        this.getBannerInfo();
+        this.getAllGoodsInfo();
+        this.getTabInfo();
+        this.getIndexSet();
     },
     //分类选项卡操作
     getTabInfo() {

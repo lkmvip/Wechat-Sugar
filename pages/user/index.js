@@ -71,9 +71,13 @@ Page({
         })
     },
     handleUserMainSucc(res) {
+        console.log(res)
+        let info = this.data.userInfo;
+            info.nickName = res.data.name;
         this.setData({
             rmb:res.data.accountbalance,
-            specialStatus:res.data.specialStatus
+            specialStatus:res.data.specialStatus,
+            userInfo:info
         });
         const data2 ={
             userName:res.data.name

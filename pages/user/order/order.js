@@ -138,12 +138,21 @@ Page({
     handleCancelOredr(e) {
         let id = e.target.dataset.id,
             userId = this.data.userId;
-        const data ={
-                    admin_userid:userId,
-                    order_id:id,
-                    type:''
-                };
-        utils.sendRequest(api.CancelOredr, data, this.handleCancelOredrSucc.bind(this));
+            wx.showModal({
+                content:'您真的要取消订单么？',
+                showCancel:true,
+                confirmColor:'#3cc51f',//默认值为#3cc51f
+                success:res=>{
+                        if(res.confirm){
+                            const data ={
+                                        admin_userid:userId,
+                                        order_id:id,
+                                        type:''
+                                    };
+                            utils.sendRequest(api.CancelOredr, data, this.handleCancelOredrSucc.bind(this));
+                        }
+                    }
+                })
     },
     //取消订单成功处理逻辑
     handleCancelOredrSucc(res) {
@@ -163,11 +172,20 @@ Page({
     handleCancelMoney(e) {
         let id = e.target.dataset.id,
             userId = this.data.userId;
-        const data ={
-                    user_id:userId,
-                    order_id:id
-                };
-        utils.sendRequest(api.CancelMoney, data, this.handleCancelMoneySucc.bind(this));
+            wx.showModal({
+                content:'您真的要申请退款么？',
+                showCancel:true,
+                confirmColor:'#3cc51f',//默认值为#3cc51f
+                success:res=>{
+                        if(res.confirm){
+                            const data ={
+                                        user_id:userId,
+                                        order_id:id
+                                    };
+                            utils.sendRequest(api.CancelMoney, data, this.handleCancelMoneySucc.bind(this));
+                        }
+                    }
+                })
     },
     //申请退款成功处理逻辑
     handleCancelMoneySucc(res){

@@ -46,7 +46,8 @@ Page({
     },
     handleGetInfolSucc(res) {
         this.setData({
-            tel:res.data.tel
+            tel:res.data.tel,
+            name:res.data.name
         });
     },
     // 选择户主
@@ -182,7 +183,8 @@ Page({
                     user_name:name,
                     account_code:card,
                     account_bank:bank,
-                    amount:cash
+                    amount:cash,
+                    branch_bank_name:bankName
                 }
             };
             utils.sendRequest(api.TiJiaoTiXian, data1, this.handleTiXianlSucc.bind(this));

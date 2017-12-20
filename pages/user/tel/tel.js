@@ -111,6 +111,7 @@ Page({
             },1000)
     },
     handleGetYzmSucc(res) {
+        console.log(res)
         wx.showModal({
             content:'正在努力发送，耐心等待哟',
             showCancel:false,
@@ -150,6 +151,7 @@ Page({
 
     },
     handleSaveTel(res) {
+        console.log(res)
         let go = this.data.go,
             id = res.data.data.id,
             lv = res.data.data.level;
@@ -165,13 +167,12 @@ Page({
                               url: '/pages/user/cash/cash'
                             })
                         }else {
-                            if (id == 0) {
+                            if (id != 0) {
+                                console.log(1)
                                 let card = wx.getStorageSync('UserCard');
                                 card.distribution_id = id;
                                 card.distribution_level = lv;
                                 wx.setStorageSync('UserCard',card);
-                                wx.setStorageSync('seller', false)
-                            }else {
                                 wx.setStorageSync('seller', true)
                             }
                             wx.switchTab({
