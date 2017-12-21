@@ -21,13 +21,15 @@ Page({
     	})
         this.getYuEInfo();
         this.getShouEInfo();
-        this.getDaiShouInfo();
+        // this.getDaiShouInfo();
     },
     onShow() {
         let user = wx.getStorageSync("UserInFo"),
             card = wx.getStorageSync('UserCard'),
             show = wx.getStorageSync('seller'),
             db = wx.getStorageSync('dbid');
+            console.log(show)
+            console.log(card)
         this.setData({
             userInfo : user,
             userLv : card.distribution_level,
@@ -38,8 +40,10 @@ Page({
         })
         this.getYuEInfo();
         this.getShouEInfo();
-        this.getDaiShouInfo();
+        // this.getDaiShouInfo();
     },
+    handleLogin(res) {},
+    handleReset(res) {},
     //余额接口
     getYuEInfo() {
         let id = this.data.userId;
@@ -59,25 +63,25 @@ Page({
         utils.sendRequest(api.UserShowInCome, data1, this.handleInComeSucc.bind(this));
     },
     //待收收益
-    getDaiShouInfo() {
-        const data2 = {
-        };
-        //调用收益。
-        utils.sendRequest(api.ZhunBeiTiXian, data2, this.handleInTixianSucc.bind(this));
-    },
-    handleInTixianSucc(res) {
-        this.setData({
-            tel:res.data.tel
-        })
-    },
+    // getDaiShouInfo() {
+    //     const data2 = {
+    //     };
+    //     //调用收益。
+    //     utils.sendRequest(api.ZhunBeiTiXian, data2, this.handleInTixianSucc.bind(this));
+    // },
+    // handleInTixianSucc(res) {
+    //     console.log(res)
+    //     this.setData({
+    //         tel:res.data.tel
+    //     })
+    // },
     handleUserMainSucc(res) {
-        console.log(res)
         let info = this.data.userInfo;
             info.nickName = res.data.name;
         this.setData({
             rmb:res.data.accountbalance,
-            specialStatus:res.data.specialStatus,
-            userInfo:info
+            userInfo:info,
+            tel:res.data.tel
         });
         const data2 ={
             userName:res.data.name
@@ -127,6 +131,18 @@ Page({
         let indexNum = e.currentTarget.dataset.id; 
         wx.navigateTo({
             url: '/pages/user/order/order?id='+indexNum
+        })
+    },
+    handleShell(e) {
+        let indexNum = e.currentTarget.dataset.id; 
+        wx.navigateTo({
+            url: '/pages/user/order/order?id='+indexNum+'&way=shell'
+        })
+    },
+    handleBuy(e) {
+        let indexNum = e.currentTarget.dataset.id; 
+        wx.navigateTo({
+            url: '/pages/user/order/order?id='+indexNum+'&way=buy'
         })
     },
     // 跳转到待收收益

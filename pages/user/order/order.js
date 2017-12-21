@@ -10,6 +10,7 @@ Page({
         text:"导航"
     },
     onLoad(options) {
+        console.log(options)
         wx.showToast({
             title: '加载中',
             icon: 'loading',
@@ -19,7 +20,8 @@ Page({
         this.setData({
             activeIndex: options.id,
             userId:card.user_id,
-            dbId:card.distribution_id
+            dbId:card.distribution_id,
+            way:options.way
 
         });
         this.handleGetList();
@@ -40,39 +42,33 @@ Page({
         this.handleGetList();
     },
     getWeiFuKuan () {
-    let status = this.data.activeIndex,
-        userId = this.data.userId,
-        dbId = this.data.dbId;
+    let status = this.data.activeIndex;
+            let buyWay = this.data.way;
         const data ={
-                user_id:userId,
                 status:1,
                 orderBy:'',
-                distribution_id:dbId
+                buyStatus:buyWay
             };
         utils.sendRequest(api.OrderInfoList, data, this.handleWillPaySucc.bind(this));
 
     },
     getDaiShouHuo() {
-        let status = this.data.activeIndex,
-            userId = this.data.userId,
-            dbId = this.data.dbId;
+        let status = this.data.activeIndex;
+                let buyWay = this.data.way;
             const data ={
-                    user_id:userId,
                     status:3,
                     orderBy:'',
-                    distribution_id:dbId
+                    buyStatus:buyWay
                 };
             utils.sendRequest(api.OrderInfoList, data, this.handleWillTakeSucc.bind(this));
     },
     getYiShouHuo() {
-        let status = this.data.activeIndex,
-            userId = this.data.userId,
-            dbId = this.data.dbId;
+        let status = this.data.activeIndex;
+                let buyWay = this.data.way;
             const data ={
-                    user_id:userId,
                     status:4,
                     orderBy:'',
-                    distribution_id:dbId
+                    buyStatus:buyWay
                 };
             utils.sendRequest(api.OrderInfoList, data, this.handleTakeDownSucc.bind(this));
     },
@@ -100,17 +96,16 @@ Page({
         }
     },
     handleGetList() {// 获取全部订单列表
-        let userId = this.data.userId,
-            dbId = this.data.dbId;
+        let buyWay = this.data.way;
         const data ={
-                    user_id:userId,
                     status:'',
                     orderBy:'',
-                    distribution_id:dbId
+                    buyStatus:buyWay
                 };
         utils.sendRequest(api.OrderInfoList, data, this.handleOrderInfoListSucc.bind(this));
     },
     handleOrderInfoListSucc(res) {
+        console.log(res)
         wx.showToast({title: '加载成功',icon: 'success'});      
         this.setData({//反转数组 
             allOrder:res.data.data.reverse()

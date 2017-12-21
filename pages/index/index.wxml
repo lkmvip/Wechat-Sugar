@@ -45,7 +45,7 @@
                     </view>
                     <view class="list-content">
                         <navigator open-type="switchTab" url="/pages/classify/index">
-                            <view style="font-size: 20rpx;text-align: center;margin-top: 10rpx;line-height: 150rpx;color: #666">查看更多></view>
+                            <view style="font-size: 20rpx;text-align: center;margin-top: 10rpx;line-height: 100rpx;color: #666">查看更多></view>
                         </navigator>
                     </view>
                 </view>
@@ -127,17 +127,17 @@
                 </view>
                 <!--  ***************************专题功能6*********************** -->
                 <view wx:if="{{item.class_name == 'box6'}}" class="set-six" >
-                    <view class="six-img">
+                    <view class="six-img" style="height: 50%" >
                         <image src="{{item.img_url[0]}}" class="set-img" data-id="{{item.goods_str[0].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                     </view>
-                    <view class="six-img">
-                        <image src="{{item.img_url[1]}}" class="set-img" data-id="{{item.goods_str[1].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
+                    <view class="six-img" style="height: 50%">
+                        <image src="{{item.img_url[1]}}" class="set-img"  data-id="{{item.goods_str[1].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                     </view>
-                    <view class="six-img">
-                        <image src="{{item.img_url[2]}}" class="set-img" data-id="{{item.goods_str[2].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
+                    <view class="six-img" style="height: 50%">
+                        <image src="{{item.img_url[2]}}" class="set-img"  data-id="{{item.goods_str[2].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                     </view>
-                    <view class="six-img">
-                        <image src="{{item.img_url[3]}}" class="set-img" data-id="{{item.goods_str[3].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
+                    <view class="six-img" style="height: 50%">
+                        <image src="{{item.img_url[3]}}" class="set-img"  data-id="{{item.goods_str[3].goods_str}}" data-name="{{item.title}}" bindtap="handleGoToPic"/>
                     </view>
                 </view>
                 <!--  ***************************专题功能7*********************** -->
@@ -181,7 +181,7 @@
                                         <view class="old-price letf" style="margin-top:14rpx">￥{{item.market_price}}</view>
                                     </view>
                                 <block wx:if="{{dbShow}}">
-                                    <view class="new-price" style="color:#ec1358;margin-top:10rpx">赚{{item.makeMoney}}</view>
+                                    <view class="new-price" style="color:#ec1358;margin-top:10rpx">赚{{item.makeMoney?item.makeMoney:0}}</view>
                                 </block>
                                 </view>
                                 <view style="width: 50%;">

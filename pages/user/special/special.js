@@ -58,7 +58,6 @@ Page({
         utils.sendRequest(api.UserMsgGoods, data, this.HandleSpecialListSucc.bind(this)); 
     },
     HandleSpecialListSucc(res) {
-        console.log(res)
         let sOne = [],sTwo = [];
         res.data.data.map( item => {item.id >= -2? sOne.push(item):sTwo.push(item)})
         this.setData({

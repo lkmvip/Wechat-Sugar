@@ -58,14 +58,14 @@ Page({
 
     },
     handleLogin(res) {
+        console.log(res)
         wx.showToast({
             icon: "loading",
             title: "正在加载"
         })
         try {
             wx.setStorageSync('UserCard', res.data)//验证用户身份
-            res.data.distribution_id == 0?wx.setStorageSync('seller', false):wx.setStorageSync('seller', true);
-            
+            res.data.distribution_id == 0?wx.setStorageSync('seller', false):wx.setStorageSync('seller', true);            
         } catch (e) {    
             console.log(e)
         }
@@ -73,6 +73,7 @@ Page({
             show = wx.getStorageSync('seller'),
             db = wx.getStorageSync('dbid'),
             ifHave = false;
+            console.log(show)
             if(card.distribution_id!=''){
                 if((card.distribution_id!=''&&db== '')||card.distribution_id==db) {
                     ifHave = true;
@@ -261,8 +262,7 @@ Page({
     handleSearch(e) {
         this.setData({
             inputVal: e.detail.value
-        }); 
-        console.log(this.data.limitIndex)                   
+        });                
         const data = {
             limitIndex:1,
             data:{
@@ -291,7 +291,11 @@ Page({
         if (e.detail.cursor == 0) {
             this.setData({
                 inputVal: '',
-                searchList: []
+                searchList: [],
+                limitIndex:0
+            });
+            wx.pageScrollTo({
+              scrollTop: 0
             });
         }
     },
@@ -455,5 +459,13 @@ Page({
                 };
                 utils.sendRequest(api.DistributionDel, data, this.handleDelDbSucc.bind(this))
             }
+    },
+    onHide() {
+        wx.pageScrollTo({
+          scrollTop: 0
+        });
+        this.setData({
+            limitIndex:1,
+        })
     }
 })

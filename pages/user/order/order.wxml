@@ -15,7 +15,7 @@
 					<view class="mleft">订单编号:{{item.order_sn}}</view>
 					<view class="mright" style='color: #f2505d;'>{{item.status_msg}}</view>
 				</view>
-                <navigator url="/pages/ordermsg/msg?orderid={{item.order_id}}">
+                <navigator url="/pages/ordermsg/msg?orderid={{item.order_id}}&way={{way}}">
     				<view class="alllist-mid" wx:for="{{item.ordergoods}}" wx:key="{{index}}">
         					<image class="mid-img mleft" src="{{item.goods_img}}"></image>
         					<view class="mid-content mright">
@@ -55,7 +55,7 @@
                     <view class="mleft">订单编号:{{item.order_sn}}</view>
                     <view class="mright" style='color: #f2505d;'>{{item.status_msg}}</view>
                 </view>
-                <navigator url="/pages/ordermsg/msg?orderid={{item.order_id}}">
+                <navigator url="/pages/ordermsg/msg?orderid={{item.order_id}}&way={{way}}">
                     <view class="alllist-mid" wx:for="{{item.ordergoods}}" wx:key="{{index}}">
                             <image class="mid-img mleft" src="{{item.goods_img}}"></image>
                             <view class="mid-content mright">
@@ -86,7 +86,7 @@
                     <view class="mleft">订单编号:{{item.order_sn}}</view>
                     <view class="mright" style='color: #f2505d;'>{{item.status_msg}}</view>
                 </view>
-                <navigator url="/pages/ordermsg/msg?orderid={{item.order_id}}">
+                <navigator url="/pages/ordermsg/msg?orderid={{item.order_id}}&way={{way}}">
                     <view class="alllist-mid" wx:for="{{item.ordergoods}}" wx:key="{{index}}">
                             <image class="mid-img mleft" src="{{item.goods_img}}"></image>
                             <view class="mid-content mright">
@@ -122,7 +122,7 @@
                     <view class="mleft">订单编号:{{item.order_sn}}</view>
                     <view class="mright" style='color: #f2505d;'>{{item.status_msg}}</view>
                 </view>
-                <navigator url="/pages/ordermsg/msg?orderid={{item.order_id}}">
+                <navigator url="/pages/ordermsg/msg?orderid={{item.order_id}}&way={{way}}">
                     <view class="alllist-mid" wx:for="{{item.ordergoods}}" wx:key="{{index}}">
                             <image class="mid-img mleft" src="{{item.goods_img}}"></image>
                             <view class="mid-content mright">

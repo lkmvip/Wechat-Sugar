@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": false,
 		"minified": true,
@@ -9,8 +9,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.5.3",
-	"appid": "wx14f22768572e9ce4",
-	"projectname": "sugar",
+	"appid": "wx65ec890e5518a2b2",
+	"projectname": "sugar-test",
 	"condition": {
 		"search": {
 			"current": -1,

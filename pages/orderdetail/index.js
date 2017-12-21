@@ -146,33 +146,42 @@ Page({
             db = this.data.dbstatus,
             val = this.data.val;
             list.map(item => arr.push(item.goods_id));
-        const data ={
-            user_id:userId,
-            branchId:subId,
-            distribution:db,
-            share_level:'',
-            distribution_id:dbId,
-            distribution_level:dbLv,
-            post:{
-                address_id:addrid,
-                freight:reightrmb,
-                couponId:useTicket?'':couponId,
-                goods_ids:arr,
-                totalamount:allprice, //总价
-                coupon_money:useTicket?'':couponMoney,
-                totalPrice:allprice+reightrmb-(useTicket?0:couponMoney),//这个是去掉优惠券的钱orderPrice+freightNum-
-                rec_id:carid,
-                NowBuyNum:val,
-                salespromotion_type:'',
-                activety_id:'',
-                turnnum:'',    
-            }
-        };
-        //请求生成订单接口
-        utils.sendRequest(api.NewOrderInfo, data, this.handleNewOrderInfo.bind(this));
+        if (addrid) {
+            const data ={
+                user_id:userId,
+                branchId:subId,
+                distribution:db,
+                share_level:'',
+                distribution_id:dbId,
+                distribution_level:dbLv,
+                post:{
+                    address_id:addrid,
+                    freight:reightrmb,
+                    couponId:useTicket?'':couponId,
+                    goods_ids:arr,
+                    totalamount:allprice, //总价
+                    coupon_money:useTicket?'':couponMoney,
+                    totalPrice:allprice+reightrmb-(useTicket?0:couponMoney),//这个是去掉优惠券的钱orderPrice+freightNum-
+                    rec_id:carid,
+                    NowBuyNum:val,
+                    salespromotion_type:'',
+                    activety_id:'',
+                    turnnum:'',    
+                }
+            };
+            //请求生成订单接口
+            utils.sendRequest(api.NewOrderInfo, data, this.handleNewOrderInfo.bind(this));
+        }else {
+            wx.showModal({
+                content:'请填写地址信息哦~',
+                showCancel:false,
+                confirmColor:'#3cc51f'//默认值为#3cc51f
+            });
+        }
     },
     //请求提交订单成功
     handleNewOrderInfo(res) {
+        console.log(res)
         try {
             let frt = this.data.freightNum;
             let userId = this.data.userId;

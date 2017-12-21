@@ -14,20 +14,24 @@ Page({
     * 生命周期函数--监听页面加载
     */
     onLoad(options) {
+        console.log(options)
         let card = wx.getStorageSync('UserCard'),
             id = options.orderid;
-        this.handleGetInfo(id);
         this.setData({
-            userId:card.user_id
+            userId:card.user_id,
+            way:options.way
         })
+        this.handleGetInfo(id);
+        console.log(this.data.way)
     },
     //获取订单数据
     handleGetInfo(id) {
-        let userId = this.data.userId;
+        let userWay = this.data.way;
         const data ={
-            user_id:userId,
+            buyStatus:userWay,
             order_id:id
         };
+        console.log(data)
         //调用主要信息，获取余额。
         utils.sendRequest(api.OrderInfoDetail, data, this.handleOrderInfoDetailSucc.bind(this));
         

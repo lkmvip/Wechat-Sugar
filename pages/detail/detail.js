@@ -31,6 +31,7 @@ Page({
     * 生命周期函数--监听页面加载
     */
     onLoad(options) {
+        console.log(options)
         options.db? wx.setStorageSync('dbid', options.db) :'';
         utils.login(this.handleLogin.bind(this),this.handleReset.bind(this));
         wx.showToast({
@@ -336,24 +337,26 @@ Page({
         }else {
             let lv = this.data.goodsInfo[0].special_rank,
                 dbLv= this.data.dbLv;
-                if( lv && dbLv == 2){
-                    wx.showModal({content: '您已经是代理商~',showCancel: false})
-                    return false;
-                }else if(lv && dbLv == 1){
-                    wx.showModal({content: '您已经是服务商~',showCancel: false})
-                    return false;
-                }else {
-                    if(lv == 3){
-                        wx.showModal({content: '您已经是超级会员~',showCancel: false})
-                        return false;
-                    }
-                }
+                // console.log(lv,dbLv)
+                // if( lv>0 && dbLv == 2){
+                //     wx.showModal({content: '您已经是代理商~',showCancel: false})
+                //     return false;
+                // }else if(lv>0 && dbLv == 1){
+                //     wx.showModal({content: '您已经是服务商~',showCancel: false})
+                //     return false;
+                 
+                // }else {
+                //     if(dbLv == 3 && lv == 3){
+                //         wx.showModal({content: '您已经是超级会员~',showCancel: false})
+                //         return false;
+                //     }
+                // }
                 const data = {
                         userid:user,
                         goodsId:goodsId,
                         goods_name:goodsName,
                         goods_price:goodsPrice,
-                        goods_number:1
+                        goods_number:1,
                     };
                 utils.sendRequest(api.AddGoodtoCart, data, this.handleDbGoPaySucc.bind(this))
         }
@@ -450,12 +453,15 @@ Page({
         }
     },
     handleDbGoPaySucc(res) {
-        let code = res.statusCode,
+        console.log(res)
+        let code = res.data.error,
             goodsid = res.data.rec_id;
-        if (code == 200) {
+        if (code == 0) {
             wx.redirectTo({
               url: '/pages/orderdetail/index?cartid='+goodsid
             })
+        }else {
+            wx.showModal({content: res.data.err_msg ,showCancel: false})
         }
     },
     handleAddCartLike(e) {

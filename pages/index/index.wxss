@@ -366,6 +366,7 @@ swiper{
 }
 .five-right{
     width: 100%;
+    height:50%;
 }
 .six-img{
     width: 50%;

@@ -65,7 +65,7 @@
 			</view>
 			<view class="list-text">
 				<view>优惠券优惠:</view>
-				<view>￥{{item.coupon_money}}</view>
+				<view>￥{{item.coupon_money == null ? 0 :item.coupon_money}}</view>
 			</view>
 		</view>
 		<view class="list-item">

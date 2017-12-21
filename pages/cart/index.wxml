@@ -11,7 +11,7 @@
                         <text class="cart-pro-name">{{item.goods_name}}</text>
                         <view class="cart-msg">
                             <text class="cart-pro-stock left">库存:{{item.qty == null ? 0 : item.qty}}</text>
-                            <text class="cart-pro-spec right">规格:1</text>  
+                            <!-- <text class="cart-pro-spec right">规格:{{item.units}}</text>   -->
                         </view>
                         <view class="cart-count-box">
                             <text class="cart-pro-price" style="color:#ff4242;">￥{{item.goods_price}}</text>

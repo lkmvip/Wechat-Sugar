@@ -94,7 +94,7 @@ Page({
             utils.sendRequest(api.IndexUrl, data, this.handleMoreGoodsSucc.bind(this)); 
         };
     },
-    //请求更多商品成功处理函数 
+    //请求更多商品成功处理函数和专题 
     handleMoreGoodsSucc(res) {
         let goodsInfo = res.data.data;
         this.setData({
@@ -111,7 +111,6 @@ Page({
         });
     },
     handleNewBrandSucc(res) {
-        console.log(res)
         let brandInfo = '';
         res.data.error == 100 ? brandInfo = true :brandInfo = false;
         this.setData({
@@ -121,7 +120,6 @@ Page({
     },
     // 请求分类商品成功处理函数
     handleMoreClassifySucc(res) {
-        console.log(res)
         let calssList = res.data.data;
         this.setData({
             brandList : calssList

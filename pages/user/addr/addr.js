@@ -239,8 +239,10 @@ Page({
         let index = e.target.dataset.id,
             list = this.data.addrList,
             val = e.detail.value,
-            reg = /^1(3|4|5|7|8)\d{9}$/;
-        if (!reg.test(val)) {
+            reg = /^1(3|4|5|7|8)\d{9}$/,
+            reg1 = /^1(34[0-8]|(3[5-9]|5[017-9]|8[278])\d)\d{7}$/,
+            reg2 = /^0(10|2[0-5789]|\d{3})\d{7,8}$/;
+        if (!reg.test(val)&&!reg1.test(val)&&!reg2.test(val)) {
                wx.showModal({
                 content:'请输入正确的手机号',
                 showCancel:false,

@@ -151,7 +151,6 @@ Page({
 
     },
     handleSaveTel(res) {
-        console.log(res)
         let go = this.data.go,
             id = res.data.data.id,
             lv = res.data.data.level;
@@ -168,7 +167,6 @@ Page({
                             })
                         }else {
                             if (id != 0) {
-                                console.log(1)
                                 let card = wx.getStorageSync('UserCard');
                                 card.distribution_id = id;
                                 card.distribution_level = lv;

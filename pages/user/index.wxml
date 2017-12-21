@@ -40,8 +40,23 @@
 	<view class="user-orders">
 		<view class="orders-tit">
 			<view class="orders-my">我的订单</view>
-			<view catchtap="handleWillPay" data-id="0" class="oders-link">查看全部订单<text class="arrow-icon">></text></view>
+			<block wx:if="{{!dbShow}}">
+				<view catchtap="handleWillPay" data-id="0" class="oders-link">查看全部订单<text class="arrow-icon">></text></view>
+			</block>
 		</view>
+		<block wx:if="{{dbShow}}">
+			<view class="odres-tools" catchtap="handleShell" data-id="0">
+				<view class="odres-list">
+					<image class="oders-icon" src="/image/user/pay.png" background-size="cover"></image>
+					<view class="oders-text">卖出</view>
+				</view>
+				<view class="odres-list" catchtap="handleBuy" data-id="0">
+					<image class="oders-icon" src="/image/user/send.png" background-size="cover"></image>
+					<view class="oders-text">买入</view>
+				</view>
+			</view> 
+		</block>
+		<block wx:else>
 		<view class="odres-tools" catchtap="handleWillPay" data-id="1">
 			<view class="odres-list">
 				<image class="oders-icon" src="/image/user/pay.png" background-size="cover"></image>
@@ -56,6 +71,7 @@
 				<view class="oders-text">已收货</view>
 			</view>
 		</view>
+		</block>
 	</view>
 	<view class="user-tools">
 		<view class="orders-box">

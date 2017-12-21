@@ -58,8 +58,8 @@ function login(callback,reset) {
                                     wx.request({
                                         url: 'https://wstcsd.1haomei.com/html/shop/index.php/WstInterFace/WxServiceCallBack/getSmallProgramUnionid',
                                         data: {
-                                            appid: 'wx14f22768572e9ce4',
-                                            secret: 'a2916c49cadd7d5f89e1ce113fe00b6e',
+                                            appid: 'wx65ec890e5518a2b2',
+                                            secret: '19b2ac8c8b1e087f3bf8713edc042a92',
                                             js_code: res.code,
                                             grant_type: 'authorization_code',
                                             userInfo: userInfoStr
