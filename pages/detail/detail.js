@@ -284,8 +284,8 @@ Page({
        
     },
     handleAddGoodtoCartSucc(res) {
-        let code = res.statusCode;
-        if(code == 200) {
+        let code = res.data.error;
+        if(code == 0) {
             wx.showModal({
                 content: '加入购物车成功',
                 showCancel: false,
@@ -337,20 +337,6 @@ Page({
         }else {
             let lv = this.data.goodsInfo[0].special_rank,
                 dbLv= this.data.dbLv;
-                // console.log(lv,dbLv)
-                // if( lv>0 && dbLv == 2){
-                //     wx.showModal({content: '您已经是代理商~',showCancel: false})
-                //     return false;
-                // }else if(lv>0 && dbLv == 1){
-                //     wx.showModal({content: '您已经是服务商~',showCancel: false})
-                //     return false;
-                 
-                // }else {
-                //     if(dbLv == 3 && lv == 3){
-                //         wx.showModal({content: '您已经是超级会员~',showCancel: false})
-                //         return false;
-                //     }
-                // }
                 const data = {
                         userid:user,
                         goodsId:goodsId,
@@ -363,16 +349,17 @@ Page({
     },
     //请求成功后跳转
     handleGoPaySucc(res) {
-        let code = res.statusCode,
+        let code = res.data.error,
             goodsid = res.data.rec_id,
             num = this.data.num,
             sub = this.data.goodsInfo[0].id,
             dbCanshu = this.data.dbCanshu;
-
-        if (code == 200) {
+        if (code == 0) {
             wx.redirectTo({
               url: '/pages/orderdetail/index?cartid='+goodsid+'&val='+num+'&pid='+sub
             })
+        }else {
+            wx.showModal({content: res.data.err_msg ,showCancel: false})
         }
     },
     // 前往首页
